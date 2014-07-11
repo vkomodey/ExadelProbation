@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ExadelProbation:war exploded">
+    <output-path>$PROJECT_DIR$/target/ExadelPractice</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ExadelProbation/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ExadelProbation" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

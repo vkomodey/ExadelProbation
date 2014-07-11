@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ExadelProbation:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="ExadelPractice.war">
+      <element id="artifact" artifact-name="ExadelProbation:war exploded" />
+    </root>
+  </artifact>
+</component>
