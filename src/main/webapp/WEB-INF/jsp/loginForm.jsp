@@ -22,8 +22,7 @@
             <input type="submit" value="Log In">
         </form>
     </fieldset>
-    <h1>dfdfdf</h1>
-    zalupa
+
 </div>
 </body>
 </html>
