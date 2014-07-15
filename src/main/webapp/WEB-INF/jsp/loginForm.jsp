@@ -25,7 +25,6 @@
     <h1>dfdfdf</h1>
     zalupa111
 
-    valera
 </div>
 </body>
 </html>
