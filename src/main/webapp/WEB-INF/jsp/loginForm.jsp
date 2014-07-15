@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/LogStyle.css" media="screen"/>
+    <link rel="stylesheet" href="../css/LogStyle.css" media="screen"/>
     <title>Login Page</title>
 </head>
 <body>
