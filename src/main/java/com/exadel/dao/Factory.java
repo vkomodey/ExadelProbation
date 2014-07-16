@@ -1,7 +1,7 @@
 package com.exadel.dao;
 
 
-import dao.daoImpl.UserDAOImpl;
+import com.exadel.dao.daoimpl.UserDAOImpl;
 
 public class Factory {
     private static UserDAO  userDAO = null;
