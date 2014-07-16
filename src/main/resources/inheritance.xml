@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 16, 2014 2:10:55 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+
+    <class name="logic.User" table="user_">
+        <id name="id" type="long" access="field">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="firstName" type="java.lang.String">
+            <column name="first_name" />
+        </property>
+        <property name="secondName" type="java.lang.String">
+            <column name="second_name" />
+        </property>
+        <property name="surname" type="java.lang.String">
+            <column name="surname" />
+        </property>
+        <property name="login" type="java.lang.String">
+            <column name="login" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="password" />
+        </property>
+        <property name="role" type="java.lang.String">
+            <column name="role" />
+        </property>
+    </class>
+
+    <joined-subclass name="logic.Student" extends="logic.User" table="stud" lazy="false">
+        <key>
+            <column name="id" />
+        </key>
+        <property name="stateEnum" type="java.lang.String">
+            <column name="state_enum" />
+        </property>
+    </joined-subclass>
+
+</hibernate-mapping>
