@@ -1,7 +1,7 @@
 package com.exadel.dao;
 
 
-import logic.User;
+import com.exadel.model.entity.User;
 
 import java.sql.SQLException;
 import java.util.List;
