@@ -5,7 +5,15 @@ public class Student extends User{
     private String stateEnum;
     private long id;
 
-    public Student() {
+    public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Student() {
 
     }
 

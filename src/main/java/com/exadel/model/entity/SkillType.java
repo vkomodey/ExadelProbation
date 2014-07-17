@@ -1,6 +1,5 @@
 package com.exadel.model.entity;
 
-import javax.persistence.Entity;
 
 /**
  * Created by Ivan on 17.07.14.
