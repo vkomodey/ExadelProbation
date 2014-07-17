@@ -32,7 +32,7 @@
 
     <!--<mapping resource="User.hbm.xml" />
     <mapping resource="Student.hbm.xml" />-->
-    <mapping resource="inheritance.xml" />
+    <mapping resource="entities.xml" />
 
 
 </session-factory>
