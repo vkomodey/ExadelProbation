@@ -1,9 +1,16 @@
 package com.exadel.controller;
 
-/**
- * Created by vlad on 16/07/14.
- */
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
 public class LoginController {
-
-
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public ModelAndView listRedirect(ModelAndView model){
+        model.addObject("message", "zhora");
+        model.setViewName("list");
+        return model;
+    }
 }

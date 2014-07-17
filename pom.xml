@@ -33,6 +33,12 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>4.0.6.RELEASE</version>
+        </dependency>
+
 
         <!-- Spring Security -->
         <dependency>
@@ -53,6 +59,13 @@
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
         </dependency>
+        <!--postgresql jdbc-->
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.1-901-1.jdbc4</version>
+        </dependency>
+
     </dependencies>
   <build>
     <finalName>ExadelProbation</finalName>
