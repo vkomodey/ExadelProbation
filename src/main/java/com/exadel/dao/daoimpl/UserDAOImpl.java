@@ -1,9 +1,9 @@
 package com.exadel.dao.daoimpl;
 
 import com.exadel.dao.UserDAO;
-import logic.User;
+import com.exadel.model.entity.User;
 import org.hibernate.Session;
-import util.HibernateUtil;
+import com.exadel.util.HibernateUtil;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -14,7 +14,6 @@ import java.util.List;
 public class UserDAOImpl implements UserDAO {
 
 
-    @Override
     public void addUser(User user) throws SQLException {
         Session session = null;
         try {
@@ -31,7 +30,6 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-    @Override
     public void updateUser(User user) throws SQLException {
         Session session = null;
         try {
@@ -48,7 +46,6 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-    @Override
     public User getUserById(Long id) throws SQLException {
         Session session = null;
         User user = null;
@@ -65,7 +62,6 @@ public class UserDAOImpl implements UserDAO {
         return user;
     }
 
-    @Override
     public List getAllUsers() throws SQLException {
         Session session = null;
         List<User> users = new ArrayList<User>();
@@ -82,7 +78,6 @@ public class UserDAOImpl implements UserDAO {
         return users;
     }
 
-    @Override
     public void deleteUser(User user) throws SQLException {
         Session session = null;
         try {
