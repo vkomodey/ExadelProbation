@@ -1,11 +1,12 @@
 package com.exadel.model.entity;
 
+import com.exadel.model.IEntity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 
-public class User {
+public class User implements IEntity{
 
     private long id;
     private String firstName;
