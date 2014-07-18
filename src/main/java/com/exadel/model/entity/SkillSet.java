@@ -1,35 +1,48 @@
 package com.exadel.model.entity;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "skill_set")
-public class SkillSet extends Student {
+public class SkillSet {
+	private long id;
+	@Id
+	public long getId() {
+		return id;
+	}
 
-    private long skill_Id;
-    private String level;
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public SkillSet(){
+	private String level;
+	private SkillType type;
+	
+	public SkillSet() {
 
-    }
+	}
+	@ManyToOne(cascade=CascadeType.ALL)
+	public SkillType getType() {
+		return type;
+	}
 
-    @Column(name = "skill_id")
-    public long getSkillId() {
-        return skill_Id;
-    }
+	public void setType(SkillType type) {
+		this.type = type;
+	}
 
-    public void setSkillId(long skill_Id) {
-        this.skill_Id = skill_Id;
-    }
+	public String getLevel() {
+		return level;
+	}
 
-    @Column(name = "level")
-    public String getLevel() {
-        return level;
-    }
+	public void setLevel(String level) {
+		this.level = level;
+	}
 
-    public void setLevel(String level) {
-        this.level = level;
-    }
+	
+
 }

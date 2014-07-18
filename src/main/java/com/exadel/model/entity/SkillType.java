@@ -1,39 +1,37 @@
 package com.exadel.model.entity;
 
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "skill_type")
+@Table(name="skill_type")
 public class SkillType {
-    private long skill_type_id;
     private String name;
+    private long id;
+    
+    @Id
+    @GeneratedValue
+	public long getId() {
+		return id;
+	}
 
-    public SkillType() {
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public SkillType(int skill_type_id, String name) {
-        this.skill_type_id = skill_type_id;
-        this.name = name;
-    }
+	public SkillType() {
+		super();
+	}
 
-    @Column(name = "skill_id")
-    public long getSkill_type_id() {
-        return skill_type_id;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setSkill_type_id(long skill_type_id) {
-        this.skill_type_id = skill_type_id;
-    }
-
-    @Column(name = "skill_name")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 }

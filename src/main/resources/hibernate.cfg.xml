@@ -33,7 +33,14 @@
     <property name="hibernate.hbm2ddl.auto">create</property>
 
     <!--<mapping resource="entities.xml" />-->
-    <mapping package="com.exadel.model.entity" />
+    <mapping class="com.exadel.model.entity.User"/>
+    <mapping class="com.exadel.model.entity.Student"/>
+    <mapping class="com.exadel.model.entity.SkillSet"/>
+    <mapping class="com.exadel.model.entity.SkillType"/>
+    <mapping class="com.exadel.model.entity.StudentExams"/>
+    <mapping class="com.exadel.model.entity.Study"/>
+    <mapping class="com.exadel.model.entity.Exadel_Work"/>
+    <mapping class="com.exadel.model.entity.Exadel_Practice"/>
 
 
 

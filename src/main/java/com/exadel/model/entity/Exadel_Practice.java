@@ -2,7 +2,9 @@ package com.exadel.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
+
 import java.util.Calendar;
 
 @Entity
@@ -15,7 +17,7 @@ public class Exadel_Practice {
 
     public Exadel_Practice() {
     }
-
+    @Id
     @Column(name = "stud_id")
     public long getId() {
 
@@ -26,7 +28,7 @@ public class Exadel_Practice {
         this.id = id;
     }
 
-    /@Column(name = "interview")
+    @Column(name = "interview")
     public String getInterview() {
         return interview;
     }

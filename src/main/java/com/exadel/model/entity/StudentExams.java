@@ -2,19 +2,30 @@ package com.exadel.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "student_exams")
-public class Student_Exams {
+public class StudentExams {
     private long id;
-    private int year;
+    private long studentId;
+    @Column(name = "student_id")
+    public long getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(long student_id) {
+		this.studentId = student_id;
+	}
+
+	private int year;
     private double summer_grade,winter_grade;
 
-    public Student_Exams() {
+    public StudentExams() {
     }
-
-    @Column(name = "student_id")
+    @Id
+    @GeneratedValue
     public long getId() {
 
         return id;

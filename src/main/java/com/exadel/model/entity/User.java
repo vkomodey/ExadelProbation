@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "USER_")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class User {
 
     private long id;
@@ -69,7 +70,7 @@ public class User {
         return login;
     }
 
-    @Column(name = "login")
+    @Column()
     public String getPassword() {
         return password;
     }
