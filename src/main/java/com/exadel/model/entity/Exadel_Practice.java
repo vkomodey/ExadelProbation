@@ -1,18 +1,22 @@
 package com.exadel.model.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Calendar;
 
-/**
- * Created by Ivan on 17.07.14.
- */
+@Entity
+@Table(name = "exadel_practice")
 public class Exadel_Practice {
     private long id;
     private String interview,curator;
     private boolean work_invitation,practicing;
+    private Calendar practice_start,practice_stop;
 
     public Exadel_Practice() {
     }
 
+    @Column(name = "stud_id")
     public long getId() {
 
         return id;
@@ -22,6 +26,7 @@ public class Exadel_Practice {
         this.id = id;
     }
 
+    /@Column(name = "interview")
     public String getInterview() {
         return interview;
     }
@@ -30,6 +35,7 @@ public class Exadel_Practice {
         this.interview = interview;
     }
 
+    @Column(name = "curator")
     public String getCurator() {
         return curator;
     }
@@ -38,6 +44,7 @@ public class Exadel_Practice {
         this.curator = curator;
     }
 
+    @Column(name = "work_invitation")
     public boolean isWork_invitation() {
         return work_invitation;
     }
@@ -46,6 +53,7 @@ public class Exadel_Practice {
         this.work_invitation = work_invitation;
     }
 
+    @Column(name = "practicing")
     public boolean isPracticing() {
         return practicing;
     }
@@ -54,6 +62,7 @@ public class Exadel_Practice {
         this.practicing = practicing;
     }
 
+    @Column(name = "practice_start")
     public Calendar getPractice_start() {
         return practice_start;
     }
@@ -62,6 +71,7 @@ public class Exadel_Practice {
         this.practice_start = practice_start;
     }
 
+    @Column(name = "practice_stop")
     public Calendar getPractice_stop() {
         return practice_stop;
     }
@@ -70,5 +80,4 @@ public class Exadel_Practice {
         this.practice_stop = practice_stop;
     }
 
-    private Calendar practice_start,practice_stop;
 }

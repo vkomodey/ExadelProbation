@@ -5,6 +5,8 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 
+@Entity
+@Table(name = "USER_")
 public class User {
 
     private long id;
@@ -35,36 +37,6 @@ public class User {
         this.surname= surname;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
-    public long getId() {
-        return id;
-    }
-
     public void setLogin(String login) {
         this.login = login;
     }
@@ -76,4 +48,43 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+    @Column(name = "first_name")
+    public String getFirstName() {
+        return firstName;
+    }
+
+    @Column(name = "second_name")
+    public String getSecondName() {
+        return secondName;
+    }
+
+    @Column(name = "surname")
+    public String getSurname() {
+        return surname;
+    }
+
+    @Column(name = "login")
+    public String getLogin() {
+        return login;
+    }
+
+    @Column(name = "login")
+    public String getPassword() {
+        return password;
+    }
+
+    @Column(name = "role")
+    public String getRole() {
+        return role;
+    }
+
+    @Id
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+    @Column(name = "id")
+    public long getId() {
+        return id;
+    }
+
 }

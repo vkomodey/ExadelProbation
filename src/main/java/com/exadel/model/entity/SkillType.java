@@ -1,9 +1,12 @@
 package com.exadel.model.entity;
 
 
-/**
- * Created by Ivan on 17.07.14.
- */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "skill_type")
 public class SkillType {
     private long skill_type_id;
     private String name;
@@ -16,6 +19,7 @@ public class SkillType {
         this.name = name;
     }
 
+    @Column(name = "skill_id")
     public long getSkill_type_id() {
         return skill_type_id;
     }
@@ -24,6 +28,7 @@ public class SkillType {
         this.skill_type_id = skill_type_id;
     }
 
+    @Column(name = "skill_name")
     public String getName() {
         return name;
     }

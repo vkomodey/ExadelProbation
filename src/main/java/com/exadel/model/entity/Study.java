@@ -1,8 +1,11 @@
 package com.exadel.model.entity;
 
-/**
- * Created by Ivan on 17.07.14.
- */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "study")
 public class Study {
     private long student_id;
     private int graduate_year;
@@ -21,6 +24,7 @@ public class Study {
         this.course_group = course_group;
     }
 
+    @Column(name = "student_id")
     public long getStudent_id() {
         return student_id;
     }
@@ -29,6 +33,7 @@ public class Study {
         this.student_id = student_id;
     }
 
+    @Column(name = "graduate_year")
     public int getGraduate_year() {
         return graduate_year;
     }
@@ -37,6 +42,7 @@ public class Study {
         this.graduate_year = graduate_year;
     }
 
+    @Column(name = "university")
     public String getUniversity() {
         return university;
     }
@@ -45,6 +51,7 @@ public class Study {
         this.university = university;
     }
 
+    @Column(name = "faculty")
     public String getFaculty() {
         return faculty;
     }
@@ -53,6 +60,7 @@ public class Study {
         this.faculty = faculty;
     }
 
+    @Column(name = "specialty")
     public String getSpecialty() {
         return specialty;
     }
@@ -61,6 +69,7 @@ public class Study {
         this.specialty = specialty;
     }
 
+    @Column(name = "course_group")
     public String getCourse_group() {
         return course_group;
     }
