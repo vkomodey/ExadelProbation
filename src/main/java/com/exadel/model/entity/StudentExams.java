@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "exams")
+@Table(name = "exam")
 public class StudentExams implements Serializable {
 	private int year;
     private double summer_grade,winter_grade;

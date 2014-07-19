@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.OneToMany;
 
+
 @Embeddable
 public class Study {
     private int graduate_year;
