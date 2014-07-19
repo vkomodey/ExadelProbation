@@ -20,7 +20,7 @@ import com.exadel.model.enums.StudentStateEnum;
 @PrimaryKeyJoinColumn(name="id")
 public class Student extends User{
 	private Study study;
-    private StudentStateEnum stateEnum;
+    private StudentStateEnum state;
     private Set<Skill> skillSet;
     
     @OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
@@ -30,13 +30,12 @@ public class Student extends User{
 	public void setSkillSet(Set<Skill> skillSet) {
 		this.skillSet = skillSet;
 	}
-	@Embedded
     @Enumerated(EnumType.STRING)
-	public StudentStateEnum getStateEnum() {
-		return stateEnum;
+	public StudentStateEnum getState() {
+		return state;
 	}
-	public void setStateEnum(StudentStateEnum stateEnum) {
-		this.stateEnum = stateEnum;
+	public void setState(StudentStateEnum state) {
+		this.state = state;
 	}
 	
 	@Embedded

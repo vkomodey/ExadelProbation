@@ -12,21 +12,11 @@ import javax.persistence.Table;
 @Table(name="skill_type")
 public class SkillType {
     private String name;
-    private long id;
-    
-    @Id
-    @GeneratedValue
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public SkillType() {
 	}
-	@Column(name="name")
+	@Id
+	@Column(name="type")
 	public String getName() {
 		return name;
 	}
