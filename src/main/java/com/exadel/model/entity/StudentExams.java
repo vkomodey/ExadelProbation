@@ -1,5 +1,7 @@
 package com.exadel.model.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,34 +9,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "student_exams")
-public class StudentExams {
-    private long id;
-    private long studentId;
-    @Column(name = "student_id")
-    public long getStudentId() {
-		return studentId;
-	}
-	public void setStudentId(long student_id) {
-		this.studentId = student_id;
-	}
-
+@Table(name = "exams")
+public class StudentExams implements Serializable {
 	private int year;
     private double summer_grade,winter_grade;
-
+    private long id;
+    
     public StudentExams() {
     }
     @Id
     @GeneratedValue
     public long getId() {
-
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
     @Column(name = "year")
     public int getYear() {
         return year;

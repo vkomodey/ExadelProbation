@@ -1,6 +1,7 @@
 package com.exadel.model.entity;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,9 +25,8 @@ public class SkillType {
 	}
 
 	public SkillType() {
-		super();
 	}
-
+	@Column(name="name")
 	public String getName() {
 		return name;
 	}

@@ -4,21 +4,16 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.Embeddable;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "study")
+@Embeddable
 public class Study {
-    private long student_id;
     private int graduate_year;
     private String university, faculty, specialty, course_group;
     private List<StudentExams> exams;
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="student_id",referencedColumnName="student_id")
+    
+    @OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
     public List<StudentExams> getExams() {
 		return exams;
 	}
@@ -32,21 +27,11 @@ public class Study {
 
     public Study(int student_id, int graduate_year, String university, String faculty, String specialty, String course_group) {
 
-        this.student_id = student_id;
         this.graduate_year = graduate_year;
         this.university = university;
         this.faculty = faculty;
         this.specialty = specialty;
         this.course_group = course_group;
-    }
-    @Id
-    @Column(name = "student_id")
-    public long getStudent_id() {
-        return student_id;
-    }
-
-    public void setStudent_id(long student_id) {
-        this.student_id = student_id;
     }
 
     @Column(name = "graduate_year")
