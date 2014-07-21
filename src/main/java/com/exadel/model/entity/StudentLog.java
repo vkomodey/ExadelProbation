@@ -1,9 +1,11 @@
 package com.exadel.model.entity;
 
-/**
- * Created by Ivan on 17.07.14.
- */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "student_log")
 public class StudentLog {
     private long id;
     private String new_State;
@@ -11,6 +13,7 @@ public class StudentLog {
     public StudentLog() {
     }
 
+    @Column(name = "id")
     public long getId() {
         return id;
     }
@@ -19,6 +22,7 @@ public class StudentLog {
         this.id = id;
     }
 
+    @Column(name = "new_state")
     public String getNew_State() {
         return new_State;
     }

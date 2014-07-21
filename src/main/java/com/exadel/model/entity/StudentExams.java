@@ -1,25 +1,31 @@
 package com.exadel.model.entity;
 
-/**
- * Created by Ivan on 17.07.14.
- */
-public class Student_Exams {
-    private long id;
-    private int year;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "exam")
+public class StudentExams implements Serializable {
+	private int year;
     private double summer_grade,winter_grade;
-
-    public Student_Exams() {
+    private long id;
+    
+    public StudentExams() {
     }
-
+    @Id
+    @GeneratedValue
     public long getId() {
-
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+    @Column(name = "year")
     public int getYear() {
         return year;
     }
@@ -28,6 +34,7 @@ public class Student_Exams {
         this.year = year;
     }
 
+    @Column(name = "summer_grade")
     public double getSummer_grade() {
         return summer_grade;
     }
@@ -36,6 +43,7 @@ public class Student_Exams {
         this.summer_grade = summer_grade;
     }
 
+    @Column(name = "winter_grade")
     public double getWinter_grade() {
         return winter_grade;
     }
