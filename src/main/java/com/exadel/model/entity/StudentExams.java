@@ -6,32 +6,20 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "exam")
 public class StudentExams implements Serializable {
-	private int year;
+	private long id;
     private double summer_grade,winter_grade;
-    private long id;
-    
-    public StudentExams() {
-    }
-    @Id
-    @GeneratedValue
-    public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-    @Column(name = "year")
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
+    private Student student;
+    private int year;
+	public StudentExams() {
     }
 
     @Column(name = "summer_grade")
@@ -51,4 +39,31 @@ public class StudentExams implements Serializable {
     public void setWinter_grade(double winter_grade) {
         this.winter_grade = winter_grade;
     }
+    @ManyToOne
+    @NaturalId
+    @JoinColumn(name="student_fk",insertable=false,updatable=false)
+	public Student getStudent() {
+		return student;
+	}
+    @NaturalId
+	public int getYear() {
+		return year;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+	@Id
+	@GeneratedValue
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 }

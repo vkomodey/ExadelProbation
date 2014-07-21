@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 
@@ -15,6 +16,7 @@ public class Study {
     private List<StudentExams> exams;
     
     @OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
+    @JoinColumn(name="student_fk")
     public List<StudentExams> getExams() {
 		return exams;
 	}
