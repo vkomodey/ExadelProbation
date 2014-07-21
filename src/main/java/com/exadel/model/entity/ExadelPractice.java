@@ -1,7 +1,5 @@
 package com.exadel.model.entity;
 
-import com.sun.javafx.beans.IDProperty;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,12 +9,26 @@ import java.util.Calendar;
 @Entity
 @Table(name = "exadel_practice")
 public class ExadelPractice {
+
+    private long id;
     private String interview; // текст собеседования
     private String  curator;
-/*    private boolean work_invitation,practicing;
-    private Calendar practice_start,practice_stop;*/
+    private boolean workInvitation;
+    private boolean practicing;
+    private Calendar practiceStart;
+    private Calendar practiceStop;
 
     public ExadelPractice() {
+    }
+
+    @Id
+    @Column(name = "stud_id")
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Column(name = "interview")
@@ -37,13 +49,13 @@ public class ExadelPractice {
         this.curator = curator;
     }
 
-/*    @Column(name = "work_invitation")
-    public boolean isWork_invitation() {
-        return work_invitation;
+    @Column(name = "workInvitation")
+    public boolean setWorkInvitation() {
+        return workInvitation;
     }
 
-    public void setWork_invitation(boolean work_invitation) {
-        this.work_invitation = work_invitation;
+    public void setWorkInvitation(boolean workInvitation) {
+        this.workInvitation = workInvitation;
     }
 
     @Column(name = "practicing")
@@ -55,22 +67,22 @@ public class ExadelPractice {
         this.practicing = practicing;
     }
 
-    @Column(name = "practice_start")
-    public Calendar getPractice_start() {
-        return practice_start;
+    @Column(name = "practiceStart")
+    public Calendar getPracticeStart() {
+        return practiceStart;
     }
 
-    public void setPractice_start(Calendar practice_start) {
-        this.practice_start = practice_start;
+    public void setPracticeStart(Calendar practiceStart) {
+        this.practiceStart = practiceStart;
     }
 
-    @Column(name = "practice_stop")
-    public Calendar getPractice_stop() {
-        return practice_stop;
+    @Column(name = "practiceStop")
+    public Calendar getPracticeStop() {
+        return practiceStop;
     }
 
-    public void setPractice_stop(Calendar practice_stop) {
-        this.practice_stop = practice_stop;
-    }*/
+    public void setPracticeStop(Calendar practiceStop) {
+        this.practiceStop = practiceStop;
+    }
 
 }
