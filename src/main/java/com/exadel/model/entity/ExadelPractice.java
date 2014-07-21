@@ -1,17 +1,22 @@
 package com.exadel.model.entity;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import java.util.Calendar;
 
 @Entity
 @Table(name = "exadel_practice")
-public class ExadelPractice {
-
-    private long id;
-    private String interview; // текст собеседования
+public class ExadelPractice{
+	private long id;
+	private String interview; // текст собеседования
     private String  curator;
     private boolean workInvitation;
     private boolean practicing;
@@ -20,69 +25,68 @@ public class ExadelPractice {
 
     public ExadelPractice() {
     }
-
     @Id
-    @Column(name = "stud_id")
-    public long getId() {
-        return id;
-    }
+    @GeneratedValue
+	public long getId() {
+		return id;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public String getInterview() {
+		return interview;
+	}
 
-    @Column(name = "interview")
-    public String getInterview() {
-        return interview;
-    }
+	public String getCurator() {
+		return curator;
+	}
 
-    public void setInterview(String interview) {
-        this.interview = interview;
-    }
+	public boolean isWorkInvitation() {
+		return workInvitation;
+	}
 
-    @Column(name = "curator")
-    public String getCurator() {
-        return curator;
-    }
+	public boolean isPracticing() {
+		return practicing;
+	}
 
-    public void setCurator(String curator) {
-        this.curator = curator;
-    }
+	public Calendar getPracticeStart() {
+		return practiceStart;
+	}
 
-    @Column(name = "workInvitation")
-    public boolean setWorkInvitation() {
-        return workInvitation;
-    }
+	public Calendar getPracticeStop() {
+		return practiceStop;
+	}
 
-    public void setWorkInvitation(boolean workInvitation) {
-        this.workInvitation = workInvitation;
-    }
 
-    @Column(name = "practicing")
-    public boolean isPracticing() {
-        return practicing;
-    }
 
-    public void setPracticing(boolean practicing) {
-        this.practicing = practicing;
-    }
+	public void setInterview(String interview) {
+		this.interview = interview;
+	}
 
-    @Column(name = "practiceStart")
-    public Calendar getPracticeStart() {
-        return practiceStart;
-    }
+	public void setCurator(String curator) {
+		this.curator = curator;
+	}
 
-    public void setPracticeStart(Calendar practiceStart) {
-        this.practiceStart = practiceStart;
-    }
+	public void setWorkInvitation(boolean workInvitation) {
+		this.workInvitation = workInvitation;
+	}
 
-    @Column(name = "practiceStop")
-    public Calendar getPracticeStop() {
-        return practiceStop;
-    }
+	public void setPracticing(boolean practicing) {
+		this.practicing = practicing;
+	}
 
-    public void setPracticeStop(Calendar practiceStop) {
-        this.practiceStop = practiceStop;
-    }
+	public void setPracticeStart(Calendar practiceStart) {
+		this.practiceStart = practiceStart;
+	}
+
+	public void setPracticeStop(Calendar practiceStop) {
+		this.practiceStop = practiceStop;
+	}
+
+
+
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 }

@@ -1,7 +1,5 @@
 package com.exadel.model.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 
@@ -81,8 +79,7 @@ public class User {
     }
 
     @Id
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
+    @GeneratedValue
     @Column(name = "id")
     public long getId() {
         return id;

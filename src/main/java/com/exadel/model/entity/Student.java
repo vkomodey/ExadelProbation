@@ -8,6 +8,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -18,7 +19,6 @@ import com.exadel.model.enums.StudentStateEnum;
 
 @Entity
 @Table(name = "student")
-@PrimaryKeyJoinColumn(name="id")
 public class Student extends User{
 	private Study study;
     private StudentStateEnum state;
@@ -50,7 +50,8 @@ public class Student extends User{
 		this.study = study;
 	}
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL,optional=true,orphanRemoval=true)
+	@JoinColumn(name="practice_id",referencedColumnName="id")
 	public ExadelPractice getPractice() {
 		return practice;
 	}
@@ -58,7 +59,8 @@ public class Student extends User{
 		this.practice = practice;
 	}
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL,optional=true,orphanRemoval=true)
+	@JoinColumn(name="work_id",referencedColumnName="id")
 	public ExadelWork getWork() {
 		return work;
 	}

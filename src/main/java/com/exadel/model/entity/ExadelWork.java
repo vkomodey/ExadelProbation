@@ -3,14 +3,16 @@ package com.exadel.model.entity;
 import com.exadel.model.enums.CurrentProjectRole;
 
 import javax.persistence.*;
+
 import java.util.Calendar;
+import java.util.Set;
 
 @Entity
 @Table(name = "exadel_work")
 public class ExadelWork {
+	private long id;
 
-    private long id;
-    private int hours_current;
+	private int hours_current;
     private int hours_desired;
     private Calendar hoursDesiredTransferDate;
     private Calendar billableStartDate;
@@ -26,162 +28,152 @@ public class ExadelWork {
     private String certificates;
     private boolean isBillable;
     private boolean wannaChangeProj;
+    private Set<Technology> projectTechnologies;
 
     public ExadelWork() {
     }
-
     @Id
-    @Column(name = "stud_id")
-    public long getId() {
-        return id;
-    }
+	public long getId() {
+		return id;
+	}
 
-    @Enumerated(EnumType.STRING)
-    public CurrentProjectRole getCurrentProjectRole() {
-        return currentProjectRole;
-    }
+	public int getHours_current() {
+		return hours_current;
+	}
 
-    public void setCurrentProjectRole(CurrentProjectRole currentProjectRole) {
-        this.currentProjectRole = currentProjectRole;
-    }
+	public int getHours_desired() {
+		return hours_desired;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public Calendar getHoursDesiredTransferDate() {
+		return hoursDesiredTransferDate;
+	}
 
-    @Column(name = "hours_current")
-    public int getHours_current() {
-        return hours_current;
-    }
+	public Calendar getBillableStartDate() {
+		return billableStartDate;
+	}
 
-    public void setHours_current(int hours_current) {
-        this.hours_current = hours_current;
-    }
+	public Calendar getVacationNextDateStart() {
+		return vacationNextDateStart;
+	}
 
-    @Column(name = "hours_desired")
-    public int getHours_desired() {
-        return hours_desired;
-    }
+	public Calendar getVacationNextDateEnd() {
+		return vacationNextDateEnd;
+	}
 
-    public void setHours_desired(int hours_desired) {
-        this.hours_desired = hours_desired;
-    }
+	public Calendar getExadelTrainingNextFrom() {
+		return exadelTrainingNextFrom;
+	}
 
-    @Column(name = "hoursDesiredTransferDate")
-    public Calendar getHours_desired_transfer_date() {
-        return hoursDesiredTransferDate;
-    }
+	public Calendar getExadelTrainingNextTo() {
+		return exadelTrainingNextTo;
+	}
 
-    public void setHours_desired_transfer_date(Calendar hoursDesiredTransferDate) {
-        this.hoursDesiredTransferDate = hoursDesiredTransferDate;
-    }
+	public String getCurrentProject() {
+		return currentProject;
+	}
 
-    @Column(name = "Billable_start_date")
-    public Calendar getBillable_start_date() {
-        return billableStartDate;
-    }
+	public CurrentProjectRole getCurrentProjectRole() {
+		return currentProjectRole;
+	}
 
-    public void setBillable_start_date(Calendar billableStartDate) {
-        this.billableStartDate = billableStartDate;
-    }
+	public String getTeamLeadOnCurrent() {
+		return teamLeadOnCurrent;
+	}
 
-    @Column(name = "vacationNextDateStart")
-    public Calendar getVacation_next_date_start() {
-        return vacationNextDateStart;
-    }
+	public String getCurator() {
+		return curator;
+	}
 
-    public void setVacation_next_date_start(Calendar vacationNextDateStart) {
-        this.vacationNextDateStart = vacationNextDateStart;
-    }
+	public String getExadelTrainingType() {
+		return exadelTrainingType;
+	}
 
-    @Column(name = "vacationNextDateEnd")
-    public Calendar getVacation_next_date_end() {
-        return vacationNextDateEnd;
-    }
+	public String getCertificates() {
+		return certificates;
+	}
 
-    public void setVacation_next_date_end(Calendar vacationNextDateEnd) {
-        this.vacationNextDateEnd = vacationNextDateEnd;
-    }
+	public boolean isBillable() {
+		return isBillable;
+	}
 
-    @Column(name = "exadelTrainingNextFrom")
-    public Calendar getExadel_training_next_from() {
-        return exadelTrainingNextFrom;
-    }
+	public boolean isWannaChangeProj() {
+		return wannaChangeProj;
+	}
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	public Set<Technology> getProjectTechnologies() {
+		return projectTechnologies;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public void setHours_current(int hours_current) {
+		this.hours_current = hours_current;
+	}
 
-    public void setExadel_training_next_from(Calendar exadelTrainingNextFrom) {
-        this.exadelTrainingNextFrom = exadelTrainingNextFrom;
-    }
+	public void setHours_desired(int hours_desired) {
+		this.hours_desired = hours_desired;
+	}
 
-    @Column(name = "exadelTrainingNextTo")
-    public Calendar getExadel_training_next_to() {
-        return exadelTrainingNextTo;
-    }
+	public void setHoursDesiredTransferDate(Calendar hoursDesiredTransferDate) {
+		this.hoursDesiredTransferDate = hoursDesiredTransferDate;
+	}
 
-    public void setExadel_training_next_to(Calendar exadelTrainingNextTo) {
-        this.exadelTrainingNextTo = exadelTrainingNextTo;
-    }
+	public void setBillableStartDate(Calendar billableStartDate) {
+		this.billableStartDate = billableStartDate;
+	}
 
-    @Column(name = "currentProject")
-    public String getCurrentProject() {
-        return currentProject;
-    }
+	public void setVacationNextDateStart(Calendar vacationNextDateStart) {
+		this.vacationNextDateStart = vacationNextDateStart;
+	}
 
-    public void setCurrentProject(String currentProject) {
-        this.currentProject = currentProject;
-    }
+	public void setVacationNextDateEnd(Calendar vacationNextDateEnd) {
+		this.vacationNextDateEnd = vacationNextDateEnd;
+	}
 
-    @Column(name = "teamLeadOnCurrent")
-    public String getTeam_lead_on_current() {
-        return teamLeadOnCurrent;
-    }
+	public void setExadelTrainingNextFrom(Calendar exadelTrainingNextFrom) {
+		this.exadelTrainingNextFrom = exadelTrainingNextFrom;
+	}
 
-    public void setTeam_lead_on_current(String teamLeadOnCurrent) {
-        this.teamLeadOnCurrent = teamLeadOnCurrent;
-    }
+	public void setExadelTrainingNextTo(Calendar exadelTrainingNextTo) {
+		this.exadelTrainingNextTo = exadelTrainingNextTo;
+	}
 
-    @Column(name = "curator")
-    public String getCurator() {
-        return curator;
-    }
+	public void setCurrentProject(String currentProject) {
+		this.currentProject = currentProject;
+	}
 
-    public void setCurator(String curator) {
-        this.curator = curator;
-    }
+	public void setCurrentProjectRole(CurrentProjectRole currentProjectRole) {
+		this.currentProjectRole = currentProjectRole;
+	}
 
-    @Column(name = "exadelTrainingType")
-    public String getExadel_training_next_type() {
-        return exadelTrainingType;
-    }
+	public void setTeamLeadOnCurrent(String teamLeadOnCurrent) {
+		this.teamLeadOnCurrent = teamLeadOnCurrent;
+	}
 
-    public void setExadel_training_next_type(String exadelTrainingType) {
-        this.exadelTrainingType = exadelTrainingType;
-    }
+	public void setCurator(String curator) {
+		this.curator = curator;
+	}
 
-    @Column(name = "certificates")
-    public String getCertificates() {
-        return certificates;
-    }
+	public void setExadelTrainingType(String exadelTrainingType) {
+		this.exadelTrainingType = exadelTrainingType;
+	}
 
-    public void setCertificates(String certificates) {
-        this.certificates = certificates;
-    }
+	public void setCertificates(String certificates) {
+		this.certificates = certificates;
+	}
 
-    @Column(name = "Isbillable")
-    public boolean getIsbillable() {
-        return isBillable;
-    }
+	public void setBillable(boolean isBillable) {
+		this.isBillable = isBillable;
+	}
 
-    public void setIsbillable(boolean isBillable) {
-        this.isBillable = isBillable;
-    }
+	public void setWannaChangeProj(boolean wannaChangeProj) {
+		this.wannaChangeProj = wannaChangeProj;
+	}
 
-    @Column(name = "wannaChangeProj")
-    public boolean isWanna_change_proj() {
-        return wannaChangeProj;
-    }
-
-    public void setWanna_change_proj(boolean wannaChangeProj) {
-        this.wannaChangeProj = wannaChangeProj;
-    }
+	public void setProjectTechnologies(Set<Technology> projectTechnologies) {
+		this.projectTechnologies = projectTechnologies;
+	}
 
 }
