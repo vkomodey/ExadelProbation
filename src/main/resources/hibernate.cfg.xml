@@ -30,7 +30,7 @@
   <mapping class="com.exadel.model.entity.SkillType"/>
   <mapping class="com.exadel.model.entity.StudentExams"/>
   <mapping class="com.exadel.model.entity.Study"/>
-  <mapping class="com.exadel.model.entity.Exadel_Work"/>
-  <mapping class="com.exadel.model.entity.Exadel_Practice"/>
+  <mapping class="com.exadel.model.entity.ExadelWork"/>
+  <mapping class="com.exadel.model.entity.ExadelPractice"/>
  </session-factory>
 </hibernate-configuration>
