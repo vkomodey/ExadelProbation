@@ -1,29 +1,30 @@
 package com.exadel.model.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "student_exams")
-public class Student_Exams {
-    private long id;
-    private int year;
+@Table(name = "exam")
+public class StudentExams implements Serializable {
+	private int year;
     private double summer_grade,winter_grade;
-
-    public Student_Exams() {
+    private long id;
+    
+    public StudentExams() {
     }
-
-    @Column(name = "student_id")
+    @Id
+    @GeneratedValue
     public long getId() {
-
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
     @Column(name = "year")
     public int getYear() {
         return year;

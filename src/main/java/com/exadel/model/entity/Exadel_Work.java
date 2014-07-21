@@ -2,7 +2,9 @@ package com.exadel.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
+
 import java.util.Calendar;
 
 @Entity
@@ -17,7 +19,7 @@ public class Exadel_Work {
 
     public Exadel_Work() {
     }
-
+    @Id
     @Column(name = "stud_id")
     public long getId() {
         return id;
@@ -45,7 +47,7 @@ public class Exadel_Work {
         this.hours_desired = hours_desired;
     }
 
-    /@Column(name = "hours_desired_transfer_date")
+    @Column(name = "hours_desired_transfer_date")
     public Calendar getHours_desired_transfer_date() {
         return hours_desired_transfer_date;
     }
@@ -54,7 +56,7 @@ public class Exadel_Work {
         this.hours_desired_transfer_date = hours_desired_transfer_date;
     }
 
-    @Column(name = "hours_desired")
+    @Column(name = "billable_start_date")
     public Calendar getBillable_start_date() {
         return billable_start_date;
     }
@@ -63,7 +65,7 @@ public class Exadel_Work {
         this.billable_start_date = billable_start_date;
     }
 
-    /@Column(name = "vacation_next_date_start")
+    @Column(name = "vacation_next_date_start")
     public Calendar getVacation_next_date_start() {
         return vacation_next_date_start;
     }
@@ -72,7 +74,7 @@ public class Exadel_Work {
         this.vacation_next_date_start = vacation_next_date_start;
     }
 
-    /@Column(name = "vacation_next_date_end")
+    @Column(name = "vacation_next_date_end")
     public Calendar getVacation_next_date_end() {
         return vacation_next_date_end;
     }
@@ -81,7 +83,7 @@ public class Exadel_Work {
         this.vacation_next_date_end = vacation_next_date_end;
     }
 
-    /@Column(name = "exadel_training_next_from")
+    @Column(name = "exadel_training_next_from")
     public Calendar getExadel_training_next_from() {
         return exadel_training_next_from;
     }
@@ -90,7 +92,7 @@ public class Exadel_Work {
         this.exadel_training_next_from = exadel_training_next_from;
     }
 
-    /@Column(name = "exadel_training_next_to")
+    @Column(name = "exadel_training_next_to")
     public Calendar getExadel_training_next_to() {
         return exadel_training_next_to;
     }
@@ -135,7 +137,7 @@ public class Exadel_Work {
         this.curator = curator;
     }
 
-    /@Column(name = "exadel_training_next_type")
+    @Column(name = "exadel_training_next_type")
     public String getExadel_training_next_type() {
         return exadel_training_next_type;
     }
@@ -153,7 +155,7 @@ public class Exadel_Work {
         this.certificates = certificates;
     }
 
-    @Column(name = "certificates")
+    @Column(name = "is_billable")
     public boolean isIs_billable() {
         return is_billable;
     }
