@@ -30,7 +30,6 @@ public class Skill {
 		return level;
 	}
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="type",referencedColumnName="type")
 	public SkillType getType() {
 		return type;
 	}
