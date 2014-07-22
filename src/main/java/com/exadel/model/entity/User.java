@@ -2,6 +2,8 @@ package com.exadel.model.entity;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "USER_")
@@ -20,7 +22,45 @@ public class User {
 
     }
 
-    public void setId(long id){
+    @Column(name = "first_name")
+	public String getFirstName() {
+	    return firstName;
+	}
+
+	@Column(name = "second_name")
+	public String getSecondName() {
+	    return secondName;
+	}
+
+	@Column(name = "surname")
+	public String getSurname() {
+	    return surname;
+	}
+
+	@Column(name = "login")
+	public String getLogin() {
+	    return login;
+	}
+
+	@JsonIgnore
+	@Column(name="pass")
+	public String getPassword() {
+	    return password;
+	}
+
+	@Column(name = "role")
+	public String getRole() {
+	    return role;
+	}
+
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
+	public long getId() {
+	    return id;
+	}
+
+	public void setId(long id){
         this.id=id;
     }
 
@@ -46,43 +86,6 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    @Column(name = "first_name")
-    public String getFirstName() {
-        return firstName;
-    }
-
-    @Column(name = "second_name")
-    public String getSecondName() {
-        return secondName;
-    }
-
-    @Column(name = "surname")
-    public String getSurname() {
-        return surname;
-    }
-
-    @Column(name = "login")
-    public String getLogin() {
-        return login;
-    }
-
-    @Column()
-    public String getPassword() {
-        return password;
-    }
-
-    @Column(name = "role")
-    public String getRole() {
-        return role;
-    }
-
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
-    public long getId() {
-        return id;
     }
 
 }

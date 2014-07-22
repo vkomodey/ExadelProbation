@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "exam")
 public class StudentExams implements Serializable {
@@ -34,6 +36,7 @@ public class StudentExams implements Serializable {
 	public boolean isSummer() {
 		return summer;
 	}
+	@JsonIgnore
 	@NaturalId
 	@ManyToOne
 	@JoinColumn(name="stud_id")

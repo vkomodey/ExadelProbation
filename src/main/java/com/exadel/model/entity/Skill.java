@@ -18,6 +18,9 @@ public class Skill {
 	
 	public Skill() {
 	}
+	public Skill(SkillType st) {
+		this.type=st;
+	}
 	@Id
 	@GeneratedValue
 	public long getId() {

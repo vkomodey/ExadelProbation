@@ -1,6 +1,7 @@
 package com.exadel.model.entity;
 
 import com.exadel.model.enums.CurrentProjectRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -8,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -36,8 +38,9 @@ public class ExadelWork {
     private Set<Technology> projectTechnologies;
 
     public ExadelWork() {
+    	this.setProjectTechnologies(new HashSet<Technology>());
     }
-    
+    @JsonIgnore
 	@OneToOne(optional=false)
 	@JoinColumn(name="stud_id")
 	public Student getStudent() {

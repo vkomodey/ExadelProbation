@@ -9,113 +9,116 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Calendar;
 
 @Entity
 @Table(name = "feedback")
 public class Feedback {
-    private long studentId;
-    private long id;
-    private boolean profCompetence;
-    private boolean needMoreHours;
-    private String workAttitude;
-    private String collectiveRelations;
-    private String profMattersProgress;
-    private String feedback;
-    private Calendar feedbackDate;
-    /*private User author;*/
-    
-    public Feedback() {
+	private Student student;
+	private long id;
+	private boolean profCompetence;
+	private boolean needMoreHours;
+	private String workAttitude;
+	private String collectiveRelations;
+	private String profMattersProgress;
+	private String feedback;
+	private Calendar feedbackDate;
+
+	/* private User author; */
+
+	public Feedback() {
 	}
-/*
+
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name="author",referencedColumnName="id") public User
+	 * getAuthor() { return author; }
+	 */
+
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="author",referencedColumnName="id")
-    public User getAuthor() {
-		return author;
-	}*/
+	@JoinColumn
+	public Student getStudent() {
+		return student;
+	}
 
 	@Id
 	@Column(name = "id")
 	public long getId() {
-	    return id;
+		return id;
 	}
 
 	@Column(name = "feedbackDate")
-    public Calendar getFeedbackDate() {
-        return feedbackDate;
-    }
+	public Calendar getFeedbackDate() {
+		return feedbackDate;
+	}
 
-    @Column(name = "stud_id")
-    public long getStudentId() {
-        return studentId;
-    }
-
-    @Column(name = "profCompetence")
+	@Column(name = "profCompetence")
 	public boolean isProfCompetence() {
-	    return profCompetence;
+		return profCompetence;
 	}
 
 	@Column(name = "needMoreHours")
 	public boolean isNeedMoreHours() {
-	    return needMoreHours;
+		return needMoreHours;
 	}
 
 	@Column(name = "workAttitude")
 	public String getWorkAttitude() {
-	    return workAttitude;
+		return workAttitude;
 	}
 
 	@Column(name = "collectiveRelations")
 	public String getCollectiveRelations() {
-	    return collectiveRelations;
+		return collectiveRelations;
 	}
 
 	@Column(name = "profMattersProgress")
 	public String getProfMattersProgress() {
-	    return profMattersProgress;
+		return profMattersProgress;
 	}
 
 	@Column(name = "feedback")
 	public String getFeedback() {
-	    return feedback;
+		return feedback;
 	}
 
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
 	public void setFeedbackDate(Calendar feedbackDate) {
-	    this.feedbackDate = feedbackDate;
+		this.feedbackDate = feedbackDate;
 	}
 
-/*	public void setAuthor(User author) {
-		this.author = author;
+	public void setProfCompetence(boolean profCompetence) {
+		this.profCompetence = profCompetence;
 	}
-*/
-	public void setStudentId(long studentId) {
-        this.studentId = studentId;
-    }
-    public void setProfCompetence(boolean profCompetence) {
-        this.profCompetence = profCompetence;
-    }
 
-    public void setNeedMoreHours(boolean needMoreHours) {
-        this.needMoreHours = needMoreHours;
-    }
+	public void setNeedMoreHours(boolean needMoreHours) {
+		this.needMoreHours = needMoreHours;
+	}
 
-    public void setWorkAttitude(String workAttitude) {
-        this.workAttitude = workAttitude;
-    }
+	public void setWorkAttitude(String workAttitude) {
+		this.workAttitude = workAttitude;
+	}
 
-    public void setCollectiveRelations(String collectiveRelations) {
-        this.collectiveRelations = collectiveRelations;
-    }
+	public void setCollectiveRelations(String collectiveRelations) {
+		this.collectiveRelations = collectiveRelations;
+	}
 
-    public void setProfMattersProgress(String profMattersProgress) {
-        this.profMattersProgress = profMattersProgress;
-    }
+	public void setProfMattersProgress(String profMattersProgress) {
+		this.profMattersProgress = profMattersProgress;
+	}
 
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
-    }
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
+	}
 }

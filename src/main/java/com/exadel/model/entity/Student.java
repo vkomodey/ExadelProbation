@@ -1,5 +1,7 @@
 package com.exadel.model.entity;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +13,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.exadel.model.enums.StudentStateEnum;
@@ -26,7 +29,7 @@ public class Student extends User{
     private ExadelWork work;
     private List<Feedback> feedback;
     @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(referencedColumnName="id")
+    @PrimaryKeyJoinColumn
     public List<Feedback> getFeedback() {
 		return feedback;
 	}
@@ -87,6 +90,12 @@ public class Student extends User{
 	}
 	public void setSkillSet(Set<Skill> skillSet) {
 		this.skillSet = skillSet;
+	}
+	public Student() {
+		super();
+		this.setSkillSet(new HashSet<Skill>());
+		this.setFeedback(new ArrayList<Feedback>());
+		this.setStudy(new Study());
 	}
 	public void setEmail(String email) {
 		this.email = email;

@@ -1,5 +1,6 @@
 package com.exadel.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -21,20 +22,18 @@ public class Study {
 		return exams;
 	}
 
-	public void setExams(List<StudentExams> exams) {
-		this.exams = exams;
-	}
-
 	public Study() {
+		this.setExams(new ArrayList<StudentExams>());
     }
 
-    public Study(int student_id, int graduate_year, String university, String faculty, String specialty, String course_group) {
+    public Study(int graduate_year, String university, String faculty, String specialty, String course_group) {
 
         this.graduate_year = graduate_year;
         this.university = university;
         this.faculty = faculty;
         this.specialty = specialty;
         this.course_group = course_group;
+        this.exams=new ArrayList<StudentExams>();
     }
 
     @Column(name = "graduate_year")
@@ -42,44 +41,48 @@ public class Study {
         return graduate_year;
     }
 
-    public void setGraduate_year(int graduate_year) {
-        this.graduate_year = graduate_year;
-    }
+    @Column(name = "faculty")
+	public String getFaculty() {
+	    return faculty;
+	}
 
-    @Column(name = "university")
+	@Column(name = "specialty")
+	public String getSpecialty() {
+	    return specialty;
+	}
+
+	@Column(name = "course_group")
+	public String getCourse_group() {
+	    return course_group;
+	}
+
+	@Column(name = "university")
     public String getUniversity() {
         return university;
-    }
-
-    public void setUniversity(String university) {
-        this.university = university;
-    }
-
-    @Column(name = "faculty")
-    public String getFaculty() {
-        return faculty;
     }
 
     public void setFaculty(String faculty) {
         this.faculty = faculty;
     }
 
-    @Column(name = "specialty")
-    public String getSpecialty() {
-        return specialty;
-    }
-
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
-    }
-
-    @Column(name = "course_group")
-    public String getCourse_group() {
-        return course_group;
     }
 
     public void setCourse_group(String course_group) {
         this.course_group = course_group;
     }
+
+	public void setGraduate_year(int graduate_year) {
+	    this.graduate_year = graduate_year;
+	}
+
+	public void setExams(List<StudentExams> exams) {
+		this.exams = exams;
+	}
+
+	public void setUniversity(String university) {
+	    this.university = university;
+	}
 
 }

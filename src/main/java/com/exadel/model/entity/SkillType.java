@@ -25,6 +25,9 @@ public class SkillType {
 
 	public SkillType() {
 	}
+	public SkillType(String name) {
+		this.name=name;
+	}
 	@Column(name="type")
 	public String getName() {
 		return name;
