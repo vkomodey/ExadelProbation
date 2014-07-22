@@ -7,15 +7,42 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 @Entity
 @Table(name = "exadel_practice")
 public class ExadelPractice{
+	private Student student;
+	
+	@OneToOne(optional=false)
+	@JoinColumn(name="stud_id")
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
 	private long id;
+	@Id
+	@GeneratedValue(generator="foreign")
+	@GenericGenerator(name="foreign", strategy = "foreign", parameters={
+	@Parameter(name="property", value="student")
+	})
+	@Column (name="stud_id")
+    public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	private String interview; // текст собеседования
     private String  curator;
     private boolean workInvitation;
@@ -25,11 +52,7 @@ public class ExadelPractice{
 
     public ExadelPractice() {
     }
-    @Id
-    @GeneratedValue
-	public long getId() {
-		return id;
-	}
+    
 
 	public String getInterview() {
 		return interview;
@@ -82,11 +105,5 @@ public class ExadelPractice{
 	}
 
 
-
-
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 }

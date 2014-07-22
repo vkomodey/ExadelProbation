@@ -3,7 +3,6 @@ package com.exadel.model.entity;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,7 +10,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.exadel.model.enums.StudentStateEnum;
@@ -50,22 +48,24 @@ public class Student extends User{
 		this.study = study;
 	}
 	
-	@OneToOne(cascade=CascadeType.ALL,optional=true,orphanRemoval=true)
-	@JoinColumn(name="practice_id",referencedColumnName="id")
+	@OneToOne(cascade = CascadeType.ALL, optional=true,orphanRemoval=true)
+	@JoinColumn (name="id", nullable=false)
 	public ExadelPractice getPractice() {
 		return practice;
 	}
 	public void setPractice(ExadelPractice practice) {
 		this.practice = practice;
+		this.practice.setStudent(this);
 	}
 	
-	@OneToOne(cascade=CascadeType.ALL,optional=true,orphanRemoval=true)
-	@JoinColumn(name="work_id",referencedColumnName="id")
+	@OneToOne(cascade = CascadeType.ALL, optional=true,orphanRemoval=true)
+	@JoinColumn (name="id", nullable=false)
 	public ExadelWork getWork() {
 		return work;
 	}
 	public void setWork(ExadelWork work) {
 		this.work = work;
+		this.work.setStudent(this);
 	}
 
 

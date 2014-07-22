@@ -4,13 +4,18 @@ import com.exadel.model.enums.CurrentProjectRole;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 import java.util.Calendar;
 import java.util.Set;
 
 @Entity
 @Table(name = "exadel_work")
 public class ExadelWork {
+	private Student student;
 	private long id;
+
 
 	private int hours_current;
     private int hours_desired;
@@ -32,11 +37,23 @@ public class ExadelWork {
 
     public ExadelWork() {
     }
-    @Id
-	public long getId() {
+    
+	@OneToOne(optional=false)
+	@JoinColumn(name="stud_id")
+	public Student getStudent() {
+		return student;
+	}
+	
+	@Id
+	@GeneratedValue(generator="foreign")
+	@GenericGenerator(name="foreign", strategy = "foreign", parameters={
+	@Parameter(name="property", value="student")
+	})
+	@Column (name="stud_id")
+    public long getId() {
 		return id;
 	}
-
+	
 	public int getHours_current() {
 		return hours_current;
 	}
@@ -105,9 +122,15 @@ public class ExadelWork {
 	public Set<Technology> getProjectTechnologies() {
 		return projectTechnologies;
 	}
-	public void setId(long id) {
-		this.id = id;
+	
+	public void setStudent(Student student) {
+			this.student = student;
+		}
+
+	public void setId(long id){
+		this.id=id;
 	}
+	
 	public void setHours_current(int hours_current) {
 		this.hours_current = hours_current;
 	}
