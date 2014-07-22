@@ -4,6 +4,7 @@ import com.exadel.model.enums.StudentStateEnum;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -14,14 +15,10 @@ public class StudentLog {
 
     public StudentLog() {
     }
-
+    @Id
     @Column(name = "id")
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     @Column(name = "new_state")
@@ -29,7 +26,10 @@ public class StudentLog {
         return newState;
     }
 
-    public void setNewState(StudentStateEnum newState) {
+    public void setId(long id) {
+	    this.id = id;
+	}
+	public void setNewState(StudentStateEnum newState) {
         this.newState = newState;
     }
 }
