@@ -33,5 +33,6 @@
   <mapping class="com.exadel.model.entity.ExadelWork"/>
   <mapping class="com.exadel.model.entity.ExadelPractice"/>
   <mapping class="com.exadel.model.entity.Technology"/>
+  <mapping class="com.exadel.model.entity.StudentLog"/>
  </session-factory>
 </hibernate-configuration>

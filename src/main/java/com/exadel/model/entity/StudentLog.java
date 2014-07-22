@@ -1,5 +1,7 @@
 package com.exadel.model.entity;
 
+import com.exadel.model.enums.StudentStateEnum;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -8,7 +10,7 @@ import javax.persistence.Table;
 @Table(name = "student_log")
 public class StudentLog {
     private long id;
-    private String new_State;
+    private StudentStateEnum newState;
 
     public StudentLog() {
     }
@@ -23,11 +25,11 @@ public class StudentLog {
     }
 
     @Column(name = "new_state")
-    public String getNew_State() {
-        return new_State;
+    public StudentStateEnum getNewState() {
+        return newState;
     }
 
-    public void setNew_State(String new_State) {
-        this.new_State = new_State;
+    public void setNewState(StudentStateEnum newState) {
+        this.newState = newState;
     }
 }
