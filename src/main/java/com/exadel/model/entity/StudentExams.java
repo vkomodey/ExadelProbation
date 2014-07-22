@@ -16,54 +16,48 @@ import org.hibernate.annotations.NaturalId;
 @Table(name = "exam")
 public class StudentExams implements Serializable {
 	private long id;
-    private double summer_grade,winter_grade;
+    private double grade;
+    private boolean summer;
     private Student student;
-    private int year;
+    private int course;
 	public StudentExams() {
     }
-
-    @Column(name = "summer_grade")
-    public double getSummer_grade() {
-        return summer_grade;
-    }
-
-    public void setSummer_grade(double summer_grade) {
-        this.summer_grade = summer_grade;
-    }
-
-    @Column(name = "winter_grade")
-    public double getWinter_grade() {
-        return winter_grade;
-    }
-
-    public void setWinter_grade(double winter_grade) {
-        this.winter_grade = winter_grade;
-    }
-    @ManyToOne
-    @NaturalId
-    @JoinColumn(name="student_fk",insertable=false,updatable=false)
-	public Student getStudent() {
-		return student;
-	}
-    @NaturalId
-	public int getYear() {
-		return year;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
-	}
 	@Id
 	@GeneratedValue
 	public long getId() {
 		return id;
 	}
-
+	public double getGrade() {
+		return grade;
+	}
+	@NaturalId
+	public boolean isSummer() {
+		return summer;
+	}
+	@NaturalId
+	@ManyToOne
+	@JoinColumn(name="stud_id")
+	public Student getStudent() {
+		return student;
+	}
+	@NaturalId
+	public int getCourse() {
+		return course;
+	}
 	public void setId(long id) {
 		this.id = id;
 	}
+	public void setGrade(double grade) {
+		this.grade = grade;
+	}
+	public void setSummer(boolean summer) {
+		this.summer = summer;
+	}
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+	public void setCourse(int course) {
+		this.course = course;
+	}
+
 }
