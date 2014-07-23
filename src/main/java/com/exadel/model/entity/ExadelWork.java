@@ -21,6 +21,7 @@ public class ExadelWork {
 
 	private int hours_current;
     private int hours_desired;
+    private Calendar workStartDate;
     private Calendar hoursDesiredTransferDate;
     private Calendar billableStartDate;
     private Calendar vacationNextDateStart;
@@ -56,6 +57,10 @@ public class ExadelWork {
     public long getId() {
 		return id;
 	}
+
+    public Calendar getWorkStartDate() {
+        return workStartDate;
+    }
 	
 	public int getHours_current() {
 		return hours_current;
@@ -202,4 +207,7 @@ public class ExadelWork {
 		this.projectTechnologies = projectTechnologies;
 	}
 
+    public void setWorkStartDate(Calendar workStartDate) {
+        this.workStartDate = workStartDate;
+    }
 }
