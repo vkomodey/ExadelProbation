@@ -2,15 +2,16 @@ package com.exadel.util;
 
 
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.AnnotationConfiguration;
 
+@Deprecated
 public class HibernateUtil {
     private static SessionFactory sessionFactory = null;
 
     static {
         try {
             //creates the session factory from hibernate.cfg.xml
-            sessionFactory = new Configuration().configure().buildSessionFactory();
+            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
         } catch (Exception e) {
             e.printStackTrace();
         }

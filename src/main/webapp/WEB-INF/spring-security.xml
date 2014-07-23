@@ -1,21 +1,30 @@
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-             xmlns:beans="http://www.springframework.org/schema/beans"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-	http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+				    	    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http auto-config="true">
-        <intercept-url pattern="/list**" access="ROLE_USER" />
-    </http>
+    <security:http authentication-manager-ref="authenticationManager">
+        <security:intercept-url pattern="/page/list.jsp" access="ROLE_ADMIN" />
+        <security:intercept-url pattern="/vasya" access="ROLE_ADMIN"/>
+        <security:intercept-url pattern="/page/secure/sec.jsp" access="ROLE_ADMIN"/>
+        <security:form-login login-page="/page/login.jsp" login-processing-url="/do_login" default-target-url="/page/secure/sec.jsp" authentication-failure-url="/page/error.jsp"/>
+    </security:http>
 
-    <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="mkyong" password="123456" authorities="ROLE_USER" />
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>
+    <bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+        <property name="eraseCredentialsAfterAuthentication" value="false"/>
+        <constructor-arg>
+            <list>
+                <ref local="inMemoryAuthenticationProvider"/>
+            </list>
+        </constructor-arg>
+    </bean>
 
-</beans:beans>
+    <bean id="inMemoryAuthenticationProvider"
+          class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <property name="userDetailsService" ref="userServiceImpl"/>
+    </bean>
+
+</beans>

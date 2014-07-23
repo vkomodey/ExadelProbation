@@ -1,12 +1,15 @@
 package com.exadel.model.entity;
 
-import com.exadel.model.IEntity;
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
+import com.exadel.model.IEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class User implements IEntity{
+
+@Entity
+@Table(name = "USER_")
+@Inheritance(strategy=InheritanceType.JOINED)
+public class User implements IEntity {
 
     private long id;
     private String firstName;
@@ -14,13 +17,46 @@ public class User implements IEntity{
     private String surname;
     private String login;
     private String password;
-    private String role;
 
     public User() {
 
     }
 
-    public void setId(long id){
+    @Column(name = "first_name")
+	public String getFirstName() {
+	    return firstName;
+	}
+
+	@Column(name = "second_name")
+	public String getSecondName() {
+	    return secondName;
+	}
+
+	@Column(name = "surname")
+	public String getSurname() {
+	    return surname;
+	}
+
+	@Column(name = "login")
+	public String getLogin() {
+	    return login;
+	}
+
+	@JsonIgnore
+	@Column(name="pass")
+	public String getPassword() {
+	    return password;
+	}
+
+
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
+	public long getId() {
+	    return id;
+	}
+
+	public void setId(long id){
         this.id=id;
     }
 
@@ -36,36 +72,6 @@ public class User implements IEntity{
         this.surname= surname;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
-    public long getId() {
-        return id;
-    }
-
     public void setLogin(String login) {
         this.login = login;
     }
@@ -74,7 +80,11 @@ public class User implements IEntity{
         this.password = password;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public String getRole(){
+        return "ROLE_ADMIN";
     }
+
+    public void setRole(String role){}
+
+
 }

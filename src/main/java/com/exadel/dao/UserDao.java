@@ -1,7 +1,9 @@
 package com.exadel.dao;
 
-/**
- * Created by vlad on 17/07/14.
- */
-public class UserDao {
+import com.exadel.model.entity.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+public interface UserDao extends GenericDao<User, Integer> {
+    UserDetails loadUserByUsername(String login) throws UsernameNotFoundException;
 }

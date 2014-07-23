@@ -4,6 +4,6 @@
     <title></title>
 </head>
 <body>
-Secure page
+secure
 </body>
 </html>
