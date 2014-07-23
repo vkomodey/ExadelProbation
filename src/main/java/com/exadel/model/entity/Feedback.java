@@ -30,6 +30,20 @@ public class Feedback {
 
 	public Feedback() {
 	}
+	
+
+	public Feedback(boolean profCompetence, boolean needMoreHours,
+			String workAttitude, String collectiveRelations,
+			String profMattersProgress, String feedback, Calendar feedbackDate) {
+		this.profCompetence = profCompetence;
+		this.needMoreHours = needMoreHours;
+		this.workAttitude = workAttitude;
+		this.collectiveRelations = collectiveRelations;
+		this.profMattersProgress = profMattersProgress;
+		this.feedback = feedback;
+		this.feedbackDate = feedbackDate;
+	}
+
 
 	/*
 	 * @ManyToOne

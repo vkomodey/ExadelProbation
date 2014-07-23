@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exadel.model.entity.ExadelPractice;
 import com.exadel.model.entity.ExadelWork;
+import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.Skill;
 import com.exadel.model.entity.SkillType;
 import com.exadel.model.entity.Student;
@@ -38,6 +39,7 @@ public class StudentController {
 		stud.getStudy().getExams().add(new StudentExams());
 		stud.getSkillSet().add(new Skill(new SkillType("fapskill")));
 		stud.getWork().getProjectTechnologies().add(new Technology("fap_technology"));
+		stud.getFeedback().add(new Feedback());
 		return stud;
 	}
 }
