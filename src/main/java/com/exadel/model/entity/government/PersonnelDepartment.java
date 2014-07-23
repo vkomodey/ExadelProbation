@@ -1,4 +1,4 @@
-package com.exadel.model.entity;
+package com.exadel.model.entity.government;
 
 public class PersonnelDepartment extends Government {
 

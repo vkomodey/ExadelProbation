@@ -1,4 +1,4 @@
-package com.exadel.model.entity;
+package com.exadel.model.entity.student;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,6 +16,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.exadel.model.entity.Feedback;
+import com.exadel.model.entity.User;
 import com.exadel.model.enums.EnglishEnum;
 import com.exadel.model.enums.StudentStateEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "student")
-public class Student extends User{
+public class Student extends User {
 	private Study study;
     private StudentStateEnum state;
     private Set<Skill> skillSet;

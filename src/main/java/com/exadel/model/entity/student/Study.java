@@ -1,4 +1,4 @@
-package com.exadel.model.entity;
+package com.exadel.model.entity.student;
 
 import java.util.ArrayList;
 import java.util.List;

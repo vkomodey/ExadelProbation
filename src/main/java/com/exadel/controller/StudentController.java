@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.exadel.model.entity.ExadelPractice;
-import com.exadel.model.entity.ExadelWork;
+import com.exadel.model.entity.student.ExadelPractice;
+import com.exadel.model.entity.student.ExadelWork;
 import com.exadel.model.entity.Feedback;
-import com.exadel.model.entity.Skill;
-import com.exadel.model.entity.SkillType;
-import com.exadel.model.entity.Student;
-import com.exadel.model.entity.StudentExams;
-import com.exadel.model.entity.Study;
-import com.exadel.model.entity.Technology;
+import com.exadel.model.entity.student.Skill;
+import com.exadel.model.entity.student.SkillType;
+import com.exadel.model.entity.student.Student;
+import com.exadel.model.entity.student.StudentExams;
+import com.exadel.model.entity.student.Study;
+import com.exadel.model.entity.student.Technology;
 import com.exadel.model.enums.StudentStateEnum;
 
 @Controller

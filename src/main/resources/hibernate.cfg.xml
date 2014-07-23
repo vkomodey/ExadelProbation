@@ -25,22 +25,22 @@
   <property name="hibernate.hbm2ddl.auto">create</property>
   <!--<mapping resource="entities.xml" />-->
   <mapping class="com.exadel.model.entity.User"/>
-  <mapping class="com.exadel.model.entity.Student"/>
-  <mapping class="com.exadel.model.entity.Skill"/>
-  <mapping class="com.exadel.model.entity.SkillType"/>
-  <mapping class="com.exadel.model.entity.StudentExams"/>
-  <mapping class="com.exadel.model.entity.Study"/>
-  <mapping class="com.exadel.model.entity.ExadelWork"/>
-  <mapping class="com.exadel.model.entity.ExadelPractice"/>
-  <mapping class="com.exadel.model.entity.Technology"/>
+  <mapping class="com.exadel.model.entity.student.Student"/>
+  <mapping class="com.exadel.model.entity.student.Skill"/>
+  <mapping class="com.exadel.model.entity.student.SkillType"/>
+  <mapping class="com.exadel.model.entity.student.StudentExams"/>
+  <mapping class="com.exadel.model.entity.student.Study"/>
+  <mapping class="com.exadel.model.entity.student.ExadelWork"/>
+  <mapping class="com.exadel.model.entity.student.ExadelPractice"/>
+  <mapping class="com.exadel.model.entity.student.Technology"/>
   <mapping class="com.exadel.model.entity.StudentLog"/>
   <mapping class="com.exadel.model.entity.Feedback"/>
-  <mapping class="com.exadel.model.entity.FeedbackAble"/>
-  <mapping class="com.exadel.model.entity.Feedbacker"/>
-  <mapping class="com.exadel.model.entity.Government"/>
-  <mapping class="com.exadel.model.entity.Joanna"/>
-  <mapping class="com.exadel.model.entity.PersonnelDepartment"/>
-  <mapping class="com.exadel.model.entity.Curator"/>
+  <mapping class="com.exadel.model.entity.government.FeedbackAble"/>
+  <mapping class="com.exadel.model.entity.government.Feedbacker"/>
+  <mapping class="com.exadel.model.entity.government.Government"/>
+  <mapping class="com.exadel.model.entity.government.Joanna"/>
+  <mapping class="com.exadel.model.entity.government.PersonnelDepartment"/>
+  <mapping class="com.exadel.model.entity.government.Curator"/>
   
  </session-factory>
 </hibernate-configuration>

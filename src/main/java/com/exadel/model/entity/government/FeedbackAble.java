@@ -1,4 +1,6 @@
-package com.exadel.model.entity;
+package com.exadel.model.entity.government;
+
+import com.exadel.model.entity.Feedback;
 
 import java.util.ArrayList;
 import java.util.List;

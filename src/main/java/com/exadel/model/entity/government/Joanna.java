@@ -1,4 +1,4 @@
-package com.exadel.model.entity;
+package com.exadel.model.entity.government;
 
 import javax.persistence.Entity;
 

@@ -1,4 +1,4 @@
-package com.exadel.model.entity;
+package com.exadel.model.entity.student;
 
 import com.exadel.model.enums.CurrentProjectRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
