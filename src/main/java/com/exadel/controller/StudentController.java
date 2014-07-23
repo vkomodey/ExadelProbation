@@ -18,6 +18,7 @@ import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.student.StudentExams;
 import com.exadel.model.entity.student.Study;
 import com.exadel.model.entity.student.Technology;
+import com.exadel.model.enums.EnglishEnum;
 import com.exadel.model.enums.StudentStateEnum;
 
 @Controller
@@ -40,6 +41,7 @@ public class StudentController {
 		stud.getSkillSet().add(new Skill(new SkillType("fapskill")));
 		stud.getWork().getProjectTechnologies().add(new Technology("fap_technology"));
 		stud.getFeedback().add(new Feedback());
+		stud.setEnglish(EnglishEnum.advanced);
 		return stud;
 	}
 }

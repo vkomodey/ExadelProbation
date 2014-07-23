@@ -9,9 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.exadel.model.entity.government.FeedbackAble;
 import com.exadel.model.entity.student.Student;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.exadel.model.entity.government.FeedbackAble;
 
 @Entity
 @Table(name = "feedback")
@@ -30,7 +30,6 @@ public class Feedback {
 
 	public Feedback() {
 	}
-	
 
 	public Feedback(boolean profCompetence, boolean needMoreHours,
 			String workAttitude, String collectiveRelations,
@@ -44,11 +43,11 @@ public class Feedback {
 		this.feedbackDate = feedbackDate;
 	}
 
-
-	
-	 @ManyToOne
-	 @JoinColumn(name="author",referencedColumnName="id") 
-	 public FeedbackAble getAuthor() { return author; }
+	@ManyToOne
+	@JoinColumn(name = "author", referencedColumnName = "id")
+	public FeedbackAble getAuthor() {
+		return author;
+	}
 
 	@JsonIgnore
 	@ManyToOne
@@ -101,7 +100,6 @@ public class Feedback {
 	public void setAuthor(FeedbackAble author) {
 		this.author = author;
 	}
-
 
 	public void setId(long id) {
 		this.id = id;

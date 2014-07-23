@@ -16,7 +16,6 @@ public class User {
     private String surname;
     private String login;
     private String password;
-    private String role;
 
     public User() {
 
@@ -48,10 +47,6 @@ public class User {
 	    return password;
 	}
 
-	@Column(name = "role")
-	public String getRole() {
-	    return role;
-	}
 
 	@Id
 	@GeneratedValue
@@ -82,10 +77,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
 }

@@ -8,10 +8,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+
 @Entity
-abstract class FeedbackAble extends Government{
+public abstract class FeedbackAble extends Government {
 	private List<Feedback> feedback;
-	@OneToMany(cascade=CascadeType.ALL)
+
+	@OneToMany(cascade = CascadeType.ALL)
 	public List<Feedback> getFeedback() {
 		return feedback;
 	}
@@ -24,5 +26,5 @@ abstract class FeedbackAble extends Government{
 	public void setFeedback(List<Feedback> feedback) {
 		this.feedback = feedback;
 	}
-	
+
 }
