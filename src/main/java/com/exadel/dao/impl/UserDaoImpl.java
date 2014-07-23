@@ -2,6 +2,8 @@ package com.exadel.dao.impl;
 
 import com.exadel.dao.UserDao;
 import com.exadel.model.entity.User;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +15,8 @@ import java.util.Collection;
 
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDao {
+    @Autowired
+    SessionFactory sessionFactory;
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         System.out.println("CHECK CHECK dao");

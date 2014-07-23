@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
-@Table(name = "\"USER_\"")
+@Table(name = "USER_")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class User implements IEntity {
 
