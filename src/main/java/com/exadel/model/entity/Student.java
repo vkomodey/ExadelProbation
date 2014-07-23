@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.exadel.model.enums.EnglishEnum;
 import com.exadel.model.enums.StudentStateEnum;
 
 
@@ -28,19 +29,21 @@ public class Student extends User{
     private ExadelPractice practice;
     private ExadelWork work;
     private List<Feedback> feedback;
-    @OneToMany(cascade=CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    public List<Feedback> getFeedback() {
-		return feedback;
-	}
-	public void setFeedback(List<Feedback> feedback) {
-		this.feedback = feedback;
-	}
-	private String email;
+    private EnglishEnum english;
+    private String email;
     private String skype;
     private String phone;
     
-    public String getEmail() {
+    @Enumerated(EnumType.STRING)
+	public EnglishEnum getEnglish() {
+		return english;
+	}
+	@OneToMany(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	public List<Feedback> getFeedback() {
+		return feedback;
+	}
+	public String getEmail() {
 		return email;
 	}
 	public String getSkype() {
@@ -75,6 +78,12 @@ public class Student extends User{
 	@JoinColumn (name="id", nullable=false)
 	public ExadelWork getWork() {
 		return work;
+	}
+	public void setEnglish(EnglishEnum english) {
+		this.english = english;
+	}
+	public void setFeedback(List<Feedback> feedback) {
+		this.feedback = feedback;
 	}
 	public void setStudy(Study study) {
 		this.study = study;

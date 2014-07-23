@@ -1,5 +1,7 @@
 package com.exadel.model.entity;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,11 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.NaturalId;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.util.Calendar;
 
 @Entity
 @Table(name = "feedback")
@@ -26,7 +24,7 @@ public class Feedback {
 	private String feedback;
 	private Calendar feedbackDate;
 
-	/* private User author; */
+	private FeedbackAble author;
 
 	public Feedback() {
 	}
@@ -45,12 +43,10 @@ public class Feedback {
 	}
 
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="author",referencedColumnName="id") public User
-	 * getAuthor() { return author; }
-	 */
+	
+	 @ManyToOne
+	 @JoinColumn(name="author",referencedColumnName="id") 
+	 public FeedbackAble getAuthor() { return author; }
 
 	@JsonIgnore
 	@ManyToOne
@@ -99,6 +95,11 @@ public class Feedback {
 	public String getFeedback() {
 		return feedback;
 	}
+
+	public void setAuthor(FeedbackAble author) {
+		this.author = author;
+	}
+
 
 	public void setId(long id) {
 		this.id = id;

@@ -33,7 +33,14 @@
   <mapping class="com.exadel.model.entity.ExadelWork"/>
   <mapping class="com.exadel.model.entity.ExadelPractice"/>
   <mapping class="com.exadel.model.entity.Technology"/>
-  <mapping class="com.exadel.model.entity.StudentLog"></mapping>
-  <mapping class="com.exadel.model.entity.Feedback"></mapping>
+  <mapping class="com.exadel.model.entity.StudentLog"/>
+  <mapping class="com.exadel.model.entity.Feedback"/>
+  <mapping class="com.exadel.model.entity.FeedbackAble"/>
+  <mapping class="com.exadel.model.entity.Feedbacker"/>
+  <mapping class="com.exadel.model.entity.Government"/>
+  <mapping class="com.exadel.model.entity.Joanna"/>
+  <mapping class="com.exadel.model.entity.PersonnelDepartment"/>
+  <mapping class="com.exadel.model.entity.Curator"/>
+  
  </session-factory>
 </hibernate-configuration>
