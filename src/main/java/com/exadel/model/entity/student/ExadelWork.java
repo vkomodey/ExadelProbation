@@ -1,6 +1,7 @@
-package com.exadel.model.entity;
+package com.exadel.model.entity.student;
 
 import com.exadel.model.enums.CurrentProjectRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -8,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,6 +21,7 @@ public class ExadelWork {
 
 	private int hours_current;
     private int hours_desired;
+    private Calendar workStartDate;
     private Calendar hoursDesiredTransferDate;
     private Calendar billableStartDate;
     private Calendar vacationNextDateStart;
@@ -36,8 +39,9 @@ public class ExadelWork {
     private Set<Technology> projectTechnologies;
 
     public ExadelWork() {
+    	this.setProjectTechnologies(new HashSet<Technology>());
     }
-    
+    @JsonIgnore
 	@OneToOne(optional=false)
 	@JoinColumn(name="stud_id")
 	public Student getStudent() {
@@ -53,6 +57,10 @@ public class ExadelWork {
     public long getId() {
 		return id;
 	}
+
+    public Calendar getWorkStartDate() {
+        return workStartDate;
+    }
 	
 	public int getHours_current() {
 		return hours_current;
@@ -199,4 +207,7 @@ public class ExadelWork {
 		this.projectTechnologies = projectTechnologies;
 	}
 
+    public void setWorkStartDate(Calendar workStartDate) {
+        this.workStartDate = workStartDate;
+    }
 }

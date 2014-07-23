@@ -1,4 +1,4 @@
-package com.exadel.model.entity;
+package com.exadel.model.entity.student;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +17,9 @@ public class Skill {
 	private SkillType type;
 	
 	public Skill() {
+	}
+	public Skill(SkillType st) {
+		this.type=st;
 	}
 	@Id
 	@GeneratedValue

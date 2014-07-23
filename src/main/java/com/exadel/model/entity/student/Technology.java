@@ -1,4 +1,4 @@
-package com.exadel.model.entity;
+package com.exadel.model.entity.student;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,12 +10,9 @@ public class Technology {
 	private long id;
 	private String name;
 	public Technology() {
-		super();
 	}
-	public Technology(long id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
+	public Technology(String name) {
+		this.setName(name);
 	}
 	@Id
 	@GeneratedValue

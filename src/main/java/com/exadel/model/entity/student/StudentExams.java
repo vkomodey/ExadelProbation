@@ -1,8 +1,7 @@
-package com.exadel.model.entity;
+package com.exadel.model.entity.student;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalId;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "exam")
@@ -34,6 +35,7 @@ public class StudentExams implements Serializable {
 	public boolean isSummer() {
 		return summer;
 	}
+	@JsonIgnore
 	@NaturalId
 	@ManyToOne
 	@JoinColumn(name="stud_id")

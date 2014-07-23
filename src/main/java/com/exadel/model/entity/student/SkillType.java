@@ -1,4 +1,4 @@
-package com.exadel.model.entity;
+package com.exadel.model.entity.student;
 
 
 import javax.persistence.Column;
@@ -24,6 +24,9 @@ public class SkillType {
 	private String name;
 
 	public SkillType() {
+	}
+	public SkillType(String name) {
+		this.name=name;
 	}
 	@Column(name="type")
 	public String getName() {
