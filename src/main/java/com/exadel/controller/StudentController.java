@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exadel.model.constants.EnglishEnum;
+import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.student.ExadelPractice;
 import com.exadel.model.entity.student.ExadelWork;
 import com.exadel.model.entity.Feedback;
@@ -18,8 +20,6 @@ import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.student.StudentExams;
 import com.exadel.model.entity.student.Study;
 import com.exadel.model.entity.student.Technology;
-import com.exadel.model.enums.EnglishEnum;
-import com.exadel.model.enums.StudentStateEnum;
 
 @Controller
 public class StudentController {
