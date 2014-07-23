@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <!--<hibernate-configuration>
     <session-factory>
         <mapping resource="user.xml" />
@@ -21,8 +21,6 @@
   <property name="hbm2ddl.auto">update</property>
   <property name="hibernate.connection.autocommit">false</property>
   <property name="current_session_context_class">thread</property>
-  <!-- Drop and re-create the database schema on startup -->
-  <property name="hibernate.hbm2ddl.auto">create</property>
   <!--<mapping resource="entities.xml" />-->
   <mapping class="com.exadel.model.entity.User"/>
   <mapping class="com.exadel.model.entity.student.Student"/>
@@ -41,6 +39,5 @@
   <mapping class="com.exadel.model.entity.government.Joanna"/>
   <mapping class="com.exadel.model.entity.government.PersonnelDepartment"/>
   <mapping class="com.exadel.model.entity.government.Curator"/>
-  
- </session-factory>
+  </session-factory>
 </hibernate-configuration>
