@@ -1,6 +1,6 @@
 package com.exadel.model.entity;
 
-import com.exadel.model.enums.StudentStateEnum;
+import com.exadel.model.constants.StudentStateEnum;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

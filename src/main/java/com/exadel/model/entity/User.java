@@ -2,6 +2,7 @@ package com.exadel.model.entity;
 
 import javax.persistence.*;
 
+import com.exadel.model.constants.SpringSecurityRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -20,7 +21,10 @@ public class User {
     public User() {
 
     }
-
+    @Transient
+    public String getRole(){
+    	return SpringSecurityRole.USER;
+    }
     @Column(name = "first_name")
 	public String getFirstName() {
 	    return firstName;

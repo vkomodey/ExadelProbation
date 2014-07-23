@@ -15,11 +15,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import com.exadel.model.constants.EnglishEnum;
+import com.exadel.model.constants.SpringSecurityRole;
+import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.User;
-import com.exadel.model.enums.EnglishEnum;
-import com.exadel.model.enums.StudentStateEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -37,6 +39,11 @@ public class Student extends User {
     private String skype;
     private String phone;
     
+    @Override
+    @Transient
+    public String getRole(){
+    	return SpringSecurityRole.STUDENT;
+    }
     @Enumerated(EnumType.STRING)
 	public EnglishEnum getEnglish() {
 		return english;

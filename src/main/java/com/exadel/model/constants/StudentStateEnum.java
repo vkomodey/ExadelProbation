@@ -1,4 +1,4 @@
-package com.exadel.model.enums;
+package com.exadel.model.constants;
 
 public enum StudentStateEnum {
 	WORK,PRACTICE,PROBATION;

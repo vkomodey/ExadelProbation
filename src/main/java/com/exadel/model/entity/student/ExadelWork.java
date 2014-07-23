@@ -1,6 +1,6 @@
 package com.exadel.model.entity.student;
 
-import com.exadel.model.enums.CurrentProjectRole;
+import com.exadel.model.constants.CurrentProjectRoleEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -29,7 +29,7 @@ public class ExadelWork {
     private Calendar exadelTrainingNextFrom;
     private Calendar exadelTrainingNextTo;
     private String currentProject;
-    private CurrentProjectRole currentProjectRole;
+    private CurrentProjectRoleEnum currentProjectRole;
     private String teamLeadOnCurrent;
     private String curator;
     private String exadelTrainingType;
@@ -98,7 +98,7 @@ public class ExadelWork {
 		return currentProject;
 	}
 
-	public CurrentProjectRole getCurrentProjectRole() {
+	public CurrentProjectRoleEnum getCurrentProjectRole() {
 		return currentProjectRole;
 	}
 
@@ -175,7 +175,7 @@ public class ExadelWork {
 		this.currentProject = currentProject;
 	}
 
-	public void setCurrentProjectRole(CurrentProjectRole currentProjectRole) {
+	public void setCurrentProjectRole(CurrentProjectRoleEnum currentProjectRole) {
 		this.currentProjectRole = currentProjectRole;
 	}
 
