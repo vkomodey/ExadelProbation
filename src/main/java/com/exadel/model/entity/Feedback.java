@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -57,6 +58,7 @@ public class Feedback {
 	}
 
 	@Id
+	@GeneratedValue
 	@Column(name = "id")
 	public long getId() {
 		return id;
