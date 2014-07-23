@@ -24,7 +24,7 @@ public class Feedback {
 	private String feedback;
 	private Calendar feedbackDate;
 
-	/* private User author; */
+	private FeedbackAble author;
 
 	public Feedback() {
 	}
@@ -43,12 +43,10 @@ public class Feedback {
 	}
 
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="author",referencedColumnName="id") public User
-	 * getAuthor() { return author; }
-	 */
+	
+	 @ManyToOne
+	 @JoinColumn(name="author",referencedColumnName="id") 
+	 public FeedbackAble getAuthor() { return author; }
 
 	@JsonIgnore
 	@ManyToOne
@@ -97,6 +95,11 @@ public class Feedback {
 	public String getFeedback() {
 		return feedback;
 	}
+
+	public void setAuthor(FeedbackAble author) {
+		this.author = author;
+	}
+
 
 	public void setId(long id) {
 		this.id = id;
