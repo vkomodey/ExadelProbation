@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!--<hibernate-configuration>
+    <session-factory>
+        <mapping resource="user.xml" />
+        <mapping resource="student.xml" />
+    </session-factory>
+</hibernate-configuration>-->
+<hibernate-configuration>
+    <session-factory name="">
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/ProjectDataBase</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">1</property>
+        <property name="show_sql">true</property>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="hibernate.connection.autocommit">false</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
+        <!--<mapping resource="entities.xml" />-->
+        <mapping class="com.exadel.model.entity.User"/>
+        <mapping class="com.exadel.model.entity.student.Student"/>
+        <mapping class="com.exadel.model.entity.student.Skill"/>
+        <mapping class="com.exadel.model.entity.student.SkillType"/>
+        <mapping class="com.exadel.model.entity.student.StudentExams"/>
+        <mapping class="com.exadel.model.entity.student.Study"/>
+        <mapping class="com.exadel.model.entity.student.ExadelWork"/>
+        <mapping class="com.exadel.model.entity.student.ExadelPractice"/>
+        <mapping class="com.exadel.model.entity.student.Technology"/>
+        <mapping class="com.exadel.model.entity.StudentLog"/>
+        <mapping class="com.exadel.model.entity.Feedback"/>
+        <mapping class="com.exadel.model.entity.government.FeedbackAble"/>
+        <mapping class="com.exadel.model.entity.government.Feedbacker"/>
+        <mapping class="com.exadel.model.entity.government.Government"/>
+        <mapping class="com.exadel.model.entity.government.Joanna"/>
+        <mapping class="com.exadel.model.entity.government.PersonnelDepartment"/>
+        <mapping class="com.exadel.model.entity.government.Curator"/>
+
+    </session-factory>
+</hibernate-configuration>

@@ -15,7 +15,7 @@
       <org.springframework-version>4.0.5.RELEASE</org.springframework-version>
       <org.slf4j-version>1.7.7</org.slf4j-version>
       <jackson.databind-version>2.4.1.3</jackson.databind-version>
-      <org.hibernate-version>4.3.6.Final</org.hibernate-version>
+      <org.hibernate-version>4.1.12.Final</org.hibernate-version>
       <spring.security.version>3.1.0.RELEASE</spring.security.version>
     </properties>
     <dependencies>
@@ -58,35 +58,36 @@
         <version>${org.springframework-version}</version>
     </dependency>
         <!--Spring security-->
-        <dependency>
+    <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>${spring.security.version}</version>
-        </dependency>
+    </dependency>
 
-        <dependency>
+    <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>${spring.security.version}</version>
-        </dependency>
+    </dependency>
 
-        <dependency>
+    <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
             <version>${spring.security.version}</version>
-        </dependency>
-        <dependency>
+    </dependency>
+    <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
             <version>3.2.4.RELEASE</version>
-        </dependency>
+    </dependency>
 
     <!--hibernate-->
     <dependency>
-        <groupId>org.hibernate.javax.persistence</groupId>
-        <artifactId>hibernate-jpa-2.0-api</artifactId>
-        <version>1.0.1.Final</version>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.0.Final</version>
     </dependency>
+
     <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-core</artifactId>
@@ -96,6 +97,11 @@
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-annotations</artifactId>
         <version>3.5.6-Final</version>
+    </dependency>
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-tools</artifactId>
+        <version>3.2.4.GA</version>
     </dependency>
 
     <!--SLF4J-->
@@ -133,11 +139,11 @@
         <artifactId>commons-collections</artifactId>
         <version>3.2.1</version>
     </dependency>
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>1.0.2</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>javax.persistence</groupId>-->
+            <!--<artifactId>persistence-api</artifactId>-->
+            <!--<version>1.0.2</version>-->
+        <!--</dependency>-->
 
 
 
