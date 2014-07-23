@@ -25,6 +25,7 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
                 createQuery("from User where login=:login").
                 setString("login", login).
                 uniqueResult();
+    System.out.println("AZAZA - " + user.getLogin());
         Object details = new UserDetails() {
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
