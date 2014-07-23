@@ -23,9 +23,6 @@ public class RegistrationController {
             Student student =  mapper.readValue(str,Student.class);
             logger.info(student.toString());
             student.setPassword("11111");
-            System.out.println(student.getLogin());
-            System.out.println(student.getPassword());
-
             // дальше типа сохраняем
 
         } catch (IOException e) {
