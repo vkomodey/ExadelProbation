@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 import com.exadel.model.enums.EnglishEnum;
 import com.exadel.model.enums.StudentStateEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -40,6 +41,7 @@ public class Student extends User{
 	}
 	@OneToMany(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
+	@JsonIgnore
 	public List<Feedback> getFeedback() {
 		return feedback;
 	}
