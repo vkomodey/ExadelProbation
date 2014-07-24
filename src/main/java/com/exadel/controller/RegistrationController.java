@@ -21,7 +21,7 @@ public class RegistrationController {
         ObjectMapper mapper = new ObjectMapper();
         try {
             Student student =  mapper.readValue(str,Student.class);
-            logger.info(student.toString());
+            logger.info("login:"+student.getLogin());
             student.setPassword("11111");
             // дальше типа сохраняем
 
