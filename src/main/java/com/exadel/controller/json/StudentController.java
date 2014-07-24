@@ -1,4 +1,4 @@
-package com.exadel.controller;
+package com.exadel.controller.json;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,7 @@ import com.exadel.model.entity.student.Technology;
 public class StudentController {
 	public static Logger logger=LoggerFactory.getLogger(StudentController.class);
 	private Student buildDummy(){
+		logger.info("dummy student build");
 		Student stud=new Student();
 		stud.setFirstName("Wasya");
 		stud.setLogin("wasya");
@@ -50,7 +51,7 @@ public class StudentController {
 	}
 	@RequestMapping(value=RestURIConstants.DUMMY_STUDENTARRAY,method=RequestMethod.GET)
 	public @ResponseBody List<Student> getDummyStudentArray(){
-		logger.info("dummy student sending");
+		logger.info("dummy student array sending");
 		ArrayList<Student> ar=new ArrayList<>();
 		for(int i=0;i<5;i++)
 			ar.add(buildDummy());
