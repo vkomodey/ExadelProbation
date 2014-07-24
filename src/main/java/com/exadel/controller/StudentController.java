@@ -1,6 +1,7 @@
 package com.exadel.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +25,7 @@ import com.exadel.model.entity.student.Technology;
 @Controller
 public class StudentController {
 	public static Logger logger=LoggerFactory.getLogger(StudentController.class);
-	@RequestMapping(value=RestURIConstants.DUMMY_STUDENT,method=RequestMethod.GET)
-	public @ResponseBody Student getDummyStudent(){
-		logger.info("dummy student sending");
+	private Student buildDummy(){
 		Student stud=new Student();
 		stud.setFirstName("Wasya");
 		stud.setLogin("wasya");
@@ -43,5 +42,18 @@ public class StudentController {
 		stud.getFeedback().add(new Feedback());
 		stud.setEnglish(EnglishEnum.advanced);
 		return stud;
+	}
+	@RequestMapping(value=RestURIConstants.DUMMY_STUDENT,method=RequestMethod.GET)
+	public @ResponseBody Student getDummyStudent(){
+		logger.info("dummy student sending");
+		return buildDummy();
+	}
+	@RequestMapping(value=RestURIConstants.DUMMY_STUDENTARRAY,method=RequestMethod.GET)
+	public @ResponseBody List<Student> getDummyStudentArray(){
+		logger.info("dummy student sending");
+		ArrayList<Student> ar=new ArrayList<>();
+		for(int i=0;i<5;i++)
+			ar.add(buildDummy());
+		return ar;
 	}
 }
