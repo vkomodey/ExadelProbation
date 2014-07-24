@@ -4,6 +4,7 @@ package com.exadel.util;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
+@Deprecated
 public class HibernateUtil {
     private static SessionFactory sessionFactory = null;
 

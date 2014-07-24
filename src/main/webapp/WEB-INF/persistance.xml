@@ -20,7 +20,6 @@
     </bean>
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <!--/-->
         <property name="annotatedClasses">
             <list>
                 <value>com.exadel.model.entity.User</value>
