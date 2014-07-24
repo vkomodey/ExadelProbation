@@ -1,0 +1,11 @@
+.content {
+  position: relative;
+  display: block;
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 36px;
+  margin-bottom: 0;
+  background: inherit;
+  z-index: 1;
+  padding-top: 12px; }

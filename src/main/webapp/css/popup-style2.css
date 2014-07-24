@@ -1,0 +1,307 @@
+#popup-form {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  display: block;
+  -webkit-transition: opacity .5s;
+  -moz-transition: opacity .5s;
+  -ms-transition: opacity .5s;
+  -o-transition: opacity .5s;
+  transition: opacity .5s; }
+  #popup-form > h2 {
+    background-color: #292829;
+    width: 600px;
+    text-align: center;
+    color: white;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: 1px solid #292829;
+    -webkit-border-radius: 10px 10px 0px 0px;
+    -moz-border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 10px 0px 0px; }
+  #popup-form > .login-h2 {
+    width: 250px; }
+
+#popup-form:target {
+  pointer-events: auto;
+  opacity: 1; }
+
+body {
+  background-color: none; }
+
+.login, .popup {
+  text-align: center;
+  font: 12px/20px 'Lucida Grande', Verdana, sans-serif;
+  width: 250px;
+  margin: 0px auto;
+  background-color: grey;
+  border: 1px solid grey;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 0 0 10px 10px; }
+  .login > h2, .popup > h2 {
+    background-color: #292829;
+    color: white;
+    text-align: center;
+    margin: 0 auto;
+    padding: 18px 20px;
+    border: 1px solid #172b4e;
+    -webkit-border-radius: 10px 10px 0px 0px;
+    -moz-border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 10px 0px 0px; }
+  .login > button, .popup > button {
+    background-color: #ebebeb;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #404040;
+    cursor: pointer;
+    float: none;
+    font-weight: bold;
+    margin-left: auto;
+    padding: 10px 10px;
+    -webkit-appearance: none; }
+  .login > p, .popup > p {
+    padding: 3% 10%; }
+  .login > p > input, .popup > p > input {
+    height: 30px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 190px; }
+    .login > p > input:focus, .popup > p > input:focus {
+      outline: 0;
+      background-color: lightgrey; }
+  .login > input[type=radio], .popup > input[type=radio] {
+    display: none; }
+  .login > label, .popup > label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .login > input[type=radio]:checked + label, .popup > input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+  .login > div > input[type=radio], .popup > div > input[type=radio] {
+    display: none; }
+  .login > div > label, .popup > div > label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .login > div > input[type=radio]:checked + label, .popup > div > input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+  .login > .popup-content, .popup > .popup-content {
+    margin-right: 0%;
+    margin-left: 0%;
+    width: 550px;
+    text-align: left; }
+  .login > p > span, .popup > p > span {
+    text-align: right;
+    width: 300px;
+    display: inline;
+    float: left; }
+
+.popup {
+  width: 600px;
+  height: 600px;
+  bottom: 10%;
+  margin: 0 auto;
+  overflow: auto; }
+  .popup > button {
+    margin-left: auto; }
+
+.show-hide-element.ng-hide {
+  opacity: 0; }
+
+.workInProject > .true {
+  position: absolute;
+  -webkit-transition: opacity .5s;
+  -moz-transition: opacity .5s;
+  -ms-transition: opacity .5s;
+  -o-transition: opacity .5s;
+  transition: opacity .5s;
+  pointer-events: none;
+  opacity: 0; }
+  .workInProject > .true > p {
+    padding: 3% 10%; }
+  .workInProject > .true > p > input {
+    height: 30px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 190px; }
+    .workInProject > .true > p > input:focus {
+      outline: 0;
+      background-color: lightgrey; }
+  .workInProject > .true > input[type=radio] {
+    display: none; }
+  .workInProject > .true > label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .workInProject > .true > input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+  .workInProject > .true > div > input[type=radio] {
+    display: none; }
+  .workInProject > .true > div > label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .workInProject > .true > div > input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+.workInProject > .false {
+  position: relative;
+  -webkit-transition: opacity .5s;
+  -moz-transition: opacity .5s;
+  -ms-transition: opacity .5s;
+  -o-transition: opacity .5s;
+  transition: opacity .5s;
+  pointer-events: auto;
+  opacity: 1; }
+  .workInProject > .false > p {
+    padding: 3% 10%; }
+  .workInProject > .false > p > input {
+    height: 30px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 190px; }
+    .workInProject > .false > p > input:focus {
+      outline: 0;
+      background-color: lightgrey; }
+  .workInProject > .false > input[type=radio] {
+    display: none; }
+  .workInProject > .false > label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .workInProject > .false > input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+  .workInProject > .false > div > input[type=radio] {
+    display: none; }
+  .workInProject > .false > div > label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .workInProject > .false > div > input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+.workInProject > .starting {
+  position: absolute;
+  -webkit-transition: opacity .5s;
+  -moz-transition: opacity .5s;
+  -ms-transition: opacity .5s;
+  -o-transition: opacity .5s;
+  transition: opacity .5s;
+  pointer-events: none;
+  opacity: 0; }
+  .workInProject > .starting > p {
+    padding: 3% 10%; }
+  .workInProject > .starting > p > input {
+    height: 30px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 190px; }
+    .workInProject > .starting > p > input:focus {
+      outline: 0;
+      background-color: lightgrey; }
+  .workInProject > .starting > input[type=radio] {
+    display: none; }
+  .workInProject > .starting > label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .workInProject > .starting > input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+  .workInProject > .starting > div > input[type=radio] {
+    display: none; }
+  .workInProject > .starting > div > label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .workInProject > .starting > div > input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+.workInProject > .ng-hide {
+  position: absolute;
+  -webkit-transition: opacity .5s;
+  -moz-transition: opacity .5s;
+  -ms-transition: opacity .5s;
+  -o-transition: opacity .5s;
+  transition: opacity .5s;
+  pointer-events: none;
+  opacity: 0; }
+  .workInProject > .ng-hide > p {
+    padding: 3% 10%; }
+  .workInProject > .ng-hide > p > input {
+    height: 30px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 190px; }
+    .workInProject > .ng-hide > p > input:focus {
+      outline: 0;
+      background-color: lightgrey; }
+  .workInProject > .ng-hide > input[type=radio] {
+    display: none; }
+  .workInProject > .ng-hide > label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .workInProject > .ng-hide > input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+  .workInProject > .ng-hide > div > input[type=radio] {
+    display: none; }
+  .workInProject > .ng-hide > div > label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .workInProject > .ng-hide > div > input[type=radio]:checked + label {
+    background-position: 0 -27px; }
