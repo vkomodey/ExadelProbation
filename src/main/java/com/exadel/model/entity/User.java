@@ -2,6 +2,7 @@ package com.exadel.model.entity;
 
 import javax.persistence.*;
 
+import com.exadel.model.IEntity;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -9,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "USER_")
 @Inheritance(strategy=InheritanceType.JOINED)
-public class User {
+public class User implements IEntity {
 
     private long id;
     private String firstName;
