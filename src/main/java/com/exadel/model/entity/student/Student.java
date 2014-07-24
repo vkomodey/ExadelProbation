@@ -41,6 +41,7 @@ public class Student extends User {
     
     @Override
     @Transient
+    @JsonIgnore
     public String getRole(){
     	return SpringSecurityRole.STUDENT;
     }

@@ -53,7 +53,6 @@
 				<prop key="current_session_context_class">thread</prop>
 				<prop key="transaction.factory_class">org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
 				</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
 			</props>
 		</property>
 	</bean>
