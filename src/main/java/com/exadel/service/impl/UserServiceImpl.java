@@ -16,13 +16,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
-    @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public User findUserById(int userId) {
         return null;
     }
 
-    @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         return userDao.loadUserByUsername(login);

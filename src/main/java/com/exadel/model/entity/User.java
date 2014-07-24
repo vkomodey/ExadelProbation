@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "USER_")
 @Inheritance(strategy=InheritanceType.JOINED)
-public class User implements IEntity {
+public class User implements IEntity{
 
     private long id;
     private String firstName;
@@ -23,6 +23,7 @@ public class User implements IEntity {
 
     }
     @Transient
+    @JsonIgnore
     public String getRole(){
     	return SpringSecurityRole.USER;
     }

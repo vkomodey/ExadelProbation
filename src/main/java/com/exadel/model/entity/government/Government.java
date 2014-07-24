@@ -2,6 +2,7 @@ package com.exadel.model.entity.government;
 
 import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
@@ -10,6 +11,7 @@ import javax.persistence.Transient;
 public abstract class Government extends User {
 	@Override
 	@Transient
+	@JsonIgnore
 	public String getRole(){
 		return SpringSecurityRole.GOVERNMENT;
 	}

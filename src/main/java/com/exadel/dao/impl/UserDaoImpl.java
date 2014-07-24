@@ -17,7 +17,6 @@ import java.util.Collection;
 public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDao {
     @Autowired
     SessionFactory sessionFactory;
-    @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         System.out.println("CHECK CHECK dao");
         org.hibernate.Session s = getSessionFactory().openSession();
@@ -28,39 +27,32 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
     System.out.println("AZAZA - " + user.getLogin());
 
         Object details = new UserDetails() {
-            @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
-                return new ArrayList(1){{
+                return new ArrayList<SimpleGrantedAuthority>(1){{
                     add(new SimpleGrantedAuthority(user.getRole()));
                 }};
             }
 
-            @Override
             public String getPassword() {
                 return user.getPassword();
             }
 
-            @Override
             public String getUsername() {
                 return user.getLogin();
             }
 
-            @Override
             public boolean isAccountNonExpired() {
                 return true;
             }
 
-            @Override
             public boolean isAccountNonLocked() {
                 return true;
             }
 
-            @Override
             public boolean isCredentialsNonExpired() {
                 return true;
             }
 
-            @Override
             public boolean isEnabled() {
                 return true;
             }
@@ -69,7 +61,6 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
         return (UserDetails)details;
     }
 
-    @Override
     public User find(Integer integer) {
         return null;
     }
