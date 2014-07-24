@@ -23,6 +23,7 @@ public class User implements IEntity{
 
     }
     @Transient
+    @JsonIgnore
     public String getRole(){
     	return SpringSecurityRole.USER;
     }

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Transient;
 
 import com.exadel.model.constants.SpringSecurityRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Feedbacker extends FeedbackAble {
@@ -13,6 +14,7 @@ public class Feedbacker extends FeedbackAble {
 	}
 	@Override
 	@Transient
+	@JsonIgnore
 	public String getRole(){
 		return SpringSecurityRole.FEEDBACKER;
 	}
