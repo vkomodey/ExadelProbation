@@ -6,8 +6,8 @@
                            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 				    	    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
+    <security:http pattern="../css/**" security="none"/>
     <security:http authentication-manager-ref="authenticationManager">
-        <security:intercept-url pattern="../css.*" access="ROLE_USER"/>
         <security:intercept-url pattern="/page/list.jsp" access="ROLE_USER" />
         <security:form-login login-page="/page/login.jsp" login-processing-url="/do_login" default-target-url="/page/students-list.html" authentication-failure-url="/page/error.jsp"/>
     </security:http>
