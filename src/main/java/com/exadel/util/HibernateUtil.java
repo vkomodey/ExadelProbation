@@ -1,8 +1,10 @@
 package com.exadel.util;
 
-
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+
+
 
 @Deprecated
 public class HibernateUtil {
@@ -11,7 +13,10 @@ public class HibernateUtil {
     static {
         try {
             //creates the session factory from hibernate.cfg.xml
-            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+            //sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+        	Configuration cfg=new Configuration().configure("hibernate.cfg.xml");
+        	StandardServiceRegistryBuilder ssrb=new StandardServiceRegistryBuilder().applySettings(cfg.getProperties());
+        	sessionFactory=cfg.buildSessionFactory(ssrb.build());
         } catch (Exception e) {
             e.printStackTrace();
         }
