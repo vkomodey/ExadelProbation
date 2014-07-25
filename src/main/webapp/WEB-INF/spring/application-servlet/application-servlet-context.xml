@@ -8,8 +8,10 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- Enables the Spring MVC @Controller programming model -->
-    <annotation-driven />
+    <context:component-scan base-package="com.exadel.controller.application" />
+
+
+    <mvc:annotation-driven />
 
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/img/**" location="/img/"/>
@@ -18,25 +20,9 @@
     <mvc:resources mapping="/lib/**" location="/lib/"/>
     <mvc:resources mapping="/scss/**" location="/js/"/>
 
-    <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/pages/" />
         <beans:property name="suffix" value=".jsp" />
     </beans:bean>
-     
-    <!-- Configure to plugin JSON as request and response in method handler -->
-    <beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-        <beans:property name="messageConverters">
-            <beans:list>
-                <beans:ref bean="jsonMessageConverter"/>
-            </beans:list>
-        </beans:property>
-    </beans:bean>
-     
-    <!-- Configure bean to convert JSON to POJO and vice versa -->
-    <beans:bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-    </beans:bean>
-     
-    <context:component-scan base-package="com.exadel.controller.json" />
-     
-</beans:beans>
+    </beans:beans>
