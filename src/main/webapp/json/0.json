@@ -1,6 +1,6 @@
 [
     {
-        "aptitude": "aptitude",
+        "aptitude": "aptitudehj",
         "attitudeToWork": "attitudeToWork",
         "relationsInCollective": "relationsInCollective",
         "progress": "progress",
@@ -14,7 +14,7 @@
 
     {
         "aptitude": "aptitude",
-        "attitudeToWork": "attitudeToWork",
+        "attitudeToWork": "attitudeToWorkhj",
         "relationsInCollective": "relationsInCollective",
         "progress": "progress",
         "increaseHours": "increaseHours",
@@ -29,7 +29,7 @@
         "attitudeToWork": "attitudeToWork",
         "relationsInCollective": "relationsInCollective",
         "progress": "progress",
-        "increaseHours": "increaseHours",
+        "increaseHours": "increaseHourshj",
         "workInProject": "workInProject",
         "billable": "billable",
         "other": "other",
