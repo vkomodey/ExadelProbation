@@ -2,15 +2,15 @@ package com.exadel.model.entity.view;
 
 
 public class FeedbackView {
-    private long studId;
-    private long id;
-    private boolean profSuitability;
+    private Long studId;
+    private Long id;
+    private Boolean profSuitability;
     private String attitudeToWork;
     private String relations;
     private String progress;
-    private boolean increaseHours;
+    private Boolean increaseHours;
     private String workInProject;
-    private boolean isBillable;
+    private Boolean isBillable;
     private String other;
     private String feedbacker;
 
@@ -18,27 +18,27 @@ public class FeedbackView {
 
     }
 
-    public long getStudId() {
+    public Long getStudId() {
         return studId;
     }
 
-    public void setStudId(long studId) {
+    public void setStudId(Long studId) {
         this.studId = studId;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public boolean isProfSuitability() {
+    public Boolean isProfSuitability() {
         return profSuitability;
     }
 
-    public void setProfSuitability(boolean profSuitability) {
+    public void setProfSuitability(Boolean profSuitability) {
         this.profSuitability = profSuitability;
     }
 
@@ -66,11 +66,11 @@ public class FeedbackView {
         this.progress = progress;
     }
 
-    public boolean isIncreaseHours() {
+    public Boolean isIncreaseHours() {
         return increaseHours;
     }
 
-    public void setIncreaseHours(boolean increaseHours) {
+    public void setIncreaseHours(Boolean increaseHours) {
         this.increaseHours = increaseHours;
     }
 
@@ -82,11 +82,11 @@ public class FeedbackView {
         this.workInProject = workInProject;
     }
 
-    public boolean isBillable() {
+    public Boolean isBillable() {
         return isBillable;
     }
 
-    public void setBillable(boolean isBillable) {
+    public void setBillable(Boolean isBillable) {
         this.isBillable = isBillable;
     }
 

@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl extends GenericLivingServiceImpl<User> implements UserService {
 	@Autowired
 	UserDaoImpl dao;
-    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+	@Transactional
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         return dao.loadUserByUsername(login);
     }

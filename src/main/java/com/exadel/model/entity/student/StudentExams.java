@@ -16,23 +16,23 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "exam")
 public class StudentExams implements Serializable {
-	private long id;
+	private Long id;
     private double grade;
-    private boolean summer;
+    private Boolean summer;
     private Student student;
-    private int course;
+    private Integer course;
 	public StudentExams() {
     }
 	@Id
 	@GeneratedValue
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public double getGrade() {
 		return grade;
 	}
 	@NaturalId
-	public boolean isSummer() {
+	public Boolean isSummer() {
 		return summer;
 	}
 	@JsonIgnore
@@ -43,22 +43,22 @@ public class StudentExams implements Serializable {
 		return student;
 	}
 	@NaturalId
-	public int getCourse() {
+	public Integer getCourse() {
 		return course;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public void setGrade(double grade) {
 		this.grade = grade;
 	}
-	public void setSummer(boolean summer) {
+	public void setSummer(Boolean summer) {
 		this.summer = summer;
 	}
 	public void setStudent(Student student) {
 		this.student = student;
 	}
-	public void setCourse(int course) {
+	public void setCourse(Integer course) {
 		this.course = course;
 	}
 

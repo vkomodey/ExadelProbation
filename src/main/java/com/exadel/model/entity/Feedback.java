@@ -18,9 +18,9 @@ import com.exadel.model.entity.government.FeedbackAble;
 @Table(name = "feedback")
 public class Feedback {
 	private Student student;
-	private long id;
-	private boolean profCompetence;
-	private boolean needMoreHours;
+	private Long id;
+	private Boolean profCompetence;
+	private Boolean needMoreHours;
 	private String workAttitude;
 	private String collectiveRelations;
 	private String profMattersProgress;
@@ -32,7 +32,7 @@ public class Feedback {
 	public Feedback() {
 	}
 
-	public Feedback(boolean profCompetence, boolean needMoreHours,
+	public Feedback(Boolean profCompetence, Boolean needMoreHours,
 			String workAttitude, String collectiveRelations,
 			String profMattersProgress, String feedback, Calendar feedbackDate) {
 		this.profCompetence = profCompetence;
@@ -60,7 +60,7 @@ public class Feedback {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -70,12 +70,12 @@ public class Feedback {
 	}
 
 	@Column(name = "profCompetence")
-	public boolean isProfCompetence() {
+	public Boolean isProfCompetence() {
 		return profCompetence;
 	}
 
 	@Column(name = "needMoreHours")
-	public boolean isNeedMoreHours() {
+	public Boolean isNeedMoreHours() {
 		return needMoreHours;
 	}
 
@@ -103,7 +103,7 @@ public class Feedback {
 		this.author = author;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -115,11 +115,11 @@ public class Feedback {
 		this.feedbackDate = feedbackDate;
 	}
 
-	public void setProfCompetence(boolean profCompetence) {
+	public void setProfCompetence(Boolean profCompetence) {
 		this.profCompetence = profCompetence;
 	}
 
-	public void setNeedMoreHours(boolean needMoreHours) {
+	public void setNeedMoreHours(Boolean needMoreHours) {
 		this.needMoreHours = needMoreHours;
 	}
 

@@ -2,8 +2,6 @@ package com.exadel.dao.impl;
 
 import com.exadel.dao.UserDao;
 import com.exadel.model.entity.User;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +15,7 @@ import java.util.Collection;
 public class UserDaoImpl extends GenericLivingDaoImpl<User> implements UserDao {
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         System.out.println("CHECK CHECK dao");
-        org.hibernate.Session s = getSessionFactory().openSession();
+        org.hibernate.Session s = getSessionFactory().getCurrentSession();
         final User user = (User)s.
                 createQuery("from User where login=:login").
                 setString("login", login).
