@@ -20,7 +20,7 @@
 
     <!-- Processes application requests -->
     <servlet>
-        <servlet-name>appServlet</servlet-name>
+        <servlet-name>jsonServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
@@ -30,8 +30,23 @@
     </servlet>
          
     <servlet-mapping>
-        <servlet-name>appServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <servlet-name>jsonServlet</servlet-name>
+        <url-pattern>/rest/</url-pattern>
+    </servlet-mapping>
+    
+    <!--Servlet, which works with simple controllers, not json;-->
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>WEB-INF/spring/application-servlet/application-servlet-context.xml</param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/app/</url-pattern>
     </servlet-mapping>
 
      <filter>
