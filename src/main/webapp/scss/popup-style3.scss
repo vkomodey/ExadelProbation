@@ -16,10 +16,11 @@
   transition: opacity .5s, top .5s;
   > h2{
     background-color: #292829;
-    width: 600px;
+    width: auto;
+    max-width: 600px;
     text-align: center;
     color: white;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
@@ -42,5 +43,6 @@
 .popup-show {
   @include popup-type();
   opacity: 1;
+  z-index: 50;
   pointer-events: auto;
 }
