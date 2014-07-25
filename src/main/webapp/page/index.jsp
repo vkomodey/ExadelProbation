@@ -22,7 +22,7 @@
     <script type="text/javascript" src="../js/servicesApp.js"></script>
 
 </head>
-<body>
+<body class="user-list-container">
 <div class="nav"><!-- для навигационной панели навигационной(невидима) -->
     <div class="nav-menu"> <!-- навигационное меню  -->
         <ul id="nav">

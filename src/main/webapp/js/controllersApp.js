@@ -64,7 +64,7 @@ studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routePar
             $scope.progress == undefined ||
             $scope.other == undefined ||
             $scope.feedbacker == undefined) {
-            alert("One or several fields are not filled.")
+            alert("One or several fields are not filled.");
             return;
         }
         var feedback = {
