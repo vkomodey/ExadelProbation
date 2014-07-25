@@ -17,6 +17,15 @@ import java.util.Collection;
 public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDao {
     @Autowired
     SessionFactory sessionFactory;
+
+    public void saveUser(User user){
+        //sessionFactory.openSession().save(user);
+        org.hibernate.Session s = getSessionFactory().openSession();
+        System.out.println("CHECK CHECK dao");
+        s.save(user);
+    }
+
+
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         System.out.println("CHECK CHECK dao");
         org.hibernate.Session s = getSessionFactory().openSession();
