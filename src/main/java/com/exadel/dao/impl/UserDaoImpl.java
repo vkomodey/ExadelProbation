@@ -34,6 +34,7 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
                 setString("login", login).
                 uniqueResult();
     System.out.println("AZAZA - " + user.getLogin());
+
         Object details = new UserDetails() {
             public Collection<? extends GrantedAuthority> getAuthorities() {
                 return new ArrayList<SimpleGrantedAuthority>(1){{

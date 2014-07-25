@@ -6,11 +6,10 @@
                            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 				    	    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
+    <security:http pattern="../css/**" security="none"/>
     <security:http authentication-manager-ref="authenticationManager">
-        <security:intercept-url pattern="/page/list.jsp" access="ROLE_USER" />
-        <security:intercept-url pattern="/vasya" access="ROLE_ADMIN"/>
-        <security:intercept-url pattern="/page/secure/sec.jsp" access="ROLE_ADMIN"/>
-        <security:form-login login-page="/page/login.jsp" login-processing-url="/do_login" default-target-url="/page/secure/sec.jsp" authentication-failure-url="/page/error.jsp"/>
+        <security:intercept-url pattern="/page/index.jsp" access="ROLE_USER" />
+        <security:form-login login-page="/page/login.jsp" login-processing-url="/do_login" default-target-url="/page/partials/students-list.html" authentication-failure-url="/page/error.jsp"/>
     </security:http>
 
     <bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">

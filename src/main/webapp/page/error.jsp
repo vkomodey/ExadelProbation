@@ -1,16 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: vlad
-  Date: 18/07/14
-  Time: 13:17
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title></title>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ERROR 401</title>
+    <link rel="stylesheet" href="../css/error401-style.css" type="text/css" media="screen" charset="utf-8"/>
 </head>
 <body>
-Error
+<div class="error-text" style="margin-top: 10%">ERROR</div>
+<div id="error401"></div>
+<dib class="error-text">Access denied</dib>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.exadel.controller;
+package com.exadel.controller.json;
 
 public class RestURIConstants {
     public static final String DUMMY_STUDENT = "/rest/stud/dummy";

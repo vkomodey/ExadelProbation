@@ -12,58 +12,54 @@
                            http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 	<context:component-scan base-package="com.exadel.*" />
 
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="username" value="postgres" />
-		<property name="password" value="1" />
-		<property name="url"
-			value="jdbc:postgresql://localhost:5432/ProjectDataBase" />
-	</bean>
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="annotatedClasses">
-			<list>
-				<value>com.exadel.model.entity.User</value>
-				<value>com.exadel.model.entity.student.ExadelPractice</value>
-				<value>com.exadel.model.entity.student.Student</value>
-				<value>com.exadel.model.entity.student.ExadelWork</value>
-				<value>com.exadel.model.entity.student.Skill</value>
-				<value>com.exadel.model.entity.student.StudentExams</value>
-				<value>com.exadel.model.entity.student.SkillType</value>
-				<value>com.exadel.model.entity.student.Technology</value>
-				<value>com.exadel.model.entity.Feedback</value>
-				<value>com.exadel.model.entity.StudentLog</value>
-				<value>com.exadel.model.entity.government.Curator</value>
-				<value>com.exadel.model.entity.government.FeedbackAble</value>
-				<value>com.exadel.model.entity.government.Feedbacker</value>
-				<value>com.exadel.model.entity.government.Government</value>
-				<value>com.exadel.model.entity.government.Joanna</value>
-				<value>com.exadel.model.entity.government.PersonnelDepartment
-				</value>
-			</list>
-		</property>
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</prop>
-				<prop key="show_sql">true</prop>
-				<prop key="hbm2ddl.auto">update</prop>
-				<prop key="hibernate.connection.autocommit">false</prop>
-				<prop key="current_session_context_class">thread</prop>
-				<prop key="transaction.factory_class">org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
-				</prop>
-			</props>
-		</property>
-	</bean>
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-		<property name="dataSource" ref="dataSource" />
-	</bean>
+    <context:component-scan base-package="com.exadel.*"/>
 
-	<context:annotation-config />
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="53624142"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/ProjectDataBase"/>
+    </bean>
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>com.exadel.model.entity.User</value>
+                <value>com.exadel.model.entity.student.ExadelPractice</value>
+                <value>com.exadel.model.entity.student.Student</value>
+                <value>com.exadel.model.entity.student.ExadelWork</value>
+                <value>com.exadel.model.entity.student.Skill</value>
+                <value>com.exadel.model.entity.student.StudentExams</value>
+                <value>com.exadel.model.entity.student.SkillType</value>
+                <value>com.exadel.model.entity.student.Technology</value>
+                <value>com.exadel.model.entity.Feedback</value>
+                <value>com.exadel.model.entity.StudentLog</value>
+                <value>com.exadel.model.entity.government.Curator</value>
+                <value>com.exadel.model.entity.government.FeedbackAble</value>
+                <value>com.exadel.model.entity.government.Feedbacker</value>
+                <value>com.exadel.model.entity.government.Government</value>
+                <value>com.exadel.model.entity.government.Joanna</value>
+                <value>com.exadel.model.entity.government.PersonnelDepartment</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</prop>
+                <prop key="show_sql">true</prop>
+                <prop key="hbm2ddl.auto">update</prop>
+                <prop key="hibernate.connection.autocommit">false</prop>
+                <prop key="current_session_context_class">thread</prop>
+                <prop key="transaction.factory_class">org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="dataSource" ref="dataSource" />
+    </bean>
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
+    <context:annotation-config/>
 
-</beans>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    </beans>
