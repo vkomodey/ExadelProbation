@@ -32,11 +32,14 @@
                     <li><a href=#>Create User</a></li>
                     <li><a href="#/studentList">Students</a></li>
                     <li><a href=#>Employees</a></li>
-
-
                 </ul>
             </li>
-            <li><a href="log.html">Log out</a>
+            <li>
+                <form action="/do_logout" method="post">
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+            <%--<li><a href="log.html">Log out</a>--%>
             </li>
         </ul>
     </div>
