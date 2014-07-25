@@ -5,8 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public interface UserService extends UserDetailsService {
-    User findUserById(int userId);
+public interface UserService extends UserDetailsService,GenericLivingService<User> {
 
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 }
