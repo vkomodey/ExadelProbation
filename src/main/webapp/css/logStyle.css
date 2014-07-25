@@ -17,7 +17,7 @@
     -webkit-border-radius: 10px 10px 0px 0px;
     -moz-border-radius: 10px 10px 0px 0px;
     border-radius: 10px 10px 0px 0px; }
-  .login > button {
+  .login  button {
     background-color: #ebebeb;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -29,15 +29,15 @@
     margin-left: 35%;
     padding: 10px 10px;
     -webkit-appearance: none; }
-  .login > p {
+  .login p {
     padding: 3% 10%; }
-  .login > p > input {
+  .login input {
     height: 30px;
     background-color: white;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     width: 190px; }
-    .login > p > input:focus {
+    .login input:focus {
       outline: 0;
       background-color: lightgrey; }
