@@ -6,12 +6,15 @@ var studentsControllers = angular.module('studentsControllers',['ngTable']);
 studentsControllers.controller('FeedbacksCtrl', ['$scope', '$routeParams','feedbacksList', function($scope,$routeParams,feedbacksList) {
 
     $scope.feedbacks = feedbacksList.getFeedbacksList({studId: $routeParams.studId});
+    $scope.reloadList = function (){
+        $scope.feedbacks = feedbacksList.getFeedbacksList({studId: $routeParams.studId});
+    };
 }]);
 
 studentsControllers.controller('StudentListCtrl',['$scope','$filter','$routeParams','feedbacksList', 'ngTableParams',  function( $scope, $filter,$routeParams, feedbacksList, ngTableParams) {
 
-    var getData = function() {
-        return $scope.students = feedbacksList.getStudentsList();
+    $scope.reloadList = function() {
+        $scope.students = feedbacksList.getStudentsList();
     }
     $scope.students =  feedbacksList.getStudentsList();
         $scope.tableParams = new ngTableParams({
@@ -26,26 +29,67 @@ studentsControllers.controller('StudentListCtrl',['$scope','$filter','$routePara
             }
         }, {
             total: $scope.students.length, // length of data
-            getData: function(params) {
-                // use build-in angular filter
-                var filteredData = getData();/*params.filter() ?
-                    $filter('filter')($scope.students, params.filter()) :
-                    $scope.students;*/
-                var orderedData = params.sorting() ?
-                    $filter('orderBy')($scope.students, params.orderBy()) :
-                    filteredData;
-
-                params.total(orderedData.length); // set total for recalc pagination
-                //$defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+            getData: function($defer, params) {
+                var data = $scope.students;
+                $defer.resolve(data.slice());
             },  $scope: { students: {} }
         });
 }]);
 
-studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', 'ngTableParams', function($scope,$http,ngTableParams){
+studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function($scope,$http){
     $scope.createStudent = function() {
-        var newStudent = [{
+        if($scope.login == undefined) {
+            alert('field is not filled');
+            return;
+        }
+        var newStudent = {
             login: $scope.login
-        }];
-        $http.post('json/app.json',newStudent).success(function() { $scope.PopupCssClass = 'popup-hide'; $scope.tableParams.reload()});
+        };
+        $http.post('http://192.168.17.184:8080/rest/stud/create',newStudent)
+            .success(function() {
+                $scope.PopupCssClass = 'popup-hide';
+                $scope.reloadList();
+            })
+            .error(function(data,status) {
+                alert('ERROR '+ status);
+            });
     };
 }]);
+
+studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routeParams', function($scope,$http,$routeParams){
+    $scope.addFeedback = function() {
+        if($scope.profSuitability == undefined ||
+            $scope.attitudeToWork == undefined ||
+            $scope.relations == undefined ||
+            $scope.progress == undefined ||
+            $scope.other == undefined ||
+            $scope.feedbacker == undefined) {
+            alert("One or several fields are not filled.")
+            return;
+        }
+        var feedback = {
+            studId: $routeParams.studId,
+            profSuitability: $scope.profSuitability,
+            attitudeToWork: $scope.attitudeToWork,
+            relations: $scope.relations,
+            progress: $scope.progress,
+            increaseHours: $scope.increaseHours,
+            workInProject: $scope.workInProject,
+            prospect: $scope.prospect,
+            billable: $scope.billable,
+            other: $scope.other,
+            feedbacker: $scope.feedbacker
+        }
+        if(feedback.workInProject==true) {
+            feedback.prospect='-';
+        }
+        $http.post('',feedback)
+            .success(function() {
+                $scope.PopupCssClass = 'popup-hide';
+                $scope.reloadList();
+            })
+            .error(function(data,status) {
+                alert('ERROR '+ status);
+            });
+    };
+}])

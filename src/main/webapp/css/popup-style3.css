@@ -15,10 +15,11 @@
   pointer-events: none; }
   .popup-hide > h2 {
     background-color: #292829;
-    width: 600px;
+    width: auto;
+    max-width: 600px;
     text-align: center;
     color: white;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
@@ -45,13 +46,15 @@
   -o-transition: opacity .5s, top .5s;
   transition: opacity .5s, top .5s;
   opacity: 1;
+  z-index: 50;
   pointer-events: auto; }
   .popup-show > h2 {
     background-color: #292829;
-    width: 600px;
+    width: auto;
+    max-width: 600px;
     text-align: center;
     color: white;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;

@@ -4,7 +4,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 50;
+  z-index: 10000;
   pointer-events: none;
   background: rgba(0, 0, 0, 0.8);
   opacity: 0;
@@ -59,7 +59,7 @@ body {
     -webkit-border-radius: 10px 10px 0px 0px;
     -moz-border-radius: 10px 10px 0px 0px;
     border-radius: 10px 10px 0px 0px; }
-  .login > button, .popup > button {
+  .login button, .popup button {
     background-color: #ebebeb;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -71,7 +71,20 @@ body {
     margin-left: auto;
     padding: 10px 10px;
     -webkit-appearance: none; }
-  .login > p, .popup > p {
+  .login input[type=radio], .popup input[type=radio] {
+    display: none; }
+  .login label, .popup label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    width: 10px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .login input[type=radio]:checked + label, .popup input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+  .login p, .popup p {
     padding: 3% 10%; }
   .login > p > input, .popup > p > input {
     height: 30px;
@@ -82,29 +95,44 @@ body {
     .login > p > input:focus, .popup > p > input:focus {
       outline: 0;
       background-color: lightgrey; }
-  .login > input[type=radio], .popup > input[type=radio] {
+  .login input[type=radio], .popup input[type=radio] {
     display: none; }
-  .login > label, .popup > label {
+  .login label, .popup label {
     background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
     padding-left: 33px;
     height: 27px;
+    width: 10px;
     display: inline-block;
     background-repeat: no-repeat;
     cursor: pointer;
     background-position: 0 0; }
-  .login > input[type=radio]:checked + label, .popup > input[type=radio]:checked + label {
+  .login input[type=radio]:checked + label, .popup input[type=radio]:checked + label {
     background-position: 0 -27px; }
-  .login > div > input[type=radio], .popup > div > input[type=radio] {
+  .login > div input[type=radio], .popup > div input[type=radio] {
     display: none; }
-  .login > div > label, .popup > div > label {
+  .login > div label, .popup > div label {
     background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
     padding-left: 33px;
     height: 27px;
+    width: 10px;
     display: inline-block;
     background-repeat: no-repeat;
     cursor: pointer;
     background-position: 0 0; }
-  .login > div > input[type=radio]:checked + label, .popup > div > input[type=radio]:checked + label {
+  .login > div input[type=radio]:checked + label, .popup > div input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+  .login > p input[type=radio], .popup > p input[type=radio] {
+    display: none; }
+  .login > p label, .popup > p label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    width: 10px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .login > p input[type=radio]:checked + label, .popup > p input[type=radio]:checked + label {
     background-position: 0 -27px; }
   .login > .popup-content, .popup > .popup-content {
     margin-right: 0%;
@@ -118,13 +146,20 @@ body {
     float: left; }
 
 .popup {
-  width: 600px;
-  height: 600px;
-  bottom: 10%;
+  width: auto;
+  max-width: 600px;
+  height: 60%;
   margin: 0 auto;
-  overflow: auto; }
+  overflow: auto;
+  text-align: right;
+  padding-right: 20px; }
   .popup > button {
-    margin-left: auto; }
+    margin-left: auto;
+    margin-right: auto; }
+  .popup > .buttons {
+    margin-right: auto;
+    margin-left: auto;
+    width: 40%; }
 
 .show-hide-element.ng-hide {
   opacity: 0; }
@@ -138,7 +173,7 @@ body {
   transition: opacity .5s;
   pointer-events: none;
   opacity: 0; }
-  .workInProject > .true > p {
+  .workInProject > .true p {
     padding: 3% 10%; }
   .workInProject > .true > p > input {
     height: 30px;
@@ -149,29 +184,44 @@ body {
     .workInProject > .true > p > input:focus {
       outline: 0;
       background-color: lightgrey; }
-  .workInProject > .true > input[type=radio] {
+  .workInProject > .true input[type=radio] {
     display: none; }
-  .workInProject > .true > label {
+  .workInProject > .true label {
     background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
     padding-left: 33px;
     height: 27px;
+    width: 10px;
     display: inline-block;
     background-repeat: no-repeat;
     cursor: pointer;
     background-position: 0 0; }
-  .workInProject > .true > input[type=radio]:checked + label {
+  .workInProject > .true input[type=radio]:checked + label {
     background-position: 0 -27px; }
-  .workInProject > .true > div > input[type=radio] {
+  .workInProject > .true > div input[type=radio] {
     display: none; }
-  .workInProject > .true > div > label {
+  .workInProject > .true > div label {
     background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
     padding-left: 33px;
     height: 27px;
+    width: 10px;
     display: inline-block;
     background-repeat: no-repeat;
     cursor: pointer;
     background-position: 0 0; }
-  .workInProject > .true > div > input[type=radio]:checked + label {
+  .workInProject > .true > div input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+  .workInProject > .true > p input[type=radio] {
+    display: none; }
+  .workInProject > .true > p label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    width: 10px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .workInProject > .true > p input[type=radio]:checked + label {
     background-position: 0 -27px; }
 .workInProject > .false {
   position: relative;
@@ -182,7 +232,7 @@ body {
   transition: opacity .5s;
   pointer-events: auto;
   opacity: 1; }
-  .workInProject > .false > p {
+  .workInProject > .false p {
     padding: 3% 10%; }
   .workInProject > .false > p > input {
     height: 30px;
@@ -193,29 +243,44 @@ body {
     .workInProject > .false > p > input:focus {
       outline: 0;
       background-color: lightgrey; }
-  .workInProject > .false > input[type=radio] {
+  .workInProject > .false input[type=radio] {
     display: none; }
-  .workInProject > .false > label {
+  .workInProject > .false label {
     background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
     padding-left: 33px;
     height: 27px;
+    width: 10px;
     display: inline-block;
     background-repeat: no-repeat;
     cursor: pointer;
     background-position: 0 0; }
-  .workInProject > .false > input[type=radio]:checked + label {
+  .workInProject > .false input[type=radio]:checked + label {
     background-position: 0 -27px; }
-  .workInProject > .false > div > input[type=radio] {
+  .workInProject > .false > div input[type=radio] {
     display: none; }
-  .workInProject > .false > div > label {
+  .workInProject > .false > div label {
     background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
     padding-left: 33px;
     height: 27px;
+    width: 10px;
     display: inline-block;
     background-repeat: no-repeat;
     cursor: pointer;
     background-position: 0 0; }
-  .workInProject > .false > div > input[type=radio]:checked + label {
+  .workInProject > .false > div input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+  .workInProject > .false > p input[type=radio] {
+    display: none; }
+  .workInProject > .false > p label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    width: 10px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .workInProject > .false > p input[type=radio]:checked + label {
     background-position: 0 -27px; }
 .workInProject > .starting {
   position: absolute;
@@ -226,7 +291,7 @@ body {
   transition: opacity .5s;
   pointer-events: none;
   opacity: 0; }
-  .workInProject > .starting > p {
+  .workInProject > .starting p {
     padding: 3% 10%; }
   .workInProject > .starting > p > input {
     height: 30px;
@@ -237,29 +302,44 @@ body {
     .workInProject > .starting > p > input:focus {
       outline: 0;
       background-color: lightgrey; }
-  .workInProject > .starting > input[type=radio] {
+  .workInProject > .starting input[type=radio] {
     display: none; }
-  .workInProject > .starting > label {
+  .workInProject > .starting label {
     background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
     padding-left: 33px;
     height: 27px;
+    width: 10px;
     display: inline-block;
     background-repeat: no-repeat;
     cursor: pointer;
     background-position: 0 0; }
-  .workInProject > .starting > input[type=radio]:checked + label {
+  .workInProject > .starting input[type=radio]:checked + label {
     background-position: 0 -27px; }
-  .workInProject > .starting > div > input[type=radio] {
+  .workInProject > .starting > div input[type=radio] {
     display: none; }
-  .workInProject > .starting > div > label {
+  .workInProject > .starting > div label {
     background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
     padding-left: 33px;
     height: 27px;
+    width: 10px;
     display: inline-block;
     background-repeat: no-repeat;
     cursor: pointer;
     background-position: 0 0; }
-  .workInProject > .starting > div > input[type=radio]:checked + label {
+  .workInProject > .starting > div input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+  .workInProject > .starting > p input[type=radio] {
+    display: none; }
+  .workInProject > .starting > p label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    width: 10px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .workInProject > .starting > p input[type=radio]:checked + label {
     background-position: 0 -27px; }
 .workInProject > .ng-hide {
   position: absolute;
@@ -270,7 +350,7 @@ body {
   transition: opacity .5s;
   pointer-events: none;
   opacity: 0; }
-  .workInProject > .ng-hide > p {
+  .workInProject > .ng-hide p {
     padding: 3% 10%; }
   .workInProject > .ng-hide > p > input {
     height: 30px;
@@ -281,27 +361,42 @@ body {
     .workInProject > .ng-hide > p > input:focus {
       outline: 0;
       background-color: lightgrey; }
-  .workInProject > .ng-hide > input[type=radio] {
+  .workInProject > .ng-hide input[type=radio] {
     display: none; }
-  .workInProject > .ng-hide > label {
+  .workInProject > .ng-hide label {
     background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
     padding-left: 33px;
     height: 27px;
+    width: 10px;
     display: inline-block;
     background-repeat: no-repeat;
     cursor: pointer;
     background-position: 0 0; }
-  .workInProject > .ng-hide > input[type=radio]:checked + label {
+  .workInProject > .ng-hide input[type=radio]:checked + label {
     background-position: 0 -27px; }
-  .workInProject > .ng-hide > div > input[type=radio] {
+  .workInProject > .ng-hide > div input[type=radio] {
     display: none; }
-  .workInProject > .ng-hide > div > label {
+  .workInProject > .ng-hide > div label {
     background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
     padding-left: 33px;
     height: 27px;
+    width: 10px;
     display: inline-block;
     background-repeat: no-repeat;
     cursor: pointer;
     background-position: 0 0; }
-  .workInProject > .ng-hide > div > input[type=radio]:checked + label {
+  .workInProject > .ng-hide > div input[type=radio]:checked + label {
+    background-position: 0 -27px; }
+  .workInProject > .ng-hide > p input[type=radio] {
+    display: none; }
+  .workInProject > .ng-hide > p label {
+    background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
+    padding-left: 33px;
+    height: 27px;
+    width: 10px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 0 0; }
+  .workInProject > .ng-hide > p input[type=radio]:checked + label {
     background-position: 0 -27px; }
