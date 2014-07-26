@@ -101,13 +101,17 @@ public class Student extends User {
 		this.study = study;
 	}
 	public void setPractice(ExadelPractice practice) {
+		if(practice !=null ){ 
 		this.practice = practice;
 		this.practice.setStudent(this);
+		}
 	}
 	
 	public void setWork(ExadelWork work) {
+		if(practice !=null ){ 
 		this.work = work;
 		this.work.setStudent(this);
+		}
 	}
 	public void setSkillSet(Set<Skill> skillSet) {
 		this.skillSet = skillSet;

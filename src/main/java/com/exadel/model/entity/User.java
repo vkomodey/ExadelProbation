@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Inheritance(strategy=InheritanceType.JOINED)
 public class User implements IEntity{
 
-    private long id;
+    private Long id;
     private String firstName;
     private String secondName;
     private String surname;
@@ -57,11 +57,11 @@ public class User implements IEntity{
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	public long getId() {
+	public Long getId() {
 	    return id;
 	}
 
-	public void setId(long id){
+	public void setId(Long id){
         this.id=id;
     }
 

@@ -19,13 +19,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "exadel_practice")
 public class ExadelPractice{
 	private Student student;
-	private long id;
+	private Long id;
 	private String interview; // текст собеседования
     private String  curator;
-    private boolean workInvitation;
+    private Boolean workInvitation;
     private Calendar practiceStart;
     private Calendar practiceStop;
-    private boolean onProbation;
+    private Boolean onProbation;
     public ExadelPractice() {
     }
     
@@ -43,12 +43,12 @@ public class ExadelPractice{
 	@Parameter(name="property", value="student")
 	})
 	@Column (name="stud_id")
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
 	@Column(name="on_probation")
-	public boolean isOnProbation() {
+	public Boolean isOnProbation() {
 		return onProbation;
 	}
 
@@ -60,7 +60,7 @@ public class ExadelPractice{
 		return curator;
 	}
 
-	public boolean isWorkInvitation() {
+	public Boolean isWorkInvitation() {
 		return workInvitation;
 	}
 
@@ -75,7 +75,7 @@ public class ExadelPractice{
 
 
 
-	public void setOnProbation(boolean onProbation) {
+	public void setOnProbation(Boolean onProbation) {
 		this.onProbation = onProbation;
 	}
 
@@ -83,7 +83,7 @@ public class ExadelPractice{
 		this.student = student;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -95,7 +95,7 @@ public class ExadelPractice{
 		this.curator = curator;
 	}
 
-	public void setWorkInvitation(boolean workInvitation) {
+	public void setWorkInvitation(Boolean workInvitation) {
 		this.workInvitation = workInvitation;
 	}
 
