@@ -1,5 +1,6 @@
 package com.exadel.service.impl;
 
+import com.exadel.dao.UserDao;
 import com.exadel.dao.impl.UserDaoImpl;
 import com.exadel.model.entity.User;
 import com.exadel.service.UserService;
@@ -14,9 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserServiceImpl extends GenericLivingServiceImpl<User> implements UserService {
 	@Autowired
-	UserDaoImpl dao;
+	UserDao mainDao;
 	@Transactional
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        return dao.loadUserByUsername(login);
+        return mainDao.loadUserByUsername(login);
     }
 }
