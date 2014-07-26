@@ -20,6 +20,15 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 	UserDao userDao;
 	@Autowired
 	FeedbackDao feedbackDao;
+	
+	@Transactional
+	public Student findById(long id){
+		Student student=mainDao.find(id);
+		//laaaazy
+		student.getStudy().getExams().size();
+		student.getSkillSet().size();
+		return student;
+	}
 	@Transactional
 	public List<FeedbackView> getFeedbacksForStudentByStudId(long id) {
 		Student stud=mainDao.find(id);
