@@ -20,7 +20,7 @@ public class FeedbackDaoImpl extends GenericDaoImpl<Feedback> implements
 	@SuppressWarnings("unchecked")
 	public List<Feedback> findAllForStud(Student stud) {
 		Session session=getSessionFactory().getCurrentSession();
-		Query query=session.createQuery("select from Feedback where student=:student")
+		Query query=session.createQuery("from Feedback where student=:student")
 				.setEntity("student", stud);
 		List<Feedback> result= query.list();
 		return result;
