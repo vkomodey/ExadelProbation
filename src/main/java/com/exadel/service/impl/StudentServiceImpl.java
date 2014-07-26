@@ -14,4 +14,10 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 	public List<FeedbackView> getFeedbacksForStudentByStudId(long id) {
 		return null;
 	}
+
+	@Transactional
+	public void saveNewFeedbackForStudentByStudId(FeedbackView feedback, long id) {
+		// TODO Auto-generated method stub
+		
+	}
 }
