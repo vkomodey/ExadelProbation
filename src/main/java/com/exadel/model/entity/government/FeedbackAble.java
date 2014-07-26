@@ -14,15 +14,15 @@ import com.exadel.model.entity.Feedback;
 public abstract class FeedbackAble extends Government {
 	private List<Feedback> feedback;
 
+	public FeedbackAble() {
+		super();
+		this.setFeedback(new ArrayList<Feedback>());
+	}
+
 	@OneToMany(cascade = CascadeType.ALL)
 	@Column(name="feedback")
 	public List<Feedback> getFeedback() {
 		return feedback;
-	}
-
-	public FeedbackAble() {
-		super();
-		this.setFeedback(new ArrayList<Feedback>());
 	}
 
 	public void setFeedback(List<Feedback> feedback) {

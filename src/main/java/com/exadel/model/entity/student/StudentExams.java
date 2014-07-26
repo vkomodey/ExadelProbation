@@ -23,17 +23,17 @@ public class StudentExams implements Serializable {
     private Integer course;
 	public StudentExams() {
     }
-	@Id
-	@GeneratedValue
-	public Long getId() {
-		return id;
+	@NaturalId
+	public Integer getCourse() {
+		return course;
 	}
 	public double getGrade() {
 		return grade;
 	}
-	@NaturalId
-	public Boolean isSummer() {
-		return summer;
+	@Id
+	@GeneratedValue
+	public Long getId() {
+		return id;
 	}
 	@JsonIgnore
 	@NaturalId
@@ -43,23 +43,23 @@ public class StudentExams implements Serializable {
 		return student;
 	}
 	@NaturalId
-	public Integer getCourse() {
-		return course;
+	public Boolean isSummer() {
+		return summer;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setCourse(Integer course) {
+		this.course = course;
 	}
 	public void setGrade(double grade) {
 		this.grade = grade;
 	}
-	public void setSummer(Boolean summer) {
-		this.summer = summer;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public void setStudent(Student student) {
 		this.student = student;
 	}
-	public void setCourse(Integer course) {
-		this.course = course;
+	public void setSummer(Boolean summer) {
+		this.summer = summer;
 	}
 
 }

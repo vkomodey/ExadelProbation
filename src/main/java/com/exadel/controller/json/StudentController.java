@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.constants.StudentStateEnum;
+import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.student.ExadelPractice;
 import com.exadel.model.entity.student.ExadelWork;
-import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.student.Skill;
 import com.exadel.model.entity.student.SkillType;
 import com.exadel.model.entity.student.Student;
@@ -54,15 +54,6 @@ public class StudentController {
 		logger.info("dummy student sending");
 		return buildDummy();
 	}
-	@RequestMapping(value=RestURIConstants.DUMMY_STUDENTARRAY,method=RequestMethod.GET)
-	public @ResponseBody List<Student> getDummyStudentArray(){
-		logger.info("dummy student array sending");
-		ArrayList<Student> ar=new ArrayList<Student>();
-		for(int i=0;i<5;i++)
-			ar.add(buildDummy());
-		return ar;
-	}
-	
 	@RequestMapping(value=RestURIConstants.GET_STUDENT,method=RequestMethod.GET)
 	public @ResponseBody Student getDummyStudent(@PathVariable("id") String idString){
 		long id=Long.parseLong(idString);
@@ -70,5 +61,14 @@ public class StudentController {
 		Student student=service.findById(id);
 		logger.info("real student sending");
 		return student;
+	}
+	
+	@RequestMapping(value=RestURIConstants.DUMMY_STUDENTARRAY,method=RequestMethod.GET)
+	public @ResponseBody List<Student> getDummyStudentArray(){
+		logger.info("dummy student array sending");
+		ArrayList<Student> ar=new ArrayList<Student>();
+		for(int i=0;i<5;i++)
+			ar.add(buildDummy());
+		return ar;
 	}
 }

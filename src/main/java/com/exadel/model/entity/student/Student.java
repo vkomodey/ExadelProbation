@@ -39,13 +39,16 @@ public class Student extends User {
     private String skype;
     private String phone;
     
-    @Override
-    @Transient
-    @JsonIgnore
-    public String getRole(){
-    	return SpringSecurityRole.STUDENT;
-    }
-    @Enumerated(EnumType.STRING)
+    public Student() {
+		super();
+		this.setSkillSet(new HashSet<Skill>());
+		this.setFeedback(new ArrayList<Feedback>());
+		this.setStudy(new Study());
+	}
+    public String getEmail() {
+		return email;
+	}
+	@Enumerated(EnumType.STRING)
 	public EnglishEnum getEnglish() {
 		return english;
 	}
@@ -55,41 +58,44 @@ public class Student extends User {
 	public List<Feedback> getFeedback() {
 		return feedback;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public String getSkype() {
-		return skype;
-	}
 	public String getPhone() {
 		return phone;
-	}
-	
-	@OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
-    public Set<Skill> getSkillSet() {
-		return skillSet;
-	}
-	@Enumerated(EnumType.STRING)
-	public StudentStateEnum getState() {
-		return state;
-	}
-	public void setState(StudentStateEnum state) {
-		this.state = state;
-	}
-	
-	@Embedded
-	public Study getStudy() {
-		return study;
 	}
 	@OneToOne(cascade = CascadeType.ALL, optional=true,orphanRemoval=true)
 	@JoinColumn (name="id", nullable=false)
 	public ExadelPractice getPractice() {
 		return practice;
 	}
+	
+	@Override
+    @Transient
+    @JsonIgnore
+    public String getRole(){
+    	return SpringSecurityRole.STUDENT;
+    }
+	@OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
+    public Set<Skill> getSkillSet() {
+		return skillSet;
+	}
+	public String getSkype() {
+		return skype;
+	}
+	
+	@Enumerated(EnumType.STRING)
+	public StudentStateEnum getState() {
+		return state;
+	}
+	@Embedded
+	public Study getStudy() {
+		return study;
+	}
 	@OneToOne(cascade = CascadeType.ALL, optional=true,orphanRemoval=true)
 	@JoinColumn (name="id", nullable=false)
 	public ExadelWork getWork() {
 		return work;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public void setEnglish(EnglishEnum english) {
 		this.english = english;
@@ -97,39 +103,33 @@ public class Student extends User {
 	public void setFeedback(List<Feedback> feedback) {
 		this.feedback = feedback;
 	}
-	public void setStudy(Study study) {
-		this.study = study;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
+	
 	public void setPractice(ExadelPractice practice) {
 		if(practice !=null ){ 
 		this.practice = practice;
 		this.practice.setStudent(this);
 		}
 	}
-	
+	public void setSkillSet(Set<Skill> skillSet) {
+		this.skillSet = skillSet;
+	}
+	public void setSkype(String skype) {
+		this.skype = skype;
+	}
+	public void setState(StudentStateEnum state) {
+		this.state = state;
+	}
+	public void setStudy(Study study) {
+		this.study = study;
+	}
 	public void setWork(ExadelWork work) {
 		if(practice !=null ){ 
 		this.work = work;
 		this.work.setStudent(this);
 		}
-	}
-	public void setSkillSet(Set<Skill> skillSet) {
-		this.skillSet = skillSet;
-	}
-	public Student() {
-		super();
-		this.setSkillSet(new HashSet<Skill>());
-		this.setFeedback(new ArrayList<Feedback>());
-		this.setStudy(new Study());
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public void setSkype(String skype) {
-		this.skype = skype;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
 	}
 
 }

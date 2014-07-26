@@ -30,11 +30,8 @@ public class ExadelPractice{
     }
     
 
-	@JsonIgnore
-	@OneToOne(optional=false)
-	@JoinColumn(name="stud_id")
-	public Student getStudent() {
-		return student;
+	public String getCurator() {
+		return curator;
 	}
 
 	@Id
@@ -47,23 +44,9 @@ public class ExadelPractice{
 		return id;
 	}
 
-	@Column(name="on_probation")
-	public Boolean isOnProbation() {
-		return onProbation;
-	}
-
 	public String getInterview() {
 		return interview;
 	}
-
-	public String getCurator() {
-		return curator;
-	}
-
-	public Boolean isWorkInvitation() {
-		return workInvitation;
-	}
-
 
 	public Calendar getPracticeStart() {
 		return practiceStart;
@@ -73,14 +56,27 @@ public class ExadelPractice{
 		return practiceStop;
 	}
 
-
-
-	public void setOnProbation(Boolean onProbation) {
-		this.onProbation = onProbation;
+	@JsonIgnore
+	@OneToOne(optional=false)
+	@JoinColumn(name="stud_id")
+	public Student getStudent() {
+		return student;
 	}
 
-	public void setStudent(Student student) {
-		this.student = student;
+
+	@Column(name="on_probation")
+	public Boolean isOnProbation() {
+		return onProbation;
+	}
+
+	public Boolean isWorkInvitation() {
+		return workInvitation;
+	}
+
+
+
+	public void setCurator(String curator) {
+		this.curator = curator;
 	}
 
 	public void setId(Long id) {
@@ -91,14 +87,9 @@ public class ExadelPractice{
 		this.interview = interview;
 	}
 
-	public void setCurator(String curator) {
-		this.curator = curator;
+	public void setOnProbation(Boolean onProbation) {
+		this.onProbation = onProbation;
 	}
-
-	public void setWorkInvitation(Boolean workInvitation) {
-		this.workInvitation = workInvitation;
-	}
-
 
 	public void setPracticeStart(Calendar practiceStart) {
 		this.practiceStart = practiceStart;
@@ -106,6 +97,15 @@ public class ExadelPractice{
 
 	public void setPracticeStop(Calendar practiceStop) {
 		this.practiceStop = practiceStop;
+	}
+
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public void setWorkInvitation(Boolean workInvitation) {
+		this.workInvitation = workInvitation;
 	}
 
 
