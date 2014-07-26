@@ -1,6 +1,8 @@
 package com.exadel.controller.json;
 
 
+import com.exadel.dao.StudentDao;
+import com.exadel.dao.impl.StudentDaoImpl;
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.government.FeedbackAble;
 import com.exadel.model.entity.government.Feedbacker;
@@ -59,21 +61,21 @@ public class FeedBackController {
 
     @RequestMapping(value=RestURIConstants.GET_FEEDBACK_ARRAY_FROM_BASE,method=RequestMethod.GET)
     public @ResponseBody
-    //List<Feedback> getDummyStudent(@PathVariable("id") String id){
-    ArrayList<Student> getDummyStudent(@PathVariable("id") String id){
+    List<Feedback> getDummyStudent(@PathVariable("id") String id){
+    //ArrayList<Student> getDummyStudent(@PathVariable("id") String id){
         logger.info("dummy student sending");
 
         long studId = Long.parseLong(id);
-
+        Student st = new Student();
+        StudentDao studentDao = new StudentDaoImpl();
+        st=studentDao.find(studId);
        /* StudentDao studentDao = new StudentDaoImpl();
         Student st= studentDao.findStudentById(studId);
 
         return st.getFeedback();*/
         System.out.println(studId);
 
-        ArrayList<Student> ar=new ArrayList<Student>();
-        for(int i=0;i<5;i++)
-            ar.add(buildDummy());
+        ArrayList<Feedback> ar=new ArrayList<Feedback>();
         return ar;
 
     }
