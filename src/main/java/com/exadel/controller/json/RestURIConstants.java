@@ -7,6 +7,6 @@ public class RestURIConstants {
     public static final String CREATE_STUDENT = "stud/create";
     //public static final String DELETE_EMP = "/rest/emp/delete/{id}";
 	public static final String DUMMY_STUDENTARRAY = "stud/dummyarr";
-    public static final String PUSH_FEEDBACK_TO_BASE= "stud/feedback/push";
-    public static final String GET_FEEDBACK_ARRAY_FROM_BASE= "stud/{id}/feedbacks/get";
+    public static final String PUSH_FEEDBACK= "stud/{id}/feedbacks/push";
+    public static final String GET_FEEDBACK_ARRAY= "stud/{id}/feedbacks/get";
 }
