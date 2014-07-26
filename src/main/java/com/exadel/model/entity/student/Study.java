@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 
 @Embeddable
 public class Study {
-    private int graduate_year;
+    private Integer graduate_year;
     private String university, faculty, specialty, course_group;
     private List<StudentExams> exams;
     
@@ -26,7 +26,7 @@ public class Study {
 		this.setExams(new ArrayList<StudentExams>());
     }
 
-    public Study(int graduate_year, String university, String faculty, String specialty, String course_group) {
+    public Study(Integer graduate_year, String university, String faculty, String specialty, String course_group) {
 
         this.graduate_year = graduate_year;
         this.university = university;
@@ -37,7 +37,7 @@ public class Study {
     }
 
     @Column(name = "graduate_year")
-    public int getGraduate_year() {
+    public Integer getGraduate_year() {
         return graduate_year;
     }
 
@@ -73,7 +73,7 @@ public class Study {
         this.course_group = course_group;
     }
 
-	public void setGraduate_year(int graduate_year) {
+	public void setGraduate_year(Integer graduate_year) {
 	    this.graduate_year = graduate_year;
 	}
 

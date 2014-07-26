@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Technology {
-	private long id;
+	private Long id;
 	private String name;
 	public Technology() {
 	}
@@ -16,14 +16,14 @@ public class Technology {
 	}
 	@Id
 	@GeneratedValue
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	@Column(name="name")
 	public String getName() {
 		return name;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public void setName(String name) {

@@ -10,14 +10,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "student_log")
 public class StudentLog {
-    private long id;
+    private Long id;
     private StudentStateEnum newState;
 
     public StudentLog() {
     }
     @Id
     @Column(name = "id")
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -26,7 +26,7 @@ public class StudentLog {
         return newState;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
 	    this.id = id;
 	}
 	public void setNewState(StudentStateEnum newState) {

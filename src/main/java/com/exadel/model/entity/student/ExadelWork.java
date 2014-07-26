@@ -16,11 +16,11 @@ import java.util.Set;
 @Table(name = "exadel_work")
 public class ExadelWork {
 	private Student student;
-	private long id;
+	private Long id;
 
 
-	private int hours_current;
-    private int hours_desired;
+	private Integer hours_current;
+    private Integer hours_desired;
     private Calendar workStartDate;
     private Calendar hoursDesiredTransferDate;
     private Calendar billableStartDate;
@@ -34,8 +34,8 @@ public class ExadelWork {
     private String curator;
     private String exadelTrainingType;
     private String certificates;
-    private boolean isBillable;
-    private boolean wannaChangeProj;
+    private Boolean isBillable;
+    private Boolean wannaChangeProj;
     private Set<Technology> projectTechnologies;
 
     public ExadelWork() {
@@ -54,7 +54,7 @@ public class ExadelWork {
 	@Parameter(name="property", value="student")
 	})
 	@Column (name="stud_id")
-    public long getId() {
+    public Long getId() {
 		return id;
 	}
 
@@ -62,11 +62,11 @@ public class ExadelWork {
         return workStartDate;
     }
 	
-	public int getHours_current() {
+	public Integer getHours_current() {
 		return hours_current;
 	}
 
-	public int getHours_desired() {
+	public Integer getHours_desired() {
 		return hours_desired;
 	}
 
@@ -118,11 +118,11 @@ public class ExadelWork {
 		return certificates;
 	}
 
-	public boolean isBillable() {
+	public Boolean isBillable() {
 		return isBillable;
 	}
 
-	public boolean isWannaChangeProj() {
+	public Boolean isWannaChangeProj() {
 		return wannaChangeProj;
 	}
 	
@@ -135,15 +135,15 @@ public class ExadelWork {
 			this.student = student;
 		}
 
-	public void setId(long id){
+	public void setId(Long id){
 		this.id=id;
 	}
 	
-	public void setHours_current(int hours_current) {
+	public void setHours_current(Integer hours_current) {
 		this.hours_current = hours_current;
 	}
 
-	public void setHours_desired(int hours_desired) {
+	public void setHours_desired(Integer hours_desired) {
 		this.hours_desired = hours_desired;
 	}
 
@@ -195,11 +195,11 @@ public class ExadelWork {
 		this.certificates = certificates;
 	}
 
-	public void setBillable(boolean isBillable) {
+	public void setBillable(Boolean isBillable) {
 		this.isBillable = isBillable;
 	}
 
-	public void setWannaChangeProj(boolean wannaChangeProj) {
+	public void setWannaChangeProj(Boolean wannaChangeProj) {
 		this.wannaChangeProj = wannaChangeProj;
 	}
 
