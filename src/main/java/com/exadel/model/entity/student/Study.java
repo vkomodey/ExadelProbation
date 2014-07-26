@@ -16,17 +16,11 @@ public class Study {
     private String university, faculty, specialty, course_group;
     private List<StudentExams> exams;
     
-    @OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
-    @JoinColumn(name="student_fk")
-    public List<StudentExams> getExams() {
-		return exams;
-	}
-
-	public Study() {
+    public Study() {
 		this.setExams(new ArrayList<StudentExams>());
     }
 
-    public Study(Integer graduate_year, String university, String faculty, String specialty, String course_group) {
+	public Study(Integer graduate_year, String university, String faculty, String specialty, String course_group) {
 
         this.graduate_year = graduate_year;
         this.university = university;
@@ -36,24 +30,30 @@ public class Study {
         this.exams=new ArrayList<StudentExams>();
     }
 
-    @Column(name = "graduate_year")
-    public Integer getGraduate_year() {
-        return graduate_year;
-    }
+    @Column(name = "course_group")
+	public String getCourse_group() {
+	    return course_group;
+	}
+
+    @OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
+    @JoinColumn(name="student_fk")
+    public List<StudentExams> getExams() {
+		return exams;
+	}
 
     @Column(name = "faculty")
 	public String getFaculty() {
 	    return faculty;
 	}
 
+	@Column(name = "graduate_year")
+    public Integer getGraduate_year() {
+        return graduate_year;
+    }
+
 	@Column(name = "specialty")
 	public String getSpecialty() {
 	    return specialty;
-	}
-
-	@Column(name = "course_group")
-	public String getCourse_group() {
-	    return course_group;
 	}
 
 	@Column(name = "university")
@@ -61,25 +61,25 @@ public class Study {
         return university;
     }
 
-    public void setFaculty(String faculty) {
-        this.faculty = faculty;
-    }
-
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
-    }
-
     public void setCourse_group(String course_group) {
         this.course_group = course_group;
+    }
+
+    public void setExams(List<StudentExams> exams) {
+		this.exams = exams;
+	}
+
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
     }
 
 	public void setGraduate_year(Integer graduate_year) {
 	    this.graduate_year = graduate_year;
 	}
 
-	public void setExams(List<StudentExams> exams) {
-		this.exams = exams;
-	}
+	public void setSpecialty(String specialty) {
+        this.specialty = specialty;
+    }
 
 	public void setUniversity(String university) {
 	    this.university = university;

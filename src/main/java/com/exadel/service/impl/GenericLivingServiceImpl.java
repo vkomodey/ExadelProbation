@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.exadel.dao.GenericDao;
-import com.exadel.dao.impl.GenericLivingDaoImpl;
 import com.exadel.model.IEntity;
 import com.exadel.service.GenericLivingService;
 @Service

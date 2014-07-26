@@ -1,6 +1,14 @@
 package com.exadel.model.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.NaturalId;
 
@@ -20,32 +28,23 @@ public class User implements IEntity{
     private String surname;
     private String login;
     private String password;
-    @Transient
-    @JsonIgnore
-    public String getFullName(){
-    	return firstName+" "+surname+" "+secondName;
-    }
     public User() {
 
-    }
-    @Transient
-    @JsonIgnore
-    public String getRole(){
-    	return SpringSecurityRole.USER;
     }
     @Column(name = "first_name")
 	public String getFirstName() {
 	    return firstName;
 	}
-
-	@Column(name = "second_name")
-	public String getSecondName() {
-	    return secondName;
-	}
-
-	@Column(name = "surname")
-	public String getSurname() {
-	    return surname;
+    @Transient
+    @JsonIgnore
+    public String getFullName(){
+    	return firstName+" "+surname+" "+secondName;
+    }
+    @Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "id")
+	public Long getId() {
+	    return id;
 	}
 
 	@Column(name = "login")
@@ -60,28 +59,29 @@ public class User implements IEntity{
 	    return password;
 	}
 
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id")
-	public Long getId() {
-	    return id;
-	}
-
-	public void setId(Long id){
-        this.id=id;
+	@Transient
+    @JsonIgnore
+    public String getRole(){
+    	return SpringSecurityRole.USER;
     }
 
-    public void setFirstName(String firstName) {
+	@Column(name = "second_name")
+	public String getSecondName() {
+	    return secondName;
+	}
+
+
+	@Column(name = "surname")
+	public String getSurname() {
+	    return surname;
+	}
+
+	public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public void setSurname(String surname) {
-        this.surname= surname;
+    public void setId(Long id){
+        this.id=id;
     }
 
     public void setLogin(String login) {
@@ -90,6 +90,14 @@ public class User implements IEntity{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public void setSurname(String surname) {
+        this.surname= surname;
     }
 
 }

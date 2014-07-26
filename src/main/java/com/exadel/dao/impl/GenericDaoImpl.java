@@ -10,12 +10,12 @@ import com.exadel.dao.GenericDao;
 public abstract class GenericDaoImpl<ENTITY> extends HibernateDaoSupport
 		implements GenericDao<ENTITY> {
 
+	public abstract ENTITY find(long id);
+
 	@Autowired
 	public void init(SessionFactory sessionFactory) {
 		setSessionFactory(sessionFactory);
 	}
-
-	public abstract ENTITY find(long id);
 
 	public void save(ENTITY entity) {
 		getSessionFactory().getCurrentSession().saveOrUpdate(entity);

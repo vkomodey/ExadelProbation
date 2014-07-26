@@ -2,8 +2,6 @@ package com.exadel.service;
 
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.view.FeedbackView;
 

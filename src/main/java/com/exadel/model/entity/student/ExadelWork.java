@@ -1,16 +1,24 @@
 package com.exadel.model.entity.student;
 
-import com.exadel.model.constants.CurrentProjectRoleEnum;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
+import com.exadel.model.constants.CurrentProjectRoleEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "exadel_work")
@@ -41,27 +49,38 @@ public class ExadelWork {
     public ExadelWork() {
     	this.setProjectTechnologies(new HashSet<Technology>());
     }
-    @JsonIgnore
-	@OneToOne(optional=false)
-	@JoinColumn(name="stud_id")
-	public Student getStudent() {
-		return student;
+    public Calendar getBillableStartDate() {
+		return billableStartDate;
 	}
 	
-	@Id
-	@GeneratedValue(generator="foreign")
-	@GenericGenerator(name="foreign", strategy = "foreign", parameters={
-	@Parameter(name="property", value="student")
-	})
-	@Column (name="stud_id")
-    public Long getId() {
-		return id;
+	public String getCertificates() {
+		return certificates;
 	}
 
-    public Calendar getWorkStartDate() {
-        return workStartDate;
-    }
+    public String getCurator() {
+		return curator;
+	}
 	
+	public String getCurrentProject() {
+		return currentProject;
+	}
+
+	public CurrentProjectRoleEnum getCurrentProjectRole() {
+		return currentProjectRole;
+	}
+
+	public Calendar getExadelTrainingNextFrom() {
+		return exadelTrainingNextFrom;
+	}
+
+	public Calendar getExadelTrainingNextTo() {
+		return exadelTrainingNextTo;
+	}
+
+	public String getExadelTrainingType() {
+		return exadelTrainingType;
+	}
+
 	public Integer getHours_current() {
 		return hours_current;
 	}
@@ -74,71 +93,88 @@ public class ExadelWork {
 		return hoursDesiredTransferDate;
 	}
 
-	public Calendar getBillableStartDate() {
-		return billableStartDate;
+	@Id
+	@GeneratedValue(generator="foreign")
+	@GenericGenerator(name="foreign", strategy = "foreign", parameters={
+	@Parameter(name="property", value="student")
+	})
+	@Column (name="stud_id")
+    public Long getId() {
+		return id;
 	}
 
-	public Calendar getVacationNextDateStart() {
-		return vacationNextDateStart;
+	@OneToMany(cascade=CascadeType.ALL)
+	public Set<Technology> getProjectTechnologies() {
+		return projectTechnologies;
 	}
 
-	public Calendar getVacationNextDateEnd() {
-		return vacationNextDateEnd;
-	}
-
-	public Calendar getExadelTrainingNextFrom() {
-		return exadelTrainingNextFrom;
-	}
-
-	public Calendar getExadelTrainingNextTo() {
-		return exadelTrainingNextTo;
-	}
-
-	public String getCurrentProject() {
-		return currentProject;
-	}
-
-	public CurrentProjectRoleEnum getCurrentProjectRole() {
-		return currentProjectRole;
+	@JsonIgnore
+	@OneToOne(optional=false)
+	@JoinColumn(name="stud_id")
+	public Student getStudent() {
+		return student;
 	}
 
 	public String getTeamLeadOnCurrent() {
 		return teamLeadOnCurrent;
 	}
 
-	public String getCurator() {
-		return curator;
+	public Calendar getVacationNextDateEnd() {
+		return vacationNextDateEnd;
 	}
 
-	public String getExadelTrainingType() {
-		return exadelTrainingType;
+	public Calendar getVacationNextDateStart() {
+		return vacationNextDateStart;
 	}
 
-	public String getCertificates() {
-		return certificates;
-	}
+	public Calendar getWorkStartDate() {
+        return workStartDate;
+    }
 
 	public Boolean isBillable() {
 		return isBillable;
 	}
-
+	
 	public Boolean isWannaChangeProj() {
 		return wannaChangeProj;
 	}
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	public Set<Technology> getProjectTechnologies() {
-		return projectTechnologies;
+	public void setBillable(Boolean isBillable) {
+		this.isBillable = isBillable;
 	}
-	
-	public void setStudent(Student student) {
-			this.student = student;
-		}
 
-	public void setId(Long id){
-		this.id=id;
+	public void setBillableStartDate(Calendar billableStartDate) {
+		this.billableStartDate = billableStartDate;
 	}
 	
+	public void setCertificates(String certificates) {
+		this.certificates = certificates;
+	}
+
+	public void setCurator(String curator) {
+		this.curator = curator;
+	}
+
+	public void setCurrentProject(String currentProject) {
+		this.currentProject = currentProject;
+	}
+
+	public void setCurrentProjectRole(CurrentProjectRoleEnum currentProjectRole) {
+		this.currentProjectRole = currentProjectRole;
+	}
+
+	public void setExadelTrainingNextFrom(Calendar exadelTrainingNextFrom) {
+		this.exadelTrainingNextFrom = exadelTrainingNextFrom;
+	}
+
+	public void setExadelTrainingNextTo(Calendar exadelTrainingNextTo) {
+		this.exadelTrainingNextTo = exadelTrainingNextTo;
+	}
+
+	public void setExadelTrainingType(String exadelTrainingType) {
+		this.exadelTrainingType = exadelTrainingType;
+	}
+
 	public void setHours_current(Integer hours_current) {
 		this.hours_current = hours_current;
 	}
@@ -151,60 +187,32 @@ public class ExadelWork {
 		this.hoursDesiredTransferDate = hoursDesiredTransferDate;
 	}
 
-	public void setBillableStartDate(Calendar billableStartDate) {
-		this.billableStartDate = billableStartDate;
+	public void setId(Long id){
+		this.id=id;
 	}
 
-	public void setVacationNextDateStart(Calendar vacationNextDateStart) {
-		this.vacationNextDateStart = vacationNextDateStart;
+	public void setProjectTechnologies(Set<Technology> projectTechnologies) {
+		this.projectTechnologies = projectTechnologies;
+	}
+
+	public void setStudent(Student student) {
+			this.student = student;
+		}
+
+	public void setTeamLeadOnCurrent(String teamLeadOnCurrent) {
+		this.teamLeadOnCurrent = teamLeadOnCurrent;
 	}
 
 	public void setVacationNextDateEnd(Calendar vacationNextDateEnd) {
 		this.vacationNextDateEnd = vacationNextDateEnd;
 	}
 
-	public void setExadelTrainingNextFrom(Calendar exadelTrainingNextFrom) {
-		this.exadelTrainingNextFrom = exadelTrainingNextFrom;
-	}
-
-	public void setExadelTrainingNextTo(Calendar exadelTrainingNextTo) {
-		this.exadelTrainingNextTo = exadelTrainingNextTo;
-	}
-
-	public void setCurrentProject(String currentProject) {
-		this.currentProject = currentProject;
-	}
-
-	public void setCurrentProjectRole(CurrentProjectRoleEnum currentProjectRole) {
-		this.currentProjectRole = currentProjectRole;
-	}
-
-	public void setTeamLeadOnCurrent(String teamLeadOnCurrent) {
-		this.teamLeadOnCurrent = teamLeadOnCurrent;
-	}
-
-	public void setCurator(String curator) {
-		this.curator = curator;
-	}
-
-	public void setExadelTrainingType(String exadelTrainingType) {
-		this.exadelTrainingType = exadelTrainingType;
-	}
-
-	public void setCertificates(String certificates) {
-		this.certificates = certificates;
-	}
-
-	public void setBillable(Boolean isBillable) {
-		this.isBillable = isBillable;
+	public void setVacationNextDateStart(Calendar vacationNextDateStart) {
+		this.vacationNextDateStart = vacationNextDateStart;
 	}
 
 	public void setWannaChangeProj(Boolean wannaChangeProj) {
 		this.wannaChangeProj = wannaChangeProj;
-	}
-
-	public void setProjectTechnologies(Set<Technology> projectTechnologies) {
-		this.projectTechnologies = projectTechnologies;
 	}
 
     public void setWorkStartDate(Calendar workStartDate) {

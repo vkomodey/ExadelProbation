@@ -10,10 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.exadel.model.entity.government.FeedbackAble;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.view.FeedbackView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.exadel.model.entity.government.FeedbackAble;
 
 @Entity
 @Table(name = "feedback")
@@ -34,6 +34,17 @@ public class Feedback {
 
 	public Feedback() {
 	}
+	public Feedback(Boolean profCompetence, Boolean needMoreHours,
+			String workAttitude, String collectiveRelations,
+			String profMattersProgress, String feedback, Calendar feedbackDate) {
+		this.profCompetence = profCompetence;
+		this.needMoreHours = needMoreHours;
+		this.workAttitude = workAttitude;
+		this.collectiveRelations = collectiveRelations;
+		this.profMattersProgress = profMattersProgress;
+		this.feedback = feedback;
+		this.feedbackDate = feedbackDate;
+	}
 	public Feedback(FeedbackView view,FeedbackAble feedbackOwner, Student stud){
 		this.setAuthor(feedbackOwner);
 		this.setStudent(stud);
@@ -49,17 +60,6 @@ public class Feedback {
 		this.setProfMattersProgress(view.getProgress());
 		this.setWorkAttitude(view.getAttitudeToWork());
 		}
-	public Feedback(Boolean profCompetence, Boolean needMoreHours,
-			String workAttitude, String collectiveRelations,
-			String profMattersProgress, String feedback, Calendar feedbackDate) {
-		this.profCompetence = profCompetence;
-		this.needMoreHours = needMoreHours;
-		this.workAttitude = workAttitude;
-		this.collectiveRelations = collectiveRelations;
-		this.profMattersProgress = profMattersProgress;
-		this.feedback = feedback;
-		this.feedbackDate = feedbackDate;
-	}
 
 	@ManyToOne
 	@JoinColumn(name = "author", referencedColumnName = "id")
@@ -67,11 +67,26 @@ public class Feedback {
 		return author;
 	}
 
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn
-	public Student getStudent() {
-		return student;
+	public Boolean getBillableNow() {
+		return billableNow;
+	}
+
+	@Column(name = "collectiveRelations")
+	public String getCollectiveRelations() {
+		return collectiveRelations;
+	}
+
+	public String getCurrentProject() {
+		return currentProject;
+	}
+	@Column(name = "feedback")
+	public String getFeedback() {
+		return feedback;
+	}
+
+	@Column(name = "feedbackDate")
+	public Calendar getFeedbackDate() {
+		return feedbackDate;
 	}
 
 	@Id
@@ -81,12 +96,9 @@ public class Feedback {
 		return id;
 	}
 
-	public String getCurrentProject() {
-		return currentProject;
-	}
-	@Column(name = "feedbackDate")
-	public Calendar getFeedbackDate() {
-		return feedbackDate;
+	@Column(name = "needMoreHours")
+	public Boolean getNeedMoreHours() {
+		return needMoreHours;
 	}
 
 	@Column(name = "profCompetence")
@@ -94,78 +106,66 @@ public class Feedback {
 		return profCompetence;
 	}
 
-	@Column(name = "needMoreHours")
-	public Boolean getNeedMoreHours() {
-		return needMoreHours;
+	@Column(name = "profMattersProgress")
+	public String getProfMattersProgress() {
+		return profMattersProgress;
+	}
+
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn
+	public Student getStudent() {
+		return student;
 	}
 
 	@Column(name = "workAttitude")
 	public String getWorkAttitude() {
 		return workAttitude;
 	}
-
-	@Column(name = "collectiveRelations")
-	public String getCollectiveRelations() {
-		return collectiveRelations;
-	}
-
-	@Column(name = "profMattersProgress")
-	public String getProfMattersProgress() {
-		return profMattersProgress;
-	}
-
-	@Column(name = "feedback")
-	public String getFeedback() {
-		return feedback;
-	}
-
-	public Boolean getBillableNow() {
-		return billableNow;
-	}
-	public void setCurrentProject(String currentProject) {
-		this.currentProject = currentProject;
-	}
 	public void setAuthor(FeedbackAble author) {
 		this.author = author;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public void setBillableNow(Boolean billableNow) {
 		this.billableNow = billableNow;
-	}
-	public void setStudent(Student student) {
-		this.student = student;
-	}
-
-	public void setFeedbackDate(Calendar feedbackDate) {
-		this.feedbackDate = feedbackDate;
-	}
-
-	public void setProfCompetence(Boolean profCompetence) {
-		this.profCompetence = profCompetence;
-	}
-
-	public void setNeedMoreHours(Boolean needMoreHours) {
-		this.needMoreHours = needMoreHours;
-	}
-
-	public void setWorkAttitude(String workAttitude) {
-		this.workAttitude = workAttitude;
 	}
 
 	public void setCollectiveRelations(String collectiveRelations) {
 		this.collectiveRelations = collectiveRelations;
 	}
 
+	public void setCurrentProject(String currentProject) {
+		this.currentProject = currentProject;
+	}
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
+	}
+
+	public void setFeedbackDate(Calendar feedbackDate) {
+		this.feedbackDate = feedbackDate;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setNeedMoreHours(Boolean needMoreHours) {
+		this.needMoreHours = needMoreHours;
+	}
+
+	public void setProfCompetence(Boolean profCompetence) {
+		this.profCompetence = profCompetence;
+	}
+
 	public void setProfMattersProgress(String profMattersProgress) {
 		this.profMattersProgress = profMattersProgress;
 	}
 
-	public void setFeedback(String feedback) {
-		this.feedback = feedback;
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public void setWorkAttitude(String workAttitude) {
+		this.workAttitude = workAttitude;
 	}
 	public FeedbackView toView() {
 		FeedbackView view=new FeedbackView();

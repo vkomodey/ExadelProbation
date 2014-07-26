@@ -1,8 +1,7 @@
 package com.exadel.dao.impl;
 
-import com.exadel.dao.UserDao;
-import com.exadel.model.entity.User;
-import com.exadel.model.entity.student.Student;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import org.hibernate.Session;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,11 +10,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import com.exadel.dao.UserDao;
+import com.exadel.model.entity.User;
 
 @Repository
 public class UserDaoImpl extends GenericLivingDaoImpl<User> implements UserDao {
+	public User find(long id) {
+		return (User) getSessionFactory().getCurrentSession().load(User.class,
+				id);
+	}
+
+	public User find(String login) {
+		Session session = getSessionFactory().getCurrentSession();
+		User user = (User) session.bySimpleNaturalId(User.class).load("login");
+		return user;
+	}
+
 	public UserDetails loadUserByUsername(String login)
 			throws UsernameNotFoundException {
 		/*
@@ -64,16 +74,5 @@ public class UserDaoImpl extends GenericLivingDaoImpl<User> implements UserDao {
 		// ((UserDetails)details).getAuthorities() +" NAME - " +
 		// ((UserDetails)details).getUsername());
 		return (UserDetails) details;
-	}
-
-	public User find(long id) {
-		return (User) getSessionFactory().getCurrentSession().load(User.class,
-				id);
-	}
-
-	public User find(String login) {
-		Session session = getSessionFactory().getCurrentSession();
-		User user = (User) session.bySimpleNaturalId(User.class).load("login");
-		return user;
 	}
 }

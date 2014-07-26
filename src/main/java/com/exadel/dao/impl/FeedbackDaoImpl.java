@@ -12,6 +12,10 @@ import com.exadel.model.entity.student.Student;
 public class FeedbackDaoImpl extends GenericDaoImpl<Feedback> implements
 		FeedbackDao {
 	
+	public Feedback find(long id) {
+		return (Feedback) getSessionFactory().getCurrentSession().get(Feedback.class,id);
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<Feedback> findAllForStud(Student stud) {
 		Session session=getSessionFactory().getCurrentSession();
@@ -19,10 +23,6 @@ public class FeedbackDaoImpl extends GenericDaoImpl<Feedback> implements
 				.setEntity("student", stud);
 		List<Feedback> result= query.list();
 		return result;
-	}
-
-	public Feedback find(long id) {
-		return (Feedback) getSessionFactory().getCurrentSession().get(Feedback.class,id);
 	}
 
 }
