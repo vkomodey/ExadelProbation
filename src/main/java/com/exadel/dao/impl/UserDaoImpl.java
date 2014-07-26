@@ -9,56 +9,25 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 @Repository
-public class UserDaoImpl extends GenericLivingDaoImpl<User> implements UserDao {
+public class UserDaoImpl extends GenericLivingDaoImpl<com.exadel.model.entity.User> implements UserDao {
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         System.out.println("CHECK CHECK dao");
         org.hibernate.Session s = getSessionFactory().getCurrentSession();
-        final User user = (User)s.
+        final com.exadel.model.entity.User user = (com.exadel.model.entity.User)s.
                 createQuery("from User where login=:login").
                 setString("login", login).
                 uniqueResult();
-    System.out.println("AZAZA - " + user.getLogin());
-
-        Object details = new UserDetails() {
-            public Collection<? extends GrantedAuthority> getAuthorities() {
-                return new ArrayList<SimpleGrantedAuthority>(1){{
-                    add(new SimpleGrantedAuthority(user.getRole()));
-                }};
-            }
-
-            public String getPassword() {
-                return user.getPassword();
-            }
-
-            public String getUsername() {
-                return user.getLogin();
-            }
-
-            public boolean isAccountNonExpired() {
-                return true;
-            }
-
-            public boolean isAccountNonLocked() {
-                return true;
-            }
-
-            public boolean isCredentialsNonExpired() {
-                return true;
-            }
-
-            public boolean isEnabled() {
-                return true;
-            }
-        };
-        System.out.println("ROLE - " + ((UserDetails)details).getAuthorities() +" NAME - " + ((UserDetails)details).getUsername());
-        return (UserDetails)details;
+        return new org.springframework.security.core.userdetails.User(user.getLogin(),
+                user.getPassword(),
+                new ArrayList<SimpleGrantedAuthority>(1){{
+            add(new SimpleGrantedAuthority(user.getRole()));
+        }});
     }
 
-    public User find(long id) {
-        return (User) getSessionFactory().getCurrentSession().load(User.class, id);
+    public com.exadel.model.entity.User find(long id) {
+        return (com.exadel.model.entity.User) getSessionFactory().getCurrentSession().load(com.exadel.model.entity.User.class, id);
     }
 
 
