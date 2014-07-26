@@ -43,7 +43,7 @@
         </property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
                 <prop key="show_sql">true</prop>
                 <prop key="hbm2ddl.auto">update</prop>
                 <prop key="hibernate.connection.autocommit">false</prop>
