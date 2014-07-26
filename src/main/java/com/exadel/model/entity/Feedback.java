@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.exadel.model.entity.student.Student;
+import com.exadel.model.entity.view.FeedbackView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.exadel.model.entity.government.FeedbackAble;
 
@@ -21,17 +22,33 @@ public class Feedback {
 	private Long id;
 	private Boolean profCompetence;
 	private Boolean needMoreHours;
+	private Boolean billableNow;
 	private String workAttitude;
 	private String collectiveRelations;
 	private String profMattersProgress;
 	private String feedback;
 	private Calendar feedbackDate;
-
+	private String currentProject;
+	
 	private FeedbackAble author;
 
 	public Feedback() {
 	}
-
+	public Feedback(FeedbackView view,FeedbackAble feedbackOwner, Student stud){
+		this.setAuthor(feedbackOwner);
+		this.setStudent(stud);
+		this.setBillableNow(stud.getWork().isBillable());
+		
+		this.setCurrentProject(view.getWorkInProject());
+		
+		this.setFeedback(view.getOther());
+		this.setCollectiveRelations(view.getRelations());
+		this.setFeedbackDate(Calendar.getInstance());
+		this.setNeedMoreHours(view.isIncreaseHours());
+		this.setProfCompetence(view.isProfSuitability());
+		this.setProfMattersProgress(view.getProgress());
+		this.setWorkAttitude(view.getAttitudeToWork());
+		}
 	public Feedback(Boolean profCompetence, Boolean needMoreHours,
 			String workAttitude, String collectiveRelations,
 			String profMattersProgress, String feedback, Calendar feedbackDate) {
@@ -64,18 +81,21 @@ public class Feedback {
 		return id;
 	}
 
+	public String getCurrentProject() {
+		return currentProject;
+	}
 	@Column(name = "feedbackDate")
 	public Calendar getFeedbackDate() {
 		return feedbackDate;
 	}
 
 	@Column(name = "profCompetence")
-	public Boolean isProfCompetence() {
+	public Boolean getProfCompetence() {
 		return profCompetence;
 	}
 
 	@Column(name = "needMoreHours")
-	public Boolean isNeedMoreHours() {
+	public Boolean getNeedMoreHours() {
 		return needMoreHours;
 	}
 
@@ -99,6 +119,12 @@ public class Feedback {
 		return feedback;
 	}
 
+	public Boolean getBillableNow() {
+		return billableNow;
+	}
+	public void setCurrentProject(String currentProject) {
+		this.currentProject = currentProject;
+	}
 	public void setAuthor(FeedbackAble author) {
 		this.author = author;
 	}
@@ -107,6 +133,9 @@ public class Feedback {
 		this.id = id;
 	}
 
+	public void setBillableNow(Boolean billableNow) {
+		this.billableNow = billableNow;
+	}
 	public void setStudent(Student student) {
 		this.student = student;
 	}
@@ -137,5 +166,20 @@ public class Feedback {
 
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
+	}
+	public FeedbackView toView() {
+		FeedbackView view=new FeedbackView();
+		view.setId(getId());
+		view.setAttitudeToWork(getWorkAttitude());
+		view.setBillable(getBillableNow());
+		view.setFeedbacker(getAuthor().getFullName());
+		view.setIncreaseHours(getNeedMoreHours());
+		view.setOther(getFeedback());
+		view.setProfSuitability(getProfCompetence());
+		view.setProgress(getProfMattersProgress());
+		view.setRelations(getCollectiveRelations());
+		view.setStudId(getStudent().getId());
+		view.setWorkInProject(getCurrentProject());
+		return view;
 	}
 }

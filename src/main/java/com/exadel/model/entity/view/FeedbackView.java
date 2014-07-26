@@ -2,19 +2,19 @@ package com.exadel.model.entity.view;
 
 
 public class FeedbackView {
-    private Long studId;
-    private Long id;
-    private Boolean profSuitability;
-    private String attitudeToWork;
-    private String relations;
-    private String progress;
-    private Boolean increaseHours;
+    private Long studId;//
+    private Long id;//
+    private Boolean profSuitability;//
+    private String attitudeToWork;//
+    private String relations;//
+    private String progress;//
+    private Boolean increaseHours;//
     private String workInProject;
     private Boolean isBillable;
     private String other;
-    private String feedbacker;
+    private String feedbacker;//
 
-    FeedbackView() {
+    public FeedbackView() {
 
     }
 
