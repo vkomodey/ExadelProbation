@@ -8,6 +8,9 @@ import com.exadel.model.entity.government.FeedbackAble;
 import com.exadel.model.entity.government.Feedbacker;
 import com.exadel.model.entity.government.Government;
 import com.exadel.model.entity.student.*;
+import com.exadel.model.entity.view.FeedbackView;
+import com.exadel.service.StudentService;
+import com.exadel.service.impl.StudentServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,39 +24,17 @@ import java.util.List;
 @Controller
 public class FeedBackController {
 
-    private Student buildDummy(){
-        logger.info("dummy student build");
-        Feedback fb = new Feedback();
-
-        FeedbackAble chuvak=new Feedbacker();
-
-        fb.setWorkAttitude("ZAAAAADR");
-        fb.setProfCompetence(true);
-        fb.setCollectiveRelations("sexoholic");
-        fb.setProfMattersProgress("superMan");
-        fb.setNeedMoreHours(true);
-        fb.getStudent().getWork().setBillable(true);
-        fb.setAuthor(chuvak);
-        ArrayList<Feedback> arr = new ArrayList<Feedback>();
-
-        Student stud=new Student();
-        stud.setFeedback(arr);
-        return stud;
-    }
-
     public static Logger logger= LoggerFactory.getLogger(RegistrationController.class);
 
     @RequestMapping(value = RestURIConstants.PUSH_FEEDBACK_TO_BASE, method = RequestMethod.POST)
     public @ResponseBody
     void getJsonData(@RequestBody String str) {
-        logger.info("Start createStudent.");
+        logger.info("Start saving feedback.");
         ObjectMapper mapper = new ObjectMapper();
         try {
-            Student student =  mapper.readValue(str,Student.class);
-            logger.info("login:"+student.getLogin());
-
-            // дальше типа сохраняем
-
+            FeedbackView feedback = mapper.readValue(str,FeedbackView.class);
+            StudentService studentService = new StudentServiceImpl();
+            studentService.saveNewFeedbackForStudentByStudId(feedback,feedback.getStudId());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,23 +42,14 @@ public class FeedBackController {
 
     @RequestMapping(value=RestURIConstants.GET_FEEDBACK_ARRAY_FROM_BASE,method=RequestMethod.GET)
     public @ResponseBody
-    List<Feedback> getDummyStudent(@PathVariable("id") String id){
-    //ArrayList<Student> getDummyStudent(@PathVariable("id") String id){
-        logger.info("dummy student sending");
-
+    List<FeedbackView> getDummyStudent(@PathVariable("id") String id){
+        logger.info("Sending feedback list");
         long studId = Long.parseLong(id);
-        Student st = new Student();
-        StudentDao studentDao = new StudentDaoImpl();
-        st=studentDao.find(studId);
-       /* StudentDao studentDao = new StudentDaoImpl();
-        Student st= studentDao.findStudentById(studId);
-
-        return st.getFeedback();*/
+        List<FeedbackView> ar=new ArrayList<FeedbackView>();
+        StudentService studentService = new StudentServiceImpl();
+        ar=studentService.getFeedbacksForStudentByStudId(studId);
         System.out.println(studId);
-
-        ArrayList<Feedback> ar=new ArrayList<Feedback>();
         return ar;
-
     }
 
 }
