@@ -2,6 +2,8 @@ package com.exadel.model.entity;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.NaturalId;
+
 import com.exadel.model.IEntity;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,7 +20,11 @@ public class User implements IEntity{
     private String surname;
     private String login;
     private String password;
-
+    @Transient
+    @JsonIgnore
+    public String getFullName(){
+    	return firstName+" "+surname+" "+secondName;
+    }
     public User() {
 
     }
@@ -43,6 +49,7 @@ public class User implements IEntity{
 	}
 
 	@Column(name = "login")
+	@NaturalId
 	public String getLogin() {
 	    return login;
 	}
@@ -55,7 +62,7 @@ public class User implements IEntity{
 
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
 	public Long getId() {
 	    return id;
