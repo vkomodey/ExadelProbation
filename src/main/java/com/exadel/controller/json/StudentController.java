@@ -47,13 +47,22 @@ public class StudentController {
 		return buildDummy();
 	}
 	@RequestMapping(value=RestURIConstants.GET_STUDENT,method=RequestMethod.GET)
-	public @ResponseBody Student getDummyStudent(@PathVariable("id") String idString){
+	public @ResponseBody Student getStudent(@PathVariable("id") String idString){
 		long id=Long.parseLong(idString);
 		logger.info("real student fetching");
 		Student student=service.findById(id);
 		logger.info("real student sending");
 		return student;
 	}
+	
+	@RequestMapping(value=RestURIConstants.GET_ALL_STUDENT,method=RequestMethod.GET)
+	public @ResponseBody List<Student> getAllStudents(){
+		logger.info("student list fetching");
+		List<Student> list=service.getAll();
+		logger.info("student list sending");
+		return list;
+	}
+	
 	
 	@RequestMapping(value=RestURIConstants.DUMMY_STUDENTARRAY,method=RequestMethod.GET)
 	public @ResponseBody List<Student> getDummyStudentArray(){

@@ -20,12 +20,16 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 	@Autowired
 	FeedbackDao feedbackDao;
 	
+	private void lazyTouch(Student student){
+		student.getStudy().getExams().size();
+		student.getSkillSet().size();
+	}
+	
 	@Transactional
 	public Student findById(long id){
 		Student student=mainDao.find(id);
 		//laaaazy
-		student.getStudy().getExams().size();
-		student.getSkillSet().size();
+		lazyTouch(student);
 		return student;
 	}
 	@Transactional
@@ -45,5 +49,14 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 		FeedbackAble feedbackOwner=(FeedbackAble) userDao.find(author);
 		Feedback fb=new Feedback(feedback,feedbackOwner,stud);
 		feedbackDao.save(fb);
+	}
+	
+	@Transactional
+	public List<Student> getAll() {
+		List<Student> list= mainDao.getAll();
+		for(Student s:list){
+			lazyTouch(s);
+		}
+		return list;
 	}
 }

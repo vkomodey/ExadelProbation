@@ -25,4 +25,10 @@ public class FeedbackDaoImpl extends GenericDaoImpl<Feedback> implements
 		return result;
 	}
 
+	@Override
+	public List<Student> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
