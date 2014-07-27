@@ -18,10 +18,10 @@ import com.exadel.service.StudentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
-public class FeedBackController {
+public class FeedbackController {
 
 	public static Logger logger = LoggerFactory
-			.getLogger(FeedBackController.class);
+			.getLogger(FeedbackController.class);
 	@Autowired
 	StudentService service;
 
