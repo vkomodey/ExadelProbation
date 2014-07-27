@@ -13,10 +13,10 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
-public class FeedBackController {
+public class FeedbackController {
 
 	public static Logger logger = LoggerFactory
-			.getLogger(FeedBackController.class);
+			.getLogger(FeedbackController.class);
 	@Autowired
 	StudentService service;
 

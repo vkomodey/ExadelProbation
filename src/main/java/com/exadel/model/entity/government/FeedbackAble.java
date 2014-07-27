@@ -18,8 +18,8 @@ public abstract class FeedbackAble extends Government {
 		this.setFeedback(new ArrayList<Feedback>());
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@Column(name="feedback")
+	@OneToMany(cascade = CascadeType.ALL,mappedBy="author")
+	//@Column(name="feedback")
 	public List<Feedback> getFeedback() {
 		return feedback;
 	}

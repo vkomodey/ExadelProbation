@@ -41,7 +41,7 @@ public class Student extends User {
 	public EnglishEnum getEnglish() {
 		return english;
 	}
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="student")
 	@PrimaryKeyJoinColumn
 	@JsonIgnore
 	public List<Feedback> getFeedback() {
