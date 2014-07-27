@@ -1,9 +1,9 @@
 package com.exadel.model.entity.government;
 
-import javax.persistence.Transient;
-
 import com.exadel.model.constants.SpringSecurityRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.Transient;
 
 public class PersonnelDepartment extends Government {
 	@Override

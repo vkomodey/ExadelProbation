@@ -1,14 +1,13 @@
 package com.exadel.service.impl;
 
+import com.exadel.dao.UserDao;
+import com.exadel.model.entity.User;
+import com.exadel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.exadel.dao.UserDao;
-import com.exadel.model.entity.User;
-import com.exadel.service.UserService;
 
 @Service
 public class UserServiceImpl extends GenericLivingServiceImpl<User> implements UserService {

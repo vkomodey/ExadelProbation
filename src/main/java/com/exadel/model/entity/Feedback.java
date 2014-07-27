@@ -1,19 +1,12 @@
 package com.exadel.model.entity;
 
-import java.util.Calendar;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
 import com.exadel.model.entity.government.FeedbackAble;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.view.FeedbackView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.Calendar;
 
 @Entity
 @Table(name = "feedback")

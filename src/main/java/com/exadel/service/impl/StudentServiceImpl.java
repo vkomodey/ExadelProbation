@@ -1,12 +1,5 @@
 package com.exadel.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.exadel.dao.FeedbackDao;
 import com.exadel.dao.UserDao;
 import com.exadel.model.entity.Feedback;
@@ -14,6 +7,12 @@ import com.exadel.model.entity.government.FeedbackAble;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.view.FeedbackView;
 import com.exadel.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 @Service
 public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implements StudentService{
 	@Autowired

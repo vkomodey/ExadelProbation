@@ -1,11 +1,11 @@
 package com.exadel.model.entity;
 
+import com.exadel.model.constants.StudentStateEnum;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.exadel.model.constants.StudentStateEnum;
 
 @Entity
 @Table(name = "student_log")

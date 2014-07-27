@@ -1,14 +1,13 @@
 package com.exadel.model.entity.government;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.exadel.model.entity.Feedback;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-
-import com.exadel.model.entity.Feedback;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public abstract class FeedbackAble extends Government {

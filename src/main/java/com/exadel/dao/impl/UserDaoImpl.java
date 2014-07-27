@@ -1,8 +1,6 @@
 package com.exadel.dao.impl;
 
 import com.exadel.dao.UserDao;
-import com.exadel.model.entity.User;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

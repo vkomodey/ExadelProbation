@@ -1,8 +1,9 @@
 package com.exadel.controller.json;
 
 
-import java.io.IOException;
-
+import com.exadel.model.entity.student.Student;
+import com.exadel.service.StudentService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.exadel.model.entity.student.Student;
-import com.exadel.service.StudentService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 
 @Controller
 public class RegistrationController {
