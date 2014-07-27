@@ -12,11 +12,7 @@ import java.util.ArrayList;
 public class UserDaoImpl extends GenericLivingDaoImpl<com.exadel.model.entity.User> implements UserDao {
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         System.out.println("CHECK CHECK dao");
-        org.hibernate.Session s = getSessionFactory().getCurrentSession();
-        final com.exadel.model.entity.User user = (com.exadel.model.entity.User)s.
-                createQuery("from User where login=:login").
-                setString("login", login).
-                uniqueResult();
+        final com.exadel.model.entity.User user = this.find(login);
         return new org.springframework.security.core.userdetails.User(user.getLogin(),
                 user.getPassword(),
                 new ArrayList<SimpleGrantedAuthority>(1){{
@@ -29,7 +25,7 @@ public class UserDaoImpl extends GenericLivingDaoImpl<com.exadel.model.entity.Us
     }
 
     public com.exadel.model.entity.User find(String login) {
-        return (com.exadel.model.entity.User) getSessionFactory().getCurrentSession().load(com.exadel.model.entity.User.class, login);
+        return (com.exadel.model.entity.User) getSessionFactory().getCurrentSession().bySimpleNaturalId(com.exadel.model.entity.User.class).load(login);
     }
 
 }
