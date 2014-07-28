@@ -45,7 +45,7 @@ studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function
         var newStudent = {
             login: $scope.login
         };
-        $http.post('http://localhost:8080/rest/stud/create',newStudent)
+        $http.post('/rest/stud/create',newStudent)
             .success(function() {
                 $scope.PopupCssClass = 'popup-hide';
                 $scope.reloadList();

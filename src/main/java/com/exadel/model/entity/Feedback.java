@@ -49,7 +49,12 @@ public class Feedback {
 	public Feedback(FeedbackView view,FeedbackAble feedbackOwner, Student stud){
 		this.setAuthor(feedbackOwner);
 		this.setStudent(stud);
+        if(stud.getWork()!=null){
 		this.setBillableNow(stud.getWork().isBillable());
+        }
+        else{
+            this.setBillableNow(false);
+        }
 		
 		this.setOnRealProject(view.getWorkInProject());
 		if(!this.getOnRealProject()){
