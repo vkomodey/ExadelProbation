@@ -7,9 +7,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
-    @RequestMapping(value = "az", method = RequestMethod.POST)
-    public ModelAndView listRedirect(ModelAndView model){
-        model.addObject("message", "zhora");
+    @RequestMapping(value = "login/admin", method = RequestMethod.POST)
+    public ModelAndView AdminRedirect(ModelAndView model){
+        model.setViewName("index");
+        return model;
+    }
+
+    @RequestMapping(value = "login/curator", method = RequestMethod.GET)
+    public ModelAndView CuratorRedirect(ModelAndView model){
+        model.setViewName("index");
+        return model;
+    }
+
+    @RequestMapping(value = "login/curator", method = RequestMethod.GET)
+    public ModelAndView FeedbackerRedirect(ModelAndView model){
         model.setViewName("index");
         return model;
     }

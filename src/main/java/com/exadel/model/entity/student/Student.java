@@ -5,23 +5,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.User;
+import com.exadel.model.entity.government.Curator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -38,7 +29,8 @@ public class Student extends User {
     private String email;
     private String skype;
     private String phone;
-    
+    private Curator curator;
+
     public Student() {
 		super();
 		this.setSkillSet(new HashSet<Skill>());
@@ -66,7 +58,7 @@ public class Student extends User {
 	public ExadelPractice getPractice() {
 		return practice;
 	}
-	
+
 	@Override
     @Transient
     @JsonIgnore
@@ -80,7 +72,7 @@ public class Student extends User {
 	public String getSkype() {
 		return skype;
 	}
-	
+
 	@Enumerated(EnumType.STRING)
 	public StudentStateEnum getState() {
 		return state;
@@ -106,9 +98,9 @@ public class Student extends User {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
+
 	public void setPractice(ExadelPractice practice) {
-		if(practice !=null ){ 
+		if(practice !=null ){
 		this.practice = practice;
 		this.practice.setStudent(this);
 		}
@@ -126,10 +118,19 @@ public class Student extends User {
 		this.study = study;
 	}
 	public void setWork(ExadelWork work) {
-		if(practice !=null ){ 
+		if(practice !=null ){
 		this.work = work;
 		this.work.setStudent(this);
 		}
 	}
 
+    @ManyToOne
+    @JoinColumn(name = "curator", referencedColumnName = "id")
+    public Curator getCurator() {
+        return curator;
+    }
+
+    public void setCurator(Curator curator) {
+        this.curator = curator;
+    }
 }

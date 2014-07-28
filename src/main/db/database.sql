@@ -103,7 +103,7 @@ CREATE TABLE curator (
     id bigint NOT NULL
 );
 
-
+alter table public.curator add column studentsId enum not null ;
 ALTER TABLE public.curator OWNER TO postgres;
 
 --
