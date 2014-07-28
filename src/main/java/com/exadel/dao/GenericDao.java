@@ -11,6 +11,6 @@ public interface GenericDao<ENTITY> {
 
 	public abstract void save(ENTITY entity);
 
-	public abstract List<Student> getAll();
+	public abstract List<ENTITY> getAll();
 
 }
