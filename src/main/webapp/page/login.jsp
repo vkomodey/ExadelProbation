@@ -8,7 +8,7 @@
     <title>Login form</title>
 </head>
 <body>
-<div class="popup-show">
+<div class="popup-showstyle="backgroung-im;">
     <h2 class="login-h2">Sign in</h2>
     <form action="/do_login" method="post" class="login-popup">
         <p><input type="text" name="j_username" placeholder="Login"></p>
