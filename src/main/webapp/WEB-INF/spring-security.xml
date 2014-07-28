@@ -41,6 +41,7 @@
                 <entry key="ROLE_STUDENT" value="/page/studentPage.jsp"/>
                 <entry key="ROLE_USER" value="/page/index.jsp"/>
                 <entry key="ROLE_FEEDBACKER" value="/page/index.jsp"/>
+                <entry key="ROLE_ADMIN" value="/login/admin"/>
             </map>
         </property>
     </bean>

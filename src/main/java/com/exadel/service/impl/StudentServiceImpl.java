@@ -60,4 +60,9 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 		}
 		return list;
 	}
+
+    @Transactional
+    public List<Student> getSupervised(long curatorId){
+        return null;
+    }
 }

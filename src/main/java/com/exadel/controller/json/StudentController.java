@@ -70,6 +70,12 @@ public class StudentController {
 		logger.info("student list sending");
 		return list;
 	}
+
+    @RequestMapping(value = RestURIConstants.GET_SUPERVISED_STUDENTS, method = RequestMethod.GET)
+    public @ResponseBody List<Student> getSupervisedStudents(){
+        logger.info("supervised student list fetching");
+        return null;
+    }
 	
 	
 	@RequestMapping(value=RestURIConstants.DUMMY_STUDENTARRAY,method=RequestMethod.GET)
