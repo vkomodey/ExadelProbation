@@ -28,7 +28,8 @@ public class Feedback {
 	private String profMattersProgress;
 	private String feedback;
 	private Calendar feedbackDate;
-	private String currentProject;
+	private Boolean onRealProject;
+	private Boolean projectProspect;
 	
 	private FeedbackAble author;
 
@@ -50,7 +51,10 @@ public class Feedback {
 		this.setStudent(stud);
 		this.setBillableNow(stud.getWork().isBillable());
 		
-		this.setCurrentProject(view.getWorkInProject());
+		this.setOnRealProject(view.getWorkInProject());
+		if(!this.getOnRealProject()){
+			this.setProjectProspect(view.getProspect());
+		}
 		
 		this.setFeedback(view.getOther());
 		this.setCollectiveRelations(view.getRelations());
@@ -66,18 +70,12 @@ public class Feedback {
 	public FeedbackAble getAuthor() {
 		return author;
 	}
-
 	public Boolean getBillableNow() {
 		return billableNow;
 	}
-
 	@Column(name = "collectiveRelations")
 	public String getCollectiveRelations() {
 		return collectiveRelations;
-	}
-
-	public String getCurrentProject() {
-		return currentProject;
 	}
 	@Column(name = "feedback")
 	public String getFeedback() {
@@ -100,6 +98,9 @@ public class Feedback {
 	public Boolean getNeedMoreHours() {
 		return needMoreHours;
 	}
+	public Boolean getOnRealProject() {
+		return onRealProject;
+	}
 
 	@Column(name = "profCompetence")
 	public Boolean getProfCompetence() {
@@ -109,6 +110,10 @@ public class Feedback {
 	@Column(name = "profMattersProgress")
 	public String getProfMattersProgress() {
 		return profMattersProgress;
+	}
+
+	public Boolean getProjectProspect() {
+		return projectProspect;
 	}
 
 	@JsonIgnore
@@ -122,20 +127,18 @@ public class Feedback {
 	public String getWorkAttitude() {
 		return workAttitude;
 	}
+
 	public void setAuthor(FeedbackAble author) {
 		this.author = author;
 	}
+
 	public void setBillableNow(Boolean billableNow) {
 		this.billableNow = billableNow;
 	}
-
 	public void setCollectiveRelations(String collectiveRelations) {
 		this.collectiveRelations = collectiveRelations;
 	}
 
-	public void setCurrentProject(String currentProject) {
-		this.currentProject = currentProject;
-	}
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
 	}
@@ -143,7 +146,6 @@ public class Feedback {
 	public void setFeedbackDate(Calendar feedbackDate) {
 		this.feedbackDate = feedbackDate;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -152,12 +154,20 @@ public class Feedback {
 		this.needMoreHours = needMoreHours;
 	}
 
+	public void setOnRealProject(Boolean onRealProject) {
+		this.onRealProject = onRealProject;
+	}
+
 	public void setProfCompetence(Boolean profCompetence) {
 		this.profCompetence = profCompetence;
 	}
 
 	public void setProfMattersProgress(String profMattersProgress) {
 		this.profMattersProgress = profMattersProgress;
+	}
+
+	public void setProjectProspect(Boolean projectProspect) {
+		this.projectProspect = projectProspect;
 	}
 
 	public void setStudent(Student student) {
@@ -179,7 +189,8 @@ public class Feedback {
 		view.setProgress(getProfMattersProgress());
 		view.setRelations(getCollectiveRelations());
 		view.setStudId(getStudent().getId());
-		view.setWorkInProject(getCurrentProject());
+		view.setWorkInProject(getOnRealProject());
+		view.setProspect(getProjectProspect());
 		return view;
 	}
 }
