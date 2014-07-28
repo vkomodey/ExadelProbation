@@ -15,7 +15,7 @@
   opacity: 0;
   pointer-events: none; }
   .popup-hide > h2 {
-    background-color: #292829;
+    background: url("../img/mooning-dark.png");
     width: auto;
     max-width: 600px;
     text-align: center;
@@ -26,7 +26,7 @@
     margin-bottom: 0px;
     padding-bottom: 10px;
     padding-top: 10px;
-    border: 1px solid #292829;
+    border: 1px solid #595859;
     -webkit-border-radius: 10px 10px 0px 0px;
     -moz-border-radius: 10px 10px 0px 0px;
     border-radius: 10px 10px 0px 0px; }
@@ -50,7 +50,7 @@
   opacity: 1;
   pointer-events: auto; }
   .popup-show > h2 {
-    background-color: #292829;
+    background: url("../img/mooning-dark.png");
     width: auto;
     max-width: 600px;
     text-align: center;
@@ -61,7 +61,7 @@
     margin-bottom: 0px;
     padding-bottom: 10px;
     padding-top: 10px;
-    border: 1px solid #292829;
+    border: 1px solid #595859;
     -webkit-border-radius: 10px 10px 0px 0px;
     -moz-border-radius: 10px 10px 0px 0px;
     border-radius: 10px 10px 0px 0px; }
@@ -74,7 +74,7 @@
   font: 12px/20px 'Lucida Grande', Verdana, sans-serif;
   width: 250px;
   margin: 0px auto;
-  background-color: grey;
+  background: url("../img/mooning-middle-dark.png");
   border: 1px solid grey;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -184,9 +184,12 @@ body {
   right: 0;
   position: fixed;
   width: 100%;
-  z-index: 50;
+  z-index: 10;
   color: #ffffff; }
   .nav > .nav-menu {
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Times new roman";
     list-style: none;
     color: white;
     position: relative;
@@ -201,10 +204,20 @@ body {
       cursor: pointer;
       margin: 0;
       padding: 0;
-      line-height: 25px;
-      font-size: 15px;
-      font-weight: bold;
-      font-family: "Times new roman"; }
+      line-height: 25px; }
+      .nav > .nav-menu > #nav #btn {
+        font-size: 15px;
+        z-index: 0;
+        font-weight: bold;
+        font-family: "Times new roman";
+        background: url("../img/mooning.png");
+        margin-top: 10000px;
+        position: relative;
+        border: none; }
+      .nav > .nav-menu > #nav #btn:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        margin-right: 0; }
       .nav > .nav-menu > #nav li {
         margin: 0;
         padding: 0;
@@ -264,7 +277,6 @@ body {
   margin-top: 36px;
   margin-bottom: 0;
   background: inherit;
-  z-index: 1;
   padding-top: 12px; }
 
 div[ng-include="templates.pagination"] {

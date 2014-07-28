@@ -35,13 +35,8 @@
                     <li><a href=#>Employees</a></li>
                 </ul>
             </li>
-            <li>
-                <form action="/do_logout" method="post">
-                    <button type="submit">Logout</button>
-                </form>
-            </li>
             <%--<li><a href="log.html">Log out</a>--%>
-            </li>
+            <li><button id="btn" type="submit">Log out</button></li>
         </ul>
     </div>
 </div>
