@@ -2,9 +2,6 @@ package com.exadel.model.entity;
 
 import java.util.Calendar;
 
-import com.exadel.model.constants.StudentStateEnum;
-import com.exadel.model.entity.student.Student;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,6 +10,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
+
+import com.exadel.model.constants.StudentStateEnum;
+import com.exadel.model.entity.student.Student;
 
 @Entity
 @Table(name = "student_log")

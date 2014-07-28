@@ -2,11 +2,11 @@ package com.exadel.dao.impl;
 
 import java.util.List;
 
-import com.exadel.dao.StudentDao;
-import com.exadel.model.entity.student.Student;
-
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+
+import com.exadel.dao.StudentDao;
+import com.exadel.model.entity.student.Student;
 
 @Repository
 public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements

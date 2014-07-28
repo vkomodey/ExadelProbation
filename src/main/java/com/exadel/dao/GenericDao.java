@@ -2,8 +2,6 @@ package com.exadel.dao;
 
 import java.util.List;
 
-import com.exadel.model.entity.student.Student;
-
 
 public interface GenericDao<ENTITY> {
 
@@ -11,6 +9,6 @@ public interface GenericDao<ENTITY> {
 
 	public abstract void save(ENTITY entity);
 
-	public abstract List<Student> getAll();
+	public abstract List<ENTITY> getAll();
 
 }

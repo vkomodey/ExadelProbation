@@ -1,15 +1,15 @@
 package com.exadel.dao.impl;
 
-import com.exadel.dao.UserDao;
-import com.exadel.model.entity.student.Student;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.exadel.dao.UserDao;
+import com.exadel.model.entity.User;
 
 @Repository
 public class UserDaoImpl extends GenericLivingDaoImpl<com.exadel.model.entity.User> implements UserDao {
@@ -31,8 +31,7 @@ public class UserDaoImpl extends GenericLivingDaoImpl<com.exadel.model.entity.Us
         return (com.exadel.model.entity.User) getSessionFactory().getCurrentSession().bySimpleNaturalId(com.exadel.model.entity.User.class).load(login);
     }
 
-	@Override
-	public List<Student> getAll() {
+	public List<User> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}

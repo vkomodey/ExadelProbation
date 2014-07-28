@@ -1,8 +1,8 @@
 studentsServices = angular.module('studentsServices',['ngResource']);
 
 studentsServices.factory('feedbacksList',['$resource','$routeParams', function($resource,$routeParams) {
-    return $resource('../json/:studId.json', {}, {
-        getStudentsList: {method: 'GET', params: {studId: 'students2'}, isArray: true},
+    return $resource('/rest/stud/:studId', {}, {
+        getStudentsList: {method: 'GET', params: {studId: 'all'}, isArray: true},
         getFeedbacksList: {method: 'GET', isArray: true}
     });
 } ]);

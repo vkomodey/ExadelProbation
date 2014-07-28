@@ -8,7 +8,7 @@
     <div ng-class="PopupCssClass" >
         <h2 class="login-h2">Create User</h2>
         <fildset>
-            <form class="login">
+            <form class="login-popup">
                 <p><input type="text" ng-model="login" placeholder="Login"></p>
                 <button type="submit" ng-click="createStudent()">Create</button>
                 <button ng-click="PopupCssClass= 'popup-hide'">Cancel</button>
@@ -29,7 +29,7 @@
         </td>
         <td data-title="'FIO'" sortable="'surname'"><a style="color: black;" href="#/studentList/{{user.id}}">{{user.firstName + " "+user.surname}}</a></td>
         <td data-title="'DATE'" sortable="'workStartDate'" >{{user.work.workStartDate}}</td>
-        <td data-title="'FACULTY'" sortable="'faculty'" >{{user.study.faculty}}</td>
+        <td data-title="'FACULTY'" sortable="'study.faculty'" >{{user.study.faculty}}</td>
         <td data-title="'YEAR'" sortable="'graduate_year'" >{{user.study.graduate_year}}</td>
         <td data-title="'COURSE/GROUP'" sortable="'course_group'" >{{user.study.course_group}}</td>
         <td data-title="'HOURS'" sortable="'hours_current'" >{{user.work.hours_current}}</td>
