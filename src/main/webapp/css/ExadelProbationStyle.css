@@ -227,6 +227,7 @@ body {
             margin-right: 0; }
         .nav > .nav-menu > #nav li ul {
           background: url("../img/mooning.png");
+          border-radius: 0 0 5px 5px;
           box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
           margin: 0;
           padding: 0;

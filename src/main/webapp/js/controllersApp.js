@@ -5,18 +5,18 @@ var studentsControllers = angular.module('studentsControllers',['ngTable']);
 
 studentsControllers.controller('FeedbacksCtrl', ['$scope', '$routeParams','feedbacksList', function($scope,$routeParams,feedbacksList) {
 
-    $scope.feedbacks = feedbacksList.getFeedbacksList({studId: $routeParams.studId+"/feedbacks/get"});
     $scope.reloadList = function (){
-        $scope.feedbacks = feedbacksList.getFeedbacksList({studId: $routeParams.studId+"/feedbacks/get"});
+        $scope.feedbacks = feedbacksList.getFeedbacksList({studId: $routeParams.studId});
     };
+    $scope.reloadList();
 }]);
 
-studentsControllers.controller('StudentListCtrl',['$scope','$filter','$routeParams','feedbacksList', 'ngTableParams',  function( $scope, $filter,$routeParams, feedbacksList, ngTableParams) {
+studentsControllers.controller('StudentListCtrl',['$scope','$filter','$routeParams','studentsList', 'ngTableParams',  function( $scope, $filter,$routeParams, studentsList, ngTableParams) {
 
     $scope.reloadList = function() {
-        $scope.students = feedbacksList.getStudentsList();
+        $scope.students = studentsList.getStudentsList();
     }
-    $scope.students =  feedbacksList.getStudentsList();
+    $scope.reloadList();
         $scope.tableParams = new ngTableParams({
             page: 1,            // show first page
             count: $scope.students.length,          // count per page
@@ -62,13 +62,11 @@ studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routePar
             $scope.attitudeToWork == undefined ||
             $scope.relations == undefined ||
             $scope.progress == undefined ||
-            $scope.other == undefined ||
-            $scope.feedbacker == undefined) {
+            $scope.other == undefined) {
             alert("One or several fields are not filled.");
             return;
         }
         var feedback = {
-            studId: $routeParams.studId,
             profSuitability: $scope.profSuitability,
             attitudeToWork: $scope.attitudeToWork,
             relations: $scope.relations,
@@ -76,9 +74,7 @@ studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routePar
             increaseHours: $scope.increaseHours,
             workInProject: $scope.workInProject,
             prospect: $scope.prospect,
-            billable: $scope.billable,
-            other: $scope.other,
-            feedbacker: $scope.feedbacker
+            other: $scope.other
         }
         if(feedback.workInProject==true) {
             feedback.prospect='-';

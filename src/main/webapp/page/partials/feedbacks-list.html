@@ -12,7 +12,7 @@
                             <label for="r7"> yes </label><br/>
                             <input type="radio" name="profSuitability" value="no" id="r8" ng-model="profSuitability"
                                    ng-value="false">
-                            <label for="r8"> no </label></p></p></p>
+                            <label for="r8"> no </label></p>
 
                         <p>Attitude to work
                             <input type="text" name="attitudeToWork" ng-model="attitudeToWork"></p>
@@ -48,18 +48,9 @@
                                     <input type="text" name="prospect" ng-model="prospect"></p>
                             </div>
                         </div>
-                        <p>Is the student in billable status?
-                            <input type="radio" name="billable" value="yes" id="r5" ng-model="billable"
-                                   ng-init="billable = true" ng-value="true">
-                            <label for="r5">yes</label><br/>
-                            <input type="radio" name="billable" value="no" id="r6" ng-model="billable" ng-value="false">
-                            <label for="r6">no</label></p>
 
                         <p>Something else at your discretion
                             <input type="text" name="other" ng-model="other"></p>
-
-                        <p>Feedbacker
-                            <input type="text" name="feedbacker" ng-model="feedbacker"></p>
                         <div class="buttons">
                         <button type="submit" ng-click="addFeedback()" ng-disabled="feedbackForm.$invalid">Save</button>
 
