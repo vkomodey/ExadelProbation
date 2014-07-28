@@ -1,13 +1,14 @@
 package com.exadel.dao.impl;
 
-import com.exadel.dao.FeedbackDao;
-import com.exadel.model.entity.Feedback;
-import com.exadel.model.entity.student.Student;
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.exadel.dao.FeedbackDao;
+import com.exadel.model.entity.Feedback;
+import com.exadel.model.entity.student.Student;
 @Repository
 public class FeedbackDaoImpl extends GenericDaoImpl<Feedback> implements
 		FeedbackDao {

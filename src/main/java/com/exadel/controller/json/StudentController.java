@@ -1,10 +1,8 @@
 package com.exadel.controller.json;
 
-import com.exadel.model.constants.EnglishEnum;
-import com.exadel.model.constants.StudentStateEnum;
-import com.exadel.model.entity.Feedback;
-import com.exadel.model.entity.student.*;
-import com.exadel.service.StudentService;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.exadel.model.constants.EnglishEnum;
+import com.exadel.model.constants.StudentStateEnum;
+import com.exadel.model.entity.Feedback;
+import com.exadel.model.entity.student.ExadelPractice;
+import com.exadel.model.entity.student.ExadelWork;
+import com.exadel.model.entity.student.Skill;
+import com.exadel.model.entity.student.SkillType;
+import com.exadel.model.entity.student.Student;
+import com.exadel.model.entity.student.StudentExams;
+import com.exadel.model.entity.student.Study;
+import com.exadel.model.entity.student.Technology;
+import com.exadel.service.StudentService;
 
 @Controller
 public class StudentController {
