@@ -1,6 +1,3 @@
-/**
- * Created by Administrator on 18.07.2014.
- */
 var studentsControllers = angular.module('studentsControllers',['ngTable']);
 
 studentsControllers.controller('FeedbacksCtrl', ['$scope', '$routeParams','feedbacksList', function($scope,$routeParams,feedbacksList) {
