@@ -12,16 +12,4 @@ public class LoginController {
         model.setViewName("index");
         return model;
     }
-
-    @RequestMapping(value = "login/curator", method = RequestMethod.GET)
-    public ModelAndView CuratorRedirect(ModelAndView model){
-        model.setViewName("index");
-        return model;
-    }
-
-    @RequestMapping(value = "login/curator", method = RequestMethod.GET)
-    public ModelAndView FeedbackerRedirect(ModelAndView model){
-        model.setViewName("index");
-        return model;
-    }
 }
