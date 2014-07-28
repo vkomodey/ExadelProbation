@@ -5,9 +5,9 @@ var studentsControllers = angular.module('studentsControllers',['ngTable']);
 
 studentsControllers.controller('FeedbacksCtrl', ['$scope', '$routeParams','feedbacksList', function($scope,$routeParams,feedbacksList) {
 
-    $scope.feedbacks = feedbacksList.getFeedbacksList({studId: $routeParams.studId});
+    $scope.feedbacks = feedbacksList.getFeedbacksList({studId: $routeParams.studId+"/feedbacks/get"});
     $scope.reloadList = function (){
-        $scope.feedbacks = feedbacksList.getFeedbacksList({studId: $routeParams.studId});
+        $scope.feedbacks = feedbacksList.getFeedbacksList({studId: $routeParams.studId+"/feedbacks/get"});
     };
 }]);
 
@@ -45,7 +45,7 @@ studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function
         var newStudent = {
             login: $scope.login
         };
-        $http.post('/rest/stud/create',newStudent)
+        $http.post('http://localhost:8080/rest/stud/create',newStudent)
             .success(function() {
                 $scope.PopupCssClass = 'popup-hide';
                 $scope.reloadList();
