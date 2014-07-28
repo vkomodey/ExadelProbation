@@ -45,7 +45,12 @@
 
                             <div ng-hide="workInProject" class="false">
                                 <p>If no, is there prospect of working on a real project?
-                                    <input type="text" name="prospect" ng-model="prospect"></p>
+                                    <input type="radio" name="prospect" value="yes" id="r9" ng-model="prospect"
+                                           ng-init="prospect = true" ng-value="true">
+                                    <label for="r9"> yes </label><br/>
+                                    <input type="radio" name="prospect" value="no" id="r10" ng-model="prospect"
+                                           ng-value="false">
+                                    <label for="r10"> no </label></p>
                             </div>
                         </div>
 

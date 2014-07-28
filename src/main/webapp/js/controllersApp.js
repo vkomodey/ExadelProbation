@@ -76,9 +76,6 @@ studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routePar
             prospect: $scope.prospect,
             other: $scope.other
         }
-        if(feedback.workInProject==true) {
-            feedback.prospect='-';
-        }
         $http.post('/rest/stud/'+$routeParams.studId +'/feedbacks/push',feedback)
             .success(function() {
                 $scope.PopupCssClass = 'popup-hide';
