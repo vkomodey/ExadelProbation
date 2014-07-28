@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.3.5
 -- Dumped by pg_dump version 9.3.5
--- Started on 2014-07-28 16:28:08 FET
+-- Started on 2014-07-28 16:38:17 FET
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -15,7 +15,7 @@ SET client_min_messages = warning;
 
 DROP DATABASE "ProjectDataBase";
 --
--- TOC entry 2077 (class 1262 OID 38409)
+-- TOC entry 2078 (class 1262 OID 38409)
 -- Name: ProjectDataBase; Type: DATABASE; Schema: -; Owner: postgres
 --
 
@@ -44,7 +44,7 @@ CREATE SCHEMA public;
 ALTER SCHEMA public OWNER TO postgres;
 
 --
--- TOC entry 2078 (class 0 OID 0)
+-- TOC entry 2079 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
 --
@@ -61,7 +61,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2080 (class 0 OID 0)
+-- TOC entry 2081 (class 0 OID 0)
 -- Dependencies: 188
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -103,7 +103,7 @@ CREATE TABLE curator (
     id bigint NOT NULL
 );
 
-alter table public.curator add column studentsId enum not null ;
+
 ALTER TABLE public.curator OWNER TO postgres;
 
 --
@@ -301,7 +301,8 @@ CREATE TABLE student (
     graduate_year integer,
     specialty character varying(255),
     university character varying(255),
-    id bigint NOT NULL
+    id bigint NOT NULL,
+    curator bigint
 );
 
 
@@ -338,7 +339,7 @@ CREATE SEQUENCE student_log_id_seq
 ALTER TABLE public.student_log_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2081 (class 0 OID 0)
+-- TOC entry 2082 (class 0 OID 0)
 -- Dependencies: 183
 -- Name: student_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -569,7 +570,7 @@ ALTER TABLE ONLY user_
 
 
 --
--- TOC entry 1965 (class 2620 OID 38604)
+-- TOC entry 1966 (class 2620 OID 38604)
 -- Name: onchangestate; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -622,12 +623,21 @@ ALTER TABLE ONLY joanna
 
 
 --
--- TOC entry 1960 (class 2606 OID 38543)
+-- TOC entry 1961 (class 2606 OID 38543)
 -- Name: fk8c59bf40af4a6285; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY student_log
     ADD CONSTRAINT fk8c59bf40af4a6285 FOREIGN KEY (student_id) REFERENCES student(id);
+
+
+--
+-- TOC entry 1960 (class 2606 OID 38623)
+-- Name: fk8ffe823b16993fd1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY student
+    ADD CONSTRAINT fk8ffe823b16993fd1 FOREIGN KEY (curator) REFERENCES curator(id);
 
 
 --
@@ -694,7 +704,7 @@ ALTER TABLE ONLY exadel_work_technology
 
 
 --
--- TOC entry 1961 (class 2606 OID 38583)
+-- TOC entry 1962 (class 2606 OID 38583)
 -- Name: fkdd47d74daf4a6285; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -703,7 +713,7 @@ ALTER TABLE ONLY student_skill
 
 
 --
--- TOC entry 1962 (class 2606 OID 38588)
+-- TOC entry 1963 (class 2606 OID 38588)
 -- Name: fkdd47d74deb8ca365; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -712,7 +722,7 @@ ALTER TABLE ONLY student_skill
 
 
 --
--- TOC entry 1964 (class 2606 OID 38618)
+-- TOC entry 1965 (class 2606 OID 38618)
 -- Name: fkf495eb85af4a6285; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -721,7 +731,7 @@ ALTER TABLE ONLY feedback
 
 
 --
--- TOC entry 1963 (class 2606 OID 38613)
+-- TOC entry 1964 (class 2606 OID 38613)
 -- Name: fkf495eb85c9c2a285; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -730,7 +740,7 @@ ALTER TABLE ONLY feedback
 
 
 --
--- TOC entry 2079 (class 0 OID 0)
+-- TOC entry 2080 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -741,7 +751,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2014-07-28 16:28:08 FET
+-- Completed on 2014-07-28 16:38:18 FET
 
 --
 -- PostgreSQL database dump complete

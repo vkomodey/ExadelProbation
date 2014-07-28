@@ -37,7 +37,12 @@ public class Student extends User {
 		this.setFeedback(new ArrayList<Feedback>());
 		this.setStudy(new Study());
 	}
-    public String getEmail() {
+    @ManyToOne
+    @JoinColumn(name = "curator", referencedColumnName = "id")
+    public Curator getCurator() {
+        return curator;
+    }
+	public String getEmail() {
 		return email;
 	}
 	@Enumerated(EnumType.STRING)
@@ -53,12 +58,12 @@ public class Student extends User {
 	public String getPhone() {
 		return phone;
 	}
+
 	@OneToOne(cascade = CascadeType.ALL, optional=true,orphanRemoval=true)
 	@JoinColumn (name="id", nullable=false)
 	public ExadelPractice getPractice() {
 		return practice;
 	}
-
 	@Override
     @Transient
     @JsonIgnore
@@ -69,10 +74,10 @@ public class Student extends User {
     public Set<Skill> getSkillSet() {
 		return skillSet;
 	}
+
 	public String getSkype() {
 		return skype;
 	}
-
 	@Enumerated(EnumType.STRING)
 	public StudentStateEnum getState() {
 		return state;
@@ -86,19 +91,22 @@ public class Student extends User {
 	public ExadelWork getWork() {
 		return work;
 	}
+	public void setCurator(Curator curator) {
+        this.curator = curator;
+    }
 	public void setEmail(String email) {
 		this.email = email;
 	}
 	public void setEnglish(EnglishEnum english) {
 		this.english = english;
 	}
+
 	public void setFeedback(List<Feedback> feedback) {
 		this.feedback = feedback;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
 	public void setPractice(ExadelPractice practice) {
 		if(practice !=null ){
 		this.practice = practice;
@@ -114,23 +122,15 @@ public class Student extends User {
 	public void setState(StudentStateEnum state) {
 		this.state = state;
 	}
-	public void setStudy(Study study) {
+
+    public void setStudy(Study study) {
 		this.study = study;
 	}
-	public void setWork(ExadelWork work) {
+
+    public void setWork(ExadelWork work) {
 		if(practice !=null ){
 		this.work = work;
 		this.work.setStudent(this);
 		}
 	}
-
-    @ManyToOne
-    @JoinColumn(name = "curator", referencedColumnName = "id")
-    public Curator getCurator() {
-        return curator;
-    }
-
-    public void setCurator(Curator curator) {
-        this.curator = curator;
-    }
 }
