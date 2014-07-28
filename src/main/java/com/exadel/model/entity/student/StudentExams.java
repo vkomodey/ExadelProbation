@@ -1,39 +1,32 @@
 package com.exadel.model.entity.student;
 
-import java.io.Serializable;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NaturalId;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "exam")
 public class StudentExams implements Serializable {
-	private long id;
+	private Long id;
     private double grade;
-    private boolean summer;
+    private Boolean summer;
     private Student student;
-    private int course;
+    private Integer course;
 	public StudentExams() {
     }
-	@Id
-	@GeneratedValue
-	public long getId() {
-		return id;
+	@NaturalId
+	public Integer getCourse() {
+		return course;
 	}
 	public double getGrade() {
 		return grade;
 	}
-	@NaturalId
-	public boolean isSummer() {
-		return summer;
+	@Id
+	@GeneratedValue
+	public Long getId() {
+		return id;
 	}
 	@JsonIgnore
 	@NaturalId
@@ -43,23 +36,23 @@ public class StudentExams implements Serializable {
 		return student;
 	}
 	@NaturalId
-	public int getCourse() {
-		return course;
+	public Boolean isSummer() {
+		return summer;
 	}
-	public void setId(long id) {
-		this.id = id;
+	public void setCourse(Integer course) {
+		this.course = course;
 	}
 	public void setGrade(double grade) {
 		this.grade = grade;
 	}
-	public void setSummer(boolean summer) {
-		this.summer = summer;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public void setStudent(Student student) {
 		this.student = student;
 	}
-	public void setCourse(int course) {
-		this.course = course;
+	public void setSummer(Boolean summer) {
+		this.summer = summer;
 	}
 
 }

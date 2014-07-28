@@ -1,19 +1,13 @@
 package com.exadel.model.entity.student;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "skill")
 public class Skill {
 	
 	private String level;
-	private long id;
+	private Long id;
 	private SkillType type;
 	
 	public Skill() {
@@ -23,7 +17,7 @@ public class Skill {
 	}
 	@Id
 	@GeneratedValue
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -35,7 +29,7 @@ public class Skill {
 	public SkillType getType() {
 		return type;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public void setLevel(String level) {

@@ -7,22 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UserServiceImpl implements UserService {
-
-    @Autowired
-    private UserDao userDao;
-
-    @Transactional(propagation = Propagation.NOT_SUPPORTED)
-    public User findUserById(int userId) {
-        return null;
-    }
-
-    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+public class UserServiceImpl extends GenericLivingServiceImpl<User> implements UserService {
+	@Autowired
+	UserDao mainDao;
+	@Transactional
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        return userDao.loadUserByUsername(login);
+        return mainDao.loadUserByUsername(login);
     }
 }

@@ -1,30 +1,27 @@
 package com.exadel.controller.json;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.exadel.model.constants.EnglishEnum;
+import com.exadel.model.constants.StudentStateEnum;
+import com.exadel.model.entity.Feedback;
+import com.exadel.model.entity.student.*;
+import com.exadel.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.exadel.model.constants.EnglishEnum;
-import com.exadel.model.constants.StudentStateEnum;
-import com.exadel.model.entity.student.ExadelPractice;
-import com.exadel.model.entity.student.ExadelWork;
-import com.exadel.model.entity.Feedback;
-import com.exadel.model.entity.student.Skill;
-import com.exadel.model.entity.student.SkillType;
-import com.exadel.model.entity.student.Student;
-import com.exadel.model.entity.student.StudentExams;
-import com.exadel.model.entity.student.Study;
-import com.exadel.model.entity.student.Technology;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class StudentController {
-	public static Logger logger=LoggerFactory.getLogger(StudentController.class);
+	@Autowired
+	StudentService service;
+	private static Logger logger=LoggerFactory.getLogger(StudentController.class);
 	private Student buildDummy(){
 		logger.info("dummy student build");
 		Student stud=new Student();
@@ -49,6 +46,24 @@ public class StudentController {
 		logger.info("dummy student sending");
 		return buildDummy();
 	}
+	@RequestMapping(value=RestURIConstants.GET_STUDENT,method=RequestMethod.GET)
+	public @ResponseBody Student getStudent(@PathVariable("id") String idString){
+		long id=Long.parseLong(idString);
+		logger.info("real student fetching");
+		Student student=service.findById(id);
+		logger.info("real student sending");
+		return student;
+	}
+	
+	@RequestMapping(value=RestURIConstants.GET_ALL_STUDENT,method=RequestMethod.GET)
+	public @ResponseBody List<Student> getAllStudents(){
+		logger.info("student list fetching");
+		List<Student> list=service.getAll();
+		logger.info("student list sending");
+		return list;
+	}
+	
+	
 	@RequestMapping(value=RestURIConstants.DUMMY_STUDENTARRAY,method=RequestMethod.GET)
 	public @ResponseBody List<Student> getDummyStudentArray(){
 		logger.info("dummy student array sending");

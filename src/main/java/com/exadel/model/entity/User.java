@@ -1,10 +1,11 @@
 package com.exadel.model.entity;
 
-import javax.persistence.*;
-
 import com.exadel.model.IEntity;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.NaturalId;
+
+import javax.persistence.*;
 
 
 @Entity
@@ -12,37 +13,33 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Inheritance(strategy=InheritanceType.JOINED)
 public class User implements IEntity{
 
-    private long id;
+    private Long id;
     private String firstName;
     private String secondName;
     private String surname;
     private String login;
     private String password;
-
     public User() {
 
-    }
-    @Transient
-    @JsonIgnore
-    public String getRole(){
-    	return SpringSecurityRole.USER;
     }
     @Column(name = "first_name")
 	public String getFirstName() {
 	    return firstName;
 	}
-
-	@Column(name = "second_name")
-	public String getSecondName() {
-	    return secondName;
-	}
-
-	@Column(name = "surname")
-	public String getSurname() {
-	    return surname;
+    @Transient
+    @JsonIgnore
+    public String getFullName(){
+    	return firstName+" "+surname+" "+secondName;
+    }
+    @Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "id")
+	public Long getId() {
+	    return id;
 	}
 
 	@Column(name = "login")
+	@NaturalId
 	public String getLogin() {
 	    return login;
 	}
@@ -53,28 +50,29 @@ public class User implements IEntity{
 	    return password;
 	}
 
-
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
-	public long getId() {
-	    return id;
-	}
-
-	public void setId(long id){
-        this.id=id;
+	@Transient
+    @JsonIgnore
+    public String getRole(){
+    	return SpringSecurityRole.USER;
     }
 
-    public void setFirstName(String firstName) {
+	@Column(name = "second_name")
+	public String getSecondName() {
+	    return secondName;
+	}
+
+
+	@Column(name = "surname")
+	public String getSurname() {
+	    return surname;
+	}
+
+	public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public void setSurname(String surname) {
-        this.surname= surname;
+    public void setId(Long id){
+        this.id=id;
     }
 
     public void setLogin(String login) {
@@ -83,6 +81,14 @@ public class User implements IEntity{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public void setSurname(String surname) {
+        this.surname= surname;
     }
 
 }

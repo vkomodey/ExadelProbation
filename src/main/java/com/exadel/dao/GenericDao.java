@@ -1,9 +1,16 @@
 package com.exadel.dao;
 
-import com.exadel.model.IEntity;
+import java.util.List;
 
-import java.io.Serializable;
+import com.exadel.model.entity.student.Student;
 
-public interface GenericDao <ENTITY extends IEntity, ID extends Serializable> {
-    ENTITY find(ID id);
+
+public interface GenericDao<ENTITY> {
+
+	public abstract ENTITY find(long id);
+
+	public abstract void save(ENTITY entity);
+
+	public abstract List<Student> getAll();
+
 }
