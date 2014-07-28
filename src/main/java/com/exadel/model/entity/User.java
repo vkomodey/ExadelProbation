@@ -1,11 +1,20 @@
 package com.exadel.model.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.NaturalId;
+
 import com.exadel.model.IEntity;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.NaturalId;
-
-import javax.persistence.*;
 
 
 @Entity
