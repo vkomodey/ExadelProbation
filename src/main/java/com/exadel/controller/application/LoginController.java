@@ -16,8 +16,10 @@ public class LoginController {
         return model;
     }
 
-    @RequestMapping(value = "login/superadmin", method = RequestMethod.GET)
+    @RequestMapping(value = "login/", method = RequestMethod.GET)
     public ModelAndView FeedbackerRedirect(ModelAndView model){
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         model.setViewName("index");
         return model;
     }

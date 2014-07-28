@@ -3,6 +3,7 @@ package com.exadel.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.exadel.dao.StudentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +21,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 	UserDao userDao;
 	@Autowired
 	FeedbackDao feedbackDao;
-	
+	//wake up all students, they so laaaazy. denis - stekolshik
 	private void lazyTouch(Student student){
 		student.getStudy().getExams().size();
 		student.getSkillSet().size();
@@ -63,6 +64,6 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 
     @Transactional
     public List<Student> getSupervised(long curatorId){
-        return null;
+        return ((StudentDao)mainDao).getSupervised(curatorId);
     }
 }

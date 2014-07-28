@@ -3,9 +3,14 @@ package com.exadel.controller.json;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.exadel.service.CuratorService;
+import com.exadel.service.impl.CuratorServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +34,8 @@ import com.exadel.service.StudentService;
 public class StudentController {
 	@Autowired
 	StudentService service;
+    @Autowired
+    CuratorService curatorService;
 	private static Logger logger=LoggerFactory.getLogger(StudentController.class);
 	private Student buildDummy(){
 		logger.info("dummy student build");
@@ -74,6 +81,10 @@ public class StudentController {
     @RequestMapping(value = RestURIConstants.GET_SUPERVISED_STUDENTS, method = RequestMethod.GET)
     public @ResponseBody List<Student> getSupervisedStudents(){
         logger.info("supervised student list fetching");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String login = ((User)(authentication.getPrincipal())).getUsername();
+        Long id = ((CuratorServiceImpl)curatorService).find(login).getId();
+        List<Student> list = service.getSupervised(id);
         return null;
     }
 	
