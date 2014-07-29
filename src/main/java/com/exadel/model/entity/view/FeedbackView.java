@@ -14,6 +14,7 @@ public class FeedbackView {
     private Boolean isBillable;
     private String other;
     private String feedbacker;//
+    private String date;
 
     public FeedbackView() {
 
@@ -43,6 +44,10 @@ public class FeedbackView {
         return relations;
     }
 
+    public String getDate() {
+        return date;
+    }
+
     public Long getStudId() {
         return studId;
     }
@@ -69,6 +74,10 @@ public class FeedbackView {
 
     public void setAttitudeToWork(String attitudeToWork) {
         this.attitudeToWork = attitudeToWork;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public void setBillable(Boolean isBillable) {
