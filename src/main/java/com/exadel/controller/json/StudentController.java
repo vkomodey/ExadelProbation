@@ -103,6 +103,7 @@ public class StudentController {
             item.setSecondName("stud_second_name"+inc);
             item.setSurname("stud_surname"+inc);
             inc++;
+            System.out.println(inc);
         }
 		return list;
 	}
