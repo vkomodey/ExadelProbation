@@ -36,7 +36,11 @@
                 </ul>
             </li>
             <%--<li><a href="log.html">Log out</a>--%>
-            <li><button id="btn" type="submit">Log out</button></li>
+            <li>
+                <form action="j_spring_security_check" method="post">
+                <button id="btn" type="submit">Log out</button>
+                </form>
+            </li>
         </ul>
     </div>
 </div>
