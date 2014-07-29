@@ -27,6 +27,9 @@ public class CuratorDaoImpl extends GenericLivingDaoImpl<Curator> implements Cur
         return getSessionFactory().getCurrentSession().createQuery("from Curator ").list();
     }
 
+    public List<Curator> getSupervised(){
+        return null;
+    }
 
 
 

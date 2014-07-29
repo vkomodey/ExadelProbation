@@ -19,6 +19,8 @@ public class UserServiceImpl extends GenericLivingServiceImpl<User> implements U
         return mainDao.loadUserByUsername(login);
     }
 
+
+//    don't use yet
     @Transactional
     public User getCurrentUser(){
         return null;
