@@ -1,5 +1,6 @@
 package com.exadel.dao.impl;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
@@ -21,4 +22,7 @@ public abstract class GenericDaoImpl<ENTITY> extends HibernateDaoSupport
 		getSessionFactory().getCurrentSession().saveOrUpdate(entity);
 	}
 
+	public Session directControl(){
+		return getSessionFactory().getCurrentSession();
+	}
 }
