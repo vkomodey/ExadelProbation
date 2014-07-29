@@ -90,8 +90,7 @@ public class StudentController {
         logger.info("supervised students are fetch");
         return curatorService.getSupervised(id);
     }
-	
-	
+
 	@RequestMapping(value=RestURIConstants.DUMMY_STUDENTARRAY,method=RequestMethod.GET)
 	public @ResponseBody List<Student> getDummyStudentArray(){
 		logger.info("dummy student array sending");
