@@ -29,6 +29,6 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 	}
 
     public List<Student> getSupervised(long id){
-        return getSessionFactory().getCurrentSession().createQuery("from Student where curator.id=:id").list();
+        return getSessionFactory().getCurrentSession().createQuery("from Student where curator.id=:id").setLong("id", id).list();
     }
 }

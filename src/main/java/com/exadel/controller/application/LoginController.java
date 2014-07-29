@@ -18,7 +18,7 @@ public class LoginController {
 
     @RequestMapping(value = "login/curator", method = RequestMethod.GET)
     public String CuratorRedirect(){
-        return "redirect:/rest/stud/curator/supervised";
+        return "redirect:/rest/stud/all";
     }
 //
 //    @RequestMapping(value = "login/superadmin", method = RequestMethod.GET)

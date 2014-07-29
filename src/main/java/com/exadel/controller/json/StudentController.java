@@ -84,13 +84,17 @@ public class StudentController {
 	public @ResponseBody List<Student> getAllStudents(Principal user){
 		logger.info("student list fetching");
 		List<Student> list;
-        List<SimpleGrantedAuthority> authorities = (List<SimpleGrantedAuthority>)SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+        List<SimpleGrantedAuthority> authorities = (List<SimpleGrantedAuthority>)SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getAuthorities();
 
-        if(userService.roleFor(user.getName()).equals(SpringSecurityRole.CURATOR)){
+        String role = authorities.get(0).toString();
+        if(role.equals(SpringSecurityRole.CURATOR)){
 			list=service.getSupervised(userService.findByLogin(user.getName()).getId());
 		}
 		else{
-		list=service.getAll();
+		    list=service.getAll();
 		}
 		logger.info("student list sending");
 		return list;
