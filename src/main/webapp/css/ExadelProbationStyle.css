@@ -281,3 +281,6 @@ body {
 
 div[ng-include="templates.pagination"] {
   display: none; }
+
+thead {
+  font-size: 10px; }

@@ -68,10 +68,10 @@
             <input type="text" ng-model="search.feedbacker" placeholder="Search">
             <table ng-table="tableParams" class="table">
                 <tr ng-repeat="feedback in feedbacks | filter:search |orderBy:params.orderBy()">
-                    <td data-title="'APTITUDE'" sortable="'aptitude'">{{feedback.aptitude}}</td>
+                    <td data-title="'PROFESSIONAL SUITABILITY'" sortable="'profSuitability'">{{feedback.profSuitability}}</td>
                     <td data-title="'ATTITUDE TO WORK'" sortable="'attitudeToWork'">{{feedback.attitudeToWork}}</td>
-                    <td data-title="'RELATIONS IN COLLECTIVE'" sortable="'relationsInCollective'">
-                        {{feedback.relationsInCollective}}
+                    <td data-title="'RELATIONS IN COLLECTIVE'" sortable="'relations'">
+                        {{feedback.relations}}
                     </td>
                     <td data-title="'PROGRESS'" sortable="'progress'">{{feedback.progress}}</td>
                     <td data-title="'INCREASE HOURS'" sortable="'increaseHours'">{{feedback.increaseHours}}</td>
