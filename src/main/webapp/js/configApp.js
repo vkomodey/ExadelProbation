@@ -3,11 +3,11 @@ var studentsApp = angular.module('studentsApp',['ngRoute', 'studentsControllers'
         studentsApp.config(['$routeProvider', function($routeProvider){
         $routeProvider.
             when('/studentList', {
-                templateUrl: 'partials/students-list.html',
+                templateUrl: '/page/partials/students-list.html',
                 controller: 'StudentListCtrl'
             }).
             when('/studentList/:studId', {
-                templateUrl: 'partials/feedbacks-list.html',
+                templateUrl: '/page/partials/feedbacks-list.html',
                 conroller: 'FeedbacksCtrl'
             }).
             otherwise({

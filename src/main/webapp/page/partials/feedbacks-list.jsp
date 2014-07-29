@@ -1,3 +1,5 @@
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div ng-controller="FeedbacksCtrl">
     <div ng-controller="AddFeedbackCtrl">
         <div class="content" ng-init="PopupCssClass = 'popup-hide' ">
@@ -57,9 +59,9 @@
                         <p>Something else at your discretion
                             <input type="text" name="other" ng-model="other"></p>
                         <div class="buttons">
-                        <button type="submit" ng-click="addFeedback()" ng-disabled="feedbackForm.$invalid">Save</button>
+                            <button type="submit" ng-click="addFeedback()" ng-disabled="feedbackForm.$invalid">Save</button>
 
-                        <button ng-click="PopupCssClass = 'popup-hide'">Cancel</button>
+                            <button ng-click="PopupCssClass = 'popup-hide'">Cancel</button>
                         </div>
                     </form>
                 </fildset>
@@ -68,10 +70,10 @@
             <input type="text" ng-model="search.feedbacker" placeholder="Search">
             <table ng-table="tableParams" class="table">
                 <tr ng-repeat="feedback in feedbacks | filter:search |orderBy:params.orderBy()">
-                    <td data-title="'PROFESSIONAL SUITABILITY'" sortable="'profSuitability'">{{feedback.profSuitability}}</td>
+                    <td data-title="'APTITUDE'" sortable="'aptitude'">{{feedback.aptitude}}</td>
                     <td data-title="'ATTITUDE TO WORK'" sortable="'attitudeToWork'">{{feedback.attitudeToWork}}</td>
-                    <td data-title="'RELATIONS IN COLLECTIVE'" sortable="'relations'">
-                        {{feedback.relations}}
+                    <td data-title="'RELATIONS IN COLLECTIVE'" sortable="'relationsInCollective'">
+                        {{feedback.relationsInCollective}}
                     </td>
                     <td data-title="'PROGRESS'" sortable="'progress'">{{feedback.progress}}</td>
                     <td data-title="'INCREASE HOURS'" sortable="'increaseHours'">{{feedback.increaseHours}}</td>
@@ -84,4 +86,4 @@
             </table>
         </div>
     </div>
- </div>
+</div>

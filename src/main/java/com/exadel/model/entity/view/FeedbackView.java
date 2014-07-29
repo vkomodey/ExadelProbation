@@ -9,10 +9,12 @@ public class FeedbackView {
     private String relations;//
     private String progress;//
     private Boolean increaseHours;//
-    private String workInProject;
+    private Boolean prospect;
+    private Boolean workInProject;
     private Boolean isBillable;
     private String other;
     private String feedbacker;//
+    private String date;
 
     public FeedbackView() {
 
@@ -42,11 +44,15 @@ public class FeedbackView {
         return relations;
     }
 
+    public String getDate() {
+        return date;
+    }
+
     public Long getStudId() {
         return studId;
     }
 
-    public String getWorkInProject() {
+    public Boolean getWorkInProject() {
         return workInProject;
     }
 
@@ -62,8 +68,16 @@ public class FeedbackView {
         return profSuitability;
     }
 
+    public Boolean getProspect() {
+        return prospect;
+    }
+
     public void setAttitudeToWork(String attitudeToWork) {
         this.attitudeToWork = attitudeToWork;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public void setBillable(Boolean isBillable) {
@@ -98,11 +112,15 @@ public class FeedbackView {
         this.relations = relations;
     }
 
+    public void setProspect(Boolean prospect) {
+        this.prospect = prospect;
+    }
+
     public void setStudId(Long studId) {
         this.studId = studId;
     }
 
-    public void setWorkInProject(String workInProject) {
+    public void setWorkInProject(Boolean workInProject) {
         this.workInProject = workInProject;
     }
 }

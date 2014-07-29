@@ -18,4 +18,9 @@ public class UserServiceImpl extends GenericLivingServiceImpl<User> implements U
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         return mainDao.loadUserByUsername(login);
     }
+
+    @Transactional
+    public User getCurrentUser(){
+        return null;
+    }
 }
