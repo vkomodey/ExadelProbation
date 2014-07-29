@@ -23,7 +23,7 @@ public class RegistrationController {
     static Logger logger= LoggerFactory.getLogger(RegistrationController.class);
 
     @RequestMapping(value = RestURIConstants.CREATE_STUDENT, method = RequestMethod.POST)
-    public @ResponseBody void getJsonData(@RequestBody String str) {
+    public @ResponseBody void registerStudent(@RequestBody String str) {
         logger.info("Start createStudent.");
         ObjectMapper mapper = new ObjectMapper();
         try {
