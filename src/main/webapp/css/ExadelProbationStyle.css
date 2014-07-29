@@ -1,16 +1,16 @@
 ::-webkit-input-placeholder {
-  color: #ffffff; }
+  color: #000000; }
 
 ::-moz-placeholder {
-  color: #ffffff; }
+  color: #000000; }
 
 /* Firefox 19+ */
 :-moz-placeholder {
-  color: #ffffff; }
+  color: #000000; }
 
 /* Firefox 18- */
 :-ms-input-placeholder {
-  color: #ffffff; }
+  color: #000000; }
 
 :focus::-webkit-input-placeholder {
   color: transparent; }
@@ -147,11 +147,10 @@
       background-color: lightgrey;
     }*/
     border: none;
-    outline: none;
-    color: #ffffff;
-    background: transparent;
-    border-bottom: 1px dotted black;
-    padding: 5px 2px 0 2px;
+    border-radius: 20px;
+    padding: 5px 8px;
+    color: #333;
+    box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1);
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
     -ms-transition: all 0.3s ease-out;
@@ -159,7 +158,7 @@
     transition: all 0.3s ease-out; }
   .login-popup input:focus, .feedback-popup input:focus {
     outline: none;
-    border-color: white; }
+    box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1), 0 0 5px 1px #51cbee; }
 
 .feedback-popup {
   width: auto;
@@ -202,11 +201,10 @@
         background-color: lightgrey;
       }*/
         border: none;
-        outline: none;
-        color: #ffffff;
-        background: transparent;
-        border-bottom: 1px dotted black;
-        padding: 5px 2px 0 2px;
+        border-radius: 20px;
+        padding: 5px 8px;
+        color: #333;
+        box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1);
         -webkit-transition: all 0.3s ease-out;
         -moz-transition: all 0.3s ease-out;
         -ms-transition: all 0.3s ease-out;
@@ -214,7 +212,7 @@
         transition: all 0.3s ease-out; }
       .feedback-popup .workInProject > .false input:focus {
         outline: none;
-        border-color: white; }
+        box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1), 0 0 5px 1px #51cbee; }
     .feedback-popup .workInProject > .ng-hide {
       position: absolute;
       -webkit-transition: opacity .5s;
@@ -238,11 +236,10 @@
         background-color: lightgrey;
       }*/
         border: none;
-        outline: none;
-        color: #ffffff;
-        background: transparent;
-        border-bottom: 1px dotted black;
-        padding: 5px 2px 0 2px;
+        border-radius: 20px;
+        padding: 5px 8px;
+        color: #333;
+        box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1);
         -webkit-transition: all 0.3s ease-out;
         -moz-transition: all 0.3s ease-out;
         -ms-transition: all 0.3s ease-out;
@@ -250,7 +247,7 @@
         transition: all 0.3s ease-out; }
       .feedback-popup .workInProject > .ng-hide input:focus {
         outline: none;
-        border-color: white; }
+        box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1), 0 0 5px 1px #51cbee; }
 
 body {
   background: url("../img/mooning.png"); }
@@ -444,11 +441,10 @@ input {
       background-color: lightgrey;
     }*/
   border: none;
-  outline: none;
-  color: #ffffff;
-  background: transparent;
-  border-bottom: 1px dotted black;
-  padding: 5px 2px 0 2px;
+  border-radius: 20px;
+  padding: 5px 8px;
+  color: #333;
+  box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1);
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -ms-transition: all 0.3s ease-out;
@@ -457,4 +453,4 @@ input {
 
 input:focus {
   outline: none;
-  border-color: white; }
+  box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1), 0 0 5px 1px #51cbee; }

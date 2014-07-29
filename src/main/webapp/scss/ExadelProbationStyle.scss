@@ -1,7 +1,7 @@
-::-webkit-input-placeholder {color: #ffffff;}
-::-moz-placeholder          {color:#ffffff;}/* Firefox 19+ */
-:-moz-placeholder           {color:#ffffff;}/* Firefox 18- */
-:-ms-input-placeholder      {color:#ffffff;}
+::-webkit-input-placeholder {color: #000000;}
+::-moz-placeholder          {color:#000000;}/* Firefox 19+ */
+:-moz-placeholder           {color:#000000;}/* Firefox 18- */
+:-ms-input-placeholder      {color:#000000;}
 :focus::-webkit-input-placeholder {color: transparent}
 :focus::-moz-placeholder          {color: transparent}
 :focus:-moz-placeholder           {color: transparent}
@@ -87,17 +87,22 @@
       background-color: lightgrey;
     }*/
    // display: block;
+    //display: block;
     border: none;
-    outline: none;
-    color: #ffffff;
-    background: transparent;
-    border-bottom: 1px dotted black;
-    padding: 5px 2px 0 2px;
+    border-radius: 20px;
+    padding: 5px 8px;
+    color: #333;
+    box-shadow:
+    inset 0 2px 0 rgba(0,0,0,.2),
+    0 0 4px rgba(0,0,0,0.1);
     @include transition-all();
   }
    input:focus {
-    outline: none;
-    border-color: white;
+     outline: none;
+     box-shadow:
+     inset 0 2px 0 rgba(0,0,0,.2),
+     0 0 4px rgba(0,0,0,0.1),
+     0 0 5px 1px #51CBEE;
   }
 }
 
