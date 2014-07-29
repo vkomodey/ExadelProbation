@@ -1,4 +1,19 @@
+::-webkit-input-placeholder {color: #000000;}
+::-moz-placeholder          {color:#000000;}/* Firefox 19+ */
+:-moz-placeholder           {color:#000000;}/* Firefox 18- */
+:-ms-input-placeholder      {color:#000000;}
+:focus::-webkit-input-placeholder {color: transparent}
+:focus::-moz-placeholder          {color: transparent}
+:focus:-moz-placeholder           {color: transparent}
+:focus:-ms-input-placeholder      {color: transparent}
 //Modal window style
+@mixin transition-all {
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
 @mixin popup-style-type {
   position: fixed;
   top: 0;
@@ -61,7 +76,7 @@
     padding: 3% 10%;
   }
   input {
-    height: 30px;
+   /* height: 30px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -70,7 +85,24 @@
     &:focus {
       outline: 0;
       background-color: lightgrey;
-    }
+    }*/
+   // display: block;
+    //display: block;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 8px;
+    color: #333;
+    box-shadow:
+    inset 0 2px 0 rgba(0,0,0,.2),
+    0 0 4px rgba(0,0,0,0.1);
+    @include transition-all();
+  }
+   input:focus {
+     outline: none;
+     box-shadow:
+     inset 0 2px 0 rgba(0,0,0,.2),
+     0 0 4px rgba(0,0,0,0.1),
+     0 0 5px 1px #51CBEE;
   }
 }
 
@@ -84,6 +116,8 @@
 .popup-hide {
   @include popup-style-type();
   opacity: 0;
+  top: -10000000px;
+  bottom: 100000000px;
   pointer-events: none;
 }
 .popup-show {
@@ -92,9 +126,9 @@
   pointer-events: auto;
 }
 .login-popup, .feedback-popup {
-  color: black;
+  color: white;
   text-align: center;
-  font: 12px/20px 'Lucida Grande', Verdana, sans-serif;
+  font: 14px/22px 'Lucida Grande', Verdana, sans-serif;
   width: 250px;
   margin: 0px auto;
   //background-color: grey;
@@ -103,7 +137,7 @@
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 0 0 10px 10px;
-  button {
+  /*button {
     background-color: #ebebeb;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -115,7 +149,7 @@
     margin-left: auto;
     padding: 10px 10px;
     -webkit-appearance: none;
-  }
+  }*/
   @include radioButton-style-type();
   @include input-type();
 }
@@ -158,6 +192,7 @@
 //nav menu
 //
 //
+
 @mixin background-menu-style-type {
   background: -webkit-linear-gradient(top, #c5c5c5 0%, #838283 100%);
 
@@ -178,9 +213,10 @@ body{
   color: #ffffff;
 
   > .nav-menu {
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 600;
     font-family: "Times new roman";
+    background: url("../img/mooning.png");
 
    // background: -webkit-linear-gradient(top, #393939 0%, #292829 100%);
    // background: -moz-linear-gradient(top, #393939 0%, #292829 100%);
@@ -196,6 +232,7 @@ body{
     height: 30px;
     border-radius: 0 0 10px 10px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    @include transition-all();
 
     >#nav {
 
@@ -204,9 +241,9 @@ body{
       padding: 0;
       line-height: 25px;
       #btn{
-        font-size: 15px;
+        font-size: 18px;
+        font-weight: 600;
         z-index: 0;
-        font-weight: bold;
         font-family: "Times new roman";
         //background: #292829;
         //color: #ffffff;
@@ -215,6 +252,7 @@ body{
         margin-top: 10000px;
         position: relative;
         border: none;
+        @include transition-all();
         //background: -webkit-linear-gradient(top, #393939 0%, #292829 100%);
         // background: -moz-linear-gradient(top, #393939 0%, #292829 100%);
         // background: -o-linear-gradient(top, #393939 0%, #292829 100%);
@@ -241,6 +279,7 @@ body{
           float: left;
           margin-right: -119px;
           margin-top: 10000px;
+          @include transition-all();
           &:hover, &:focus, &:active {
             margin-bottom: 0px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -251,6 +290,7 @@ body{
           }
         }
         ul {
+          @include transition-all();
           background: url("../img/mooning.png");
           border-radius: 0 0 5px 5px;
           box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
@@ -264,6 +304,7 @@ body{
           list-style-type: none;
 
           li {
+            @include transition-all();
             margin: 0;
             padding: 0;
             float: none;
@@ -307,3 +348,47 @@ div[ng-include="templates.pagination"] {
 thead {
   font-size: 10px;
 }
+.modern {
+  display: inline-block;
+  margin: 10px;
+  padding: 8px 15px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  //transition: all 0.3s ease-out;
+  @include transition-all();
+  box-shadow:
+  inset 0 1px 0 rgba(255,255,255,0.5),
+  0 2px 2px rgba(0,0,0,0.3),
+  0 0 4px 1px rgba(0,0,0,0.2);
+
+  /* Font styles */
+  text-decoration: none;
+  text-shadow: 0 1px rgba(255,255,255,0.7);
+}
+
+.modern:hover  { background: #ededed; }
+
+/*.socle {
+  position: relative;
+  z-index: 2;
+}
+
+.socle:after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  border-radius: 6px;
+  box-shadow:
+  inset 0 1px 0 rgba(0,0,0,0.1),
+  inset 0 -1px 0 rgba(255,255,255,0.7);
+  top: -6px; bottom: -6px;
+  right: -6px; left: -6px;
+  background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0));
+}*/
+
+.toRight {
+  float: right;
+  margin-top: 22px;
+}
+@include input-type();
