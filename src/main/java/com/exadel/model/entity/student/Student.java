@@ -6,7 +6,9 @@ import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.User;
 import com.exadel.model.entity.government.Curator;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ public class Student extends User {
     private String email;
     private String skype;
     private String phone;
+    @JsonBackReference
     private Curator curator;
 
     public Student() {
