@@ -22,7 +22,7 @@ public abstract class GenericDaoImpl<ENTITY> extends HibernateDaoSupport
 		getSessionFactory().getCurrentSession().saveOrUpdate(entity);
 	}
 
-	public Session directControl(){
-		return getSessionFactory().getCurrentSession();
-	}
+    public void saveEntity(Object o){
+        getSessionFactory().getCurrentSession().saveOrUpdate(o);
+    }
 }

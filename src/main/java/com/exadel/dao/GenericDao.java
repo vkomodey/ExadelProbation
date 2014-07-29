@@ -13,5 +13,5 @@ public interface GenericDao<ENTITY> {
 
 	public abstract List<ENTITY> getAll();
 
-	public abstract Session directControl();
+    public abstract void saveEntity(Object o);
 }

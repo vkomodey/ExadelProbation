@@ -31,6 +31,7 @@ public class RegistrationController {
             RegistrationView view =  mapper.readValue(str,RegistrationView.class);
             logger.info("login:"+view.getLogin());
             service.registerStudent(view);
+            logger.info("created");
         } catch (IOException e) {
             e.printStackTrace();
         }
