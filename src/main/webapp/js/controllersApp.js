@@ -3,6 +3,7 @@ var studentsControllers = angular.module('studentsControllers',['ngTable']);
 studentsControllers.controller('FeedbacksCtrl', ['$scope', '$routeParams','feedbacksList', function($scope,$routeParams,feedbacksList) {
 
     $scope.reloadList = function (){
+
         $scope.feedbacks = feedbacksList.getFeedbacksList({studId: $routeParams.studId});
     };
     $scope.reloadList();
