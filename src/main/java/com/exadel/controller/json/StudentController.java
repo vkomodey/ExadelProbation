@@ -68,6 +68,13 @@ public class StudentController {
 		logger.info("student list fetching");
 		List<Student> list=service.getAll();
 		logger.info("student list sending");
+        int inc=0;
+        for(Student item : list){
+            item.setFirstName("sutud_first_name "+inc);
+            item.setSecondName("stud_second_name"+inc);
+            item.setSurname("stud_surname"+inc);
+            inc++;
+        }
 		return list;
 	}
 	

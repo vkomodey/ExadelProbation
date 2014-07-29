@@ -12,26 +12,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.exadel.model.entity.student.Student;
-import com.exadel.service.StudentService;
+import com.exadel.model.entity.view.RegistrationView;
+import com.exadel.service.RegistrationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class RegistrationController {
 	@Autowired
-	StudentService service;
+	RegistrationService service;
+	
     static Logger logger= LoggerFactory.getLogger(RegistrationController.class);
 
     @RequestMapping(value = RestURIConstants.CREATE_STUDENT, method = RequestMethod.POST)
-    public @ResponseBody void getJsonData(@RequestBody String str) {
-        logger.info("Start createStudent.");
+    public @ResponseBody void registerStudent(@RequestBody String str) {
+        logger.info("Start registerStudent.");
         ObjectMapper mapper = new ObjectMapper();
         try {
-            Student student =  mapper.readValue(str,Student.class);
-            logger.info("login:"+student.getLogin());
-            student.setPassword("11111");
-            service.save(student);
-
+            RegistrationView view =  mapper.readValue(str,RegistrationView.class);
+            logger.info("login:"+view.getLogin());
+            service.registerStudent(view);
+            logger.info("created");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @RequestMapping(value = RestURIConstants.CREATE_ANYONE, method = RequestMethod.POST)
+    public void registerAnyone(@RequestBody String str){
+    	logger.info("Start registerAnyone.");
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            RegistrationView view =  mapper.readValue(str,RegistrationView.class);
+            logger.info("login:"+view.getLogin());
+            service.registerAnyone(view);
         } catch (IOException e) {
             e.printStackTrace();
         }

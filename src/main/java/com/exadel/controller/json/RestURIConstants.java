@@ -9,4 +9,5 @@ public class RestURIConstants {
 	public static final String DUMMY_STUDENTARRAY = "stud/dummyarr";
     public static final String PUSH_FEEDBACK= "stud/{id}/feedbacks/push";
     public static final String GET_FEEDBACK_ARRAY= "stud/{id}/feedbacks/get";
+	public static final String CREATE_ANYONE = "anyone/create";
 }
