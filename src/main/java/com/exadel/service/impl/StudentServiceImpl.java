@@ -24,6 +24,8 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 	UserDao userDao;
 	@Autowired
 	FeedbackDao feedbackDao;
+    @Autowired
+    StudentDao studentDao;
 	//wake up all students, they so laaaazy. denis - stekolshik
 	private void lazyTouch(Student student){
 		student.getStudy().getExams().size();
@@ -64,6 +66,15 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 		}
 		return list;
 	}
+
+    @Transactional
+    public List<Student> getSupervised(long curatorId){
+        List<Student> list = studentDao.getSupervised(curatorId);
+        for(Student s : list){
+            lazyTouch(s);
+        }
+        return list;
+    }
 
 
 }

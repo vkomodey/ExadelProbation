@@ -2,17 +2,22 @@ package com.exadel.controller.json;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import com.exadel.model.entity.government.Curator;
 import com.exadel.service.CuratorService;
+import com.exadel.service.UserService;
 import com.exadel.service.impl.CuratorServiceImpl;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exadel.model.constants.EnglishEnum;
+import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.student.ExadelPractice;
@@ -36,6 +42,8 @@ import com.exadel.service.StudentService;
 public class StudentController {
 	@Autowired
 	StudentService service;
+	@Autowired
+	UserService userService;
     @Autowired
     CuratorService curatorService;
 	private static Logger logger=LoggerFactory.getLogger(StudentController.class);
@@ -73,24 +81,21 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value=RestURIConstants.GET_ALL_STUDENT,method=RequestMethod.GET)
-	public @ResponseBody List<Student> getAllStudents(Principal principal){
+	public @ResponseBody List<Student> getAllStudents(Principal user){
 		logger.info("student list fetching");
-		List<Student> list=service.getAll();
+		List<Student> list;
+        List<SimpleGrantedAuthority> authorities = (List<SimpleGrantedAuthority>)SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+        if(userService.roleFor(user.getName()).equals(SpringSecurityRole.CURATOR)){
+			list=service.getSupervised(userService.findByLogin(user.getName()).getId());
+		}
+		else{
+		list=service.getAll();
+		}
 		logger.info("student list sending");
 		return list;
 	}
-
-    @RequestMapping(value = RestURIConstants.GET_SUPERVISED_STUDENTS, method = RequestMethod.GET)
-    public @ResponseBody List<Student> getSupervisedStudents(){
-        logger.info("supervised student list fetching");
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String login = ((User)(authentication.getPrincipal())).getUsername();
-        Curator curator = curatorService.find(login);
-        Long id = curator.getId();
-        logger.info("supervised students are fetch");
-        return curatorService.getSupervised(id);
-    }
-
+	
 	@RequestMapping(value=RestURIConstants.DUMMY_STUDENTARRAY,method=RequestMethod.GET)
 	public @ResponseBody List<Student> getDummyStudentArray(){
 		logger.info("dummy student array sending");

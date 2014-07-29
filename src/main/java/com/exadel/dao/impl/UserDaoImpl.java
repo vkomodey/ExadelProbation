@@ -28,6 +28,7 @@ public class UserDaoImpl extends GenericLivingDaoImpl<com.exadel.model.entity.Us
     }
 
     public com.exadel.model.entity.User find(String login) {
+
         return (com.exadel.model.entity.User) getSessionFactory().getCurrentSession().bySimpleNaturalId(com.exadel.model.entity.User.class).load(login);
     }
 
@@ -35,5 +36,9 @@ public class UserDaoImpl extends GenericLivingDaoImpl<com.exadel.model.entity.Us
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+    public String roleFor(String name){
+        return null;
+    }
 
 }

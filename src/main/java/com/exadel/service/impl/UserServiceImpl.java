@@ -19,10 +19,13 @@ public class UserServiceImpl extends GenericLivingServiceImpl<User> implements U
         return mainDao.loadUserByUsername(login);
     }
 
-
-//    don't use yet
     @Transactional
-    public User getCurrentUser(){
+    public User findByLogin(String name){
+        return mainDao.find(name);
+    }
+
+    public String roleFor(String name){
         return null;
     }
+
 }
