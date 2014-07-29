@@ -185,7 +185,7 @@ public class Feedback {
 	}
 	public FeedbackView toView() {
 		FeedbackView view=new FeedbackView();
-		SimpleDateFormat f=new SimpleDateFormat("DD.MM.YYYY");
+		SimpleDateFormat f=new SimpleDateFormat("dd.MM.YYYY");
 		view.setId(getId());
 		view.setAttitudeToWork(getWorkAttitude());
 		view.setBillable(getBillableNow());
@@ -198,7 +198,7 @@ public class Feedback {
 		view.setStudId(getStudent().getId());
 		view.setWorkInProject(getOnRealProject());
 		view.setProspect(getProjectProspect());
-		view.setDate(f.format(this.getFeedbackDate()));
+		view.setDate(f.format(this.getFeedbackDate().getTime()));
 		return view;
 	}
 }
