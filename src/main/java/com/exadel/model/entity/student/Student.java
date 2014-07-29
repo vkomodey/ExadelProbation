@@ -1,12 +1,5 @@
 package com.exadel.model.entity.student;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.*;
-
 import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.constants.StudentStateEnum;
@@ -14,6 +7,12 @@ import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.User;
 import com.exadel.model.entity.government.Curator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
