@@ -16,17 +16,14 @@ public class LoginController {
         return model;
     }
 
-    @RequestMapping(value = "login/", method = RequestMethod.GET)
-    public ModelAndView FeedbackerRedirect(ModelAndView model){
-        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        model.setViewName("index");
-        return model;
+    @RequestMapping(value = "login/curator", method = RequestMethod.GET)
+    public String CuratorRedirect(){
+        return "redirect:/rest/stud/curator/supervised";
     }
-
-    @RequestMapping(value = "login/superadmin", method = RequestMethod.GET)
-    public ModelAndView DepartmentRedirect(ModelAndView model){
-        model.setViewName("index");
-        return model;
-    }
+//
+//    @RequestMapping(value = "login/superadmin", method = RequestMethod.GET)
+//    public ModelAndView DepartmentRedirect(ModelAndView model){
+//        model.setViewName("index");
+//        return model;
+//    }
 }

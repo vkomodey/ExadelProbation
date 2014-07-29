@@ -1,6 +1,7 @@
 package com.exadel.service.impl;
 
 
+import com.exadel.dao.GenericLivingDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,7 @@ import com.exadel.service.GenericLivingService;
 public abstract class GenericLivingServiceImpl<ENTITY extends IEntity> implements GenericLivingService<ENTITY> {
 	private static Logger logger=LoggerFactory.getLogger(GenericLivingServiceImpl.class); 
 	@Autowired
-    @Qualifier("studentDaoImpl")
-	GenericDao<ENTITY> mainDao;
+    GenericLivingDao<ENTITY> mainDao;
 	@Transactional
 	public ENTITY findById(long id){
 		return mainDao.find(id);

@@ -2,6 +2,7 @@ package com.exadel.dao.impl;
 
 import com.exadel.dao.CuratorDao;
 import com.exadel.model.entity.government.Curator;
+import com.exadel.model.entity.student.Student;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +14,7 @@ public class CuratorDaoImpl extends GenericLivingDaoImpl<Curator> implements Cur
     public Curator find(String login) {
         Session session = getSessionFactory().getCurrentSession();
         Curator cur = (Curator) session.bySimpleNaturalId(Curator.class).load(
-                "login");
+                login);
         return cur;
     }
 
@@ -27,10 +28,8 @@ public class CuratorDaoImpl extends GenericLivingDaoImpl<Curator> implements Cur
         return getSessionFactory().getCurrentSession().createQuery("from Curator ").list();
     }
 
-    public List<Curator> getSupervised(){
-        return null;
+    public List<Student> getSupervised(long CuratorId){
+        return ((Curator)getSessionFactory().getCurrentSession().get(Curator.class,CuratorId)).getStudents();
     }
-
-
 
 }

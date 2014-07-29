@@ -3,7 +3,10 @@ package com.exadel.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.exadel.dao.CuratorDao;
 import com.exadel.dao.StudentDao;
+import com.exadel.dao.impl.CuratorDaoImpl;
+import com.exadel.model.entity.government.Curator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,8 +65,5 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 		return list;
 	}
 
-    @Transactional
-    public List<Student> getSupervised(long curatorId){
-        return ((StudentDao)mainDao).getSupervised(curatorId);
-    }
+
 }

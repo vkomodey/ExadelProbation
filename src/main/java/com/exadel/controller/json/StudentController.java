@@ -1,8 +1,10 @@
 package com.exadel.controller.json;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.exadel.model.entity.government.Curator;
 import com.exadel.service.CuratorService;
 import com.exadel.service.impl.CuratorServiceImpl;
 import org.slf4j.Logger;
@@ -71,7 +73,7 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value=RestURIConstants.GET_ALL_STUDENT,method=RequestMethod.GET)
-	public @ResponseBody List<Student> getAllStudents(){
+	public @ResponseBody List<Student> getAllStudents(Principal principal){
 		logger.info("student list fetching");
 		List<Student> list=service.getAll();
 		logger.info("student list sending");
@@ -83,9 +85,10 @@ public class StudentController {
         logger.info("supervised student list fetching");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String login = ((User)(authentication.getPrincipal())).getUsername();
-        Long id = ((CuratorServiceImpl)curatorService).find(login).getId();
-        List<Student> list = service.getSupervised(id);
-        return null;
+        Curator curator = curatorService.find(login);
+        Long id = curator.getId();
+        logger.info("supervised students are fetch");
+        return curatorService.getSupervised(id);
     }
 	
 	
