@@ -1,14 +1,15 @@
 package com.exadel.service.impl;
 
-import com.exadel.dao.CuratorDao;
-import com.exadel.model.entity.government.Curator;
-import com.exadel.model.entity.student.Student;
-import com.exadel.service.CuratorService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.exadel.dao.CuratorDao;
+import com.exadel.model.entity.government.Curator;
+import com.exadel.model.entity.student.Student;
+import com.exadel.service.CuratorService;
 
 @Service
 public class CuratorServiceImpl extends GenericLivingServiceImpl<Curator> implements CuratorService {

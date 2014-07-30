@@ -3,15 +3,12 @@ package com.exadel.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.exadel.dao.CuratorDao;
-import com.exadel.dao.StudentDao;
-import com.exadel.dao.impl.CuratorDaoImpl;
-import com.exadel.model.entity.government.Curator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.exadel.dao.FeedbackDao;
+import com.exadel.dao.StudentDao;
 import com.exadel.dao.UserDao;
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.government.FeedbackAble;
