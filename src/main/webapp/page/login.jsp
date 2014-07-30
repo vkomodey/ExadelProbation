@@ -13,7 +13,7 @@
     <form action="/do_login" method="post" class="login-popup">
         <p><input type="text" name="j_username" placeholder="Login"></p>
         <p><input type="password" name="j_password" placeholder="Password" ></p>
-        <button type="submit">Sign In</button>
+        <button type="submit" class="modern">Sign In</button>
     </form>
 
 </div>

@@ -10,15 +10,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
-    @RequestMapping(value = "login/admin", method = RequestMethod.GET)
-    public ModelAndView AdminRedirect(ModelAndView model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User)authentication.getPrincipal();
-        System.out.println(user.getPassword());
-        System.out.println(user.getAuthorities());
-        System.out.printf("azazazaa");
-        System.out.println("sssssssss");
+    @RequestMapping(value = "login/superadmin", method = RequestMethod.GET)
+    public ModelAndView JoannaRedirect(ModelAndView model){
         model.setViewName("index");
         return model;
     }
+
+    @RequestMapping(value = "login/curator", method = RequestMethod.GET)
+    public String CuratorRedirect(){
+        return "redirect:/rest/stud/all";
+    }
+//
+//    @RequestMapping(value = "login/superadmin", method = RequestMethod.GET)
+//    public ModelAndView DepartmentRedirect(ModelAndView model){
+//        model.setViewName("index");
+//        return model;
+//    }
 }

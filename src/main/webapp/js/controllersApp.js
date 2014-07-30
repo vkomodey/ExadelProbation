@@ -3,17 +3,25 @@ var studentsControllers = angular.module('studentsControllers',['ngTable']);
 studentsControllers.controller('FeedbacksCtrl', ['$scope', '$routeParams','feedbacksList', function($scope,$routeParams,feedbacksList) {
 
     $scope.reloadList = function (){
+
         $scope.feedbacks = feedbacksList.getFeedbacksList({studId: $routeParams.studId});
     };
     $scope.reloadList();
 }]);
 
-studentsControllers.controller('StudentListCtrl',['$scope','$filter','$routeParams','studentsList', 'ngTableParams',  function( $scope, $filter,$routeParams, studentsList, ngTableParams) {
+studentsControllers.controller('StudentListCtrl',['$scope','$filter','$routeParams','studentsList', 'ngTableParams','$q', function( $scope, $filter,$routeParams, studentsList, ngTableParams, $q) {
 
     $scope.reloadList = function() {
-        $scope.students = studentsList.getStudentsList();
+        var defered = $q.defer();
+        studentsList.getStudentsList(function(data){
+            $scope.students = data;}
+        );
+        defered.resolve($scope.students);
     }
     $scope.reloadList();
+   // var defered = $q.defer();
+   // defered.resolve($scope.students);
+    /*$scope.students = students;
         $scope.tableParams = new ngTableParams({
             page: 1,            // show first page
             count: $scope.students.length,          // count per page
@@ -26,11 +34,12 @@ studentsControllers.controller('StudentListCtrl',['$scope','$filter','$routePara
             }
         }, {
             total: $scope.students.length, // length of data
-            getData: function($defer, params) {
+            getData: function ($defer, params) {
+                $scope.reloadList()
                 var data = $scope.students;
                 $defer.resolve(data.slice());
-            },  $scope: { students: {} }
-        });
+            }, $scope: { students: {} }
+        });*/
 }]);
 
 studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function($scope,$http){
