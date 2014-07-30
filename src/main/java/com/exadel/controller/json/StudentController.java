@@ -1,28 +1,20 @@
 package com.exadel.controller.json;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import com.exadel.service.CuratorService;
-import com.exadel.service.UserService;
-import com.exadel.service.impl.CuratorServiceImpl;
+import com.exadel.model.entity.view.StudentView;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.constants.SpringSecurityRole;
@@ -36,7 +28,9 @@ import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.student.StudentExams;
 import com.exadel.model.entity.student.Study;
 import com.exadel.model.entity.student.Technology;
+import com.exadel.service.CuratorService;
 import com.exadel.service.StudentService;
+import com.exadel.service.UserService;
 
 @Controller
 public class StudentController {
@@ -84,7 +78,8 @@ public class StudentController {
 	public @ResponseBody List<Student> getAllStudents(Principal user){
 		logger.info("student list fetching");
 		List<Student> list;
-        List<SimpleGrantedAuthority> authorities = (List<SimpleGrantedAuthority>)SecurityContextHolder
+        @SuppressWarnings("unchecked")
+		List<SimpleGrantedAuthority> authorities = (List<SimpleGrantedAuthority>)SecurityContextHolder
                 .getContext()
                 .getAuthentication()
                 .getAuthorities();
@@ -115,5 +110,26 @@ public class StudentController {
 		for(int i=0;i<5;i++)
 			ar.add(buildDummy());
 		return ar;
+	}
+
+    @RequestMapping(value = RestURIConstants.EDIT_STUDENT_INFO, method = RequestMethod.POST)
+    public @ResponseBody void editStudentInfo(@RequestBody String str, @PathVariable("id") Long id) {
+        logger.info("Start editing student info.");
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            StudentView view =  mapper.readValue(str,StudentView.class);
+            service.modify(view,id);
+            logger.info("edited"+id);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+	@RequestMapping(value=RestURIConstants.GET_ME,method=RequestMethod.GET)
+	public @ResponseBody Student getMe(Principal user){
+		logger.info("real student fetching");
+		Student student=service.findByLogin(user.getName());
+		logger.info("real student sending");
+		return student;
 	}
 }

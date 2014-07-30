@@ -10,6 +10,9 @@ import com.exadel.dao.UserDao;
 import com.exadel.model.entity.User;
 import com.exadel.service.UserService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserServiceImpl extends GenericLivingServiceImpl<User> implements UserService {
 	@Autowired
@@ -24,8 +27,8 @@ public class UserServiceImpl extends GenericLivingServiceImpl<User> implements U
         return mainDao.find(name);
     }
 
-    public String roleFor(String name){
-        return null;
+    @Transactional
+    public List<User> getAllEmployees(){
+        return mainDao.getAllEmployees();
     }
-
 }

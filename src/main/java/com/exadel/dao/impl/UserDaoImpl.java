@@ -3,6 +3,9 @@ package com.exadel.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.exadel.model.entity.Feedback;
+import com.exadel.model.entity.government.Curator;
+import com.exadel.model.entity.government.Feedbacker;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -37,8 +40,22 @@ public class UserDaoImpl extends GenericLivingDaoImpl<com.exadel.model.entity.Us
 		return null;
 	}
 
-    public String roleFor(String name){
-        return null;
+    public List<User> getAllEmployees(){
+        List<User> employees = new ArrayList<User>();
+        List<Curator> curators = getSessionFactory().getCurrentSession().createQuery("from Curator ").list();
+//        for(Curator curator:curators){
+//            for(Feedback feedback: curator.getFeedback()){
+//                feedback.getBillableNow();
+//            }
+//            curator.getRole();
+//        }
+        List<Feedbacker> feedbackers = getSessionFactory().getCurrentSession().createQuery("from Feedbacker").list();
+//        for(Feedbacker feedbacker:feedbackers){
+//            feedbacker.getRole();
+//        }
+        employees.addAll(curators);
+        employees.addAll(employees.size(), feedbackers);
+        return employees;
     }
 
 }

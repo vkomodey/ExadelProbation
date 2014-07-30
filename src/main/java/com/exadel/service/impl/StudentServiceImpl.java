@@ -3,20 +3,18 @@ package com.exadel.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.exadel.dao.CuratorDao;
-import com.exadel.dao.StudentDao;
-import com.exadel.dao.impl.CuratorDaoImpl;
-import com.exadel.model.entity.government.Curator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.exadel.dao.FeedbackDao;
+import com.exadel.dao.StudentDao;
 import com.exadel.dao.UserDao;
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.government.FeedbackAble;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.view.FeedbackView;
+import com.exadel.model.entity.view.StudentView;
 import com.exadel.service.StudentService;
 @Service
 public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implements StudentService{
@@ -26,7 +24,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 	FeedbackDao feedbackDao;
     @Autowired
     StudentDao studentDao;
-	//wake up all students, they so laaaazy. denis - stekolshik
+	//wake up all students, they so laaaazy. denis - glazier
 	private void lazyTouch(Student student){
 		student.getStudy().getExams().size();
 		student.getSkillSet().size();
@@ -85,6 +83,21 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
         }
         return list;
     }
+    @Transactional
+	public void modify(StudentView view,long id) {
+		Student stud=mainDao.find(id);
+		stud.setFirstName(view.getFirstName());
+		stud.setSecondName(view.getSecondName());
+		stud.setSurname(view.getSurname());
+		
+		stud.setEmail(view.getEmail());
+		stud.setPhone(view.getPhone());
+		stud.setSkype(view.getSkype());
+		
+		stud.setEnglish(view.getEnglishLevel());
+		stud.setSkillSet(view.getSkillSet());
+		stud.setStudy(view.getStudy());
+	}
 
 
 }
