@@ -1,12 +1,13 @@
 package com.exadel.dao.impl;
 
-import com.exadel.dao.CuratorDao;
-import com.exadel.model.entity.government.Curator;
-import com.exadel.model.entity.student.Student;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.exadel.dao.CuratorDao;
+import com.exadel.model.entity.government.Curator;
+import com.exadel.model.entity.student.Student;
 
 @Repository
 public class CuratorDaoImpl extends GenericLivingDaoImpl<Curator> implements CuratorDao{

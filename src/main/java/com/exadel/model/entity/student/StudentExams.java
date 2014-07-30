@@ -38,7 +38,7 @@ public class StudentExams implements Serializable {
 	@JsonIgnore
 	@NaturalId
 	@ManyToOne
-	@JoinColumn(name="stud_id")
+    @JoinColumn(name = "student_fk", referencedColumnName = "id")
 	public Student getStudent() {
 		return student;
 	}
