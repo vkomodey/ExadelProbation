@@ -6,11 +6,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.exadel.model.entity.User;
 
+import java.util.List;
+
 public interface UserService extends UserDetailsService,GenericLivingService<User> {
 
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 
-	String roleFor(String name);
+	User findByLogin(String name);
 
-	
+    List<User> getAllEmployees();
 }
