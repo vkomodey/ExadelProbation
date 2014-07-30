@@ -1,6 +1,7 @@
 package com.exadel.model.entity.view;
 
 
+import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.entity.student.Skill;
 
 import java.util.Set;
@@ -17,7 +18,7 @@ public class StudentView {
     private String faculty;
     private String specialty;
     private String course_group;
-    private String englishLevel;
+    private EnglishEnum englishLevel;
     private Set<Skill> skillSet;
     private int graduate_year;
     private double grade;
@@ -104,11 +105,11 @@ public class StudentView {
         this.course_group = course_group;
     }
 
-    public String getEnglishLevel() {
+    public EnglishEnum getEnglishLevel() {
         return englishLevel;
     }
 
-    public void setEnglishLevel(String englishLevel) {
+    public void setEnglishLevel(EnglishEnum englishLevel) {
         this.englishLevel = englishLevel;
     }
 
