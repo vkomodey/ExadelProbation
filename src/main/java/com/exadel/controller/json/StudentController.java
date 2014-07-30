@@ -2,22 +2,13 @@ package com.exadel.controller.json;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-
-import com.exadel.service.CuratorService;
-import com.exadel.service.UserService;
-import com.exadel.service.impl.CuratorServiceImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +27,9 @@ import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.student.StudentExams;
 import com.exadel.model.entity.student.Study;
 import com.exadel.model.entity.student.Technology;
+import com.exadel.service.CuratorService;
 import com.exadel.service.StudentService;
+import com.exadel.service.UserService;
 
 @Controller
 public class StudentController {

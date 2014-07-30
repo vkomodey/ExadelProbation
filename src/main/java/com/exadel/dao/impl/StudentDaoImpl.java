@@ -27,7 +27,7 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 	public List<Student> getAll() {
 		return getSessionFactory().getCurrentSession().createQuery("from Student").list();
 	}
-
+	@SuppressWarnings("unchecked")
     public List<Student> getSupervised(long id){
         return getSessionFactory().getCurrentSession().createQuery("from Student where curator.id=:id").setLong("id", id).list();
     }

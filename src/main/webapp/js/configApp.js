@@ -1,14 +1,20 @@
 var studentsApp = angular.module('studentsApp',['ngRoute', 'studentsControllers', 'studentsServices']);
 
-        studentsApp.config(['$routeProvider', function($routeProvider){
+        studentsApp.config(['$routeProvider', '$locationProvider', function($routeProvider,$locationProvider){
         $routeProvider.
             when('/studentList', {
                 templateUrl: '/page/partials/students-list.html',
-                controller: 'StudentListCtrl'
+                controller: "StudentListCtrl",
+                resolve: {
+                    students: StudentListCtrl.students
+                }
             }).
             when('/studentList/:studId', {
                 templateUrl: '/page/partials/feedbacks-list.html',
-                conroller: 'FeedbacksCtrl'
+                controller: "FeedbacksCtrl",
+                resolve: {
+                    feedbacks: FeedbacksCtrl.feedbacks
+                }
             }).
             otherwise({
                 redirectTo: '/studentList'

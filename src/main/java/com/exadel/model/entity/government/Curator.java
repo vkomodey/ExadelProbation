@@ -1,5 +1,7 @@
 package com.exadel.model.entity.government;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
@@ -8,8 +10,6 @@ import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.entity.student.Student;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import java.util.List;
 
 @Entity
 public class Curator extends FeedbackAble {

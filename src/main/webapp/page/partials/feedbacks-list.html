@@ -1,6 +1,8 @@
-<div ng-controller="FeedbacksCtrl">
-    <div ng-controller="AddFeedbackCtrl">
-        <div class="content" ng-init="PopupCssClass = 'popup-hide' ">
+<!--<div ng-controller="FeedbacksCtrl">-->
+  <!-- <div ng-controller="AddFeedbackCtrl"> -->
+        <div class="content">
+
+        <div ng-controller="AddFeedbackCtrl" ng-init="PopupCssClass = 'popup-hide' ">
             <button ng-click="PopupCssClass = 'popup-show' " class="modern">Add feedback</button>
             <div ng-class="PopupCssClass"> <!--модальное окно -->
                 <h2>Add feedback</h2> <!-- заголовок мо -->
@@ -57,13 +59,15 @@
                         <p>Something else at your discretion
                             <input type="text" name="other" ng-model="other"></p>
                         <div class="buttons">
-                        <button type="submit" ng-click="addFeedback()" ng-disabled="feedbackForm.$invalid" class="modern socle">Save</button>
+                        <button type="submit" ng-click="addFeedback()" class="modern">Save</button>
 
-                        <button ng-click="PopupCssClass = 'popup-hide'" class="modern socle">Cancel</button>
+                        <button ng-click="PopupCssClass = 'popup-hide'" class="modern">Cancel</button>
                         </div>
                     </form>
                 </fildset>
             </div>
+             </div>
+
             <button ng-click="reloadList()" class="modern">reload</button>
             <input type="text" ng-model="search.feedbacker" placeholder="Search" class="toRight">
             <table ng-table="tableParams" class="table">
@@ -83,5 +87,5 @@
                 </tr>
             </table>
         </div>
-    </div>
- </div>
+    <!--</div>-->
+ <!--</div>-->
