@@ -35,8 +35,7 @@ public class Study {
 	    return course_group;
 	}
 
-    @OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
-    @JoinColumn(name="student_fk")
+    @OneToMany(cascade=CascadeType.ALL,orphanRemoval=true,mappedBy = "student")
     public List<StudentExams> getExams() {
 		return exams;
 	}
