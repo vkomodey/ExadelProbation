@@ -88,6 +88,7 @@
     }*/
    // display: block;
     //display: block;
+    background: white;
     border: none;
     border-radius: 20px;
     padding: 5px 8px;
@@ -216,9 +217,9 @@ body{
   color: #ffffff;
 
   > .nav-menu {
-    font-size: 18px;
-    font-weight: 600;
-    font-family: "Times new roman";
+    font-size: 17px;
+    font-weight: bold;
+    //font-family: "Times new roman";
     background: url("../img/mooning.png");
 
    // background: -webkit-linear-gradient(top, #393939 0%, #292829 100%);
@@ -244,10 +245,10 @@ body{
       padding: 0;
       line-height: 25px;
       #btn{
-        font-size: 18px;
-        font-weight: 600;
+        font-size: 17px;
+        font-weight: bold;
         z-index: 0;
-        font-family: "Times new roman";
+        //font-family: "Times new roman";
         //background: #292829;
         //color: #ffffff;
         background: url("../img/mooning.png");
