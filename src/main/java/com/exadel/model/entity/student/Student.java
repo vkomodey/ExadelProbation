@@ -30,7 +30,7 @@ public class Student extends User {
     private String email;
     private String skype;
     private String phone;
-    @JsonBackReference
+
     private Curator curator;
 
     public Student() {
@@ -39,6 +39,7 @@ public class Student extends User {
 		this.setFeedback(new ArrayList<Feedback>());
 		this.setStudy(new Study());
 	}
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "curator", referencedColumnName = "id")
     public Curator getCurator() {
