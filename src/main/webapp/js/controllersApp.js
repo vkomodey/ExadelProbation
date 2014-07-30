@@ -1,27 +1,32 @@
 var studentsControllers = angular.module('studentsControllers',['ngTable']);
 
-studentsControllers.controller('FeedbacksCtrl', ['$scope', '$routeParams','feedbacksList', function($scope,$routeParams,feedbacksList) {
+var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', ['$scope', '$routeParams','feedbacksList','feedbacks','$q', function($scope,$routeParams,feedbacksList,feedbacks,$q) {
 
     $scope.reloadList = function (){
-
-        $scope.feedbacks = feedbacksList.getFeedbacksList({studId: $routeParams.studId});
+        var deferred = $q.defer();
+        feedbacksList.getFeedbacksList({studId: $routeParams.studId},function(data) {
+            $scope.feedbacks = data;
+        });
+        deferred.resolve($scope.feedbacks);
     };
-    $scope.reloadList();
-}]);
+   // $scope.reloadList();
+    $scope.feedbacks = feedbacks;
 
-studentsControllers.controller('StudentListCtrl',['$scope','$filter','$routeParams','studentsList', 'ngTableParams','$q', function( $scope, $filter,$routeParams, studentsList, ngTableParams, $q) {
+}]);
+var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',['$scope','$filter','$routeParams','studentsList', 'ngTableParams','$q','students', function( $scope, $filter,$routeParams, studentsList, ngTableParams, $q,students) {
 
     $scope.reloadList = function() {
-        var defered = $q.defer();
+        var deferred = $q.defer();
         studentsList.getStudentsList(function(data){
             $scope.students = data;}
         );
-        defered.resolve($scope.students);
+        deferred.resolve($scope.students);
     }
-    $scope.reloadList();
+    //$scope.reloadList();
+    $scope.students = students;
    // var defered = $q.defer();
    // defered.resolve($scope.students);
-    /*$scope.students = students;
+    //$scope.students = students;
         $scope.tableParams = new ngTableParams({
             page: 1,            // show first page
             count: $scope.students.length,          // count per page
@@ -39,7 +44,7 @@ studentsControllers.controller('StudentListCtrl',['$scope','$filter','$routePara
                 var data = $scope.students;
                 $defer.resolve(data.slice());
             }, $scope: { students: {} }
-        });*/
+        });
 }]);
 
 studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function($scope,$http){
@@ -92,3 +97,19 @@ studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routePar
             });
     };
 }])
+
+StudentListCtrl.students =
+    function(studentsList,$q) {
+    var deferred = $q.defer();
+    studentsList.getStudentsList(function(data){
+            deferred.resolve(data);}
+    );
+    return deferred.promise;
+}
+FeedbacksCtrl.feedbacks = function(feedbacksList,$q,$route) {
+    var deferred = $q.defer();
+    feedbacksList.getFeedbacksList({studId: $route.current.params.studId},function(data){
+            deferred.resolve(data);}
+    );
+    return deferred.promise;
+}
