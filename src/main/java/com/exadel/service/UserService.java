@@ -12,5 +12,5 @@ public interface UserService extends UserDetailsService,GenericLivingService<Use
 
 	String roleFor(String name);
 
-	User findByLogin(String name);
+	
 }

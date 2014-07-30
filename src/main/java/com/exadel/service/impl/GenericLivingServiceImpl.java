@@ -20,6 +20,10 @@ public abstract class GenericLivingServiceImpl<ENTITY extends IEntity> implement
 		return mainDao.find(id);
 	}
 	@Transactional
+	public ENTITY findByLogin(String name){
+		return mainDao.find(name);
+	}
+	@Transactional
 	public void save(ENTITY entity){
 		logger.info("service "+this.getClass()+" entity save");
 		mainDao.save(entity);
