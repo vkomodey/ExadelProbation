@@ -122,4 +122,12 @@ public class StudentController {
             e.printStackTrace();
         }
     }
+    
+	@RequestMapping(value=RestURIConstants.GET_ME,method=RequestMethod.GET)
+	public @ResponseBody Student getMe(Principal user){
+		logger.info("real student fetching");
+		Student student=service.findByLogin(user.getName());
+		logger.info("real student sending");
+		return student;
+	}
 }
