@@ -16,6 +16,13 @@ var studentsApp = angular.module('studentsApp',['ngRoute', 'studentsControllers'
                     feedbacks: FeedbacksCtrl.feedbacks
                 }
             }).
+            when('/employeeList', {
+                templateUrl: '/page/partials/employee-list.html',
+                controller: "EmployeeListCtrl",
+                resolve: {
+                    employees: EmployeeListCtrl.employees
+                }
+            }).
             otherwise({
                 redirectTo: '/studentList'
             });

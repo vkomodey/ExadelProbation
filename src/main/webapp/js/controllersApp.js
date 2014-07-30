@@ -31,11 +31,11 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',['$scope
             page: 1,            // show first page
             count: $scope.students.length,          // count per page
             filter: {
-                fio: ''     // initial filter
+                surname: ''     // initial filter
 
             },
             sorting: {
-                fio: 'asc'     // initial sorting
+                surname: 'asc'     // initial sorting
             }
         }, {
             total: $scope.students.length, // length of data
@@ -109,6 +109,27 @@ StudentListCtrl.students =
 FeedbacksCtrl.feedbacks = function(feedbacksList,$q,$route) {
     var deferred = $q.defer();
     feedbacksList.getFeedbacksList({studId: $route.current.params.studId},function(data){
+            deferred.resolve(data);}
+    );
+    return deferred.promise;
+}
+
+var EmployeeListCtrl = studentsControllers.controller('EmployeeListCtrl', ['$scope', '$routeParams','employeesList','employees','$q', function($scope,$routeParams,employeesList,employees,$q) {
+
+    $scope.reloadList = function (){
+        var deferred = $q.defer();
+        employeesList.getEmployeeList({employeeId: $routeParams.employeeId},function(data) {
+            $scope.employees = data;
+        });
+        deferred.resolve($scope.employees);
+    };
+    // $scope.reloadList();
+    $scope.employees = employees;
+
+}]);
+EmployeeListCtrl.employees = function(employeesList,$q,$route) {
+    var deferred = $q.defer();
+    employeesList.getEmployeeList({employeeId: $route.current.params.employeeId},function(data){
             deferred.resolve(data);}
     );
     return deferred.promise;
