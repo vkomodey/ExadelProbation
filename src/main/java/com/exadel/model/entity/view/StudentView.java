@@ -3,7 +3,9 @@ package com.exadel.model.entity.view;
 
 import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.entity.student.Skill;
+import com.exadel.model.entity.student.StudentExams;
 
+import java.util.List;
 import java.util.Set;
 
 public class StudentView {
@@ -20,10 +22,15 @@ public class StudentView {
     private String course_group;
     private EnglishEnum englishLevel;
     private Set<Skill> skillSet;
-    private int graduate_year;
-    private double grade;
-    private Boolean summer;
-    private Integer course;
+    private List<StudentExams> exams;
+
+    public List<StudentExams> getExams() {
+        return exams;
+    }
+
+    public void setExams(List<StudentExams> exams) {
+        this.exams = exams;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -111,38 +118,6 @@ public class StudentView {
 
     public void setEnglishLevel(EnglishEnum englishLevel) {
         this.englishLevel = englishLevel;
-    }
-
-    public int getGraduate_year() {
-        return graduate_year;
-    }
-
-    public void setGraduate_year(int graduate_year) {
-        this.graduate_year = graduate_year;
-    }
-
-    public double getGrade() {
-        return grade;
-    }
-
-    public void setGrade(double grade) {
-        this.grade = grade;
-    }
-
-    public Boolean getSummer() {
-        return summer;
-    }
-
-    public void setSummer(Boolean summer) {
-        this.summer = summer;
-    }
-
-    public Integer getCourse() {
-        return course;
-    }
-
-    public void setCourse(Integer course) {
-        this.course = course;
     }
 
     public Set<Skill> getSkillSet() {
