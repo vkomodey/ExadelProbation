@@ -18,7 +18,7 @@ public class StudentView {
     private String specialty;
     private String course_group;
     private String englishLevel;
-    private Set<String> skillSet;
+    private Set<Skill> skillSet;
     private int graduate_year;
     private double grade;
     private Boolean summer;
@@ -144,11 +144,11 @@ public class StudentView {
         this.course = course;
     }
 
-    public Set<String> getSkillSet() {
+    public Set<Skill> getSkillSet() {
         return skillSet;
     }
 
-    public void setSkillSet(Set<String> skillSet) {
+    public void setSkillSet(Set<Skill> skillSet) {
         this.skillSet = skillSet;
     }
 
