@@ -3,9 +3,8 @@ package com.exadel.model.entity.view;
 
 import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.entity.student.Skill;
-import com.exadel.model.entity.student.StudentExams;
+import com.exadel.model.entity.student.Study;
 
-import java.util.List;
 import java.util.Set;
 
 public class StudentView {
@@ -16,21 +15,9 @@ public class StudentView {
     private String email;
     private String skype;
     private String phone;
-    private String university;
-    private String faculty;
-    private String specialty;
-    private String course_group;
     private EnglishEnum englishLevel;
     private Set<Skill> skillSet;
-    private List<StudentExams> exams;
-
-    public List<StudentExams> getExams() {
-        return exams;
-    }
-
-    public void setExams(List<StudentExams> exams) {
-        this.exams = exams;
-    }
+    private Study study;
 
     public String getFirstName() {
         return firstName;
@@ -80,36 +67,12 @@ public class StudentView {
         this.phone = phone;
     }
 
-    public String getUniversity() {
-        return university;
+    public Study getStudy() {
+        return study;
     }
 
-    public void setUniversity(String university) {
-        this.university = university;
-    }
-
-    public String getFaculty() {
-        return faculty;
-    }
-
-    public void setFaculty(String faculty) {
-        this.faculty = faculty;
-    }
-
-    public String getSpecialty() {
-        return specialty;
-    }
-
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
-    }
-
-    public String getCourse_group() {
-        return course_group;
-    }
-
-    public void setCourse_group(String course_group) {
-        this.course_group = course_group;
+    public void setStudy(Study study) {
+        this.study = study;
     }
 
     public EnglishEnum getEnglishLevel() {
