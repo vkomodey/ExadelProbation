@@ -92,12 +92,13 @@
                 <input type="number" ng-model="graduate_year"/></p>
             <p>University
                 <input type="text" ng-model="university"/></p>
-            <p>Phone
+            <p>Faculty
                 <input type="text" ng-model="faculty"/></p>
-            <p>Phone
+            <p>Specialty
                 <input type="text" ng-model="specialty"/></p>
-            <p>Phone
+            <p>Course/group
                 <input type="text" ng-model="course_group"/></p>
+            <table ng-table="table"></table>
             <button ng-click="reloadList()" class="modern">reload</button>
             <input type="text" ng-model="search.feedbacker" placeholder="Search" class="toRight">
             <table ng-table="tableParams" class="table">
