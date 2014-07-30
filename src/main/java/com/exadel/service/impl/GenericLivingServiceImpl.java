@@ -29,4 +29,5 @@ public abstract class GenericLivingServiceImpl<ENTITY extends IEntity> implement
 		mainDao.save(entity);
 		logger.info("service "+this.getClass()+" entity save done");
 	}
+
 }
