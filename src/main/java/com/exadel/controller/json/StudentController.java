@@ -1,19 +1,19 @@
 package com.exadel.controller.json;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.exadel.model.entity.view.StudentView;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.constants.SpringSecurityRole;
@@ -109,4 +109,17 @@ public class StudentController {
 			ar.add(buildDummy());
 		return ar;
 	}
+
+    @RequestMapping(value = RestURIConstants.EDIT_STUDENT_INFO, method = RequestMethod.POST)
+    public @ResponseBody void editStudentInfo(@RequestBody String str, @PathVariable("id") Long id) {
+        logger.info("Start editing student info.");
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            StudentView view =  mapper.readValue(str,StudentView.class);
+            service.modify(view,id);
+            logger.info("edited"+id);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
