@@ -83,7 +83,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
         }
         return list;
     }
-
+    @Transactional
 	public void modify(StudentView view,long id) {
 		Student stud=mainDao.find(id);
 		stud.setFirstName(view.getFirstName());
