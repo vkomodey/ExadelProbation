@@ -3,11 +3,9 @@ package com.exadel.service.impl;
 import com.exadel.dao.StudentDao;
 import com.exadel.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.exadel.dao.GenericLivingDao;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.entity.User;
 import com.exadel.model.entity.government.Curator;

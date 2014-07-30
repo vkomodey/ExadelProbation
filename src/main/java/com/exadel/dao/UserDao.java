@@ -8,5 +8,5 @@ import com.exadel.model.entity.User;
 public interface UserDao extends GenericLivingDao<User> {
     UserDetails loadUserByUsername(String login) throws UsernameNotFoundException;
 
-	
+    public String roleFor(String name);
 }

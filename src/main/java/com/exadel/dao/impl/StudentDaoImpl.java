@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.exadel.dao.StudentDao;
 import com.exadel.model.entity.student.Student;
 
-@Repository
+@Repository(value = "studentDaoImpl")
 public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 		StudentDao {
 	public Student find(long id) {
@@ -27,4 +27,8 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 	public List<Student> getAll() {
 		return getSessionFactory().getCurrentSession().createQuery("from Student").list();
 	}
+
+    public List<Student> getSupervised(long id){
+        return getSessionFactory().getCurrentSession().createQuery("from Student where curator.id=:id").setLong("id", id).list();
+    }
 }

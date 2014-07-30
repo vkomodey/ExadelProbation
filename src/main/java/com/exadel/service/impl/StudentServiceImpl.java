@@ -3,6 +3,10 @@ package com.exadel.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.exadel.dao.CuratorDao;
+import com.exadel.dao.StudentDao;
+import com.exadel.dao.impl.CuratorDaoImpl;
+import com.exadel.model.entity.government.Curator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +24,9 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 	UserDao userDao;
 	@Autowired
 	FeedbackDao feedbackDao;
-	
+    @Autowired
+    StudentDao studentDao;
+	//wake up all students, they so laaaazy. denis - stekolshik
 	private void lazyTouch(Student student){
 		student.getStudy().getExams().size();
 		student.getSkillSet().size();
@@ -55,9 +61,30 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 	@Transactional
 	public List<Student> getAll() {
 		List<Student> list= mainDao.getAll();
-		for(Student s:list){
-			lazyTouch(s);
-		}
+
+        //have some....lazy
+        for(Student s : list){
+            lazyTouch(s);
+            if(s.getCurator() != null) {
+                for (Feedback feedback : s.getCurator().getFeedback()) {
+                    feedback.getBillableNow();
+                }
+            }
+        }
 		return list;
 	}
+
+    @Transactional
+    public List<Student> getSupervised(long curatorId){
+        List<Student> list = studentDao.getSupervised(curatorId);
+        for(Student s : list){
+            lazyTouch(s);
+            for(Feedback feedback: s.getCurator().getFeedback()){
+                feedback.getBillableNow();
+            }
+        }
+        return list;
+    }
+
+
 }

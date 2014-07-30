@@ -7,6 +7,7 @@ import javax.persistence.Transient;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.entity.student.Student;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Curator extends FeedbackAble {
 		return SpringSecurityRole.CURATOR;
 	}
 
+    @JsonManagedReference
     private List<Student> students;
 
     @OneToMany(mappedBy = "curator")
