@@ -24,7 +24,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 	FeedbackDao feedbackDao;
     @Autowired
     StudentDao studentDao;
-	//wake up all students, they so laaaazy. denis - glazier
+	//wake up all students, they so laaaazy. denis - glazier//
 	private void lazyTouch(Student student){
 		student.getStudy().getExams().size();
 		student.getSkillSet().size();
