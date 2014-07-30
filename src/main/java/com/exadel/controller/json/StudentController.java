@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.exadel.model.entity.view.StudentView;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +78,8 @@ public class StudentController {
 	public @ResponseBody List<Student> getAllStudents(Principal user){
 		logger.info("student list fetching");
 		List<Student> list;
-        List<SimpleGrantedAuthority> authorities = (List<SimpleGrantedAuthority>)SecurityContextHolder
+        @SuppressWarnings("unchecked")
+		List<SimpleGrantedAuthority> authorities = (List<SimpleGrantedAuthority>)SecurityContextHolder
                 .getContext()
                 .getAuthentication()
                 .getAuthorities();
