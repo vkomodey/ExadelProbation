@@ -20,22 +20,22 @@ var ctrlForStudent = studentsControllers.controller('ctrlForStudent',['$scope','
     }
     getStudentInfo();
     getSkillSet();
-    $scope.addExam = function(){
-        $scope.studentInfo.study.exams.push( {
+    $scope.addExam = function() {
+        $scope.studentInfo.study.exams.push({
             grade: null,
             summer: true,
             course: null
         });
+    };
     $scope.sendStudentInfo = function() {
-            $http.post('',$scope.studentInfo)
+            $http.post('/rest/stud/'+$scope.studentInfo.id+'/edit',$scope.studentInfo)
                 .success(function(){
                 alert('the info is sent');
             })
                 .error(function(data){
                     alert('Error: '+data)
                 });
-        }
-    };
+     };
     $scope.addSkill = function() {
         $scope.studentInfo.skillSet.push( {
             level: null,
@@ -49,4 +49,4 @@ var ctrlForStudent = studentsControllers.controller('ctrlForStudent',['$scope','
     $scope.deleteExam = function(index) {
         $scope.studentInfo.study.exams.splice(index,1);
     };
-}])
+}]);
