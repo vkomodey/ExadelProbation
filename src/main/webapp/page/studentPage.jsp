@@ -40,35 +40,36 @@
     </div>
 </div>
 <div class="content student-info-content">
+    <form name="studentForm">
     <div ng-controller="ctrlForStudent">
         <table class="student-info-table">
             <tr>
                 <td>First Name</td>
-                <td><input type="text" ng-model="studentInfo.firstName"/></td>
+                <td><input type="text" ng-model="studentInfo.firstName" ng-pattern="/^[a-zA-Z]+$/" required/></td>
             </tr>
             <tr>
                 <td>Second Name</td>
-                <td><input type="text" ng-model="studentInfo.secondName"/></td>
+                <td><input type="text" ng-model="studentInfo.secondName" ng-pattern="/^[a-zA-Z]+$/" required/></td>
             </tr>
             <tr>
                 <td>Surname</td>
-                <td><input type="text" ng-model="studentInfo.surname"/></td>
+                <td><input type="text" ng-model="studentInfo.surname" ng-pattern="/^[a-zA-Z]+$/" required/></td>
             </tr>
             <tr>
                 <td>Email</td>
-                <td><input type="text" ng-model="studentInfo.email"/></td>
+                <td><input type="email" ng-model="studentInfo.email" ng-pattern="/^([^\@]+)\@([^\.]+)\.([a-zA-Z]+)$/" required/></td>
             </tr>
             <tr>
                 <td>Skype</td>
-                <td><input type="text" ng-model="studentInfo.skype"/></td>
+                <td><input type="text" ng-model="studentInfo.skype" ng-pattern="/^.+$/" required/></td>
             </tr>
             <tr>
                 <td>Phone</td>
-                <td><input type="text" ng-model="studentInfo.phone"/></td>
+                <td><input type="text" name="phone" ng-model="studentInfo.phone" ng-pattern="/^[0-9]+$/" required/>
             </tr>
             <tr>
                 <td>English level</td>
-                <td><select ng-model="studentInfo.englishLevel">
+                <td><select ng-model="studentInfo.englishLevel" required>
                     <option ng-value="beginner">Begginer</option>
                     <option ng-value="elementary">Elementary</option>
                     <option ng-value="preintermediate">Pre-Intermediate</option>
@@ -79,23 +80,24 @@
             </tr>
             <tr>
                 <td>Graduate year</td>
-                <td><input type="number" ng-model="studentInfo.study.graduate_year"/></td>
+                <td><input type="number" name="graduate_year" ng-model="studentInfo.study.graduate_year" min="1990" ng-pattern="/^[0-9]{4}$/" required/>
+                </td>
             </tr>
             <tr>
                 <td>University</td>
-                <td><input type="text" ng-model="studentInfo.study.university"/></td>
+                <td><input type="text" ng-model="studentInfo.study.university" required/></td>
             </tr>
             <tr>
                 <td>Faculty</td>
-                <td><input type="text" ng-model="studentInfo.study.faculty"/></td>
+                <td><input type="text" ng-model="studentInfo.study.faculty" required/></td>
             </tr>
             <tr>
                 <td>Specialty</td>
-                <td><input type="text" ng-model="studentInfo.study.specialty"/></td>
+                <td><input type="text" ng-model="studentInfo.study.specialty" required/></td>
             </tr>
             <tr>
                 <td>Course/group</td>
-                <td><input type="text" ng-model="studentInfo.study.course_group"/></td>
+                <td><input type="text" ng-model="studentInfo.study.course_group" ng-pattern="/^[0-9]/([0-9a-zA-Z]+)$/" required/></td>
             </tr>
             <tr>
                 <td>Skills</td>
@@ -103,14 +105,14 @@
                     <table ng-table="skillsParams" class="table exams-table">
                         <tr class="table" ng-repeat="skill in studentInfo.skillSet track by $index">
                             <td data-title="'Skill name'">
-                                <select ng-model="studentInfo.skillSet[$index].type">
+                                <select ng-model="studentInfo.skillSet[$index].type" required>
                                     <option ng-repeat="skillType in skillTypes" ng-value="skillType">
                                         {{skillType.name}}
                                     </option>
                                 </select>
                             </td>
                             <td data-title="'Skill level'"><input type="text"
-                                                                  ng-model="studentInfo.skillSet[$index].level"/></td>
+                                                                  ng-model="studentInfo.skillSet[$index].level" required/></td>
                             <td data-title="">
                                 <button ng-click="deleteSkill($index)" class="modern">X</button>
                             </td>
@@ -124,8 +126,9 @@
                 <td>
                     <table ng-table="examsParams" class="table exams-table">
                         <tr class="table" ng-repeat="exam in studentInfo.study.exams track by $index">
-                            <td data-title="'GRADE'"><input type="number"
-                                                            ng-model="studentInfo.study.exams[$index].grade"/></td>
+                            <td data-title="'GRADE'"><input type="text" name="grade{{$index}}"
+                                                            ng-model="studentInfo.study.exams[$index].grade" ng-pattern="/^(10|[0-9]|([0-9][.][0-9]))$/"required/>
+                            </td>
                             <td data-title="'Summer/winter'">
                                 <input type="radio" ng-model="studentInfo.study.exams[$index].summer"
                                        ng-value="true"
@@ -136,8 +139,8 @@
                                        id="r{{$index*2+1}}">
                                 <label for="r{{$index*2+1}}">Winter</label>
                             </td>
-                            <td data-title="'Course'"><input type="number"
-                                                             ng-model="studentInfo.study.exams[$index].course"/></td>
+                            <td data-title="'Course'"><input type="text" name="course{{$index}}"
+                                                             ng-model="studentInfo.study.exams[$index].course" ng-pattern="/^([0-9])$/"required/>
                             <td data-title="">
                                 <button ng-click="deleteExam($index)" class="modern">X</button>
                             </td>
@@ -146,9 +149,12 @@
                     <button ng-click="addExam()" class="modern" class="add-field">+</button>
                 </td>
             </tr>
+            <tr>
+                <td></td>
+                <td><button ng-click="sendStudentInfo()" ng-disabled="studentForm.$invalid" class="modern">Save</button></td></tr>
         </table>
-        <button ng-click="sendStudentInfo()" class="modern">Save</button>
     </div>
+    </form>
 </div>
 </body>
 </html>
