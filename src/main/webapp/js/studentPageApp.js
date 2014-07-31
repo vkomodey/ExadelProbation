@@ -32,8 +32,8 @@ var ctrlForStudent = studentsControllers.controller('ctrlForStudent',['$scope','
                 .success(function(){
                 alert('the info is sent');
             })
-                .error(function(data){
-                    alert('Error: '+data)
+                .error(function(data,status){
+                    alert('Error: '+status);
                 });
      };
     $scope.addSkill = function() {
