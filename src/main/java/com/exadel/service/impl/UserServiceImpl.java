@@ -1,7 +1,6 @@
 package com.exadel.service.impl;
 
-import java.util.List;
-
+import com.exadel.model.entity.view.EmployeeView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.exadel.dao.UserDao;
 import com.exadel.model.entity.User;
 import com.exadel.service.UserService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserServiceImpl extends GenericLivingServiceImpl<User> implements UserService {
@@ -27,17 +29,7 @@ public class UserServiceImpl extends GenericLivingServiceImpl<User> implements U
     }
 
     @Transactional
-    public List<User> getAllEmployees(){
+    public List<EmployeeView> getAllEmployees(){
         return mainDao.getAllEmployees();
     }
-
-    @Transactional
-	public User findById(long id) {
-		return mainDao.find(id);
-	}
-
-    @Transactional
-	public void save(User entity) {
-		mainDao.save(entity);
-	}
 }
