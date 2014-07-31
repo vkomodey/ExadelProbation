@@ -6,7 +6,7 @@ var studentsApp = angular.module('studentsApp',['ngRoute', 'studentsControllers'
                 templateUrl: '/page/partials/students-list.html',
                 controller: "StudentListCtrl",
                 resolve: {
-                    students: StudentListCtrl.students
+                    studentsList: StudentListCtrl.studentsList
                 }
             }).
             when('/studentList/:studId', {
@@ -14,6 +14,7 @@ var studentsApp = angular.module('studentsApp',['ngRoute', 'studentsControllers'
                 controller: "FeedbacksCtrl",
                 resolve: {
                     feedbacks: FeedbacksCtrl.feedbacks
+                   // studentInfo: StudentListCtrl.studentInfo
                 }
             }).
             otherwise({

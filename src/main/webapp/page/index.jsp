@@ -36,7 +36,7 @@
                 </ul>
             </li>
             <%--<li><a href="log.html">Log out</a>--%>
-            <li>
+            <li style="float: right;">
                 <form action="/do_logout" method="post">
                 <button id="btn" type="submit">Log out</button>
                 </form>

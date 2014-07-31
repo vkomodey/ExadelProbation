@@ -67,7 +67,55 @@
                 </fildset>
             </div>
              </div>
-
+            <!--<p>First Name
+                <input type="text" ng-model="firstName"/></p>
+            <p>Second Name
+                <input type="text" ng-model="secondName"/></p>
+            <p>Surname
+                <input type="text" ng-model="surname"/></p>
+            <p>Email
+                <input type="text" ng-model="email"/></p>
+            <p>Skype
+                <input type="text" ng-model="skype"/></p>
+            <p>Phone
+                <input type="text" ng-model="phone"/></p>
+            <p>English level
+                <select ng-model="englishLevel">
+                    <option ng-value="beginner">Begginer</option>
+                    <option ng-value="elementary">Elementary</option>
+                    <option ng-value="preintermediate">Pre-Intermediate</option>
+                    <option ng-value="intermediate">Intermediate </option>
+                    <option ng-value="upperintermediate">Upper-Intermediate</option>
+                    <option ng-value="advanced">Advanced</option>
+                </select></p>
+            <p>Graduate year
+                <input type="number" ng-model="graduate_year"/></p>
+            <p>University
+                <input type="text" ng-model="university"/></p>
+            <p>Faculty
+                <input type="text" ng-model="faculty"/></p>
+            <p>Specialty
+                <input type="text" ng-model="specialty"/></p>
+            <p>Course/group
+                <input type="text" ng-model="course_group"/></p>
+            <button ng-click="addExam()">+</button>
+            <table ng-table="examsParams">
+                <tr class="table">
+                    <td data-title="'GRADE'"><input type="number" ng-model="grade"/></td>
+                    <td data-title="'Summer/winter'">
+                        <input type="radio" name="summer"  ng-model="summer"
+                               ng-init="summer = true" ng-value="true"
+                               id="r11">
+                        <label for="r11">Summer </label><br/>
+                        <input type="radio" name="summer"  ng-model="summer"
+                               ng-value="false"
+                               id="r12">
+                        <label for="r12">Winter</label></p>
+                    </td>
+                    <td data-title="'Course'"><input type="number" ng-model="course"/></td>
+                </tr>
+            </table>
+            <button ng-click="sendStudentInfo()"></button>-->
             <button ng-click="reloadList()" class="modern">reload</button>
             <input type="text" ng-model="search.feedbacker" placeholder="Search" class="toRight">
             <table ng-table="tableParams" class="table">
