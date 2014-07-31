@@ -5,16 +5,17 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.exadel.model.entity.view.StudentView;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.constants.SpringSecurityRole;
@@ -28,9 +29,11 @@ import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.student.StudentExams;
 import com.exadel.model.entity.student.Study;
 import com.exadel.model.entity.student.Technology;
+import com.exadel.model.entity.view.StudentView;
 import com.exadel.service.CuratorService;
 import com.exadel.service.StudentService;
 import com.exadel.service.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class StudentController {

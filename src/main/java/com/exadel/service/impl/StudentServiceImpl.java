@@ -32,14 +32,22 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 	
 	@Transactional
 	public Student findById(long id){
-		Student student=mainDao.find(id);
+		Student student=studentDao.find(id);
+		//laaaazy
+		lazyTouch(student);
+		return student;
+	}
+	
+	@Transactional
+	public Student findByLogin(String login){
+		Student student=studentDao.find(login);
 		//laaaazy
 		lazyTouch(student);
 		return student;
 	}
 	@Transactional
 	public List<FeedbackView> getFeedbacksForStudentByStudId(long id) {
-		Student stud=mainDao.find(id);
+		Student stud=studentDao.find(id);
 		List<Feedback> fblist=feedbackDao.findAllForStud(stud);
 		ArrayList<FeedbackView> result=new ArrayList<FeedbackView>();
 		for(Feedback fb:fblist){
@@ -50,7 +58,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 
 	@Transactional
 	public void saveNewFeedbackForStudentByStudId(FeedbackView feedback, long id,String author) {
-		Student stud=mainDao.find(id);
+		Student stud=studentDao.find(id);
 		FeedbackAble feedbackOwner=(FeedbackAble) userDao.find(author);
 		Feedback fb=new Feedback(feedback,feedbackOwner,stud);
 		feedbackDao.save(fb);
@@ -58,7 +66,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 	
 	@Transactional
 	public List<Student> getAll() {
-		List<Student> list= mainDao.getAll();
+		List<Student> list= studentDao.getAll();
 
         //have some....lazy
         for(Student s : list){
@@ -85,7 +93,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
     }
     @Transactional
 	public void modify(StudentView view,long id) {
-		Student stud=mainDao.find(id);
+		Student stud=studentDao.find(id);
 		stud.setFirstName(view.getFirstName());
 		stud.setSecondName(view.getSecondName());
 		stud.setSurname(view.getSurname());
@@ -98,6 +106,4 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 		stud.setSkillSet(view.getSkillSet());
 		stud.setStudy(view.getStudy());
 	}
-
-
 }
