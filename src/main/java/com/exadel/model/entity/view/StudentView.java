@@ -1,11 +1,11 @@
 package com.exadel.model.entity.view;
 
 
+import java.util.Set;
+
 import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.entity.student.Skill;
 import com.exadel.model.entity.student.Study;
-
-import java.util.Set;
 
 public class StudentView {
 

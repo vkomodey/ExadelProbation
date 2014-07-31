@@ -14,19 +14,19 @@ import com.exadel.service.GenericLivingService;
 public abstract class GenericLivingServiceImpl<ENTITY extends IEntity> implements GenericLivingService<ENTITY> {
 	private static Logger logger=LoggerFactory.getLogger(GenericLivingServiceImpl.class); 
 	@Autowired
-    GenericLivingDao<ENTITY> mainDao;
+    private GenericLivingDao<ENTITY> livingDao;
 	@Transactional
 	public ENTITY findById(long id){
-		return mainDao.find(id);
+		return livingDao.find(id);
 	}
 	@Transactional
 	public ENTITY findByLogin(String name){
-		return mainDao.find(name);
+		return livingDao.find(name);
 	}
 	@Transactional
 	public void save(ENTITY entity){
 		logger.info("service "+this.getClass()+" entity save");
-		mainDao.save(entity);
+		livingDao.save(entity);
 		logger.info("service "+this.getClass()+" entity save done");
 	}
 

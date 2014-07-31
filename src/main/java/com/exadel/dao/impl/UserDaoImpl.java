@@ -3,9 +3,6 @@ package com.exadel.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.exadel.model.entity.Feedback;
-import com.exadel.model.entity.government.Curator;
-import com.exadel.model.entity.government.Feedbacker;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.exadel.dao.UserDao;
 import com.exadel.model.entity.User;
+import com.exadel.model.entity.government.Curator;
+import com.exadel.model.entity.government.Feedbacker;
 
 @Repository
 public class UserDaoImpl extends GenericLivingDaoImpl<com.exadel.model.entity.User> implements UserDao {
@@ -40,7 +39,8 @@ public class UserDaoImpl extends GenericLivingDaoImpl<com.exadel.model.entity.Us
 		return null;
 	}
 
-    public List<User> getAllEmployees(){
+    @SuppressWarnings("unchecked")
+	public List<User> getAllEmployees(){
         List<User> employees = new ArrayList<User>();
         List<Curator> curators = getSessionFactory().getCurrentSession().createQuery("from Curator ").list();
 //        for(Curator curator:curators){
