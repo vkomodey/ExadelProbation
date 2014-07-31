@@ -5,6 +5,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,16 +128,12 @@ public class StudentController {
 	}
 
     @RequestMapping(value = RestURIConstants.EDIT_STUDENT_INFO, method = RequestMethod.POST)
-    public @ResponseBody void editStudentInfo(@RequestBody String str, @PathVariable("id") Long id) {
+    public @ResponseBody void editStudentInfo(@RequestBody String str, @PathVariable("id") Long id) throws IOException {
         logger.info("Start editing student info.");
         ObjectMapper mapper = new ObjectMapper();
-        try {
-            StudentView view =  mapper.readValue(str,StudentView.class);
-            service.modify(view,id);
-            logger.info("edited"+id);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        StudentView view =  mapper.readValue(str,StudentView.class);
+        service.modify(view,id);
+        logger.info("edited"+id);
     }
     
 	@RequestMapping(value=RestURIConstants.GET_ME,method=RequestMethod.GET)
