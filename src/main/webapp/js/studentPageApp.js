@@ -6,7 +6,7 @@ var studentsControllers = angular.module('studentsControllers',['ngTable']);
 var ctrlForStudent = studentsControllers.controller('ctrlForStudent',['$scope','$q','$http', function($scope,$q,$http) {
     var getStudentInfo = function() {
         var deferred = $q.defer();
-            $http.get('/rest /me').success(function(data){
+            $http.get('/rest/me').success(function(data){
                 $scope.studentInfo = data;
             });
             deferred.resolve($scope.studentInfo);
