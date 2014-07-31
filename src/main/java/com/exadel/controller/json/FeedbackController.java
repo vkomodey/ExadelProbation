@@ -6,12 +6,14 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.exadel.model.entity.view.FeedbackView;
 import com.exadel.service.StudentService;
@@ -39,6 +41,7 @@ public class FeedbackController {
 	}
 
 	@RequestMapping(value = RestURIConstants.PUSH_FEEDBACK, method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody void saveFeedback(@RequestBody String str,
 			@PathVariable("id") long studId, Principal user) {
 		logger.info("Start saving feedback.");
