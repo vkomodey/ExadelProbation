@@ -3,6 +3,7 @@ package com.exadel.service;
 import java.util.List;
 
 import com.exadel.model.entity.student.Student;
+import com.exadel.model.entity.view.CompositeStudentFeedbackView;
 import com.exadel.model.entity.view.FeedbackView;
 import com.exadel.model.entity.view.StudentView;
 
@@ -12,4 +13,6 @@ public interface StudentService extends GenericLivingService<Student> {
 	public List<Student> getAll();
     public List<Student> getSupervised(long id);
     void modify(StudentView entity,long id);
+	public CompositeStudentFeedbackView generateStudentViewForUser(long id,
+			String role);
 }

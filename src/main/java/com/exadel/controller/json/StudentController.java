@@ -30,6 +30,7 @@ import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.student.StudentExams;
 import com.exadel.model.entity.student.Study;
 import com.exadel.model.entity.student.Technology;
+import com.exadel.model.entity.view.CompositeStudentFeedbackView;
 import com.exadel.model.entity.view.StudentView;
 import com.exadel.service.CuratorService;
 import com.exadel.service.StudentService;
@@ -70,12 +71,22 @@ public class StudentController {
 		return buildDummy();
 	}
 	@RequestMapping(value=RestURIConstants.GET_STUDENT,method=RequestMethod.GET)
-	public @ResponseBody Student getStudent(@PathVariable("id") String idString){
-		long id=Long.parseLong(idString);
-		logger.info("real student fetching");
-		Student student=service.findById(id);
-		logger.info("real student sending");
-		return student;
+	public @ResponseBody CompositeStudentFeedbackView getStudent(@PathVariable("id") String idString){
+		logger.info("caller role searching");
+		@SuppressWarnings("unchecked")
+		List<SimpleGrantedAuthority> authorities = (List<SimpleGrantedAuthority>)SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getAuthorities();
+
+        String role = authorities.get(0).toString();
+        logger.info("caller role - " + role);
+        long id=Long.parseLong(idString);
+		logger.info("composite student view fetching");
+		CompositeStudentFeedbackView view=service.generateStudentViewForUser(id,role);
+		
+		logger.info("student info sending");
+		return view;
 	}
 	
 	@RequestMapping(value=RestURIConstants.GET_ALL_STUDENT,method=RequestMethod.GET)
