@@ -24,7 +24,7 @@ public class Curator extends FeedbackAble {
     private List<Student> students;
 
     @OneToMany(mappedBy = "curator")
-    @JsonIgnore
+//    @JsonIgnore
     public List<Student> getStudents() {
         return students;
     }
