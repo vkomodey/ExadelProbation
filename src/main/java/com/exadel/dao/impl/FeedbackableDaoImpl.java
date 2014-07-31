@@ -1,26 +1,27 @@
 package com.exadel.dao.impl;
 
 
-import com.exadel.dao.FeedbackableDao;
-import com.exadel.model.entity.government.FeedbackAble;
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.exadel.dao.FeedbackableDao;
+import com.exadel.model.entity.government.Feedbackable;
 @Repository
-public class FeedbackableDaoImpl extends GenericLivingDaoImpl<FeedbackAble> implements
+public class FeedbackableDaoImpl extends GenericLivingDaoImpl<Feedbackable> implements
         FeedbackableDao{
 
-    public FeedbackAble find(long id) {
-        return (FeedbackAble) getSessionFactory().getCurrentSession().load(FeedbackAble.class,id);
+    public Feedbackable find(long id) {
+        return (Feedbackable) getSessionFactory().getCurrentSession().load(Feedbackable.class,id);
     }
 
 
-    public List<FeedbackAble> getAll() {
+    public List<Feedbackable> getAll() {
         return null;
     }
 
 
-    public FeedbackAble find(String login) {
+    public Feedbackable find(String login) {
         return null;
     }
 }

@@ -1,7 +1,7 @@
 package com.exadel.dao;
 
 
-import com.exadel.model.entity.government.FeedbackAble;
+import com.exadel.model.entity.government.Feedbackable;
 
-public interface FeedbackableDao extends GenericLivingDao<FeedbackAble>{
+public interface FeedbackableDao extends GenericLivingDao<Feedbackable>{
 }

@@ -30,4 +30,14 @@ public class UserServiceImpl extends GenericLivingServiceImpl<User> implements U
     public List<User> getAllEmployees(){
         return mainDao.getAllEmployees();
     }
+
+    @Transactional
+	public User findById(long id) {
+		return mainDao.find(id);
+	}
+
+    @Transactional
+	public void save(User entity) {
+		mainDao.save(entity);
+	}
 }

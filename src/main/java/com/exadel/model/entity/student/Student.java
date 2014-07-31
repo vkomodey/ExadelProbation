@@ -24,7 +24,6 @@ import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.User;
 import com.exadel.model.entity.government.Curator;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 

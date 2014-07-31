@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Curator extends FeedbackAble {
+public class Curator extends Feedbackable {
 	@Override
 	@Transient
 	@JsonIgnore
