@@ -8,20 +8,19 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 import com.exadel.model.entity.Feedback;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public abstract class FeedbackAble extends Government {
+public abstract class Feedbackable extends Government {
 	private List<Feedback> feedback;
 
-	public FeedbackAble() {
+	public Feedbackable() {
 		super();
 		this.setFeedback(new ArrayList<Feedback>());
 	}
 
 	@OneToMany(cascade = CascadeType.ALL,mappedBy="author")
 	//@Column(name="feedback")
-    @JsonIgnore
+    //@JsonIgnore
 	public List<Feedback> getFeedback() {
 		return feedback;
 	}

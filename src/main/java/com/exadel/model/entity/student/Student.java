@@ -24,7 +24,6 @@ import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.User;
 import com.exadel.model.entity.government.Curator;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -50,7 +49,8 @@ public class Student extends User {
 		this.setFeedback(new ArrayList<Feedback>());
 		this.setStudy(new Study());
 	}
-    @JsonBackReference
+    //@JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "curator", referencedColumnName = "id")
     public Curator getCurator() {

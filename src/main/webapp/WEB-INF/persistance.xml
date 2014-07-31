@@ -32,7 +32,7 @@
                 <value>com.exadel.model.entity.Feedback</value>
                 <value>com.exadel.model.entity.StudentLog</value>
                 <value>com.exadel.model.entity.government.Curator</value>
-                <value>com.exadel.model.entity.government.FeedbackAble</value>
+                <value>com.exadel.model.entity.government.Feedbackable</value>
                 <value>com.exadel.model.entity.government.Feedbacker</value>
                 <value>com.exadel.model.entity.government.Government</value>
                 <value>com.exadel.model.entity.government.Joanna</value>

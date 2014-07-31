@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.exadel.model.entity.government.FeedbackAble;
+import com.exadel.model.entity.government.Feedbackable;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.view.FeedbackView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,7 +32,7 @@ public class Feedback {
 	private Boolean onRealProject;
 	private Boolean projectProspect;
 	
-	private FeedbackAble author;
+	private Feedbackable author;
 
 	public Feedback() {
 	}
@@ -47,7 +47,7 @@ public class Feedback {
 		this.feedback = feedback;
 		this.feedbackDate = feedbackDate;
 	}
-	public Feedback(FeedbackView view,FeedbackAble feedbackOwner, Student stud){
+	public Feedback(FeedbackView view,Feedbackable feedbackOwner, Student stud){
 		this.setAuthor(feedbackOwner);
 		this.setStudent(stud);
         if(stud.getWork()!=null){
@@ -72,8 +72,8 @@ public class Feedback {
 		}
 
 	@ManyToOne
-	@JoinColumn(name = "author", referencedColumnName = "id")
-	public FeedbackAble getAuthor() {
+	@JoinColumn(name = "author", referencedColumnName = "id",nullable = false)
+	public Feedbackable getAuthor() {
 		return author;
 	}
 	public Boolean getBillableNow() {
@@ -134,7 +134,7 @@ public class Feedback {
 		return workAttitude;
 	}
 
-	public void setAuthor(FeedbackAble author) {
+	public void setAuthor(Feedbackable author) {
 		this.author = author;
 	}
 
