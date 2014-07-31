@@ -1,0 +1,52 @@
+/**
+ * Created by Administrator on 30.07.2014.
+ */
+var appForStudent = angular.module('appForStudent',['studentsControllers']);
+var studentsControllers = angular.module('studentsControllers',['ngTable']);
+var ctrlForStudent = studentsControllers.controller('ctrlForStudent',['$scope','$q','$http', function($scope,$q,$http) {
+    var getStudentInfo = function() {
+        var deferred = $q.defer();
+            $http.get('../json/studentInfo.json').success(function(data){
+                $scope.studentInfo = data;
+            });
+            deferred.resolve($scope.studentInfo);
+    };
+    var getSkillSet = function() {
+        var deferred = $q.defer();
+        $http.get('/rest/types/skill/get').success(function(data){
+            $scope.skillTypes = data;
+        });
+        deferred.resolve($scope.skillTypes);
+    }
+    getStudentInfo();
+    getSkillSet();
+    $scope.addExam = function(){
+        $scope.studentInfo.study.exams.push( {
+            grade: null,
+            summer: true,
+            course: null
+        });
+    $scope.sendStudentInfo = function() {
+            $http.post('',$scope.studentInfo)
+                .success(function(){
+                alert('the info is sent');
+            })
+                .error(function(data){
+                    alert('Error: '+data)
+                });
+        }
+    };
+    $scope.addSkill = function() {
+        $scope.studentInfo.skillSet.push( {
+            level: null,
+            id: 0,
+            type: null
+        })
+    };
+    $scope.deleteSkill = function(index) {
+        $scope.studentInfo.skillSet.splice(index,1);
+    };
+    $scope.deleteExam = function(index) {
+        $scope.studentInfo.study.exams.splice(index,1);
+    };
+}])
