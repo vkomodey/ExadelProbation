@@ -17,12 +17,13 @@ public class FeedbackableDaoImpl extends GenericLivingDaoImpl<Feedbackable> impl
 
 
     public List<Feedbackable> getAll() {
+        //TODO:shit
         return null;
     }
 
 
     public Feedbackable find(String login) {
-        return null;
+        return (Feedbackable) getSessionFactory().getCurrentSession().bySimpleNaturalId(Feedbackable.class).load(login);
     }
 }
 
