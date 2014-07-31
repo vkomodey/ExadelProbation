@@ -72,7 +72,7 @@ public class Feedback {
 		}
 
 	@ManyToOne
-	@JoinColumn(name = "author", referencedColumnName = "id")
+	@JoinColumn(name = "author", referencedColumnName = "id",nullable = false)
 	public Feedbackable getAuthor() {
 		return author;
 	}

@@ -65,7 +65,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
     @Secured({"ROLE_FEEDBACKER","ROLE_CURATOR"})
 	public void saveNewFeedbackForStudentByStudId(FeedbackView feedback, long id,String author) {
 		Student stud=studentDao.find(id);
-		Feedbackable feedbackOwner=(Feedbackable) feedbackableDao.find(author);
+		Feedbackable feedbackOwner= feedbackableDao.find(author);
 		Feedback fb=new Feedback(feedback,feedbackOwner,stud);
 		feedbackDao.save(fb);
 	}
