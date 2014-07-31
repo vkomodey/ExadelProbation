@@ -3,6 +3,7 @@ package com.exadel.service.impl;
 import com.exadel.dao.StudentDao;
 import com.exadel.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Autowired
     StudentDao studentDao;
 
+    @Secured({"ROLE_ADMIN"})
     public User initUser(RegistrationView view){
         User user;
         switch (view.getRole()) {
@@ -50,7 +52,8 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
 	@Transactional
-	public void registerAnyone(RegistrationView view) {
+    @Secured({"ROLE_ADMIN"})
+    public void registerAnyone(RegistrationView view) {
         User user=initUser(view);
         switch (view.getRole()) {
             case SpringSecurityRole.STUDENT:
