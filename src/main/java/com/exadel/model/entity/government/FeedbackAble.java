@@ -21,7 +21,7 @@ public abstract class FeedbackAble extends Government {
 
 	@OneToMany(cascade = CascadeType.ALL,mappedBy="author")
 	//@Column(name="feedback")
-    @JsonIgnore
+    //@JsonIgnore
 	public List<Feedback> getFeedback() {
 		return feedback;
 	}

@@ -50,7 +50,8 @@ public class Student extends User {
 		this.setFeedback(new ArrayList<Feedback>());
 		this.setStudy(new Study());
 	}
-    @JsonBackReference
+    //@JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "curator", referencedColumnName = "id")
     public Curator getCurator() {

@@ -3,15 +3,14 @@ package com.exadel.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.exadel.dao.*;
+import com.exadel.model.entity.government.FeedbackAble;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.exadel.dao.FeedbackDao;
-import com.exadel.dao.StudentDao;
-import com.exadel.dao.UserDao;
 import com.exadel.model.entity.Feedback;
-import com.exadel.model.entity.government.FeedbackAble;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.view.FeedbackView;
 import com.exadel.model.entity.view.StudentView;
@@ -24,6 +23,8 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 	FeedbackDao feedbackDao;
     @Autowired
     StudentDao studentDao;
+    @Autowired
+    FeedbackableDao feedbackableDao;
 	//wake up all students, they so laaaazy. denis - glazier//
 	private void lazyTouch(Student student){
 		student.getStudy().getExams().size();
@@ -56,10 +57,12 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student> implem
 		return result;
 	}
 
+
 	@Transactional
+    @Secured({"ROLE_FEEDBACKER","ROLE_CURATOR"})
 	public void saveNewFeedbackForStudentByStudId(FeedbackView feedback, long id,String author) {
 		Student stud=studentDao.find(id);
-		FeedbackAble feedbackOwner=(FeedbackAble) userDao.find(author);
+		FeedbackAble feedbackOwner=(FeedbackAble) feedbackableDao.find(author);
 		Feedback fb=new Feedback(feedback,feedbackOwner,stud);
 		feedbackDao.save(fb);
 	}
