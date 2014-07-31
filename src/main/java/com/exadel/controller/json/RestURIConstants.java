@@ -12,4 +12,5 @@ public class RestURIConstants {
 	public static final String CREATE_ANYONE = "anyone/create";
     public static final String EDIT_STUDENT_INFO= "stud/{id}/edit";
 	public static final String GET_ME = "stud/me";
+	public static final String GET_ALL_SKILLTYPE = "types/skill/get";
 }
