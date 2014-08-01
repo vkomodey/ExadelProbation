@@ -11,37 +11,38 @@ import com.exadel.dao.UserDao;
 import com.exadel.model.entity.User;
 import com.exadel.service.UserService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserServiceImpl extends GenericLivingServiceImpl<User> implements UserService {
+public class UserServiceImpl extends GenericLivingServiceImpl<User> implements
+		UserService {
 	@Autowired
-	UserDao mainDao;
+	UserDao userDao;
+
 	@Transactional
-    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        return mainDao.loadUserByUsername(login);
-    }
+	public UserDetails loadUserByUsername(String login)
+			throws UsernameNotFoundException {
+		return userDao.loadUserByUsername(login);
+	}
 
-    @Override
-    public User findById(long id) {
-        return null;
-    }
+	@Override
+	public User findById(long id) {
+		return userDao.find(id);
+	}
 
-    @Transactional
-    public User findByLogin(String name){
-        return mainDao.find(name);
-    }
+	@Transactional
+	public User findByLogin(String name) {
+		return userDao.find(name);
+	}
 
-    @Transactional
-    public List<EmployeeView> getAllEmployees(){
-        return mainDao.getAllEmployees();
-    }
+	@Transactional
+	public List<EmployeeView> getAllEmployees() {
+		return userDao.getAllEmployees();
+	}
 
-    @Transactional
-    public void save(User user){
-
-    }
-
+	@Transactional
+	public void save(User user) {
+		userDao.save(user);
+	}
 
 }
