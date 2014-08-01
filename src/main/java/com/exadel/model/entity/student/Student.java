@@ -147,7 +147,11 @@ public class Student extends User {
 		
 		this.setEnglish(view.getEnglish());
 		this.setSkillSet(view.getSkillSet());
+
 		this.setStudy(view.getStudy());
+        for(StudentExams se:this.getStudy().getExams()){
+            se.setStudent(this);
+        }
 	}
 	public StudentView toView() {
 		StudentView view=new StudentView();

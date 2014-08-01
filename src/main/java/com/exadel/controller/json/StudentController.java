@@ -131,7 +131,7 @@ public class StudentController {
         logger.info("Start editing student info.");
         ObjectMapper mapper = new ObjectMapper();
         StudentView view =  mapper.readValue(str,StudentView.class);
-        service.modify(view,id);
+        service.modify(view, id);
         logger.info("edited"+id);
     }
     
