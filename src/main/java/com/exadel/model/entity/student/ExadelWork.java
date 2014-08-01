@@ -18,7 +18,6 @@ public class ExadelWork {
 	private Student student;
 	private Long id;
 
-
 	private Integer hours_current;
     private Integer hours_desired;
     private Calendar workStartDate;
@@ -28,7 +27,7 @@ public class ExadelWork {
     private Calendar vacationNextDateEnd;
     private Calendar exadelTrainingNextFrom;
     private Calendar exadelTrainingNextTo;
-    private List<Project> currentProjects;
+    private Set<Project> currentProjects;
     private CurrentProjectRoleEnum currentProjectRole;
     private String teamLeadOnCurrent;
     private String curator;
@@ -42,7 +41,8 @@ public class ExadelWork {
     	this.setProjectTechnologies(new HashSet<Technology>());
     }
 
-    public void setCurrentProjects(List<Project> currentProjects) {
+
+    public void setCurrentProjects(Set<Project> currentProjects) {
         this.currentProjects = currentProjects;
     }
 
@@ -108,9 +108,9 @@ public class ExadelWork {
 		return student;
 	}
 
-    @ManyToMany
-    @JoinColumn(name = "projects")
-    public List<Project> getCurrentProjects() {
+    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "student_project", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = { @JoinColumn(name = "project_id") })
+    public Set<Project> getCurrentProjects() {
         return currentProjects;
     }
 

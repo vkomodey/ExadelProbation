@@ -1,20 +1,22 @@
 package com.exadel.model.entity;
 
+import com.exadel.model.entity.student.ExadelWork;
 import com.exadel.model.entity.student.Student;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "project")
 public class Project {
     private long id;
-    private List<Student> students;
+    private Set<ExadelWork> students;
     private String title;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "project_id")
     public long getId() {
         return id;
     }
@@ -32,13 +34,12 @@ public class Project {
         this.title = title;
     }
 
-    @ManyToMany(mappedBy = "")
-    @JoinColumn(name = "students")
-    public List<Student> getStudents() {
+    @ManyToMany
+    public Set<ExadelWork> getStudents() {
         return students;
     }
 
-    public void setStudents(List<Student> students) {
+    public void setStudents(Set<ExadelWork> students) {
         this.students = students;
     }
 }
