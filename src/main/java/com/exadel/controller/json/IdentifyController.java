@@ -27,14 +27,10 @@ public class IdentifyController {
     static Logger logger= LoggerFactory.getLogger(RegistrationController.class);
 
     @RequestMapping(value = RestURIConstants.IDENTIFY_ROLE, method = RequestMethod.GET)
-    public @ResponseBody String identifyUserRole(@RequestBody String str, Principal user) throws IOException {
+    public @ResponseBody String identifyUserRole(Principal user) throws IOException {
         logger.info("Start identifying user.");
-        ObjectMapper mapper = new ObjectMapper();
-        RegistrationView view =  mapper.readValue(str,RegistrationView.class);
-        logger.info("login:"+view.getLogin());
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = (List<SimpleGrantedAuthority>) (SecurityContextHolder.getContext().getAuthentication().getAuthorities());
         String role=simpleGrantedAuthorities.get(0).getAuthority();
-        //String role= service.findByLogin(user.getName()).getRole();
         logger.info("identified as "+role );
         return role;
     }
