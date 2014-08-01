@@ -1,12 +1,11 @@
 package com.exadel.model.entity.student;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Embeddable

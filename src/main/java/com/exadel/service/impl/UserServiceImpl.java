@@ -42,4 +42,16 @@ public class UserServiceImpl extends GenericLivingServiceImpl<User> implements U
     public List<EmployeeView> getAllEmployees(){
         return mainDao.getAllEmployees();
     }
+
+    @Transactional
+    public void save(User user){
+
+    }
+
+    @Transactional
+    public User findById(long id){
+        System.out.printf("return null mazafaka");
+        return null;
+    }
+
 }

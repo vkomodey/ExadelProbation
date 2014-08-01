@@ -1,31 +1,22 @@
 package com.exadel.model.entity.student;
 
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
+import com.exadel.model.constants.CurrentProjectRoleEnum;
+import com.exadel.model.entity.Project;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.exadel.model.constants.CurrentProjectRoleEnum;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "exadel_work")
 public class ExadelWork {
 	private Student student;
 	private Long id;
-
 
 	private Integer hours_current;
     private Integer hours_desired;
@@ -36,7 +27,7 @@ public class ExadelWork {
     private Calendar vacationNextDateEnd;
     private Calendar exadelTrainingNextFrom;
     private Calendar exadelTrainingNextTo;
-    private String currentProject;
+    private Set<Project> currentProjects;
     private CurrentProjectRoleEnum currentProjectRole;
     private String teamLeadOnCurrent;
     private String curator;
@@ -49,6 +40,12 @@ public class ExadelWork {
     public ExadelWork() {
     	this.setProjectTechnologies(new HashSet<Technology>());
     }
+
+
+    public void setCurrentProjects(Set<Project> currentProjects) {
+        this.currentProjects = currentProjects;
+    }
+
     public Calendar getBillableStartDate() {
 		return billableStartDate;
 	}
@@ -59,10 +56,6 @@ public class ExadelWork {
 
     public String getCurator() {
 		return curator;
-	}
-	
-	public String getCurrentProject() {
-		return currentProject;
 	}
 
 	public CurrentProjectRoleEnum getCurrentProjectRole() {
@@ -115,6 +108,12 @@ public class ExadelWork {
 		return student;
 	}
 
+    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "student_project", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = { @JoinColumn(name = "project_id") })
+    public Set<Project> getCurrentProjects() {
+        return currentProjects;
+    }
+
 	public String getTeamLeadOnCurrent() {
 		return teamLeadOnCurrent;
 	}
@@ -153,10 +152,6 @@ public class ExadelWork {
 
 	public void setCurator(String curator) {
 		this.curator = curator;
-	}
-
-	public void setCurrentProject(String currentProject) {
-		this.currentProject = currentProject;
 	}
 
 	public void setCurrentProjectRole(CurrentProjectRoleEnum currentProjectRole) {
