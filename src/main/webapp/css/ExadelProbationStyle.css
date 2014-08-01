@@ -579,3 +579,14 @@ textarea {
   textarea:focus {
     outline: none;
     box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1), 0 0 5px 1px #51cbee; }
+
+.feedbacksList-hide {
+  display: none; }
+
+.studentInfo-hide {
+  display: none; }
+
+.td-other {
+  max-width: 100px;
+  max-height: 30px;
+  overflow: auto; }

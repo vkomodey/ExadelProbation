@@ -75,9 +75,8 @@
 
     <!------------------------------------------ STUDENT IFNO---------------------------------------------------------------->
 
-
-    <form name="studentForm">
-        <div ng-controller="StudentInfoCtrl">
+<div ng-controller="StudentInfoCtrl">
+    <form name="studentForm"  ng-class="cssStudentInfo">
             <table class="student-info-table">
                 <tr>
                     <td>First Name</td>
@@ -105,13 +104,13 @@
                 </tr>
                 <tr>
                     <td>English level</td>
-                    <td><select ng-model="studentInfo.englishLevel" required>
-                        <option ng-value="beginner">Begginer</option>
-                        <option ng-value="elementary">Elementary</option>
-                        <option ng-value="preintermediate">Pre-Intermediate</option>
-                        <option ng-value="intermediate">Intermediate</option>
-                        <option ng-value="upperintermediate">Upper-Intermediate</option>
-                        <option ng-value="advanced">Advanced</option>
+                    <td><select ng-model="studentInfo.english" required>
+                        <option  ng-value="'beginner'">Begginer</option>
+                        <option ng-value="'elementary'">Elementary</option>
+                        <option ng-value="'preintermediate'">Pre-Intermediate</option>
+                        <option ng-value="'intermediate'">Intermediate</option>
+                        <option ng-value="'upperintermediate'">Upper-Intermediate</option>
+                        <option ng-value="'advanced'">Advanced</option>
                     </select></td>
                 </tr>
                 <tr>
@@ -189,14 +188,13 @@
                     <td></td>
                     <td><button ng-click="sendStudentInfo()" ng-disabled="studentForm.$invalid" class="modern">Save</button></td></tr>
             </table>
-        </div>
     </form>
-
+</div>
 
 
     <!--------------------------- FEEDBACKS LIST-------------------------------------------------------->
 
-
+<div ng-class="cssFeedbacksList"></div>
     <input type="text" ng-model="search.feedbacker" placeholder="Search" class="toRight">
     <table ng-table="tableParams" class="table">
         <tr ng-repeat="feedback in feedbacks | filter:search |orderBy:params.orderBy()">
@@ -209,7 +207,7 @@
             <td data-title="'INCREASE HOURS'" sortable="'increaseHours'">{{feedback.increaseHours}}</td>
             <td data-title="'WORK IN PROJECT'" sortable="'workInProject'">{{feedback.workInProject}}</td>
             <td data-title="'BILLABLE'" sortable="'billable'">{{feedback.billable}}</td>
-            <td data-title="'OTHER'" sortable="'other'">{{feedback.other}}</td>
+            <td data-title="'OTHER'" sortable="'other'" class="td-other">{{feedback.other}}</td>
             <td data-title="'FEEDBACKER'" sortable="'feedbacker'">{{feedback.feedbacker}}</td>
             <td data-title="'DATE'" sortable="'date'">{{feedback.date}}</td>
         </tr>
