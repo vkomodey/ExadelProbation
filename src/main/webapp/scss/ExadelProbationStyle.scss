@@ -457,6 +457,11 @@ tbody {
   width: 200px;
   border-radius: 30px;
   @include transition-all();
+  > thead{
+    > tr > th {
+      border-bottom: 0;
+    }
+  }
   tr:last-child {
     td:first-child {
       border-radius: 0 0 0 30px ;

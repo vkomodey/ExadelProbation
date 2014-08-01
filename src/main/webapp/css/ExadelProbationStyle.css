@@ -523,6 +523,8 @@ tbody {
   -ms-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out; }
+  .exams-table > thead > tr > th {
+    border-bottom: 0; }
   .exams-table tr:last-child td:first-child {
     border-radius: 0 0 0 30px; }
   .exams-table tr:last-child td:last-child {
