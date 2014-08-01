@@ -410,10 +410,10 @@ thead {
   text-decoration: none;
   text-shadow: 0 1px rgba(255,255,255,0.7);
   &:disabled {
-    background: #ffc6c3;
+    background-color: #cfcfcf;;
   }
   &:disabled:hover {
-    background: #ffc6c3;
+    background-color: #cfcfcf;
   }
 }
 
@@ -494,7 +494,7 @@ tbody {
 //
 form {
   .ng-invalid {
-    background: #ffb1a6;
+    box-shadow: 0 0 10px red;
   }
 }
 i {

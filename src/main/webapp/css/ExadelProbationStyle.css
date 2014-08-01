@@ -445,9 +445,9 @@ thead {
   text-decoration: none;
   text-shadow: 0 1px rgba(255, 255, 255, 0.7); }
   .modern:disabled {
-    background: #ffc6c3; }
+    background-color: #cfcfcf; }
   .modern:disabled:hover {
-    background: #ffc6c3; }
+    background-color: #cfcfcf; }
 
 .modern:hover {
   outline: none;
@@ -548,7 +548,7 @@ tbody {
   float: right; }
 
 form .ng-invalid {
-  background: #ffb1a6; }
+  box-shadow: 0 0 10px red; }
 
 i {
   color: #000000;
