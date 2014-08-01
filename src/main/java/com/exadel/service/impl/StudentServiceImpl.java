@@ -120,6 +120,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	public CompositeStudentFeedbackView generateStudentViewForUser(
 			long stud_id, String role) {
 		Student stud = studentDao.find(stud_id);
+        lazyTouch(stud);
 		CompositeStudentFeedbackView view = new CompositeStudentFeedbackView();
 		if (role.equals(SpringSecurityRole.JOANNA)) {
 			view.setFeedbacks(this.getFeedbacksForStudentByStudId(stud_id));
@@ -128,11 +129,11 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 			switch (role) {
 			case SpringSecurityRole.CURATOR:
 			case SpringSecurityRole.FEEDBACKER:
-				view.setInfo(stud.toView());
+                view.setFeedbacks(this.getFeedbacksForStudentByStudId(stud_id));
 				break;
 			case SpringSecurityRole.PERSONNEL_DEPARTMENT:
 			case SpringSecurityRole.GOVERNMENT:
-				view.setFeedbacks(this.getFeedbacksForStudentByStudId(stud_id));
+                view.setFeedbacks(this.getFeedbacksForStudentByStudId(stud_id));
 				break;
 			}
 		}
