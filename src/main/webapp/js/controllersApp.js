@@ -1,6 +1,8 @@
 var studentsControllers = angular.module('studentsControllers',['ngTable']);
 
-var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', ['$scope', '$routeParams','feedbacksListFactory','feedbacks','$q','studentsListFactory', function($scope,$routeParams,feedbacksListFactory,feedbacks,$q,studentsListFactory) {
+var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
+    '$scope', '$routeParams','feedbacksListFactory','feedbacks','$q','studentsListFactory','studentInfo','$interval',
+    function($scope,$routeParams,feedbacksListFactory,feedbacks,$q,studentsListFactory,studentInfo,$interval) {
 
     $scope.reloadList = function (){
         var deferred = $q.defer();
@@ -9,9 +11,14 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', ['$scope', '
         });
 
         deferred.resolve($scope.feedbacks);
+
     };
    // $scope.reloadList();
+    $interval(function() {
+        $scope.reloadList();
+    },5000);
     $scope.feedbacks = feedbacks;
+    $scope.studentInfo = studentInfo;
    // $scope.studentInfo = studentInfo;
    /*var emptyExam = {
         grade: null,
@@ -42,15 +49,21 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', ['$scope', '
     }*/
 
 }]);
-var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',['$scope','$filter','$routeParams','studentsListFactory', 'ngTableParams','$q','studentsList', function( $scope, $filter,$routeParams, studentsListFactory, ngTableParams, $q,studentsList) {
-
-    $scope.reloadList = function() {
+var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
+    '$scope','$filter','$routeParams','studentsListFactory', 'ngTableParams','$q','studentsList','$interval',
+    function( $scope, $filter,$routeParams, studentsListFactory, ngTableParams, $q,studentsList,$interval) {
+    //var studentList;
+   $scope.reloadList = function() {
         var deferred = $q.defer();
-        studentsListFactory.getStudentsList(function(data){
-            $scope.studentsList = data;}
+        studentsListFactory.getStudentsList(function (data) {
+                $scope.studentsList = data;
+            }
         );
         deferred.resolve($scope.studentsList);
-    }
+    };
+    $interval(function() {
+        $scope.reloadList();
+    },5000);
     //$scope.reloadList();
     $scope.studentsList = studentsList;
    // var defered = $q.defer();
@@ -173,3 +186,83 @@ EmployeeListCtrl.employees = function(employeesList,$q,$route) {
     );
     return deferred.promise;
 }
+
+
+var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl',['$scope','$routeParams','$q','$http',function($scope,$routeParams,$q,$http) {
+    var getStudentInfo = function () {
+        var deferred = $q.defer();
+        $http.get('../json/studentInfo.json').success(function(data){
+            $scope.studentInfo = data;
+        });
+        deferred.resolve($scope.studentInfo);
+    };
+    //getStudentInfo();
+    StudentInfoCtrl.getSkillSet($scope,$http,$q);
+    $scope.addExam = function() {
+        StudentInfoCtrl.addExam($scope);
+
+    };
+    $scope.sendStudentInfo = function() {
+        StudentInfoCtrl.sendStudentInfo($scope,$http);
+    };
+    $scope.addSkill = function() {
+        StudentInfoCtrl.addSkill($scope);
+    };
+    $scope.deleteSkill = function() {
+        StudentInfoCtrl.deleteSkill($scope);
+    };
+    $scope.deleteExam = function() {
+        StudentInfoCtrl.deleteExam($scope);
+    };
+}]);
+
+/*StudentInfoCtrl.getStudentInfo = function ($scope,$http,$q,adress) {
+    var deferred = $q.defer();
+    $http.get(adress).success(function(data){
+        $scope.studentInfo = data;
+    });
+    deferred.resolve($scope.studentInfo);
+};*/
+StudentInfoCtrl.studentInfo = function ($q,$http) {
+    var deferred = $q.defer();
+    $http.get('../json/studentInfo.json').success(function (data) {
+        deferred.resolve(data);
+    });
+    return deferred.promise;
+}
+StudentInfoCtrl.getSkillSet = function($scope,$http,$q) {
+    var deferred = $q.defer();
+    $http.get('/rest/types/skill/get').success(function(data){
+        $scope.skillTypes = data;
+    });
+    deferred.resolve($scope.skillTypes);
+};
+StudentInfoCtrl.addExam = function($scope){
+    $scope.studentInfo.study.exams.push({
+        grade: null,
+        summer: true,
+        course: null
+    });
+}
+StudentInfoCtrl.sendStudentInfo = function($scope,$http) {
+    $http.post('/rest/stud/'+$scope.studentInfo.id+'/edit',$scope.studentInfo)
+        .success(function(){
+            alert('the info is sent');
+        })
+        .error(function(data,status){
+            alert('Error: '+status);
+        });
+};
+StudentInfoCtrl.addSkill = function($scope) {
+    $scope.studentInfo.skillSet.push( {
+        level: null,
+        id: 0,
+        type: null
+    })
+};
+StudentInfoCtrl.deleteSkill = function($scope,index) {
+    $scope.studentInfo.skillSet.splice(index,1);
+};
+StudentInfoCtrl.deleteExam = function($scope,index) {
+    $scope.studentInfo.study.exams.splice(index,1);
+};

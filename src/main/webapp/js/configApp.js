@@ -13,8 +13,8 @@ var studentsApp = angular.module('studentsApp',['ngRoute', 'studentsControllers'
                 templateUrl: '/page/partials/feedbacks-list.html',
                 controller: "FeedbacksCtrl",
                 resolve: {
-                    feedbacks: FeedbacksCtrl.feedbacks
-                   // studentInfo: StudentListCtrl.studentInfo
+                    feedbacks: FeedbacksCtrl.feedbacks,
+                    studentInfo: StudentInfoCtrl.studentInfo
                 }
             }).
             when('/employeeList', {

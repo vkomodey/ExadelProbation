@@ -140,7 +140,7 @@
                                 <label for="r{{$index*2+1}}">Winter</label>
                             </td>
                             <td data-title="'Course'"><input type="text" name="course{{$index}}"
-                                                             ng-model="studentInfo.study.exams[$index].course" ng-pattern="/^([0-9])$/"required/>
+                                                             ng-model="studentInfo.study.exams[$index].course" ng-pattern="/^([1-9])$/"required/>
                             <td data-title="">
                                 <button ng-click="deleteExam($index)" class="modern">X</button>
                             </td>
