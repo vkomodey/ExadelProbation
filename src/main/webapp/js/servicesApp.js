@@ -13,7 +13,7 @@ studentsServices.factory('feedbacksListFactory',['$resource','$routeParams', fun
     });
 } ]);
 studentsServices.factory('employeesList',['$resource','$routeParams', function($resource,$routeParams) {
-    return $resource('/rest/stud/all', {}, {
+    return $resource('/rest/empl/all', {}, {
         getEmployeeList: {method: 'GET', params: {employeeId: 'all'}, isArray: true}
     });
 } ]);
