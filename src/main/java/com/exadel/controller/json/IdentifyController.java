@@ -2,7 +2,6 @@ package com.exadel.controller.json;
 
 
 import com.exadel.service.UserService;
-import com.fasterxml.jackson.core.JsonParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +9,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import com.exadel.model.entity.view.RegistrationView;
-import com.exadel.service.RegistrationService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.security.Principal;
