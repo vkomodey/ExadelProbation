@@ -105,7 +105,7 @@
                     <table ng-table="skillsParams" class="table exams-table">
                         <tr class="table" ng-repeat="skill in studentInfo.skillSet track by $index">
                             <td data-title="'Skill name'">
-                                <select ng-model="studentInfo.skillSet[$index].type" ng-options="skillType.name for skillType in skillTypes" required>
+                                <select ng-model="studentInfo.skillSet[$index].type" ng-options="skillType.name for skillType in skillTypes track by skillType.id" required>
                                    <!-- <option ng-repeat="skillType in skillTypes"  ng-value="skillType">
                                         {{skillType.name}}
                                     </option>-->
