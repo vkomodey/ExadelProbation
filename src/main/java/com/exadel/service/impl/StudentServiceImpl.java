@@ -3,6 +3,7 @@ package com.exadel.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.exadel.dao.impl.StudentDaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
@@ -106,9 +107,23 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 
 	@Transactional
 	public void modify(StudentView view, long id) {
-		Student stud = studentDao.find(id);
-		stud.fromView(view);
+		//Student stud = studentDao.find(id);
+		//stud.fromView(view);
+        StudentDao studentDao = new StudentDaoImpl();
 
+        Student st = new Student();
+        st.setId(id);
+        st.setSkillSet(view.getSkillSet());
+        st.setStudy(view.getStudy());
+        st.setEmail(view.getEmail());
+        st.setEnglish(view.getEnglish());
+        st.setPhone(view.getPhone());
+        st.setSkype(view.getSkype());
+        st.setFirstName(view.getFirstName());
+        st.setSecondName(view.getSecondName());
+        st.setSurname(view.getSurname());
+        studentDao.updateStudent(st);
+        //studentDao.save(st);
 	}
 
 	@Transactional

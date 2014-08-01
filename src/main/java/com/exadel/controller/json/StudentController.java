@@ -131,9 +131,13 @@ public class StudentController {
     public @ResponseBody void editStudentInfo(@RequestBody String str, @PathVariable("id") Long id) throws IOException {
         logger.info("Start editing student info.");
         ObjectMapper mapper = new ObjectMapper();
+        try{
         StudentView view =  mapper.readValue(str,StudentView.class);
         service.modify(view,id);
         logger.info("edited"+id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
     
 	@RequestMapping(value=RestURIConstants.GET_ME,method=RequestMethod.GET)
