@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.exadel.model.constants.SpringSecurityRole;
-import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.government.Curator;
 import com.exadel.model.entity.government.Feedbacker;
 import com.exadel.model.entity.view.EmployeeView;
