@@ -106,8 +106,8 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 
 	@Transactional
 	public void modify(StudentView view, long id) {
-        Student st = new Student();
-        st.setId(id);
+        Student st = studentDao.find(id);
+        studentDao.detach(st);
         st.fromView(view);
         studentDao.update(st);
 	}
