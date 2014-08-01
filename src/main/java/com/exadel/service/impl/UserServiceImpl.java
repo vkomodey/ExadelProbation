@@ -23,9 +23,19 @@ public class UserServiceImpl extends GenericLivingServiceImpl<User> implements U
         return mainDao.loadUserByUsername(login);
     }
 
+    @Override
+    public User findById(long id) {
+        return null;
+    }
+
     @Transactional
     public User findByLogin(String name){
         return mainDao.find(name);
+    }
+
+    @Override
+    public void save(User entity) {
+
     }
 
     @Transactional
