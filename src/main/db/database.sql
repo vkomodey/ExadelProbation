@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.3.5
 -- Dumped by pg_dump version 9.3.5
--- Started on 2014-07-29 11:55:30 FET
+-- Started on 2014-08-01 20:01:27 FET
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -15,7 +15,7 @@ SET client_min_messages = warning;
 
 DROP DATABASE "ProjectDataBase";
 --
--- TOC entry 2081 (class 1262 OID 38409)
+-- TOC entry 2113 (class 1262 OID 38997)
 -- Name: ProjectDataBase; Type: DATABASE; Schema: -; Owner: postgres
 --
 
@@ -44,7 +44,7 @@ CREATE SCHEMA public;
 ALTER SCHEMA public OWNER TO postgres;
 
 --
--- TOC entry 2082 (class 0 OID 0)
+-- TOC entry 2114 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
 --
@@ -53,7 +53,7 @@ COMMENT ON SCHEMA public IS 'standard public schema';
 
 
 --
--- TOC entry 189 (class 3079 OID 11769)
+-- TOC entry 191 (class 3079 OID 11769)
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
 
@@ -61,8 +61,8 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2084 (class 0 OID 0)
--- Dependencies: 189
+-- TOC entry 2116 (class 0 OID 0)
+-- Dependencies: 191
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
 
@@ -72,7 +72,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 202 (class 1255 OID 38410)
+-- TOC entry 198 (class 1255 OID 38998)
 -- Name: logstudentstate(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -95,7 +95,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 170 (class 1259 OID 38411)
+-- TOC entry 170 (class 1259 OID 38999)
 -- Name: curator; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -107,12 +107,12 @@ CREATE TABLE curator (
 ALTER TABLE public.curator OWNER TO postgres;
 
 --
--- TOC entry 171 (class 1259 OID 38414)
+-- TOC entry 187 (class 1259 OID 39245)
 -- Name: exadel_practice; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE exadel_practice (
-    stud_id bigint NOT NULL,
+    id bigint NOT NULL,
     curator character varying(255),
     interview character varying(255),
     on_probation boolean,
@@ -125,17 +125,16 @@ CREATE TABLE exadel_practice (
 ALTER TABLE public.exadel_practice OWNER TO postgres;
 
 --
--- TOC entry 172 (class 1259 OID 38420)
+-- TOC entry 188 (class 1259 OID 39318)
 -- Name: exadel_work; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE exadel_work (
-    stud_id bigint NOT NULL,
+    id bigint NOT NULL,
     billable boolean,
     billablestartdate timestamp without time zone,
     certificates character varying(255),
     curator character varying(255),
-    currentproject character varying(255),
     currentprojectrole integer,
     exadeltrainingnextfrom timestamp without time zone,
     exadeltrainingnextto timestamp without time zone,
@@ -154,20 +153,7 @@ CREATE TABLE exadel_work (
 ALTER TABLE public.exadel_work OWNER TO postgres;
 
 --
--- TOC entry 173 (class 1259 OID 38426)
--- Name: exadel_work_technology; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE exadel_work_technology (
-    exadel_work_stud_id bigint NOT NULL,
-    projecttechnologies_id bigint NOT NULL
-);
-
-
-ALTER TABLE public.exadel_work_technology OWNER TO postgres;
-
---
--- TOC entry 174 (class 1259 OID 38429)
+-- TOC entry 171 (class 1259 OID 39017)
 -- Name: exam; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -176,7 +162,6 @@ CREATE TABLE exam (
     course integer,
     grade double precision NOT NULL,
     summer boolean,
-    stud_id bigint,
     student_fk bigint
 );
 
@@ -184,7 +169,7 @@ CREATE TABLE exam (
 ALTER TABLE public.exam OWNER TO postgres;
 
 --
--- TOC entry 187 (class 1259 OID 38605)
+-- TOC entry 172 (class 1259 OID 39020)
 -- Name: feedback; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -208,7 +193,7 @@ CREATE TABLE feedback (
 ALTER TABLE public.feedback OWNER TO postgres;
 
 --
--- TOC entry 175 (class 1259 OID 38438)
+-- TOC entry 173 (class 1259 OID 39026)
 -- Name: feedbackable; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -220,7 +205,7 @@ CREATE TABLE feedbackable (
 ALTER TABLE public.feedbackable OWNER TO postgres;
 
 --
--- TOC entry 176 (class 1259 OID 38441)
+-- TOC entry 174 (class 1259 OID 39029)
 -- Name: feedbacker; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -232,7 +217,7 @@ CREATE TABLE feedbacker (
 ALTER TABLE public.feedbacker OWNER TO postgres;
 
 --
--- TOC entry 177 (class 1259 OID 38444)
+-- TOC entry 175 (class 1259 OID 39032)
 -- Name: hibernate_sequence; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -247,7 +232,7 @@ CREATE SEQUENCE hibernate_sequence
 ALTER TABLE public.hibernate_sequence OWNER TO postgres;
 
 --
--- TOC entry 178 (class 1259 OID 38446)
+-- TOC entry 176 (class 1259 OID 39034)
 -- Name: joanna; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -259,7 +244,47 @@ CREATE TABLE joanna (
 ALTER TABLE public.joanna OWNER TO postgres;
 
 --
--- TOC entry 179 (class 1259 OID 38449)
+-- TOC entry 186 (class 1259 OID 39200)
+-- Name: project; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE project (
+    project_id bigint NOT NULL,
+    title character varying(255),
+    id bigint NOT NULL
+);
+
+
+ALTER TABLE public.project OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 39377)
+-- Name: project_exadel_work; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE project_exadel_work (
+    currentprojects_id bigint NOT NULL,
+    students_id bigint NOT NULL
+);
+
+
+ALTER TABLE public.project_exadel_work OWNER TO postgres;
+
+--
+-- TOC entry 189 (class 1259 OID 39331)
+-- Name: project_technology; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE project_technology (
+    project_id bigint NOT NULL,
+    usedtechnologies_id bigint NOT NULL
+);
+
+
+ALTER TABLE public.project_technology OWNER TO postgres;
+
+--
+-- TOC entry 177 (class 1259 OID 39037)
 -- Name: skill; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -273,7 +298,7 @@ CREATE TABLE skill (
 ALTER TABLE public.skill OWNER TO postgres;
 
 --
--- TOC entry 180 (class 1259 OID 38452)
+-- TOC entry 178 (class 1259 OID 39040)
 -- Name: skill_type; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -286,7 +311,7 @@ CREATE TABLE skill_type (
 ALTER TABLE public.skill_type OWNER TO postgres;
 
 --
--- TOC entry 181 (class 1259 OID 38455)
+-- TOC entry 179 (class 1259 OID 39043)
 -- Name: student; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -309,7 +334,7 @@ CREATE TABLE student (
 ALTER TABLE public.student OWNER TO postgres;
 
 --
--- TOC entry 182 (class 1259 OID 38461)
+-- TOC entry 180 (class 1259 OID 39049)
 -- Name: student_log; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -324,7 +349,7 @@ CREATE TABLE student_log (
 ALTER TABLE public.student_log OWNER TO postgres;
 
 --
--- TOC entry 183 (class 1259 OID 38464)
+-- TOC entry 181 (class 1259 OID 39052)
 -- Name: student_log_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -339,8 +364,8 @@ CREATE SEQUENCE student_log_id_seq
 ALTER TABLE public.student_log_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2085 (class 0 OID 0)
--- Dependencies: 183
+-- TOC entry 2117 (class 0 OID 0)
+-- Dependencies: 181
 -- Name: student_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -348,7 +373,7 @@ ALTER SEQUENCE student_log_id_seq OWNED BY student_log.id;
 
 
 --
--- TOC entry 184 (class 1259 OID 38466)
+-- TOC entry 182 (class 1259 OID 39054)
 -- Name: student_skill; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -361,7 +386,7 @@ CREATE TABLE student_skill (
 ALTER TABLE public.student_skill OWNER TO postgres;
 
 --
--- TOC entry 185 (class 1259 OID 38469)
+-- TOC entry 183 (class 1259 OID 39057)
 -- Name: technology; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -374,24 +399,24 @@ CREATE TABLE technology (
 ALTER TABLE public.technology OWNER TO postgres;
 
 --
--- TOC entry 186 (class 1259 OID 38472)
+-- TOC entry 184 (class 1259 OID 39060)
 -- Name: user_; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE user_ (
+    id bigint NOT NULL,
     first_name character varying(255),
     login character varying(255),
     pass character varying(255),
     second_name character varying(255),
-    surname character varying(255),
-    id integer NOT NULL
+    surname character varying(255)
 );
 
 
 ALTER TABLE public.user_ OWNER TO postgres;
 
 --
--- TOC entry 188 (class 1259 OID 38628)
+-- TOC entry 185 (class 1259 OID 39066)
 -- Name: user__id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -406,8 +431,8 @@ CREATE SEQUENCE user__id_seq
 ALTER TABLE public.user__id_seq OWNER TO postgres;
 
 --
--- TOC entry 2086 (class 0 OID 0)
--- Dependencies: 188
+-- TOC entry 2118 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: user__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -415,7 +440,7 @@ ALTER SEQUENCE user__id_seq OWNED BY user_.id;
 
 
 --
--- TOC entry 1911 (class 2604 OID 38478)
+-- TOC entry 1919 (class 2604 OID 39068)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -423,7 +448,7 @@ ALTER TABLE ONLY student_log ALTER COLUMN id SET DEFAULT nextval('student_log_id
 
 
 --
--- TOC entry 1912 (class 2604 OID 38630)
+-- TOC entry 1920 (class 2604 OID 39069)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -431,7 +456,220 @@ ALTER TABLE ONLY user_ ALTER COLUMN id SET DEFAULT nextval('user__id_seq'::regcl
 
 
 --
--- TOC entry 1914 (class 2606 OID 38480)
+-- TOC entry 2088 (class 0 OID 38999)
+-- Dependencies: 170
+-- Data for Name: curator; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY curator (id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2105 (class 0 OID 39245)
+-- Dependencies: 187
+-- Data for Name: exadel_practice; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY exadel_practice (id, curator, interview, on_probation, practicestart, practicestop, workinvitation) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2106 (class 0 OID 39318)
+-- Dependencies: 188
+-- Data for Name: exadel_work; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY exadel_work (id, billable, billablestartdate, certificates, curator, currentprojectrole, exadeltrainingnextfrom, exadeltrainingnextto, exadeltrainingtype, hoursdesiredtransferdate, hours_current, hours_desired, teamleadoncurrent, vacationnextdateend, vacationnextdatestart, wannachangeproj, workstartdate) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2089 (class 0 OID 39017)
+-- Dependencies: 171
+-- Data for Name: exam; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY exam (id, course, grade, summer, student_fk) FROM stdin;
+3	1	1	t	1
+\.
+
+
+--
+-- TOC entry 2090 (class 0 OID 39020)
+-- Dependencies: 172
+-- Data for Name: feedback; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY feedback (id, billablenow, collectiverelations, feedback, feedbackdate, needmorehours, onrealproject, profcompetence, profmattersprogress, projectprospect, workattitude, author, student_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2091 (class 0 OID 39026)
+-- Dependencies: 173
+-- Data for Name: feedbackable; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY feedbackable (id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2092 (class 0 OID 39029)
+-- Dependencies: 174
+-- Data for Name: feedbacker; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY feedbacker (id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2119 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('hibernate_sequence', 11, true);
+
+
+--
+-- TOC entry 2094 (class 0 OID 39034)
+-- Dependencies: 176
+-- Data for Name: joanna; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY joanna (id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2104 (class 0 OID 39200)
+-- Dependencies: 186
+-- Data for Name: project; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY project (project_id, title, id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2108 (class 0 OID 39377)
+-- Dependencies: 190
+-- Data for Name: project_exadel_work; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY project_exadel_work (currentprojects_id, students_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2107 (class 0 OID 39331)
+-- Dependencies: 189
+-- Data for Name: project_technology; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY project_technology (project_id, usedtechnologies_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2095 (class 0 OID 39037)
+-- Dependencies: 177
+-- Data for Name: skill; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY skill (id, level, type_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2096 (class 0 OID 39040)
+-- Dependencies: 178
+-- Data for Name: skill_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY skill_type (id, type) FROM stdin;
+1	fapskill
+\.
+
+
+--
+-- TOC entry 2097 (class 0 OID 39043)
+-- Dependencies: 179
+-- Data for Name: student; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY student (email, english, phone, skype, state, course_group, faculty, graduate_year, specialty, university, id, curator) FROM stdin;
+a@a.aa	beginner	1	a	\N	1/1	a	1990	a	a	1	\N
+\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2	\N
+\.
+
+
+--
+-- TOC entry 2098 (class 0 OID 39049)
+-- Dependencies: 180
+-- Data for Name: student_log; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY student_log (new_state, "time", student_id, id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2120 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: student_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('student_log_id_seq', 1, false);
+
+
+--
+-- TOC entry 2100 (class 0 OID 39054)
+-- Dependencies: 182
+-- Data for Name: student_skill; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY student_skill (student_id, skillset_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2101 (class 0 OID 39057)
+-- Dependencies: 183
+-- Data for Name: technology; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY technology (id, name) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2102 (class 0 OID 39060)
+-- Dependencies: 184
+-- Data for Name: user_; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY user_ (id, first_name, login, pass, second_name, surname) FROM stdin;
+1	a	vitya	1	a	a
+2	\N	dfg	1	\N	\N
+\.
+
+
+--
+-- TOC entry 2121 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: user__id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('user__id_seq', 2, true);
+
+
+--
+-- TOC entry 1922 (class 2606 OID 39071)
 -- Name: curator_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -440,52 +678,34 @@ ALTER TABLE ONLY curator
 
 
 --
--- TOC entry 1916 (class 2606 OID 38482)
+-- TOC entry 1954 (class 2606 OID 39252)
 -- Name: exadel_practice_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY exadel_practice
-    ADD CONSTRAINT exadel_practice_pkey PRIMARY KEY (stud_id);
+    ADD CONSTRAINT exadel_practice_pkey PRIMARY KEY (id);
 
 
 --
--- TOC entry 1918 (class 2606 OID 38484)
+-- TOC entry 1956 (class 2606 OID 39325)
 -- Name: exadel_work_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY exadel_work
-    ADD CONSTRAINT exadel_work_pkey PRIMARY KEY (stud_id);
+    ADD CONSTRAINT exadel_work_pkey PRIMARY KEY (id);
 
 
 --
--- TOC entry 1920 (class 2606 OID 38486)
--- Name: exadel_work_technology_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY exadel_work_technology
-    ADD CONSTRAINT exadel_work_technology_pkey PRIMARY KEY (exadel_work_stud_id, projecttechnologies_id);
-
-
---
--- TOC entry 1922 (class 2606 OID 38488)
--- Name: exadel_work_technology_projecttechnologies_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY exadel_work_technology
-    ADD CONSTRAINT exadel_work_technology_projecttechnologies_id_key UNIQUE (projecttechnologies_id);
-
-
---
--- TOC entry 1924 (class 2606 OID 38490)
--- Name: exam_course_stud_id_summer_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 1924 (class 2606 OID 39081)
+-- Name: exam_course_student_fk_summer_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY exam
-    ADD CONSTRAINT exam_course_stud_id_summer_key UNIQUE (course, stud_id, summer);
+    ADD CONSTRAINT exam_course_student_fk_summer_key UNIQUE (course, student_fk, summer);
 
 
 --
--- TOC entry 1926 (class 2606 OID 38492)
+-- TOC entry 1926 (class 2606 OID 39083)
 -- Name: exam_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -494,7 +714,7 @@ ALTER TABLE ONLY exam
 
 
 --
--- TOC entry 1950 (class 2606 OID 38612)
+-- TOC entry 1928 (class 2606 OID 39085)
 -- Name: feedback_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -503,7 +723,7 @@ ALTER TABLE ONLY feedback
 
 
 --
--- TOC entry 1928 (class 2606 OID 38496)
+-- TOC entry 1930 (class 2606 OID 39087)
 -- Name: feedbackable_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -512,7 +732,7 @@ ALTER TABLE ONLY feedbackable
 
 
 --
--- TOC entry 1930 (class 2606 OID 38498)
+-- TOC entry 1932 (class 2606 OID 39089)
 -- Name: feedbacker_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -521,7 +741,7 @@ ALTER TABLE ONLY feedbacker
 
 
 --
--- TOC entry 1932 (class 2606 OID 38500)
+-- TOC entry 1934 (class 2606 OID 39091)
 -- Name: joanna_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -530,7 +750,34 @@ ALTER TABLE ONLY joanna
 
 
 --
--- TOC entry 1934 (class 2606 OID 38502)
+-- TOC entry 1960 (class 2606 OID 39381)
+-- Name: project_exadel_work_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY project_exadel_work
+    ADD CONSTRAINT project_exadel_work_pkey PRIMARY KEY (currentprojects_id, students_id);
+
+
+--
+-- TOC entry 1952 (class 2606 OID 39204)
+-- Name: project_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY project
+    ADD CONSTRAINT project_pkey PRIMARY KEY (project_id);
+
+
+--
+-- TOC entry 1958 (class 2606 OID 39335)
+-- Name: project_technology_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY project_technology
+    ADD CONSTRAINT project_technology_pkey PRIMARY KEY (project_id, usedtechnologies_id);
+
+
+--
+-- TOC entry 1936 (class 2606 OID 39093)
 -- Name: skill_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -539,7 +786,7 @@ ALTER TABLE ONLY skill
 
 
 --
--- TOC entry 1936 (class 2606 OID 38504)
+-- TOC entry 1938 (class 2606 OID 39095)
 -- Name: skill_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -548,7 +795,7 @@ ALTER TABLE ONLY skill_type
 
 
 --
--- TOC entry 1938 (class 2606 OID 38506)
+-- TOC entry 1940 (class 2606 OID 39097)
 -- Name: student_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -557,7 +804,7 @@ ALTER TABLE ONLY student
 
 
 --
--- TOC entry 1940 (class 2606 OID 38508)
+-- TOC entry 1942 (class 2606 OID 39099)
 -- Name: student_skill_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -566,7 +813,7 @@ ALTER TABLE ONLY student_skill
 
 
 --
--- TOC entry 1942 (class 2606 OID 38510)
+-- TOC entry 1944 (class 2606 OID 39101)
 -- Name: student_skill_skillset_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -575,7 +822,7 @@ ALTER TABLE ONLY student_skill
 
 
 --
--- TOC entry 1944 (class 2606 OID 38512)
+-- TOC entry 1946 (class 2606 OID 39103)
 -- Name: technology_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -584,7 +831,7 @@ ALTER TABLE ONLY technology
 
 
 --
--- TOC entry 1946 (class 2606 OID 38514)
+-- TOC entry 1948 (class 2606 OID 39105)
 -- Name: user__login_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -593,7 +840,7 @@ ALTER TABLE ONLY user_
 
 
 --
--- TOC entry 1948 (class 2606 OID 38632)
+-- TOC entry 1950 (class 2606 OID 39107)
 -- Name: user__pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -602,7 +849,7 @@ ALTER TABLE ONLY user_
 
 
 --
--- TOC entry 1969 (class 2620 OID 38604)
+-- TOC entry 1980 (class 2620 OID 39108)
 -- Name: onchangestate; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -610,16 +857,25 @@ CREATE TRIGGER onchangestate AFTER UPDATE OF state ON student FOR EACH ROW EXECU
 
 
 --
--- TOC entry 1956 (class 2606 OID 38518)
--- Name: fk2fb81f7cd24bf0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 1976 (class 2606 OID 39356)
+-- Name: fk17d3b212aa56dbf4; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY exam
-    ADD CONSTRAINT fk2fb81f7cd24bf0 FOREIGN KEY (stud_id) REFERENCES student(id);
+ALTER TABLE ONLY project_technology
+    ADD CONSTRAINT fk17d3b212aa56dbf4 FOREIGN KEY (usedtechnologies_id) REFERENCES technology(id);
 
 
 --
--- TOC entry 1957 (class 2606 OID 38523)
+-- TOC entry 1977 (class 2606 OID 39361)
+-- Name: fk17d3b212b3008478; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY project_technology
+    ADD CONSTRAINT fk17d3b212b3008478 FOREIGN KEY (project_id) REFERENCES project(project_id);
+
+
+--
+-- TOC entry 1962 (class 2606 OID 39109)
 -- Name: fk2fb81faf4a622f; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -628,16 +884,34 @@ ALTER TABLE ONLY exam
 
 
 --
--- TOC entry 1952 (class 2606 OID 38528)
--- Name: fk33666ffd7cd24bf0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 1974 (class 2606 OID 39278)
+-- Name: fk33666ffdecd3ee01; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY exadel_practice
-    ADD CONSTRAINT fk33666ffd7cd24bf0 FOREIGN KEY (stud_id) REFERENCES student(id);
+    ADD CONSTRAINT fk33666ffdecd3ee01 FOREIGN KEY (id) REFERENCES student(id);
 
 
 --
--- TOC entry 1961 (class 2606 OID 38533)
+-- TOC entry 1978 (class 2606 OID 39382)
+-- Name: fk3d4e32ad4839ae85; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY project_exadel_work
+    ADD CONSTRAINT fk3d4e32ad4839ae85 FOREIGN KEY (students_id) REFERENCES exadel_work(id);
+
+
+--
+-- TOC entry 1979 (class 2606 OID 39387)
+-- Name: fk3d4e32ad5e77fc5e; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY project_exadel_work
+    ADD CONSTRAINT fk3d4e32ad5e77fc5e FOREIGN KEY (currentprojects_id) REFERENCES project(project_id);
+
+
+--
+-- TOC entry 1968 (class 2606 OID 39119)
 -- Name: fk686ca51c0ce7d56; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -646,7 +920,7 @@ ALTER TABLE ONLY skill
 
 
 --
--- TOC entry 1960 (class 2606 OID 38538)
+-- TOC entry 1967 (class 2606 OID 39124)
 -- Name: fk849091851d958e15; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -655,7 +929,7 @@ ALTER TABLE ONLY joanna
 
 
 --
--- TOC entry 1964 (class 2606 OID 38543)
+-- TOC entry 1971 (class 2606 OID 39129)
 -- Name: fk8c59bf40af4a6285; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -664,7 +938,7 @@ ALTER TABLE ONLY student_log
 
 
 --
--- TOC entry 1962 (class 2606 OID 38623)
+-- TOC entry 1969 (class 2606 OID 39134)
 -- Name: fk8ffe823b16993fd1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -673,7 +947,7 @@ ALTER TABLE ONLY student
 
 
 --
--- TOC entry 1963 (class 2606 OID 38646)
+-- TOC entry 1970 (class 2606 OID 39139)
 -- Name: fk8ffe823bbe0c9048; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -682,7 +956,7 @@ ALTER TABLE ONLY student
 
 
 --
--- TOC entry 1959 (class 2606 OID 38553)
+-- TOC entry 1966 (class 2606 OID 39144)
 -- Name: fk9d9b07121d958e15; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -691,16 +965,16 @@ ALTER TABLE ONLY feedbacker
 
 
 --
--- TOC entry 1953 (class 2606 OID 38558)
--- Name: fk9f1e66d37cd24bf0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 1975 (class 2606 OID 39341)
+-- Name: fk9f1e66d3ecd3ee01; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY exadel_work
-    ADD CONSTRAINT fk9f1e66d37cd24bf0 FOREIGN KEY (stud_id) REFERENCES student(id);
+    ADD CONSTRAINT fk9f1e66d3ecd3ee01 FOREIGN KEY (id) REFERENCES student(id);
 
 
 --
--- TOC entry 1958 (class 2606 OID 38651)
+-- TOC entry 1965 (class 2606 OID 39154)
 -- Name: fka2e4fe9fbe0c9048; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -709,7 +983,7 @@ ALTER TABLE ONLY feedbackable
 
 
 --
--- TOC entry 1951 (class 2606 OID 38568)
+-- TOC entry 1961 (class 2606 OID 39159)
 -- Name: fka65cd3761d958e15; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -718,25 +992,7 @@ ALTER TABLE ONLY curator
 
 
 --
--- TOC entry 1954 (class 2606 OID 38573)
--- Name: fkd508de18719f5918; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY exadel_work_technology
-    ADD CONSTRAINT fkd508de18719f5918 FOREIGN KEY (projecttechnologies_id) REFERENCES technology(id);
-
-
---
--- TOC entry 1955 (class 2606 OID 38578)
--- Name: fkd508de18f224ff01; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY exadel_work_technology
-    ADD CONSTRAINT fkd508de18f224ff01 FOREIGN KEY (exadel_work_stud_id) REFERENCES exadel_work(stud_id);
-
-
---
--- TOC entry 1965 (class 2606 OID 38583)
+-- TOC entry 1972 (class 2606 OID 39174)
 -- Name: fkdd47d74daf4a6285; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -745,7 +1001,7 @@ ALTER TABLE ONLY student_skill
 
 
 --
--- TOC entry 1966 (class 2606 OID 38588)
+-- TOC entry 1973 (class 2606 OID 39179)
 -- Name: fkdd47d74deb8ca365; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -754,7 +1010,7 @@ ALTER TABLE ONLY student_skill
 
 
 --
--- TOC entry 1968 (class 2606 OID 38618)
+-- TOC entry 1963 (class 2606 OID 39184)
 -- Name: fkf495eb85af4a6285; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -763,7 +1019,7 @@ ALTER TABLE ONLY feedback
 
 
 --
--- TOC entry 1967 (class 2606 OID 38613)
+-- TOC entry 1964 (class 2606 OID 39189)
 -- Name: fkf495eb85c9c2a285; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -772,7 +1028,7 @@ ALTER TABLE ONLY feedback
 
 
 --
--- TOC entry 2083 (class 0 OID 0)
+-- TOC entry 2115 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -783,7 +1039,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2014-07-29 11:55:30 FET
+-- Completed on 2014-08-01 20:01:27 FET
 
 --
 -- PostgreSQL database dump complete
