@@ -24,7 +24,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Autowired
     StudentDao studentDao;
 
-    @Secured({"ROLE_ADMIN"})
+    @Secured({SpringSecurityRole.JOANNA})
     public User initUser(RegistrationView view){
         User user;
         switch (view.getRole()) {
@@ -50,7 +50,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
 	@Transactional
-    @Secured({"ROLE_ADMIN"})
+    @Secured({SpringSecurityRole.JOANNA})
     public void registerAnyone(RegistrationView view) {
         User user=initUser(view);
         switch (view.getRole()) {
@@ -72,6 +72,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         }
 	}
     @Transactional
+    @Secured({SpringSecurityRole.JOANNA})
 	public void registerStudent(RegistrationView view) {
 		view.setRole(SpringSecurityRole.STUDENT);
         Student stud=new Student();
