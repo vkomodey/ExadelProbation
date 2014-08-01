@@ -33,11 +33,6 @@ public class UserServiceImpl extends GenericLivingServiceImpl<User> implements U
         return mainDao.find(name);
     }
 
-    @Override
-    public void save(User entity) {
-
-    }
-
     @Transactional
     public List<EmployeeView> getAllEmployees(){
         return mainDao.getAllEmployees();
@@ -48,10 +43,5 @@ public class UserServiceImpl extends GenericLivingServiceImpl<User> implements U
 
     }
 
-    @Transactional
-    public User findById(long id){
-        System.out.printf("return null mazafaka");
-        return null;
-    }
 
 }
