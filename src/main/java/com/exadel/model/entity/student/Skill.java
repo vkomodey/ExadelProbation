@@ -29,6 +29,7 @@ public class Skill {
 		return level;
 	}
 	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(insertable=false,updatable=false)
 	public SkillType getType() {
 		return type;
 	}

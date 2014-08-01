@@ -3,13 +3,10 @@ package com.exadel.model.entity.student;
 import com.exadel.model.constants.CurrentProjectRoleEnum;
 import com.exadel.model.entity.Project;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -87,10 +84,6 @@ public class ExadelWork {
 	}
 
 	@Id
-	@GeneratedValue(generator="foreign")
-	@GenericGenerator(name="foreign", strategy = "foreign", parameters={
-	@Parameter(name="property", value="student")
-	})
 	@Column (name="stud_id")
     public Long getId() {
 		return id;
@@ -101,9 +94,11 @@ public class ExadelWork {
 		return projectTechnologies;
 	}
 
+	
 	@JsonIgnore
 	@OneToOne(optional=false)
-	@JoinColumn(name="stud_id")
+	@JoinColumn(name="id")
+	@MapsId
 	public Student getStudent() {
 		return student;
 	}

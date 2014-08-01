@@ -1,8 +1,6 @@
 package com.exadel.model.entity.student;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -27,10 +25,6 @@ public class ExadelPractice{
 	}
 
 	@Id
-	@GeneratedValue(generator="foreign")
-	@GenericGenerator(name="foreign", strategy = "foreign", parameters={
-	@Parameter(name="property", value="student")
-	})
 	@Column (name="stud_id")
 	public Long getId() {
 		return id;
@@ -50,7 +44,8 @@ public class ExadelPractice{
 
 	@JsonIgnore
 	@OneToOne(optional=false)
-	@JoinColumn(name="stud_id")
+	@JoinColumn(name="id")
+	@MapsId
 	public Student getStudent() {
 		return student;
 	}
