@@ -28,8 +28,8 @@ public class Skill {
 	public String getLevel() {
 		return level;
 	}
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(insertable=false,updatable=false)
+	@OneToOne(cascade=CascadeType.ALL,optional = false)
+	@JoinColumn(name="type_id")
 	public SkillType getType() {
 		return type;
 	}

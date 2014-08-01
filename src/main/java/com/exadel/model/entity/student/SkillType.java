@@ -1,6 +1,8 @@
 package com.exadel.model.entity.student;
 
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 
 
@@ -22,6 +24,7 @@ public class SkillType {
     public Long getId() {
 		return id;
 	}
+    @NaturalId
 	@Column(name="type")
 	public String getName() {
 		return name;
