@@ -104,8 +104,7 @@ studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routePar
         if($scope.profSuitability == undefined ||
             $scope.attitudeToWork == undefined ||
             $scope.relations == undefined ||
-            $scope.progress == undefined ||
-            $scope.other == undefined) {
+            $scope.progress == undefined) {
             alert("One or several fields are not filled.");
             return;
         }
