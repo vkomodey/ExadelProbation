@@ -59,7 +59,6 @@ public class StudentController {
 		stud.getStudy().setExams(new ArrayList<StudentExams>());
 		stud.getStudy().getExams().add(new StudentExams());
 		stud.getSkillSet().add(new Skill(new SkillType("fapskill")));
-		stud.getWork().getProjectTechnologies().add(new Technology("fap_technology"));
 		stud.getFeedback().add(new Feedback());
 		stud.setEnglish(EnglishEnum.advanced);
 		return stud;

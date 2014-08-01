@@ -32,10 +32,8 @@ public class ExadelWork {
     private String certificates;
     private Boolean isBillable;
     private Boolean wannaChangeProj;
-    private Set<Technology> projectTechnologies;
 
     public ExadelWork() {
-    	this.setProjectTechnologies(new HashSet<Technology>());
     }
 
 
@@ -88,12 +86,6 @@ public class ExadelWork {
     public Long getId() {
 		return id;
 	}
-
-	@OneToMany(cascade=CascadeType.ALL)
-	public Set<Technology> getProjectTechnologies() {
-		return projectTechnologies;
-	}
-
 	
 	@JsonIgnore
 	@OneToOne(optional=false)
@@ -103,8 +95,7 @@ public class ExadelWork {
 		return student;
 	}
 
-    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "student_project", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = { @JoinColumn(name = "project_id") })
+    @ManyToMany(cascade = CascadeType.ALL,mappedBy="students")
     public Set<Project> getCurrentProjects() {
         return currentProjects;
     }
@@ -179,10 +170,6 @@ public class ExadelWork {
 
 	public void setId(Long id){
 		this.id=id;
-	}
-
-	public void setProjectTechnologies(Set<Technology> projectTechnologies) {
-		this.projectTechnologies = projectTechnologies;
 	}
 
 	public void setStudent(Student student) {

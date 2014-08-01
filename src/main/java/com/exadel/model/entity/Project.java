@@ -2,44 +2,55 @@ package com.exadel.model.entity;
 
 import com.exadel.model.entity.student.ExadelWork;
 import com.exadel.model.entity.student.Student;
+import com.exadel.model.entity.student.Technology;
 
 import javax.persistence.*;
+
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "project")
 public class Project {
-    private long id;
-    private Set<ExadelWork> students;
-    private String title;
+	private long id;
+	private Set<ExadelWork> students;
+	private String title;
+	private Set<Technology> usedTechnologies;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "project_id")
-    public long getId() {
-        return id;
-    }
+	@ManyToMany
+	public Set<Technology> getUsedTechnologies() {
+		return usedTechnologies;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	public long getId() {
+		return id;
+	}
 
-    @Column(name = "title")
-    public String getTitle() {
-        return title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	@ManyToMany
+	public Set<ExadelWork> getStudents() {
+		return students;
+	}
 
-    @ManyToMany
-    public Set<ExadelWork> getStudents() {
-        return students;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setStudents(Set<ExadelWork> students) {
-        this.students = students;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setStudents(Set<ExadelWork> students) {
+		this.students = students;
+	}
+
+	public void setUsedTechnologies(Set<Technology> usedTechnologies) {
+		this.usedTechnologies = usedTechnologies;
+	}
+
 }
