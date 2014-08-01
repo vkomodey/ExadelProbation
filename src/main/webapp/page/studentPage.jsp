@@ -70,7 +70,7 @@
             <tr>
                 <td>English level</td>
                 <td><select ng-model="studentInfo.english" required>
-                   <option  ng-value="'beginner'">Begginer</option>
+                   <option  ng-value="'beginner'">Beginner</option>
                     <option ng-value="'elementary'">Elementary</option>
                     <option ng-value="'preintermediate'">Pre-Intermediate</option>
                     <option ng-value="'intermediate'">Intermediate</option>
@@ -105,10 +105,10 @@
                     <table ng-table="skillsParams" class="table exams-table">
                         <tr class="table" ng-repeat="skill in studentInfo.skillSet track by $index">
                             <td data-title="'Skill name'">
-                                <select ng-model="studentInfo.skillSet[$index].type" required>
-                                    <option ng-repeat="skillType in skillTypes"  ng-value="skillType">
+                                <select ng-model="studentInfo.skillSet[$index].type" ng-options="skillType.name for skillType in skillTypes" required>
+                                   <!-- <option ng-repeat="skillType in skillTypes"  ng-value="skillType">
                                         {{skillType.name}}
-                                    </option>
+                                    </option>-->
                                 </select>
                             </td>
                             <td data-title="'Skill level'"><input type="text"

@@ -6,10 +6,13 @@ var studentsControllers = angular.module('studentsControllers',['ngTable']);
 var ctrlForStudent = studentsControllers.controller('ctrlForStudent',['$scope','$q','$http', function($scope,$q,$http) {
     var getStudentInfo = function() {
         var deferred = $q.defer();
-            $http.get('/rest/me').success(function(data){
-                $scope.studentInfo = data;
-            });
-            deferred.resolve($scope.studentInfo);
+        $http.get('/rest/me').success(function (data) {
+            $scope.studentInfo = data;
+        });
+        deferred.resolve($scope.studentInfo);
+      //  for (skillType in $scope.studentInfo.skillSet.ty) {//because ngModel compares by reference, not value
+
+       // }
     };
     var getSkillSet = function() {
         var deferred = $q.defer();
@@ -18,8 +21,8 @@ var ctrlForStudent = studentsControllers.controller('ctrlForStudent',['$scope','
         });
         deferred.resolve($scope.skillTypes);
     }
-    getStudentInfo();
     getSkillSet();
+    getStudentInfo();
     $scope.addExam = function() {
         $scope.studentInfo.study.exams.push({
             grade: null,
