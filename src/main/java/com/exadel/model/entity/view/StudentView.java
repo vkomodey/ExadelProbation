@@ -6,7 +6,9 @@ import java.util.Set;
 import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.entity.student.Skill;
 import com.exadel.model.entity.student.Study;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class StudentView {
 
     private String firstName;
