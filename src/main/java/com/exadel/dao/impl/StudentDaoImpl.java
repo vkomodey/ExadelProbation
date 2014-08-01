@@ -34,4 +34,9 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
     public void update(Student st){
         getSessionFactory().getCurrentSession().update(st);
     }
+
+	@Override
+	public void detach(Student st) {
+		getSessionFactory().getCurrentSession().evict(st);
+	}
 }
