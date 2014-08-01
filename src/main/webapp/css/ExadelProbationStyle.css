@@ -472,7 +472,8 @@ thead {
 }*/
 .toRight {
   float: right;
-  margin-top: 22px; }
+  margin-top: 22px;
+  margin-bottom: 5px; }
 
 p {
   padding: 3% 10%; }
