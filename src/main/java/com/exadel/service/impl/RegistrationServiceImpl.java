@@ -18,7 +18,8 @@ import com.exadel.model.entity.view.RegistrationView;
 import com.exadel.service.RegistrationService;
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
-	@Autowired
+    public static final String DEFAULT_PASSWORD = "11111";
+    @Autowired
     UserDao userDao;
     @Autowired
     StudentDao studentDao;
@@ -27,9 +28,6 @@ public class RegistrationServiceImpl implements RegistrationService {
     public User initUser(RegistrationView view){
         User user;
         switch (view.getRole()) {
-            case SpringSecurityRole.STUDENT:
-                user = new Student();
-                break;
             case SpringSecurityRole.FEEDBACKER:
                 user = new Feedbacker();
                 break;
@@ -47,7 +45,7 @@ public class RegistrationServiceImpl implements RegistrationService {
                 break;
         }
         user.setLogin(view.getLogin());
-        user.setPassword("11111");
+        user.setPassword(DEFAULT_PASSWORD);
         return user;
     }
 
@@ -56,9 +54,6 @@ public class RegistrationServiceImpl implements RegistrationService {
     public void registerAnyone(RegistrationView view) {
         User user=initUser(view);
         switch (view.getRole()) {
-            case SpringSecurityRole.STUDENT:
-                studentDao.save((Student)user);
-                break;
             case SpringSecurityRole.FEEDBACKER:
 
                 break;
@@ -79,6 +74,9 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Transactional
 	public void registerStudent(RegistrationView view) {
 		view.setRole(SpringSecurityRole.STUDENT);
-		this.registerAnyone(view);
+        Student stud=new Student();
+        stud.setLogin(view.getLogin());
+        stud.setPassword(DEFAULT_PASSWORD);
+        studentDao.save(stud);
 	}
 }
