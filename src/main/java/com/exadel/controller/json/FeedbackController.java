@@ -1,5 +1,6 @@
 package com.exadel.controller.json;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -40,16 +41,12 @@ public class FeedbackController {
 
 	@RequestMapping(value = RestURIConstants.PUSH_FEEDBACK, method = RequestMethod.POST)
 	public @ResponseBody void saveFeedback(@RequestBody String str,
-			@PathVariable("id") long studId, Principal user) {
+			@PathVariable("id") long studId, Principal user) throws IOException {
 		logger.info("Start saving feedback.");
 		ObjectMapper mapper = new ObjectMapper();
-		try {
 			FeedbackView feedback = mapper.readValue(str, FeedbackView.class);
 			service.saveNewFeedbackForStudentByStudId(feedback, studId,
 					user.getName());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 }

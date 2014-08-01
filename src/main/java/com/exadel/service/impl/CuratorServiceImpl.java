@@ -33,4 +33,16 @@ public class CuratorServiceImpl extends GenericLivingServiceImpl<Curator> implem
         }
         return curatorDao.getSupervised(curatorId);
     }
+	@Transactional
+	public Curator findById(long id) {
+		return curatorDao.find(id);
+	}
+	@Transactional
+	public Curator findByLogin(String name) {
+		return curatorDao.find(name);
+	}
+	@Transactional
+	public void save(Curator entity) {
+		curatorDao.save(entity);
+	}
 }

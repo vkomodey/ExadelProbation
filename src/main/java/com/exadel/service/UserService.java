@@ -1,5 +1,6 @@
 package com.exadel.service;
 
+import com.exadel.model.entity.view.EmployeeView;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,5 +15,5 @@ public interface UserService extends UserDetailsService,GenericLivingService<Use
 
 	User findByLogin(String name);
 
-    List<User> getAllEmployees();
+    List<EmployeeView> getAllEmployees();
 }

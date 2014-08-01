@@ -11,5 +11,7 @@ public class RestURIConstants {
     public static final String GET_FEEDBACK_ARRAY= "stud/{id}/feedbacks/get";
 	public static final String CREATE_ANYONE = "anyone/create";
     public static final String EDIT_STUDENT_INFO= "stud/{id}/edit";
-	public static final String GET_ME = "stud/me";
+	public static final String GET_ME = "me";
+	public static final String GET_ALL_SKILLTYPE = "types/skill/get";
+    public static final String IDENTIFY_ROLE = "me/role";
 }

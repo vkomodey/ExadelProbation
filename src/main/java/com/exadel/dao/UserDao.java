@@ -1,5 +1,6 @@
 package com.exadel.dao;
 
+import com.exadel.model.entity.view.EmployeeView;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -10,5 +11,5 @@ import java.util.List;
 public interface UserDao extends GenericLivingDao<User> {
     UserDetails loadUserByUsername(String login) throws UsernameNotFoundException;
 
-    List<User> getAllEmployees();
+    List<EmployeeView> getAllEmployees();
 }

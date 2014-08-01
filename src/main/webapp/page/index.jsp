@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" media="screen" charset="utf-8"/>
    <!-- <link rel="stylesheet" href="../css/UserListStyle.css" type="text/css" media="screen" charset="utf-8"/>-->
     <link rel="stylesheet" href="../css/ExadelProbationStyle.css" type="text/css" media="screen" charset="utf-8"/>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script type="text/javascript" src="../lib/angular.min.js"></script>
     <script type="text/javascript" src="../lib/angular-route.min.js"></script>
     <script type="text/javascript" src="../lib/angular-animate.min.js"></script>
@@ -36,7 +37,7 @@
                 </ul>
             </li>
             <%--<li><a href="log.html">Log out</a>--%>
-            <li>
+            <li style="float: right;">
                 <form action="/do_logout" method="post">
                 <button id="btn" type="submit">Log out</button>
                 </form>

@@ -24,7 +24,7 @@ import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.User;
 import com.exadel.model.entity.government.Curator;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.exadel.model.entity.view.StudentView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -50,7 +50,8 @@ public class Student extends User {
 		this.setFeedback(new ArrayList<Feedback>());
 		this.setStudy(new Study());
 	}
-    @JsonBackReference
+    //@JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "curator", referencedColumnName = "id")
     public Curator getCurator() {
@@ -146,5 +147,33 @@ public class Student extends User {
 		this.work = work;
 		this.work.setStudent(this);
 		}
+	}
+	public void fromView(StudentView view) {
+		this.setFirstName(view.getFirstName());
+		this.setSecondName(view.getSecondName());
+		this.setSurname(view.getSurname());
+		
+		this.setEmail(view.getEmail());
+		this.setPhone(view.getPhone());
+		this.setSkype(view.getSkype());
+		
+		this.setEnglish(view.getEnglish());
+		this.setSkillSet(view.getSkillSet());
+		this.setStudy(view.getStudy());
+	}
+	public StudentView toView() {
+		StudentView view=new StudentView();
+		view.setFirstName(this.getFirstName());
+		view.setSecondName(this.getSecondName());
+		view.setSurname(this.getSurname());
+		
+		view.setEmail(this.getEmail());
+		view.setPhone(this.getPhone());
+		view.setSkype(this.getSkype());
+		
+		view.setEnglish(this.getEnglish());
+		view.setSkillSet(this.getSkillSet());
+		view.setStudy(this.getStudy());
+		return view;
 	}
 }

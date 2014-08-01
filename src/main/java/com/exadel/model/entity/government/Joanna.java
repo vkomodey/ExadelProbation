@@ -7,7 +7,7 @@ import com.exadel.model.constants.SpringSecurityRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Joanna extends FeedbackAble {
+public class Joanna extends Feedbackable {
 	@Override
 	@Transient
 	@JsonIgnore

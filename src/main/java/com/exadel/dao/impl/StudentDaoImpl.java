@@ -19,7 +19,7 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 	public Student find(String login) {
 		Session session = getSessionFactory().getCurrentSession();
 		Student stud = (Student) session.bySimpleNaturalId(Student.class).load(
-				"login");
+				login);
 		return stud;
 	}
 
