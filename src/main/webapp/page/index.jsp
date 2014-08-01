@@ -33,7 +33,7 @@
                     <li><a href="#">Home</a></li>
                   <!--  <li><a href=#>Create User</a></li>-->
                     <li><a href="#/studentList">Students</a></li>
-                    <li><a href=#>Employees</a></li>
+                    <li><a href="#/employeeList">Employees</a></li>
                 </ul>
             </li>
             <%--<li><a href="log.html">Log out</a>--%>

@@ -12,3 +12,8 @@ studentsServices.factory('feedbacksListFactory',['$resource','$routeParams', fun
         getFeedbacksList: {method: 'GET', isArray: true}
     });
 } ]);
+studentsServices.factory('employeesList',['$resource','$routeParams', function($resource,$routeParams) {
+    return $resource('/rest/stud/all', {}, {
+        getEmployeeList: {method: 'GET', params: {employeeId: 'all'}, isArray: true}
+    });
+} ]);

@@ -1,0 +1,11 @@
+<div class="content">
+
+    <input type="text" ng-model="search.surname" placeholder="Search" class="toRight">
+    <table ng-table="tableParams" class="table">
+        <tr ng-repeat="employee in employees | filter:search |orderBy:params.orderBy()">
+            <td data-title="'surname'" sortable="'surname'">{{employee.firstName + " "+employee.surname+" "+employee.lastName}}</td>
+            <td data-title="'email'" sortable="'email'">{{employee.email}}</td>
+            <td data-title="'role'" sortable="'role'">{{employee.role}}</td>
+        </tr>
+    </table>
+</div>
