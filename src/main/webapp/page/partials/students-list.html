@@ -26,18 +26,18 @@
             <input type="checkbox" ng-model="checkboxes.items[user.id]" />
         </td>
         <td data-title="'FIO'" sortable="'surname'"><a style="color: black;" href="#/studentList/{{user.id}}">{{user.firstName + " "+user.surname}}</a></td>
-        <td data-title="'DATE'" sortable="'workStartDate'" >{{user.work.workStartDate}}</td>
+        <td data-title="'DATE'" sortable="'work.workStartDate'" >{{user.work.workStartDate}}</td>
         <td data-title="'FACULTY'" sortable="'study.faculty'" >{{user.study.faculty}}</td>
-        <td data-title="'YEAR'" sortable="'graduate_year'" >{{user.study.graduate_year}}</td>
-        <td data-title="'COURSE/GROUP'" sortable="'course_group'" >{{user.study.course_group}}</td>
-        <td data-title="'HOURS'" sortable="'hours_current'" >{{user.work.hours_current}}</td>
-        <td data-title="'BILLABLE'" sortable="'billable'" >{{user.work.billable}}</td>
-        <td data-title="'ROLE'" sortable="'currentProjectRole'" >{{user.work.currentProjectRole}}</td>
+        <td data-title="'YEAR'" sortable="'study.graduate_year'" >{{user.study.graduate_year}}</td>
+        <td data-title="'COURSE/GROUP'" sortable="'study.course_group'" >{{user.study.course_group}}</td>
+        <td data-title="'HOURS'" sortable="'work.hours_current'" >{{user.work.hours_current}}</td>
+        <td data-title="'BILLABLE'" sortable="'work.billable'" >{{user.work.billable}}</td>
+        <td data-title="'ROLE'" sortable="'work.currentProjectRole'" >{{user.work.currentProjectRole}}</td>
         <td data-title="'TECHNOLOGIES'" sortable="'projectTechnologies'">
                 <span ng-repeat="technologies in user.work.projectTechnologies"> {{technologies.name}}</span>
             <!--{{user.work.projectTechnologies[0].name}}-->
         </td>
-        <td data-title="'ENGLISH LEVEL'" sortable="'level'" >{{user.english}}</td>
+        <td data-title="'ENGLISH LEVEL'" sortable="'english'" >{{user.english}}</td>
             <td data-title="" ><a style="color: black;" href="#/studentList/{{user.id}}"><i class="fa fa-info-circle fa-2x"/></a></td>
         </tr>
     </table>

@@ -8,9 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 import com.exadel.model.entity.Feedback;
+import com.exadel.model.entity.User;
 
 @Entity
-public abstract class Feedbackable extends Government {
+public abstract class Feedbackable extends User {
 	private List<Feedback> feedback;
 
 	public Feedbackable() {
