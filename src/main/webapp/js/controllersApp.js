@@ -205,6 +205,7 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl',['$scope'
         $scope.cssStudentInfo = 'studentInfo-hide';
     }
     else {
+        $scope.ehglishLevels = StudentInfoCtrl.englishLevels;
         StudentInfoCtrl.getSkillSet($scope, $http, $q);
         $scope.addExam = function () {
             StudentInfoCtrl.addExam($scope);
@@ -232,6 +233,14 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl',['$scope'
     });
     deferred.resolve($scope.studentInfo);
 };*/
+StudentInfoCtrl.englishLevels = [
+        {value: "beginner", name: "Beginner"},
+        {value: "elementary", name: "Elementary"},
+        {value: "preintermediate", name: "Pre-Intermediate"},
+        {value: "intermediate", name: "Intermediate"},
+        {value: "upperintermediate", name: "Upper-Intermediate"},
+        {value: "advanced", name: "Advanced"}
+    ];
 StudentInfoCtrl.studentInfo = function ($q,$http) {
     var deferred = $q.defer();
     $http.get('../json/studentInfo.json').success(function (data) {
@@ -275,3 +284,31 @@ StudentInfoCtrl.deleteSkill = function($scope,index) {
 StudentInfoCtrl.deleteExam = function($scope,index) {
     $scope.studentInfo.study.exams.splice(index,1);
 };
+
+var ctrlForStudent = studentsControllers.controller('ctrlForStudent',['$scope','$q','$http', function($scope,$q,$http) {
+    var getStudentInfo = function() {
+        var deferred = $q.defer();
+        $http.get('/rest/me').success(function (data) {
+            $scope.studentInfo = data;
+        });
+        deferred.resolve($scope.studentInfo);
+    };
+    $scope.englishLevels = StudentInfoCtrl.englishLevels;
+    StudentInfoCtrl.getSkillSet($scope, $http, $q);
+    getStudentInfo();
+    $scope.addExam = function () {
+        StudentInfoCtrl.addExam($scope);
+    };
+    $scope.sendStudentInfo = function () {
+        StudentInfoCtrl.sendStudentInfo($scope, $http);
+    };
+    $scope.addSkill = function () {
+        StudentInfoCtrl.addSkill($scope);
+    };
+    $scope.deleteSkill = function () {
+        StudentInfoCtrl.deleteSkill($scope);
+    };
+    $scope.deleteExam = function () {
+        StudentInfoCtrl.deleteExam($scope);
+    };
+}]);

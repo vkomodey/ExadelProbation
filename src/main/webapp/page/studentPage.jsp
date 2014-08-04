@@ -24,9 +24,11 @@
     <script type="text/javascript" src="../lib/angular-animate.min.js.map"></script>
     <script type="text/javascript" src="../lib/angular-resource.min.js"></script>
     <script type="text/javascript" src="../lib/ng-table.js"></script>
-    <script type="text/javascript" src="../js/studentPageApp.js"></script>
+    <script type="text/javascript" src="../js/configApp.js"></script>
+    <script type="text/javascript" src="../js/servicesApp.js"></script>
+    <script type="text/javascript" src="../js/controllersApp.js"></script>
 </head>
-<body ng-app="appForStudent">
+<body ng-app="studentsApp">
 <div class="nav"><!-- для навигационной панели навигационной(невидима) -->
     <div class="nav-menu"> <!-- навигационное меню  -->
         <ul id="nav">
@@ -69,13 +71,13 @@
             </tr>
             <tr>
                 <td>English level</td>
-                <td><select ng-model="studentInfo.english" required>
-                   <option  ng-value="'beginner'">Beginner</option>
+                <td><select ng-model="studentInfo.english"  ng-options="englishLevel.value as englishLevel.name for englishLevel in englishLevels" required>
+                 <!--  <option  ng-value="'beginner'">Beginner</option>
                     <option ng-value="'elementary'">Elementary</option>
                     <option ng-value="'preintermediate'">Pre-Intermediate</option>
                     <option ng-value="'intermediate'">Intermediate</option>
                     <option ng-value="'upperintermediate'">Upper-Intermediate</option>
-                    <option ng-value="'advanced'">Advanced</option>
+                    <option ng-value="'advanced'">Advanced</option>-->
                 </select></td>
             </tr>
             <tr>
