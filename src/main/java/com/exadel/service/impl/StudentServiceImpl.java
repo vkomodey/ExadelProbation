@@ -109,6 +109,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
         Student st = studentDao.find(id);
         lazyTouch(st);
         //studentDao.detach(st);
+        
         st.fromView(view);
         studentDao.updateByMerge(st);
 	}

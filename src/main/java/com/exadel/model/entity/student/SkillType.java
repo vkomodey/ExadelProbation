@@ -25,7 +25,7 @@ public class SkillType {
 		return id;
 	}
     @NaturalId
-	@Column(name="type",updatable=false)
+	@Column(name="type")
 	public String getName() {
 		return name;
 	}
