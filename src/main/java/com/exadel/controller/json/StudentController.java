@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -152,8 +153,10 @@ public class StudentController {
 	}
 
     @RequestMapping(value = RestURIConstants.ATTACH_STUDENT, method = RequestMethod.POST)
-    public @ResponseBody void attachStudentTo(@RequestParam(value = "id") String id){
-//        studentService.attachStudentTo(Long.parseLong(curatorId), Long.parseLong(id));
-        System.out.println("dfdf");
+    public @ResponseBody void attachStudentTo(@PathVariable String id,
+                                              @PathVariable String curator_id){
+        logger.info("start attache student with id " + id + " with curator, which id is " + curator_id);
+        studentService.attachStudentTo(Long.parseLong(id), Long.parseLong(curator_id));
+        logger.info("attaching success");
     }
 }

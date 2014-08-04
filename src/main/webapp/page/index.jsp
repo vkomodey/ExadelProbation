@@ -46,7 +46,7 @@
     </div>
 </div>
 <div ng-view></div>
-<form action="/rest/stud/attach/15" method="post">
+<form action="/rest/stud/attach/42/4" method="post">
     <p>azaza</p>
     <input type="submit" value="post request">
 </form>
