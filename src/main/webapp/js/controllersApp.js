@@ -205,7 +205,7 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl',['$scope'
         $scope.cssStudentInfo = 'studentInfo-hide';
     }
     else {
-        $scope.ehglishLevels = StudentInfoCtrl.englishLevels;
+        $scope.englishLevels = StudentInfoCtrl.englishLevels;
         StudentInfoCtrl.getSkillSet($scope, $http, $q);
         $scope.addExam = function () {
             StudentInfoCtrl.addExam($scope);
@@ -241,13 +241,13 @@ StudentInfoCtrl.englishLevels = [
         {value: "upperintermediate", name: "Upper-Intermediate"},
         {value: "advanced", name: "Advanced"}
     ];
-StudentInfoCtrl.studentInfo = function ($q,$http) {
+/*StudentInfoCtrl.studentInfo = function ($q,$http) {
     var deferred = $q.defer();
     $http.get('../json/studentInfo.json').success(function (data) {
         deferred.resolve(data);
     });
     return deferred.promise;
-}
+}*/
 StudentInfoCtrl.getSkillSet = function($scope,$http,$q) {
     var deferred = $q.defer();
     $http.get('/rest/types/skill/get').success(function(data){
