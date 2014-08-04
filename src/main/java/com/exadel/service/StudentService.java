@@ -18,4 +18,5 @@ public interface StudentService extends GenericLivingService<Student> {
 			String role);
 	public List<Student> getFiltered(Map<String, String> params);
 	public List<Student> getAll(List<Long> ids);
+    public void attachStudentTo(long id, long curator_id);
 }
