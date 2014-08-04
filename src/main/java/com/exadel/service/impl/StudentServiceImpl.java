@@ -2,6 +2,7 @@ package com.exadel.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -142,5 +143,21 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 		}
 
 		return view;
+	}
+
+	@Transactional
+	public List<Student> getFiltered(Map<String, String> params) {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+	@Transactional
+	public List<Student> getAll(List<Long> ids) {
+		List<Student> list=new ArrayList<>();
+		for(Long id:ids){
+			list.add(studentDao.find(id));
+		}
+		return list;
 	}
 }

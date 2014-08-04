@@ -1,6 +1,7 @@
 package com.exadel.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.view.CompositeStudentFeedbackView;
@@ -15,4 +16,6 @@ public interface StudentService extends GenericLivingService<Student> {
     void modify(StudentView entity,long id);
 	public CompositeStudentFeedbackView generateStudentViewForUser(long id,
 			String role);
+	public List<Student> getFiltered(Map<String, String> params);
+	public List<Student> getAll(List<Long> ids);
 }
