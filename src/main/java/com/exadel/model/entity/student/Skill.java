@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Immutable;
+
 @Entity
 @Table(name = "skill")
 public class Skill {
@@ -28,7 +30,8 @@ public class Skill {
 	public String getLevel() {
 		return level;
 	}
-	@OneToOne(cascade=CascadeType.ALL,optional = false)
+	@OneToOne(optional = false)
+	@Immutable
 	@JoinColumn(name="type_id")
 	public SkillType getType() {
 		return type;
