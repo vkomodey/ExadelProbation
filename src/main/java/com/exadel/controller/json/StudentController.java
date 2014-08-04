@@ -152,7 +152,7 @@ public class StudentController {
 	}
 
     @RequestMapping(value = RestURIConstants.ATTACH_STUDENT, method = RequestMethod.POST)
-    public /*@ResponseBody*/ void attachStudentTo(@RequestParam(value = "id") String id,
+    public @ResponseBody void attachStudentTo(@RequestParam(value = "id") String id,
                                 @RequestParam(value = "curator_id") String curatorId){
         studentService.attachStudentTo(Long.parseLong(curatorId), Long.parseLong(id));
     }
