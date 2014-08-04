@@ -143,4 +143,9 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 
 		return view;
 	}
+
+    @Transactional
+    public void attachStudentTo(long curatorId, long studentId){
+        studentDao.attachStudentTo(curatorId, studentId);
+    }
 }

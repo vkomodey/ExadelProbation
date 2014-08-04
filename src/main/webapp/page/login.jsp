@@ -15,7 +15,6 @@
         <p><input type="password" name="j_password" placeholder="Password" ></p>
         <button type="submit" class="modern">Sign In</button>
     </form>
-
 </div>
 </body>
 </html>

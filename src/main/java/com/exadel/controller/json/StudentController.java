@@ -46,6 +46,8 @@ public class StudentController {
 	UserService userService;
     @Autowired
     CuratorService curatorService;
+    @Autowired
+    StudentService studentService;
 	private static Logger logger=LoggerFactory.getLogger(StudentController.class);
 	private Student buildDummy(){
 		logger.info("dummy student build");
@@ -150,7 +152,8 @@ public class StudentController {
 	}
 
     @RequestMapping(value = RestURIConstants.ATTACH_STUDENT, method = RequestMethod.POST)
-    public void attachStudent(@RequestParam String id){
-        
+    public /*@ResponseBody*/ void attachStudentTo(@RequestParam(value = "id") String id,
+                                @RequestParam(value = "curator_id") String curatorId){
+        studentService.attachStudentTo(Long.parseLong(curatorId), Long.parseLong(id));
     }
 }

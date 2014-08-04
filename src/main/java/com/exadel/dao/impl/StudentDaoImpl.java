@@ -39,4 +39,9 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 	public void detach(Student st) {
 		getSessionFactory().getCurrentSession().evict(st);
 	}
+
+    public void attachStudentTo(long curatorId, long studentId){
+        Student student = (Student)getSessionFactory().getCurrentSession().load(Student.class, studentId);
+        System.out.println(student.getFullName());
+    }
 }
