@@ -149,11 +149,11 @@ public class Student extends User {
 		this.getSkillSet().clear();
 		this.getSkillSet().addAll(view.getSkillSet());
 		//WOW! SUCH HIBERNATE 
+		this.getStudy().getExams().clear();
+		this.getStudy().getExams().addAll(view.getStudy().getExams());
 		List<StudentExams> lse=this.getStudy().getExams();
 		this.setStudy(view.getStudy());
 		this.getStudy().setExams(lse);
-		this.getStudy().getExams().clear();
-		this.getStudy().getExams().addAll(view.getStudy().getExams());
         for(StudentExams se:this.getStudy().getExams()){
             se.setStudent(this);
         }
