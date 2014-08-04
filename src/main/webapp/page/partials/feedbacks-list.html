@@ -73,7 +73,7 @@
 
 
 
-    <!------------------------------------------ STUDENT IFNO---------------------------------------------------------------->
+    <!------------------------------------------ STUDENT INFO---------------------------------------------------------------->
 
 <div ng-controller="StudentInfoCtrl">
     <form name="studentForm"  ng-class="cssStudentInfo">
@@ -167,12 +167,12 @@
                                 <td data-title="'Summer/winter'">
                                     <input type="radio" ng-model="studentInfo.study.exams[$index].summer"
                                            ng-value="true"
-                                           id="r{{$index*2}}">
-                                    <label for="r{{$index*2}}">Summer </label><br/>
+                                           id="radioExams{{$index*2}}">
+                                    <label for="radioExams{{$index*2}}">Summer </label><br/>
                                     <input type="radio" ng-model="studentInfo.study.exams[$index].summer"
                                            ng-value="false"
-                                           id="r{{$index*2+1}}">
-                                    <label for="r{{$index*2+1}}">Winter</label>
+                                           id="radioExams{{$index*2+1}}">
+                                    <label for="radioExams{{$index*2+1}}">Winter</label>
                                 </td>
                                 <td data-title="'Course'"><input type="text" name="course{{$index}}"
                                                                  ng-model="studentInfo.study.exams[$index].course" ng-pattern="/^([1-9])$/"required/>

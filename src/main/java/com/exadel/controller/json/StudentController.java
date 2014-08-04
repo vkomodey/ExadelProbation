@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exadel.model.constants.EnglishEnum;
@@ -105,14 +107,14 @@ public class StudentController {
 		    list=service.getAll();
 		}
 		logger.info("student list sending");
-        int inc=0;
+/*        int inc=0;
         for(Student item : list){
             item.setFirstName("sutud_first_name "+inc);
             item.setSecondName("stud_second_name"+inc);
             item.setSurname("stud_surname"+inc);
             inc++;
             System.out.println(inc);
-        }
+        }*/
 		return list;
 	}
 	
@@ -140,5 +142,10 @@ public class StudentController {
 		Student student=service.findByLogin(user.getName());
 		logger.info("real student sending");
 		return student;
+	}
+	
+	@RequestMapping(value=RestURIConstants.GET_ALL_FILTERED,method=RequestMethod.GET)
+	public @ResponseBody List<Student> getAllStudentsFiltered(@RequestParam Map<String,String> params){
+		return null;
 	}
 }

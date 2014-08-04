@@ -38,7 +38,7 @@ public class User implements IEntity{
     @Transient
     @JsonIgnore
     public String getFullName(){
-    	return firstName+" "+surname+" "+secondName;
+    	return getFirstName()+" "+getSurname()+" "+getSecondName();
     }
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
