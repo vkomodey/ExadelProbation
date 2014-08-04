@@ -212,7 +212,7 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl',['$scope'
 
         };
         $scope.sendStudentInfo = function () {
-            StudentInfoCtrl.sendStudentInfo($scope, $http);
+            StudentInfoCtrl.sendStudentInfo($scope, $http, $routeParams.studId);
         };
         $scope.addSkill = function () {
             StudentInfoCtrl.addSkill($scope);
@@ -262,8 +262,8 @@ StudentInfoCtrl.addExam = function($scope){
         course: null
     });
 }
-StudentInfoCtrl.sendStudentInfo = function($scope,$http) {
-    $http.post('/rest/stud/'+$scope.studentInfo.id+'/edit',$scope.studentInfo)
+StudentInfoCtrl.sendStudentInfo = function($scope,$http,id) {
+    $http.post('/rest/stud/'+id+'/edit',$scope.studentInfo)
         .success(function(){
             alert('the info is sent');
         })
@@ -300,7 +300,7 @@ var ctrlForStudent = studentsControllers.controller('ctrlForStudent',['$scope','
         StudentInfoCtrl.addExam($scope);
     };
     $scope.sendStudentInfo = function () {
-        StudentInfoCtrl.sendStudentInfo($scope, $http);
+        StudentInfoCtrl.sendStudentInfo($scope, $http, $scope.studentInfo.id);
     };
     $scope.addSkill = function () {
         StudentInfoCtrl.addSkill($scope);
