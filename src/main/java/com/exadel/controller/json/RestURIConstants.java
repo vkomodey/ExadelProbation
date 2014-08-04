@@ -15,4 +15,5 @@ public class RestURIConstants {
 	public static final String GET_ALL_SKILLTYPE = "types/skill/get";
     public static final String IDENTIFY_ROLE = "me/role";
 	public static final String GET_ALL_FILTERED = "stud/filtered";
+	public static final String ATTACH_STUDENT = "stud/attach/{id}";
 }

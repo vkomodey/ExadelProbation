@@ -148,4 +148,9 @@ public class StudentController {
 	public @ResponseBody List<Student> getAllStudentsFiltered(@RequestParam Map<String,String> params){
 		return null;
 	}
+
+    @RequestMapping(value = RestURIConstants.ATTACH_STUDENT, method = RequestMethod.POST)
+    public void attachStudent(@RequestParam String id){
+        
+    }
 }
