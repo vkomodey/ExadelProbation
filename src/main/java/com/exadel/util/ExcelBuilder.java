@@ -75,7 +75,7 @@ public class ExcelBuilder extends AbstractExcelView {
             aRow.createCell(1).setCellValue(stud.getFirstName());
             aRow.createCell(2).setCellValue(stud.getSecondName());
             aRow.createCell(3).setCellValue(stud.getSurname());
-            aRow.createCell(4).setCellValue(stud.getWork().getWorkStartDate());
+            /*aRow.createCell(4).setCellValue(stud.getWork().getWorkStartDate());
             aRow.createCell(5).setCellValue(stud.getStudy().getFaculty());
             aRow.createCell(6).setCellValue(stud.getStudy().getCourse_group());
             aRow.createCell(7).setCellValue(stud.getStudy().getGraduate_year());
@@ -84,7 +84,7 @@ public class ExcelBuilder extends AbstractExcelView {
             aRow.createCell(10).setCellValue(stud.getWork().getBillableStartDate());
             aRow.createCell(11).setCellValue(stud.getWork().getCurrentProjectRole().toString());
             aRow.createCell(12).setCellValue("ДОПИСАТЬ!!!!!!!!!!!");
-            aRow.createCell(13).setCellValue(stud.getEnglish().toString());
+            aRow.createCell(13).setCellValue(stud.getEnglish().toString());*/
         }
     }
 

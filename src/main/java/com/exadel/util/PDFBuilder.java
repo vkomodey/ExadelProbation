@@ -17,14 +17,14 @@ import java.util.Map;
 @Service
 public class PDFBuilder extends AbstractPdfView {
 
-    static final int tableSize=13;
+    static final int tableSize=4;
 
     private void addHeader(Table table) throws BadElementException {
         table.addCell("Id");
         table.addCell("First Name");
         table.addCell("Second Name");
         table.addCell("Surname");
-        table.addCell("Work start date");
+       /* table.addCell("Work start date");
         table.addCell("Faculty");
         table.addCell("Course/Group");
         table.addCell("Graduate year");
@@ -33,7 +33,7 @@ public class PDFBuilder extends AbstractPdfView {
         table.addCell("Billable start date");
         table.addCell("Project role");
         table.addCell("Current project technology");
-        table.addCell("English level");
+        table.addCell("English level");*/
     }
 
     private void fillTable(Table table,List<Student> listStud) throws BadElementException {
@@ -42,7 +42,7 @@ public class PDFBuilder extends AbstractPdfView {
             table.addCell(stud.getFirstName());
             table.addCell(stud.getSecondName());
             table.addCell(stud.getSurname());
-            table.addCell(stud.getWork().getWorkStartDate().toString());
+            /*table.addCell(stud.getWork().getWorkStartDate().toString());
             table.addCell(stud.getStudy().getFaculty());
             table.addCell(stud.getStudy().getCourse_group());
             table.addCell(stud.getStudy().getGraduate_year().toString());
@@ -51,7 +51,7 @@ public class PDFBuilder extends AbstractPdfView {
             table.addCell(stud.getWork().getBillableStartDate().toString());
             table.addCell(stud.getWork().getCurrentProjectRole().toString());
             table.addCell("ДОПИСАТЬ!!!!!!!!!!!");
-            table.addCell(stud.getEnglish().toString());
+            table.addCell(stud.getEnglish().toString());*/
         }
     }
 
