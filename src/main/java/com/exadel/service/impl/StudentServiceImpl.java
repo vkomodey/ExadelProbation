@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.exadel.model.entity.view.FileExportView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
@@ -153,13 +154,26 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	}
 
 	@Transactional
-	public List<Student> getAll(List<Long> ids) {
+	public List<Student> getAll(List<FileExportView> ids) {
 		List<Student> list=new ArrayList<>();
-		for(Long id:ids){
-			list.add(studentDao.find(id));
+        try{
+		for(FileExportView item :ids){
+			list.add(studentDao.find(item.getId()));
 		}
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 		return list;
 	}
+
+/*    @Transactional
+    public List<Student> getAll(List<Long> ids) {
+        List<Student> list=new ArrayList<>();
+        for(Long item :ids){
+            list.add(studentDao.find(item));
+        }
+        return list;
+    }*/
 
     @Transactional
     public void attachStudentTo(long id, long curator_id){

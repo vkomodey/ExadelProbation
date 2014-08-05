@@ -308,15 +308,20 @@ studentsControllers.controller('CuratorsStudentsCtrl', ['$scope', '$routeParams'
 }]);
 studentsControllers.controller('testSend', ['$scope', '$http', function($scope,$http){
     var mas=[{"id":19}, {"id":20}];
+    $scope.masJson = angular.toJson(mas);
     $scope.testSendF = function() {
-        $http.post('/rest/downloadExcel', mas)
-            .success(function() {
+        $http.get('/rest/downloadExcel?ids='+masJson)
+            .success(function(data) {
+                $scope.data = data;
                 alert("success");
+                console.log(data);
+
             })
             .error(function(data,status) {
                 alert('ERROR '+ status);
             });
     };
+
     $scope.testSendPdf = function() {
         $http.post('/rest/downloadPDF', mas)
             .success(function() {
