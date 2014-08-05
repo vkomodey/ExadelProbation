@@ -40,11 +40,11 @@ public class FileExportController {
         list.add((long)19);
         list.add((long)20);
         return new ModelAndView("pdfView", "list", service.getAll(list));
-    }
+    }*/
 
 
 
-    @RequestMapping(value = RestURIConstants.DOWNLOAD_EXCEL, method = RequestMethod.GET)
+/*    @RequestMapping(value = RestURIConstants.DOWNLOAD_EXCEL, method = RequestMethod.GET)
     public ModelAndView downloadExcel() {
         logger.info("Getting filtered list");
         List<Long> list = new ArrayList<>();
