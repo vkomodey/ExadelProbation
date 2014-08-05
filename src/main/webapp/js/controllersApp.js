@@ -307,10 +307,9 @@ studentsControllers.controller('CuratorsStudentsCtrl', ['$scope', '$routeParams'
 
 }]);
 studentsControllers.controller('testSend', ['$scope', '$http', function($scope,$http){
-    var mas=[{id: 1},
-        {id:2}];
-    $scope.testSendF = function() {
 
+    $scope.testSendF = function() {
+        var mas="2";
         $http.post('/rest/downloadExcel', mas)
             .success(function() {
                 alert("success");
