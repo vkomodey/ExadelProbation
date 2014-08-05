@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -21,7 +22,7 @@ public class FileExportController {
     StudentService service;
 
     @RequestMapping(value = RestURIConstants.DOWNLOAD_EXCEL, method = RequestMethod.POST)
-    public ModelAndView downloadExcel(@RequestBody List<Long> list) {
+    public @ResponseBody ModelAndView downloadExcel(@RequestBody List<Long> list) {
         logger.info("Getting filtered list");
 /*        list.add((long)19);
         list.add((long)20);*/
