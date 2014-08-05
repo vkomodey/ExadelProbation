@@ -17,4 +17,5 @@ public class RestURIConstants {
 	public static final String GET_ALL_FILTERED = "stud/filtered";
 	public static final String ATTACH_STUDENT = "stud/attach/{id}/{curator_id}";
     public static final String DOWNLOAD_EXCEL = "downloadExcel";
+    public static final String DOWNLOAD_PDF = "downloadPDF";
 }
