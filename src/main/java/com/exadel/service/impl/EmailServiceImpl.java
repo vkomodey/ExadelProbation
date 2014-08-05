@@ -13,7 +13,7 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     EmailDao emailDao;
     @Transactional
-    public List<String> getAllFioById(List<Long> listId){
-        return emailDao.getAllFioById(listId);
+    public List<String> getAllEmailsById(List<Long> listId){
+        return emailDao.getAllEmailsById(listId);
     }
 }

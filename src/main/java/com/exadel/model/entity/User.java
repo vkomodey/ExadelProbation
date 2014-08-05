@@ -100,4 +100,13 @@ public class User implements IEntity{
         this.surname= surname;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", surname='" + surname + '\'' +
+                '}';
+    }
 }
