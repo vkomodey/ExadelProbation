@@ -290,3 +290,33 @@ studentsControllers.controller('CuratorsStudentsCtrl', ['$scope', '$routeParams'
     }
 
 }]);
+studentsControllers.controller('CuratorsStudentsCtrl', ['$scope', '$routeParams','curStudentsListFactory','$q', function($scope,$routeParams,curStudentsListFactory,$q) {
+
+    $scope.reloadList = function (){
+        var deferred = $q.defer();
+        curStudentsListFactory.getCuratorsStudents({curId: $routeParams.curId},function(data) {
+            $scope.curStudents = data;
+        });
+        deferred.resolve($scope.curStudents);
+    };
+
+    $scope.fillList= function() {
+        $scope.PopupCssClass = 'popup-show';
+        $scope.reloadList();
+    }
+
+}]);
+studentsControllers.controller('testSend', ['$scope', '$http', function($scope,$http){
+    var mas=[{id: 1},
+        {id:2}];
+    $scope.testSendF = function() {
+
+        $http.post('/rest/downloadExcel', mas)
+            .success(function() {
+                alert("success");
+            })
+            .error(function(data,status) {
+                alert('ERROR '+ status);
+            });
+    };
+}])
