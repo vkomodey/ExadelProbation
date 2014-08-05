@@ -22,7 +22,7 @@ import com.exadel.model.entity.student.Student;
 @Service
 public class ExcelBuilder extends AbstractExcelView {
 
-    public void createHeaderRow(HSSFSheet sheet, CellStyle style){
+    private void createHeaderRow(HSSFSheet sheet, CellStyle style){
         HSSFRow header = sheet.createRow(0);
         header.createCell(0).setCellValue("Id");
         header.getCell(0).setCellStyle(style);
@@ -65,11 +65,9 @@ public class ExcelBuilder extends AbstractExcelView {
 
         header.createCell(13).setCellValue("English level");
         header.getCell(13).setCellStyle(style);
-
-
     }
 
-    public void fillTable(HSSFSheet sheet, List<Student> listStud){
+    private void fillTable(HSSFSheet sheet, List<Student> listStud){
         int rowCount = 1;
         for (Student stud : listStud) {
             HSSFRow aRow = sheet.createRow(rowCount++);
