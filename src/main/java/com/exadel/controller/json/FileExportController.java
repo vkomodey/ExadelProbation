@@ -22,13 +22,27 @@ public class FileExportController {
     StudentService service;
 
     @RequestMapping(value = RestURIConstants.DOWNLOAD_EXCEL, method = RequestMethod.POST)
-    public @ResponseBody ModelAndView downloadExcel(@RequestBody List<Long> list) {
-        logger.info("Getting filtered list");
-/*        list.add((long)19);
-        list.add((long)20);*/
-
+    public ModelAndView downloadExcel(@RequestBody List<Long> list) {
+        logger.info("Getting Excel file");
         return new ModelAndView("excelView", "list", service.getAll(list));
     }
+
+    @RequestMapping(value = RestURIConstants.DOWNLOAD_PDF, method = RequestMethod.POST)
+    public ModelAndView downloadPDF(@RequestBody List<Long> list) {
+        logger.info("Getting pdf file");
+        return new ModelAndView("pdfView", "list", service.getAll(list));
+    }
+
+/*    @RequestMapping(value = RestURIConstants.DOWNLOAD_PDF, method = RequestMethod.GET)
+    public ModelAndView downloadPDF() {
+        logger.info("Getting pdf file");
+        List<Long> list = new ArrayList<>();
+        list.add((long)19);
+        list.add((long)20);
+        return new ModelAndView("pdfView", "list", service.getAll(list));
+    }*/
+
+
 
 /*    @RequestMapping(value = RestURIConstants.DOWNLOAD_EXCEL, method = RequestMethod.GET)
     public ModelAndView downloadExcel() {
