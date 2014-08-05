@@ -1,7 +1,7 @@
 package com.exadel.controller.json;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import com.exadel.service.StudentService;
 import org.slf4j.LoggerFactory;
@@ -20,9 +20,21 @@ public class FileExportController {
     @Autowired
     StudentService service;
 
-    @RequestMapping(value = "/downloadExcel", method = RequestMethod.POST)
+    @RequestMapping(value = RestURIConstants.DOWNLOAD_EXCEL, method = RequestMethod.POST)
     public ModelAndView downloadExcel(@RequestBody List<Long> list) {
         logger.info("Getting filtered list");
+/*        list.add((long)19);
+        list.add((long)20);*/
+
         return new ModelAndView("excelView", "list", service.getAll(list));
     }
+
+/*    @RequestMapping(value = RestURIConstants.DOWNLOAD_EXCEL, method = RequestMethod.GET)
+    public ModelAndView downloadExcel() {
+        logger.info("Getting filtered list");
+        List<Long> list = new ArrayList<>();
+        list.add((long)19);
+        list.add((long)20);
+        return new ModelAndView("excelView", "list", service.getAll(list));
+    }*/
 }
