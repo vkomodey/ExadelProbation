@@ -307,10 +307,18 @@ studentsControllers.controller('CuratorsStudentsCtrl', ['$scope', '$routeParams'
 
 }]);
 studentsControllers.controller('testSend', ['$scope', '$http', function($scope,$http){
-
+    var mas=[{"id":19}, {"id":20}];
     $scope.testSendF = function() {
-        var mas=[{"id":1}, {"id":2}];
         $http.post('/rest/downloadExcel', mas)
+            .success(function() {
+                alert("success");
+            })
+            .error(function(data,status) {
+                alert('ERROR '+ status);
+            });
+    };
+    $scope.testSendPdf = function() {
+        $http.post('/rest/downloadPDF', mas)
             .success(function() {
                 alert("success");
             })
