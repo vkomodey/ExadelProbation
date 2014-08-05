@@ -129,7 +129,7 @@ input[type=radio]:checked + label {
   .popup-show > .login-h2 {
     width: 250px; }
 
-.login-popup, .feedback-popup {
+.login-popup, .feedback-popup, .studentsOfCurator {
   -webkit-transition: top .5s;
   transition: top .5s;
   color: white;
@@ -155,9 +155,9 @@ input[type=radio]:checked + label {
     padding: 10px 10px;
     -webkit-appearance: none;
   }*/ }
-  .login-popup input[type=radio], .feedback-popup input[type=radio] {
+  .login-popup input[type=radio], .feedback-popup input[type=radio], .studentsOfCurator input[type=radio] {
     display: none; }
-  .login-popup label, .feedback-popup label {
+  .login-popup label, .feedback-popup label, .studentsOfCurator label {
     background-image: url(../img/csscheckbox_0461126d8f4dabfe98d7c25685123c40.png);
     padding-left: 33px;
     height: 27px;
@@ -166,11 +166,11 @@ input[type=radio]:checked + label {
     background-repeat: no-repeat;
     cursor: pointer;
     background-position: 0 0; }
-  .login-popup input[type=radio]:checked + label, .feedback-popup input[type=radio]:checked + label {
+  .login-popup input[type=radio]:checked + label, .feedback-popup input[type=radio]:checked + label, .studentsOfCurator input[type=radio]:checked + label {
     background-position: 0 -27px; }
-  .login-popup p, .feedback-popup p {
+  .login-popup p, .feedback-popup p, .studentsOfCurator p {
     padding: 3% 10%; }
-  .login-popup input, .feedback-popup input {
+  .login-popup input, .feedback-popup input, .studentsOfCurator input {
    /* height: 30px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -193,11 +193,11 @@ input[type=radio]:checked + label {
     -ms-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out; }
-  .login-popup input:focus, .feedback-popup input:focus {
+  .login-popup input:focus, .feedback-popup input:focus, .studentsOfCurator input:focus {
     outline: none;
     box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1), 0 0 5px 1px #51cbee; }
 
-.feedback-popup {
+.feedback-popup, .studentsOfCurator {
   width: auto;
   max-width: 600px;
   height: 60%;
@@ -205,17 +205,17 @@ input[type=radio]:checked + label {
   overflow: auto;
   text-align: right;
   padding-right: 20px; }
-  .feedback-popup .buttons {
+  .feedback-popup .buttons, .studentsOfCurator .buttons {
     margin-right: auto;
     margin-left: auto;
     width: 40%; }
-  .feedback-popup .workInProject {
+  .feedback-popup .workInProject, .studentsOfCurator .workInProject {
     -webkit-transition: opacity .5s;
     -moz-transition: opacity .5s;
     -ms-transition: opacity .5s;
     -o-transition: opacity .5s;
     transition: opacity .5s; }
-    .feedback-popup .workInProject > .false {
+    .feedback-popup .workInProject > .false, .studentsOfCurator .workInProject > .false {
       position: relative;
       -webkit-transition: opacity .5s;
       -moz-transition: opacity .5s;
@@ -224,9 +224,9 @@ input[type=radio]:checked + label {
       transition: opacity .5s;
       pointer-events: auto;
       opacity: 1; }
-      .feedback-popup .workInProject > .false p {
+      .feedback-popup .workInProject > .false p, .studentsOfCurator .workInProject > .false p {
         padding: 3% 10%; }
-      .feedback-popup .workInProject > .false input {
+      .feedback-popup .workInProject > .false input, .studentsOfCurator .workInProject > .false input {
      /* height: 30px;
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
@@ -249,10 +249,10 @@ input[type=radio]:checked + label {
         -ms-transition: all 0.3s ease-out;
         -o-transition: all 0.3s ease-out;
         transition: all 0.3s ease-out; }
-      .feedback-popup .workInProject > .false input:focus {
+      .feedback-popup .workInProject > .false input:focus, .studentsOfCurator .workInProject > .false input:focus {
         outline: none;
         box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1), 0 0 5px 1px #51cbee; }
-    .feedback-popup .workInProject > .ng-hide {
+    .feedback-popup .workInProject > .ng-hide, .studentsOfCurator .workInProject > .ng-hide {
       position: absolute;
       -webkit-transition: opacity .5s;
       -moz-transition: opacity .5s;
@@ -261,9 +261,9 @@ input[type=radio]:checked + label {
       transition: opacity .5s;
       pointer-events: none;
       opacity: 0; }
-      .feedback-popup .workInProject > .ng-hide p {
+      .feedback-popup .workInProject > .ng-hide p, .studentsOfCurator .workInProject > .ng-hide p {
         padding: 3% 10%; }
-      .feedback-popup .workInProject > .ng-hide input {
+      .feedback-popup .workInProject > .ng-hide input, .studentsOfCurator .workInProject > .ng-hide input {
      /* height: 30px;
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
@@ -286,7 +286,7 @@ input[type=radio]:checked + label {
         -ms-transition: all 0.3s ease-out;
         -o-transition: all 0.3s ease-out;
         transition: all 0.3s ease-out; }
-      .feedback-popup .workInProject > .ng-hide input:focus {
+      .feedback-popup .workInProject > .ng-hide input:focus, .studentsOfCurator .workInProject > .ng-hide input:focus {
         outline: none;
         box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1), 0 0 5px 1px #51cbee; }
 
@@ -580,6 +580,10 @@ textarea {
     outline: none;
     box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1), 0 0 5px 1px #51cbee; }
 
+/*Curator's students table*/
+.row {
+  margin-left: 50px !important; }
+
 .feedbacksList-hide {
   display: none; }
 
@@ -590,3 +594,11 @@ textarea {
   max-width: 100px;
   max-height: 30px;
   overflow: auto; }
+
+#btnclose {
+  margin-top: 10%;
+  margin-left: 100%; }
+
+.studentsOfCurator {
+  height: auto;
+  max-height: 60%; }

@@ -17,3 +17,8 @@ studentsServices.factory('employeesList',['$resource','$routeParams', function($
         getEmployeeList: {method: 'GET', params: {employeeId: 'all'}, isArray: true}
     });
 } ]);
+studentsServices.factory('curStudentsListFactory',['$resource','$routeParams', function($resource,$routeParams) {
+    return $resource('/rest/stud/dummyarr', {}, {
+        getCuratorsStudents: {method: 'GET', params: {curId: 'all'}, isArray: true}
+    });
+} ]);

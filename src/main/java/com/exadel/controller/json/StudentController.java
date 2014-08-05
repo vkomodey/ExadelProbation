@@ -125,7 +125,7 @@ public class StudentController {
 	public @ResponseBody List<Student> getDummyStudentArray(){
 		logger.info("dummy student array sending");
 		ArrayList<Student> ar=new ArrayList<Student>();
-		for(int i=0;i<5;i++)
+		for(int i=0;i<10;i++)
 			ar.add(buildDummy());
 		return ar;
 	}

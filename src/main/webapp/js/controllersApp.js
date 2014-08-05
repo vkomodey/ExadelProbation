@@ -16,7 +16,7 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
    // $scope.reloadList();
     $interval(function() {
         $scope.reloadList();
-    },60000);
+    },5000);
 
     $scope.feedbacks = student.feedbacks;
     $scope.studentInfo = student.info;
@@ -67,7 +67,7 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
     };
     $interval(function() {
         $scope.reloadList();
-    },60000);
+    },5000);
     //$scope.reloadList();
     $scope.studentsList = studentsList;
    // var defered = $q.defer();
@@ -191,8 +191,6 @@ EmployeeListCtrl.employees = function(employeesList,$q,$route) {
     return deferred.promise;
 }
 
-
-
 var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl',['$scope','$routeParams','$q','$http',function($scope,$routeParams,$q,$http) {
     /*var getStudentInfo = function () {
         var deferred = $q.defer();
@@ -205,14 +203,13 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl',['$scope'
         $scope.cssStudentInfo = 'studentInfo-hide';
     }
     else {
-        $scope.englishLevels = StudentInfoCtrl.englishLevels;
         StudentInfoCtrl.getSkillSet($scope, $http, $q);
         $scope.addExam = function () {
             StudentInfoCtrl.addExam($scope);
 
         };
         $scope.sendStudentInfo = function () {
-            StudentInfoCtrl.sendStudentInfo($scope, $http, $routeParams.studId);
+            StudentInfoCtrl.sendStudentInfo($scope, $http);
         };
         $scope.addSkill = function () {
             StudentInfoCtrl.addSkill($scope);
@@ -233,21 +230,13 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl',['$scope'
     });
     deferred.resolve($scope.studentInfo);
 };*/
-StudentInfoCtrl.englishLevels = [
-        {value: "beginner", name: "Beginner"},
-        {value: "elementary", name: "Elementary"},
-        {value: "preintermediate", name: "Pre-Intermediate"},
-        {value: "intermediate", name: "Intermediate"},
-        {value: "upperintermediate", name: "Upper-Intermediate"},
-        {value: "advanced", name: "Advanced"}
-    ];
-/*StudentInfoCtrl.studentInfo = function ($q,$http) {
+StudentInfoCtrl.studentInfo = function ($q,$http) {
     var deferred = $q.defer();
     $http.get('../json/studentInfo.json').success(function (data) {
         deferred.resolve(data);
     });
     return deferred.promise;
-}*/
+}
 StudentInfoCtrl.getSkillSet = function($scope,$http,$q) {
     var deferred = $q.defer();
     $http.get('/rest/types/skill/get').success(function(data){
@@ -262,8 +251,8 @@ StudentInfoCtrl.addExam = function($scope){
         course: null
     });
 }
-StudentInfoCtrl.sendStudentInfo = function($scope,$http,id) {
-    $http.post('/rest/stud/'+id+'/edit',$scope.studentInfo)
+StudentInfoCtrl.sendStudentInfo = function($scope,$http) {
+    $http.post('/rest/stud/'+$scope.studentInfo.id+'/edit',$scope.studentInfo)
         .success(function(){
             alert('the info is sent');
         })
@@ -285,30 +274,19 @@ StudentInfoCtrl.deleteExam = function($scope,index) {
     $scope.studentInfo.study.exams.splice(index,1);
 };
 
-var ctrlForStudent = studentsControllers.controller('ctrlForStudent',['$scope','$q','$http', function($scope,$q,$http) {
-    var getStudentInfo = function() {
+studentsControllers.controller('CuratorsStudentsCtrl', ['$scope', '$routeParams','curStudentsListFactory','$q', function($scope,$routeParams,curStudentsListFactory,$q) {
+
+   $scope.reloadList = function (){
         var deferred = $q.defer();
-        $http.get('/rest/me').success(function (data) {
-            $scope.studentInfo = data;
+        curStudentsListFactory.getCuratorsStudents({curId: $routeParams.curId},function(data) {
+            $scope.curStudents = data;
         });
-        deferred.resolve($scope.studentInfo);
+        deferred.resolve($scope.curStudents);
     };
-    $scope.englishLevels = StudentInfoCtrl.englishLevels;
-    StudentInfoCtrl.getSkillSet($scope, $http, $q);
-    getStudentInfo();
-    $scope.addExam = function () {
-        StudentInfoCtrl.addExam($scope);
-    };
-    $scope.sendStudentInfo = function () {
-        StudentInfoCtrl.sendStudentInfo($scope, $http, $scope.studentInfo.id);
-    };
-    $scope.addSkill = function () {
-        StudentInfoCtrl.addSkill($scope);
-    };
-    $scope.deleteSkill = function () {
-        StudentInfoCtrl.deleteSkill($scope);
-    };
-    $scope.deleteExam = function () {
-        StudentInfoCtrl.deleteExam($scope);
-    };
+
+    $scope.fillList= function() {
+        $scope.PopupCssClass = 'popup-show';
+        $scope.reloadList();
+    }
+
 }]);

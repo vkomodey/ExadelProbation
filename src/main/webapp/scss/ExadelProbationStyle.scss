@@ -163,7 +163,7 @@ input[type=radio]:checked + label {
   opacity: 1;
   pointer-events: auto;
 }
-.login-popup, .feedback-popup {
+.login-popup, .feedback-popup, .studentsOfCurator {
   -webkit-transition: top .5s;
   transition: top .5s;
   color: white;
@@ -193,7 +193,7 @@ input[type=radio]:checked + label {
   @include radioButton-style-type();
   @include input-type();
 }
-.feedback-popup {
+.feedback-popup, .studentsOfCurator {
   width:auto;
   max-width:600px;
   height:60%;
@@ -529,6 +529,11 @@ textarea {
   0 0 5px 1px #51CBEE;
 }
 }
+/*Curator's students table*/
+.row{
+margin-left: 50px !important;
+}
+
 
 .feedbacksList-hide {
   display: none;
@@ -540,4 +545,11 @@ textarea {
   max-width: 100px;
   max-height: 30px;
   overflow: auto;
+}
+#btnclose {
+  margin-top: 10%;
+  margin-left: 100%;}
+.studentsOfCurator{
+  height: auto;
+  max-height: 60%;
 }
