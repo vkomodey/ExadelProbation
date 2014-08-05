@@ -16,7 +16,7 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     UserService userService;
-    @RequestMapping(value = "/empl/all", method = RequestMethod.GET)
+    @RequestMapping(value = RestURIConstants.GET_ALL_EMPLOYEE, method = RequestMethod.GET)
     public @ResponseBody List<EmployeeView> getAllEmployees(){
         return userService.getAllEmployees();
     }

@@ -45,6 +45,9 @@
         </ul>
     </div>
 </div>
+<div>
+<a href="/app/send/email">AZAZAZAZA</a>
+</div>
 <div ng-view></div>
 </body>
 </html>
