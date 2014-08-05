@@ -48,8 +48,25 @@ public class ExcelBuilder extends AbstractExcelView {
         header.createCell(7).setCellValue("Graduate year");
         header.getCell(7).setCellStyle(style);
 
-        header.createCell(8).setCellValue("current working hource");
+        header.createCell(8).setCellValue("Current working hours");
         header.getCell(8).setCellStyle(style);
+
+        header.createCell(9).setCellValue("Billable/Not billable");
+        header.getCell(9).setCellStyle(style);
+
+        header.createCell(10).setCellValue("Billable start date");
+        header.getCell(10).setCellStyle(style);
+
+        header.createCell(11).setCellValue("Project role");
+        header.getCell(11).setCellStyle(style);
+
+        header.createCell(12).setCellValue("Current project technology");
+        header.getCell(12).setCellStyle(style);
+
+        header.createCell(13).setCellValue("English level");
+        header.getCell(13).setCellStyle(style);
+
+
     }
 
     public void fillTable(HSSFSheet sheet, List<Student> listStud){
@@ -60,6 +77,16 @@ public class ExcelBuilder extends AbstractExcelView {
             aRow.createCell(1).setCellValue(stud.getFirstName());
             aRow.createCell(2).setCellValue(stud.getSecondName());
             aRow.createCell(3).setCellValue(stud.getSurname());
+            aRow.createCell(4).setCellValue(stud.getWork().getWorkStartDate());
+            aRow.createCell(5).setCellValue(stud.getStudy().getFaculty());
+            aRow.createCell(6).setCellValue(stud.getStudy().getCourse_group());
+            aRow.createCell(7).setCellValue(stud.getStudy().getGraduate_year());
+            aRow.createCell(8).setCellValue(stud.getWork().getHours_current());
+            aRow.createCell(9).setCellValue(stud.getWork().isBillable());
+            aRow.createCell(10).setCellValue(stud.getWork().getBillableStartDate());
+            aRow.createCell(11).setCellValue(stud.getWork().getCurrentProjectRole().toString());
+            aRow.createCell(12).setCellValue("ДОПИСАТЬ!!!!!!!!!!!");
+            aRow.createCell(13).setCellValue(stud.getEnglish().toString());
         }
     }
 
