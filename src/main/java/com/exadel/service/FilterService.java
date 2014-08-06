@@ -16,6 +16,6 @@ public interface FilterService {
 
 	List<Long> getAllStudyEndYears();
 
-	List<User> getAllUsedCurators();
+	Set<User> getAllUsedCurators();
 
 }

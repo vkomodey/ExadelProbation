@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.exadel.dao.CuratorDao;
 import com.exadel.dao.StudentDao;
 import com.exadel.model.entity.User;
 import com.exadel.model.entity.student.Student;
@@ -15,13 +16,13 @@ import com.exadel.service.FilterService;
 public class FilterServiceImpl implements FilterService {
 	@Autowired
 	StudentDao studentDao;
-
+	@Autowired
+	CuratorDao curatorDao;
 	public List<String> getAllUniversities() {
 		return studentDao.getUniversities();
 	}
 
 	public Set<Technology> getAllCurrentUsedTechnologies() {
-		// TODO Auto-generated method stub
 		List<Student> list=studentDao.getAll();
 		Set<Technology> technologies=new HashSet<>();
 		for(Student stud:list){
@@ -39,9 +40,8 @@ public class FilterServiceImpl implements FilterService {
 		return studentDao.getStudyEndYears();
 	}
 
-	public List<User> getAllUsedCurators() {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<User> getAllUsedCurators() {
+		return new HashSet<User>(curatorDao.getActive());
 	}
 
 }
