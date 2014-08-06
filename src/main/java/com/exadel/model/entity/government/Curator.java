@@ -23,8 +23,7 @@ public class Curator extends Feedbackable implements Government {
 	private List<Student> students;
 
 	@JsonManagedReference
-	@ManyToMany
-	// @JsonIgnore
+	@ManyToMany(mappedBy="curator")
 	public List<Student> getStudents() {
 		return students;
 	}
