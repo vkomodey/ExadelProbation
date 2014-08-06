@@ -38,7 +38,7 @@ public class CuratorDaoImpl extends GenericLivingDaoImpl<Curator> implements Cur
 		return getSessionFactory()
 				.getCurrentSession()
 				.createQuery(
-						"distinct from curator c inner join student s on s.curator.id=c.id")
+						"select distinct s.curator from Student s")
 				.list();
 	}
 
