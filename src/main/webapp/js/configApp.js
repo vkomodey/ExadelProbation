@@ -7,6 +7,7 @@ var studentsApp = angular.module('studentsApp',['ngRoute', 'studentsControllers'
                 controller: "StudentListCtrl",
                 resolve: {
                     studentsList: StudentListCtrl.studentsList
+                    //filterParams: filterParamsCtrl.filterParams
                 }
             }).
             when('/studentList/:studId', {
@@ -21,8 +22,10 @@ var studentsApp = angular.module('studentsApp',['ngRoute', 'studentsControllers'
             when('/employeeList', {
                 templateUrl: '/page/partials/employee-list.html',
                 controller: "EmployeeListCtrl",
+
                 resolve: {
                     employees: EmployeeListCtrl.employees
+
                 }
             }).
             when('/test', {

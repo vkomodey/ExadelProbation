@@ -2,7 +2,7 @@
 <!--<div ng-controller="StudentListCtrl">-->
 <div class="content">
 
-    <div ng-controller="CreateStudentCtrl" ng-init="PopupCssClass = 'popup-hide'">
+  <div ng-controller="CreateStudentCtrl" ng-init="PopupCssClass = 'popup-hide'">
     <button ng-click="PopupCssClass = 'popup-show'" class="modern">Add student</button>
     <!-- Modale window -->
     <div ng-class="PopupCssClass" >
@@ -16,8 +16,68 @@
         </fildset>
     </div>
     </div>
+
+    <!--Filter-->
+
+    <select >
+        <option value=""  selected="selected">Please select an university</option>
+        <option value="" ng-repeat="filterParam in filterParams">{{filterParam.firstName}}</option>
+
+    </select>
+    <select >
+        <option value=""  selected="selected">Please select a faculty</option>
+        <option value="" ng-repeat="">{{}}</option>
+
+    </select>
+    <select>
+        <option value=""  selected="selected">Please select a course</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <select>
+        <option value=""  selected="selected">Please select a course</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+    </select>
+    <select>
+        <option value=""  selected="selected">Please select billability</option>
+        <option value="1">yes</option>
+        <option value="0">no</option>
+    </select>
+    <select>
+        <option value=""  selected="selected">Please select curator</option>
+        <option value="" ng-repeat="">{{}}</option>
+    </select>
+    <select>
+        <option value=""  selected="selected">Please select english level</option>
+        <option  ng-value="'beginner'">Beginner</option>
+        <option ng-value="'elementary'">Elementary</option>
+        <option ng-value="'preintermediate'">Pre-Intermediate</option>
+        <option ng-value="'intermediate'">Intermediate</option>
+        <option ng-value="'upperintermediate'">Upper-Intermediate</option>
+        <option ng-value="'advanced'">Advanced</option>
+    </select>
+    <select>
+        <option value=""  selected="selected">Please select technology</option>
+        <option value="" ng-repeat="">{{}}</option>
+    </select>
+    <select>
+        <option value=""  selected="selected">Please select technology</option>
+        <option value="" ng-repeat="">{{}}</option>
+    </select>
+    <select>
+        <option value=""  selected="selected">Please select technology</option>
+        <option value="" ng-repeat="">{{}}</option>
+    </select>
+
+
+
+<br>
     <button ng-click="tableParams.sorting({})" class="modern">Clear sorting</button>
-    <!--<button ng-click="tableParams.filter({})" class="btn btn-default pull-right">Clear filter</button>-->
+
     <!-- Table -->
     <input type="text" ng-model="search.surname" placeholder = "Search" class="toRight">
     <table ng-table="tableParams"   class="table" >
@@ -25,13 +85,14 @@
         <td width="30" style="text-align: left" header="'ng-table/headers/checkbox.html'">
             <input type="checkbox" ng-model="checkboxes.items[user.id]" />
         </td>
+            <td data-title="'LOGIN'" sortable="'login'" >{{user.login}}</td>
         <td data-title="'FIO'" sortable="'surname'"><a style="color: black;" href="#/studentList/{{user.id}}">{{user.firstName + " "+user.surname}}</a></td>
         <td data-title="'DATE'" sortable="'work.workStartDate'" >{{user.work.workStartDate}}</td>
         <td data-title="'FACULTY'" sortable="'study.faculty'" >{{user.study.faculty}}</td>
         <td data-title="'YEAR'" sortable="'study.graduate_year'" >{{user.study.graduate_year}}</td>
         <td data-title="'COURSE/GROUP'" sortable="'study.course_group'" >{{user.study.course_group}}</td>
         <td data-title="'HOURS'" sortable="'work.hours_current'" >{{user.work.hours_current}}</td>
-        <td data-title="'BILLABLE'" sortable="'work.billable'" >{{user.work.billable}}</td>
+            <td data-title="'BILLABLE'" sortable="'work.billable'" >{{user.work.billable}}</td>
         <td data-title="'ROLE'" sortable="'work.currentProjectRole'" >{{user.work.currentProjectRole}}</td>
         <td data-title="'TECHNOLOGIES'" sortable="'projectTechnologies'">
                 <span ng-repeat="technologies in user.work.projectTechnologies"> {{technologies.name}}</span>
@@ -42,4 +103,3 @@
         </tr>
     </table>
 </div>
-<!--</div>-->

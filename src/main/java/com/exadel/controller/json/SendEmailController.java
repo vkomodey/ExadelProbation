@@ -26,6 +26,7 @@ public class SendEmailController {
     @RequestMapping(value = "send/email", method = RequestMethod.POST)
     public void sendEmail(@RequestBody String str) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
+        str=str.replaceAll("\\([nrt])", "\\\\\\1");
         EmailView emailView = mapper.readValue(str, EmailView.class);
         List<String> allEmailsById = emailService.getAllEmailsById(emailView.getId());
         SimpleMailMessage message = new SimpleMailMessage();
