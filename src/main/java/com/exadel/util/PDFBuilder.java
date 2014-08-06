@@ -18,7 +18,7 @@ public class PDFBuilder extends AbstractPdfView {
     static final int tableSize=14;
     static final int studyNumber=3;
     static final int workNumber=5;
-    private String emptyField="-";
+    private String emptyField="pppppp";
 
     private String nullCheck(Object o){
         if(o!=null)
@@ -28,7 +28,7 @@ public class PDFBuilder extends AbstractPdfView {
 
     private void fillEmpty(Table table,int number) throws BadElementException {
         for(int i=0; i<number; i++)
-            table.addCell("-");
+            table.addCell(emptyField);
     }
 
     private void addHeader(Table table) throws BadElementException {
@@ -93,7 +93,7 @@ public class PDFBuilder extends AbstractPdfView {
         document.open();
         document.newPage();
         Table table = new Table(tableSize);
-        table.getDefaultCell().setWidth(70);
+        table.setPadding(5);
         table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
         table.getDefaultCell().setVerticalAlignment(Element.ALIGN_CENTER);
         addHeader(table);
