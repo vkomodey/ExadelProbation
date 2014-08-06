@@ -59,17 +59,17 @@ public class ExadelWork {
 	}
 
 	@ManyToMany
-	@JoinTable(name = "used_technologies", joinColumns = @JoinColumn(name = "stud_id",
+	@JoinTable(name = "student_current_used_technologies", joinColumns = @JoinColumn(name = "stud_id",
 	referencedColumnName = "id"),
-	inverseJoinColumns = @JoinColumn(name = "currentusedtech_id", referencedColumnName = "id",nullable=true))
+	inverseJoinColumns = @JoinColumn(name = "currentusedtech_id", referencedColumnName = "id"))
 	public Set<Technology> getCurrentUsedTechnologies() {
 		return currentUsedTechnologies;
 	}
 
 	@ManyToMany
-	@JoinTable(name = "used_technologies", joinColumns = @JoinColumn(name = "stud_id",
+	@JoinTable(name = "student_desired_used_technologies", joinColumns = @JoinColumn(name = "stud_id",
 	referencedColumnName = "id"),
-	inverseJoinColumns = @JoinColumn(name = "desiredusedtech_id", referencedColumnName = "id",nullable=true))
+	inverseJoinColumns = @JoinColumn(name = "desiredusedtech_id", referencedColumnName = "id"))
 	public Set<Technology> getDesiredUsedTechnologies() {
 		return desiredUsedTechnologies;
 	}
