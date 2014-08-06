@@ -1,8 +1,8 @@
 <div class="content">
-    <div ng-controller="CuratorsStudentsCtrl" ng-init="PopupCssClass = 'popup-hide' ">
-
-        <div ng-class="PopupCssClass"> <!--модальное окно -->
-            <h2>Curator's students</h2> <!-- заголовок мо -->
+    <!--<div ng-controller="CuratorsStudentsCtrl" ng-init="PopupCssClass = 'popup-hide' ">
+        <button ng-click="fillList()" class="modern">Studs</button>
+        <div ng-class="PopupCssClass"> <!--модальное окно -
+            <h2>Curator's students</h2> <!-- заголовок мо --
             <fildset>
                 <form class="studentsOfCurator">
                     <br>
@@ -20,7 +20,6 @@
                                 </tr>
                             </table>
                         </div>
-
                     </div>
                     <div class="buttons">
                         <button ng-click="PopupCssClass = 'popup-hide'" class="modern" id="btnclose">Close</button>
@@ -28,8 +27,8 @@
                 </form>
 
             </fildset>
-        </div>
-        <button ng-click="fillList()" class="modern">Change students</button>
+        </div>-->
+
         <input type="text" ng-model="search.fio" placeholder="Search" class="toRight">
         <table ng-table="tableParams" class="table">
             <tr ng-repeat="employee in employees | filter:search |orderBy:params.orderBy()">

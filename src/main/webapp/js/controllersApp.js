@@ -183,6 +183,7 @@ var EmployeeListCtrl = studentsControllers.controller('EmployeeListCtrl', ['$sco
 
 
 }]);
+
 EmployeeListCtrl.employees = function(employeesList,$q,$route) {
     var deferred = $q.defer();
     employeesList.getEmployeeList({employeeId: $route.current.params.employeeId},function(data){
@@ -270,10 +271,7 @@ StudentInfoCtrl.addSkill = function($scope) {
 StudentInfoCtrl.deleteSkill = function($scope,index) {
     $scope.studentInfo.skillSet.splice(index,1);
 };
-StudentInfoCtrl.deleteExam = function($scope,index) {
-    $scope.studentInfo.study.exams.splice(index,1);
-};
-
+/*
 studentsControllers.controller('CuratorsStudentsCtrl', ['$scope', '$routeParams','curStudentsListFactory','$q', function($scope,$routeParams,curStudentsListFactory,$q) {
 
    $scope.reloadList = function (){
@@ -290,22 +288,7 @@ studentsControllers.controller('CuratorsStudentsCtrl', ['$scope', '$routeParams'
     }
 
 }]);
-studentsControllers.controller('CuratorsStudentsCtrl', ['$scope', '$routeParams','curStudentsListFactory','$q', function($scope,$routeParams,curStudentsListFactory,$q) {
-
-    $scope.reloadList = function (){
-        var deferred = $q.defer();
-        curStudentsListFactory.getCuratorsStudents({curId: $routeParams.curId},function(data) {
-            $scope.curStudents = data;
-        });
-        deferred.resolve($scope.curStudents);
-    };
-
-    $scope.fillList= function() {
-        $scope.PopupCssClass = 'popup-show';
-        $scope.reloadList();
-    }
-
-}]);
+*/
 studentsControllers.controller('testSend', ['$scope', '$http', function($scope,$http){
 
     $scope.testSendF = function() {
@@ -319,3 +302,26 @@ studentsControllers.controller('testSend', ['$scope', '$http', function($scope,$
             });
     };
 }])
+
+/*var filterParamsCtrl = studentsControllers.controller('filterParamsCtrl', ['$scope', '$routeParams','filterParamsFactory','filterParams','$q', function($scope,$routeParams,filterParamsFactory,filterParams,$q) {
+
+    $scope.reloadList = function (){
+        var deferred = $q.defer();
+        filterParamsFactory.getFilterParams({fId: $routeParams.fId},function(data) {
+            $scope.filterParams = data;
+        });
+        deferred.resolve($scope.filterParams);
+    };
+    // $scope.reloadList();
+    $scope.filterParams = filterParams;
+
+
+}]);
+
+filterParamsCtrl.filterParams = function(filterParamsFactory,$q,$route) {
+    var deferred = $q.defer();
+    filterParamsFactory.getFilterParams({fId: $route.current.params.fId},function(data){
+            deferred.resolve(data);}
+    );
+    return deferred.promise;
+}*/
