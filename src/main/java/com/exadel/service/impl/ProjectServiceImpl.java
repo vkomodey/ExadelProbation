@@ -13,7 +13,9 @@ public class ProjectServiceImpl implements ProjectService{
     ProjectDao projectDao;
     @Transactional
     public void addProject(String title){
-        projectDao.addProject(title);
+        Project project = new Project();
+        project.setTitle(title);
+        projectDao.save(project);
     }
     @Transactional
     public void deleteProjectById(long id){
