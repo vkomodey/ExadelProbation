@@ -30,8 +30,8 @@ public class FileExportController {
         return new ModelAndView("excelView", "list", service.getAll(list));
     }
 
-    @RequestMapping(value = RestURIConstants.DOWNLOAD_PDF, method = RequestMethod.POST)
-    public ModelAndView downloadPDF(@RequestBody String str) throws IOException {
+    @RequestMapping(value = RestURIConstants.DOWNLOAD_PDF, method = RequestMethod.GET)
+    public @ResponseBody ModelAndView downloadPDF(@RequestParam("ids") String str) throws IOException {
         logger.info("Getting pdf file");
         ObjectMapper mapper = new ObjectMapper();
         List<FileExportView> list = mapper.readValue(str, new TypeReference<ArrayList<FileExportView>>() {});
