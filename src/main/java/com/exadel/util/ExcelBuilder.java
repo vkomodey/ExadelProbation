@@ -1,10 +1,11 @@
 package com.exadel.util;
 
+import com.exadel.model.entity.student.Technology;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,11 +25,21 @@ import com.exadel.model.entity.student.Student;
 @Service
 public class ExcelBuilder extends AbstractExcelView {
 
-    private String emptyField="-";
+    private String emptyField="empty";
 
     private String nullCheck(Object o){
         if(o!=null)
             return o.toString();
+        return emptyField;
+    }
+
+    private String convertTechnologySet(Set<Technology> tech){
+        StringBuilder result= new StringBuilder();
+        if(tech!=null){
+            for(Technology item : tech)
+                result.append(item.getName());
+            return result.toString();
+        }
         return emptyField;
     }
 
@@ -98,26 +109,22 @@ public class ExcelBuilder extends AbstractExcelView {
             if(stud.getWork()!=null){
                 aRow.createCell(8).setCellValue(nullCheck(stud.getWork().getWorkStartDate()));
                 aRow.createCell(9).setCellValue(nullCheck(stud.getWork().getHours_current()));
-                aRow.createCell(10).setCellValue(nullCheck(stud.getWork().isBillable()));
+                aRow.createCell(10).setCellValue(nullCheck(stud.getWork().getIsBillable()));
                 aRow.createCell(11).setCellValue(nullCheck((stud.getWork().getBillableStartDate())));
                 aRow.createCell(12).setCellValue(nullCheck((stud.getWork().getCurrentProjectRole())));
+                aRow.createCell(13).setCellValue(convertTechnologySet(stud.getWork().getCurrentUsedTechnologies()));
             }
-
-            aRow.createCell(13).setCellValue("ДОПИСАТЬ!!!!!!!!!!!");
         }
     }
 
     @Override
     protected void buildExcelDocument(Map<String, Object> model, HSSFWorkbook workbook,
                                       HttpServletRequest request, HttpServletResponse response) throws Exception {
-        // get data model which is passed by the Spring container
         List<Student> listStud = (List<Student>) model.get("list");
 
-        // create a new Excel sheet
         HSSFSheet sheet = workbook.createSheet("Java Books");
         sheet.setDefaultColumnWidth(30);
 
-        // create style for header cells
         CellStyle style = workbook.createCellStyle();
         Font font = workbook.createFont();
         font.setFontName("Arial");
@@ -127,10 +134,8 @@ public class ExcelBuilder extends AbstractExcelView {
         font.setColor(HSSFColor.WHITE.index);
         style.setFont(font);
 
-        // create header row
         createHeaderRow(sheet,style);
 
-        // create data rows
         fillTable(sheet,listStud);
     }
 }

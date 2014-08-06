@@ -2,6 +2,7 @@ package com.exadel.util;
 
 
 import com.exadel.model.entity.student.Student;
+import com.exadel.model.entity.student.Technology;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
 import org.springframework.stereotype.Service;
@@ -11,14 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class PDFBuilder extends AbstractPdfView {
 
     static final int tableSize=14;
     static final int studyNumber=3;
-    static final int workNumber=5;
-    private String emptyField="pppppp";
+    static final int workNumber=6;
+    private String emptyField="empty";
 
     private String nullCheck(Object o){
         if(o!=null)
@@ -29,6 +31,16 @@ public class PDFBuilder extends AbstractPdfView {
     private void fillEmpty(Table table,int number) throws BadElementException {
         for(int i=0; i<number; i++)
             table.addCell(emptyField);
+    }
+
+    private String convertTechnologySet(Set<Technology> tech){
+        StringBuilder result= new StringBuilder();
+        if(tech!=null){
+            for(Technology item : tech)
+                result.append(item.getName());
+            return result.toString();
+        }
+        return emptyField;
     }
 
     private void addHeader(Table table) throws BadElementException {
@@ -72,14 +84,13 @@ public class PDFBuilder extends AbstractPdfView {
             if(stud.getWork()!=null){
                 table.addCell(nullCheck(stud.getWork().getWorkStartDate()));
                 table.addCell(nullCheck(stud.getWork().getHours_current().toString()));
-                table.addCell(nullCheck(stud.getWork().isBillable().toString()));
+                table.addCell(nullCheck(stud.getWork().getIsBillable().toString()));
                 table.addCell(nullCheck(stud.getWork().getBillableStartDate().toString()));
                 table.addCell(nullCheck(stud.getWork().getCurrentProjectRole().toString()));
+                table.addCell(convertTechnologySet(stud.getWork().getCurrentUsedTechnologies()));
             }else{
                 fillEmpty(table,workNumber);
             }
-
-            table.addCell("ДОПИСАТЬ");
         }
     }
 
