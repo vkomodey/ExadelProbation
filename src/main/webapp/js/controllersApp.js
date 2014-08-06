@@ -323,7 +323,7 @@ studentsControllers.controller('testSend', ['$scope', '$http', function($scope,$
     };
 
     $scope.testSendPdf = function() {
-        $http.post('/rest/downloadPDF', mas)
+        $http.get('/rest/downloadPDF?ids='+masJson)
             .success(function() {
                 alert("success");
             })
