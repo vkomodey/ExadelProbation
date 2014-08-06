@@ -16,7 +16,7 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
    // $scope.reloadList();
     $interval(function() {
         $scope.reloadList();
-    },5000);
+    },60000000);
 
     $scope.feedbacks = student.feedbacks;
     $scope.studentInfo = student.info;

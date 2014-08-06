@@ -12,7 +12,7 @@
         <security:intercept-url pattern="/page/index.jsp" access="ROLE_USER, ROLE_FEEDBACKER, ROLE_JOANNA, ROLE_CURATOR" />
         <security:intercept-url pattern="/page/studentPage.jsp" access="ROLE_STUDENT"/>
         <security:intercept-url pattern="/app/login/admin" access="ROLE_USER"/>
-        <security:intercept-url pattern="/rest/empl/all" access="ROLE_USER"/>
+        <security:intercept-url pattern="/rest/empl/all" access="ROLE_ADMIN"/>
         <security:form-login login-page="/page/login.jsp"
                              login-processing-url="/do_login"
                              authentication-failure-url="/page/error.jsp"
