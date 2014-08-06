@@ -3,6 +3,8 @@
 <div  class="content"ng-controller="testSend">
 
         <br>
-    <button type="submit" ng-click="testSendF()" class="modern" >Save</button>
+    <a href="/rest/downloadExcel?ids={{masJson}}" ng-click="testSendF()">Save excel</a>
+    <a href="/rest/downloadPDF?ids={{masJson}}" ng-click="testSendPdf()">Save pdf</a>
+
 
 </div>

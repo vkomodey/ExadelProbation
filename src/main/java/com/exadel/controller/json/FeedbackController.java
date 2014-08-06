@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exadel.controller.json.constants.StudURI;
 import com.exadel.model.entity.view.FeedbackView;
 import com.exadel.service.StudentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,7 +27,7 @@ public class FeedbackController {
 	@Autowired
 	StudentService service;
 
-	@RequestMapping(value = RestURIConstants.GET_FEEDBACK_ARRAY, method = RequestMethod.GET)
+	@RequestMapping(value = StudURI.GET_FEEDBACK_ARRAY, method = RequestMethod.GET)
 	public @ResponseBody List<FeedbackView> returnFeedbackList(
 			@PathVariable("id") String id) {
 		logger.info("Sending feedback list");
@@ -39,7 +40,7 @@ public class FeedbackController {
 		}
 	}
 
-	@RequestMapping(value = RestURIConstants.PUSH_FEEDBACK, method = RequestMethod.POST)
+	@RequestMapping(value = StudURI.PUSH_FEEDBACK, method = RequestMethod.POST)
 	public @ResponseBody void saveFeedback(@RequestBody String str,
 			@PathVariable("id") long studId, Principal user) throws IOException {
 		logger.info("Start saving feedback.");

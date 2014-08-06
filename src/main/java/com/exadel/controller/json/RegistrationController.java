@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exadel.controller.json.constants.GeneralURI;
+import com.exadel.controller.json.constants.StudURI;
 import com.exadel.model.entity.view.RegistrationView;
 import com.exadel.service.RegistrationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,7 +25,7 @@ public class RegistrationController {
 	
     static Logger logger= LoggerFactory.getLogger(RegistrationController.class);
 
-    @RequestMapping(value = RestURIConstants.CREATE_STUDENT, method = RequestMethod.POST)
+    @RequestMapping(value = StudURI.CREATE_STUDENT, method = RequestMethod.POST)
     public @ResponseBody void registerStudent(@RequestBody String str) {
         logger.info("Start registerStudent.");
         ObjectMapper mapper = new ObjectMapper();
@@ -36,7 +38,7 @@ public class RegistrationController {
             e.printStackTrace();
         }
     }
-    @RequestMapping(value = RestURIConstants.CREATE_ANYONE, method = RequestMethod.POST)
+    @RequestMapping(value = GeneralURI.CREATE_ANYONE, method = RequestMethod.POST)
     public void registerAnyone(@RequestBody String str){
     	logger.info("Start registerAnyone.");
         ObjectMapper mapper = new ObjectMapper();

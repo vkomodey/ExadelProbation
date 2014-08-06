@@ -6,6 +6,7 @@ import java.util.Map;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.view.CompositeStudentFeedbackView;
 import com.exadel.model.entity.view.FeedbackView;
+import com.exadel.model.entity.view.FileExportView;
 import com.exadel.model.entity.view.StudentView;
 
 public interface StudentService extends GenericLivingService<Student> {
@@ -17,6 +18,7 @@ public interface StudentService extends GenericLivingService<Student> {
 	public CompositeStudentFeedbackView generateStudentViewForUser(long id,
 			String role);
 	public List<Student> getFiltered(Map<String, String> params);
-	public List<Student> getAll(List<Long> ids);
+	public List<Student> getAll(List<FileExportView> ids);
+    //public List<Student> getAll(List<Long> ids);
     public void attachStudentTo(long id, long curator_id);
 }

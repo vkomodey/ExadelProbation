@@ -1,7 +1,9 @@
 package com.exadel.controller.json;
 
 
+import com.exadel.controller.json.constants.MeURI;
 import com.exadel.service.UserService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ public class IdentifyController {
 
     static Logger logger= LoggerFactory.getLogger(RegistrationController.class);
 
-    @RequestMapping(value = RestURIConstants.IDENTIFY_ROLE, method = RequestMethod.GET)
+    @RequestMapping(value = MeURI.IDENTIFY_ROLE, method = RequestMethod.GET)
     public @ResponseBody String identifyUserRole(Principal user) throws IOException {
         logger.info("Start identifying user.");
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = (List<SimpleGrantedAuthority>) (SecurityContextHolder.getContext().getAuthentication().getAuthorities());
