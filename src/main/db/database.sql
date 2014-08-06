@@ -250,8 +250,7 @@ ALTER TABLE public.joanna OWNER TO postgres;
 
 CREATE TABLE project (
     project_id bigint NOT NULL,
-    title character varying(255),
-    id bigint NOT NULL
+    title character varying(255)
 );
 
 

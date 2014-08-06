@@ -6,10 +6,7 @@ import com.exadel.model.entity.Project;
 import com.exadel.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,12 +16,12 @@ public class ProjectController {
     ProjectService projectService;
 
     @RequestMapping(value = ProjectURI.ADD_PROJECT, method = RequestMethod.POST)
-    public void addProject(@RequestParam String title){
+    public void addProject(@PathVariable String title){
         projectService.addProject(title);
     }
 
     @RequestMapping(value = ProjectURI.REMOVE_PROJECT, method = RequestMethod.POST)
-    public void deleteProject(@RequestParam long id){
+    public void deleteProject(@PathVariable long id){
         projectService.deleteProjectById(id);
     }
 
