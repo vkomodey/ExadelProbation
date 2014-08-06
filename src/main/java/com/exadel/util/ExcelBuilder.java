@@ -1,9 +1,11 @@
 package com.exadel.util;
 
+import com.exadel.model.entity.student.Technology;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,8 +21,27 @@ import org.springframework.web.servlet.view.document.AbstractExcelView;
 
 import com.exadel.model.entity.student.Student;
 
+
 @Service
 public class ExcelBuilder extends AbstractExcelView {
+
+    private String emptyField="empty";
+
+    private String nullCheck(Object o){
+        if(o!=null)
+            return o.toString();
+        return emptyField;
+    }
+
+    private String convertTechnologySet(Set<Technology> tech){
+        StringBuilder result= new StringBuilder();
+        if(tech!=null){
+            for(Technology item : tech)
+                result.append(item.getName());
+            return result.toString();
+        }
+        return emptyField;
+    }
 
     private void createHeaderRow(HSSFSheet sheet, CellStyle style){
         HSSFRow header = sheet.createRow(0);
@@ -36,7 +57,7 @@ public class ExcelBuilder extends AbstractExcelView {
         header.createCell(3).setCellValue("Surname");
         header.getCell(3).setCellStyle(style);
 
-        header.createCell(4).setCellValue("Work start date");
+        header.createCell(4).setCellValue("English level");
         header.getCell(4).setCellStyle(style);
 
         header.createCell(5).setCellValue("Faculty");
@@ -48,22 +69,22 @@ public class ExcelBuilder extends AbstractExcelView {
         header.createCell(7).setCellValue("Graduate year");
         header.getCell(7).setCellStyle(style);
 
-        header.createCell(8).setCellValue("Current working hours");
+        header.createCell(8).setCellValue("Work start date");
         header.getCell(8).setCellStyle(style);
 
-        header.createCell(9).setCellValue("Billable/Not billable");
+        header.createCell(9).setCellValue("Current working hours");
         header.getCell(9).setCellStyle(style);
 
-        header.createCell(10).setCellValue("Billable start date");
+        header.createCell(10).setCellValue("Billable/Not billable");
         header.getCell(10).setCellStyle(style);
 
-        header.createCell(11).setCellValue("Project role");
+        header.createCell(11).setCellValue("Billable start date");
         header.getCell(11).setCellStyle(style);
 
-        header.createCell(12).setCellValue("Current project technology");
+        header.createCell(12).setCellValue("Project role");
         header.getCell(12).setCellStyle(style);
 
-        header.createCell(13).setCellValue("English level");
+        header.createCell(13).setCellValue("Current project technology");
         header.getCell(13).setCellStyle(style);
     }
 
@@ -71,34 +92,39 @@ public class ExcelBuilder extends AbstractExcelView {
         int rowCount = 1;
         for (Student stud : listStud) {
             HSSFRow aRow = sheet.createRow(rowCount++);
-            aRow.createCell(0).setCellValue(stud.getId());
-            aRow.createCell(1).setCellValue(stud.getFirstName());
-            aRow.createCell(2).setCellValue(stud.getSecondName());
-            aRow.createCell(3).setCellValue(stud.getSurname());
-            /*aRow.createCell(4).setCellValue(stud.getWork().getWorkStartDate());
-            aRow.createCell(5).setCellValue(stud.getStudy().getFaculty());
-            aRow.createCell(6).setCellValue(stud.getStudy().getCourse_group());
-            aRow.createCell(7).setCellValue(stud.getStudy().getGraduate_year());
-            aRow.createCell(8).setCellValue(stud.getWork().getHours_current());
-            aRow.createCell(9).setCellValue(stud.getWork().isBillable());
-            aRow.createCell(10).setCellValue(stud.getWork().getBillableStartDate());
-            aRow.createCell(11).setCellValue(stud.getWork().getCurrentProjectRole().toString());
-            aRow.createCell(12).setCellValue("ДОПИСАТЬ!!!!!!!!!!!");
-            aRow.createCell(13).setCellValue(stud.getEnglish().toString());*/
+            if(stud!=null){
+                aRow.createCell(0).setCellValue(stud.getId());
+                aRow.createCell(1).setCellValue(stud.getFirstName());
+                aRow.createCell(2).setCellValue(stud.getSecondName());
+                aRow.createCell(3).setCellValue(stud.getSurname());
+                aRow.createCell(4).setCellValue(nullCheck(stud.getEnglish()));
+            }
+
+            if(stud.getStudy()!=null){
+                aRow.createCell(5).setCellValue(stud.getStudy().getFaculty());
+                aRow.createCell(6).setCellValue(stud.getStudy().getCourse_group());
+                aRow.createCell(7).setCellValue(nullCheck(stud.getStudy().getGraduate_year()));
+            }
+
+            if(stud.getWork()!=null){
+                aRow.createCell(8).setCellValue(nullCheck(stud.getWork().getWorkStartDate()));
+                aRow.createCell(9).setCellValue(nullCheck(stud.getWork().getHours_current()));
+                aRow.createCell(10).setCellValue(nullCheck(stud.getWork().getIsBillable()));
+                aRow.createCell(11).setCellValue(nullCheck((stud.getWork().getBillableStartDate())));
+                aRow.createCell(12).setCellValue(nullCheck((stud.getWork().getCurrentProjectRole())));
+                aRow.createCell(13).setCellValue(convertTechnologySet(stud.getWork().getCurrentUsedTechnologies()));
+            }
         }
     }
 
     @Override
     protected void buildExcelDocument(Map<String, Object> model, HSSFWorkbook workbook,
                                       HttpServletRequest request, HttpServletResponse response) throws Exception {
-        // get data model which is passed by the Spring container
         List<Student> listStud = (List<Student>) model.get("list");
 
-        // create a new Excel sheet
         HSSFSheet sheet = workbook.createSheet("Java Books");
         sheet.setDefaultColumnWidth(30);
 
-        // create style for header cells
         CellStyle style = workbook.createCellStyle();
         Font font = workbook.createFont();
         font.setFontName("Arial");
@@ -108,10 +134,8 @@ public class ExcelBuilder extends AbstractExcelView {
         font.setColor(HSSFColor.WHITE.index);
         style.setFont(font);
 
-        // create header row
         createHeaderRow(sheet,style);
 
-        // create data rows
         fillTable(sheet,listStud);
     }
 }

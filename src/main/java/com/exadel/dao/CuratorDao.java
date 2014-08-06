@@ -8,4 +8,5 @@ import com.exadel.model.entity.student.Student;
 
 public interface CuratorDao extends GenericLivingDao<Curator> {
     public List<Student> getSupervised(long curatorId);
+    public List<Curator> getActive();
 }

@@ -51,7 +51,7 @@ public class Feedback {
 		this.setAuthor(feedbackOwner);
 		this.setStudent(stud);
         if(stud.getWork()!=null){
-		this.setBillableNow(stud.getWork().isBillable());
+		this.setBillableNow(stud.getWork().getIsBillable());
         }
         else{
             this.setBillableNow(false);
