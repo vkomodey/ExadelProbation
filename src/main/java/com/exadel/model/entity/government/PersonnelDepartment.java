@@ -7,7 +7,7 @@ import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
-public class PersonnelDepartment extends User implements Government{
+public class PersonnelDepartment extends User {
 	@Override
 	@Transient
 	@JsonIgnore

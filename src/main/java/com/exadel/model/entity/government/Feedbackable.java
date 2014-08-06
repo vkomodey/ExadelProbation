@@ -11,7 +11,7 @@ import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.User;
 
 @Entity
-public abstract class Feedbackable extends User {
+public abstract class Feedbackable extends Government {
 	private List<Feedback> feedback;
 
 	public Feedbackable() {
