@@ -36,8 +36,7 @@ public class FilterServiceImpl implements FilterService {
 	}
 
 	public List<Long> getAllStudyEndYears() {
-		// TODO Auto-generated method stub
-		return null;
+		return studentDao.getStudyEndYears();
 	}
 
 	public List<User> getAllUsedCurators() {

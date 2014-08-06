@@ -60,4 +60,10 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 		// TODO Auto-generated method stub
 		return getSessionFactory().getCurrentSession().createQuery("select distinct s.study.university from Student s").list();
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<Long> getStudyEndYears() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createQuery("select distinct s.study.graduate_year from Student s").list();
+	}
 }

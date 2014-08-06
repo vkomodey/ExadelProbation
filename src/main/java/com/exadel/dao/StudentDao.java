@@ -11,4 +11,5 @@ public interface StudentDao extends GenericLivingDao<Student> {
     void attachStudentTo(long id, long curator_id);
 	public List<String> getFaculties();
 	public List<String> getUniversities();
+	public List<Long> getStudyEndYears();
 }
