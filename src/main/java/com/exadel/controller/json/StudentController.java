@@ -148,11 +148,6 @@ public class StudentController {
 		logger.info("real student sending");
 		return student;
 	}
-	
-	@RequestMapping(value=StudURI.GET_ALL_FILTERED,method=RequestMethod.GET)
-	public @ResponseBody List<Student> getAllStudentsFiltered(@RequestParam Map<String,String> params){
-		return null;
-	}
 
     @RequestMapping(value = StudURI.ATTACH_STUDENT, method = RequestMethod.POST)
     public @ResponseBody void attachStudentTo(@PathVariable String id,

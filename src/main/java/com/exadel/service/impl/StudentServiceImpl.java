@@ -85,11 +85,11 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 		// have some....lazy
 		for (Student s : list) {
 			lazyTouch(s);
-			if (s.getCurator() != null) {
+			/*if (s.getCurator() != null) {
 				for (Feedback feedback : s.getCurator().getFeedback()) {
 					feedback.getBillableNow();
 				}
-			}
+			}*/
 		}
 		return list;
 	}
@@ -99,9 +99,9 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 		List<Student> list = studentDao.getSupervised(curatorId);
 		for (Student s : list) {
 			lazyTouch(s);
-			for (Feedback feedback : s.getCurator().getFeedback()) {
+			/*for (Feedback feedback : s.getCurator().getFeedback()) {
 				feedback.getBillableNow();
-			}
+			}*/
 		}
 		return list;
 	}
