@@ -65,13 +65,12 @@ public class PDFBuilder extends AbstractPdfView {
 
     private void fillTable(Table table,List<Student> listStud) throws BadElementException {
         for (Student stud : listStud) {
-            if(stud!=null){
-                table.addCell(stud.getId().toString());
-                table.addCell(stud.getFirstName());
-                table.addCell(stud.getSecondName());
-                table.addCell(stud.getSurname());
-                table.addCell(nullCheck(stud.getEnglish()));
-            }
+
+            table.addCell(stud.getId().toString());
+            table.addCell(stud.getFirstName());
+            table.addCell(stud.getSecondName());
+            table.addCell(stud.getSurname());
+            table.addCell(nullCheck(stud.getEnglish()));
 
             if(stud.getStudy()!=null){
                 table.addCell(stud.getStudy().getFaculty());
