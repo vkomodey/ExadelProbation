@@ -3,6 +3,7 @@ package com.exadel.dao.impl;
 import java.util.List;
 
 import com.exadel.model.entity.government.Curator;
+
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -48,4 +49,10 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
         student.setCurator(curator);
         session.update("student", student);
     }
+
+	@SuppressWarnings("unchecked")
+	public List<String> getFaculties() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createQuery("select distinct s.study.faculty from Student s").list();
+	}
 }
