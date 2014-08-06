@@ -17,8 +17,7 @@ public class FilterServiceImpl implements FilterService {
 	StudentDao studentDao;
 
 	public List<String> getAllUniversities() {
-		// TODO Auto-generated method stub
-		return null;
+		return studentDao.getUniversities();
 	}
 
 	public Set<Technology> getAllCurrentUsedTechnologies() {

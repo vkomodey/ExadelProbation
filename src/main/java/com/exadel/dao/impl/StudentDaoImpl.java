@@ -37,7 +37,6 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
         getSessionFactory().getCurrentSession().merge(st);
     }
 
-	@Override
 	public void detach(Student st) {
 		getSessionFactory().getCurrentSession().evict(st);
 	}
@@ -54,5 +53,11 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 	public List<String> getFaculties() {
 		// TODO Auto-generated method stub
 		return getSessionFactory().getCurrentSession().createQuery("select distinct s.study.faculty from Student s").list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<String> getUniversities() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createQuery("select distinct s.study.university from Student s").list();
 	}
 }
