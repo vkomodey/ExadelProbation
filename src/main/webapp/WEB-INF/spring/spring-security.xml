@@ -11,7 +11,6 @@
     <security:http authentication-manager-ref="authenticationManager">
         <security:intercept-url pattern="/page/index.jsp" access="ROLE_USER, ROLE_FEEDBACKER, ROLE_JOANNA, ROLE_CURATOR" />
         <security:intercept-url pattern="/page/studentPage.jsp" access="ROLE_STUDENT"/>
-        <security:intercept-url pattern="/app/login/admin" access="ROLE_USER"/>
         <security:intercept-url pattern="/rest/empl/all" access="ROLE_ADMIN"/>
         <security:intercept-url pattern="/rest/proj/all" access="ROLE_ADMIN, ROLE_PERSONNEL_DEPARTMENT"/>
         <security:intercept-url pattern="/rest/proj/add" access="ROLE_ADMIN, ROLE_PERSONNEL_DEPARTMENT"/>
