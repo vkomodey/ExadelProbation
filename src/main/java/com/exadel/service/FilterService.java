@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.Set;
 
 import com.exadel.model.entity.User;
+import com.exadel.model.entity.student.Technology;
 
 public interface FilterService {
 
 	List<String> getAllUniversities();
 
-	Set<String> getAllCurrentUsedTechnologies();
+	Set<Technology> getAllCurrentUsedTechnologies();
 
 	List<String> getAllFaculties();
 

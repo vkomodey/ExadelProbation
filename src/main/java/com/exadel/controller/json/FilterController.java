@@ -1,20 +1,24 @@
 package com.exadel.controller.json;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.exadel.controller.json.constants.FilterURI;
 import com.exadel.model.entity.User;
+import com.exadel.model.entity.student.Technology;
 import com.exadel.model.entity.view.IdNameSurnamePersonView;
 import com.exadel.service.FilterService;
 
 @RestController
 public class FilterController {
+	@Autowired
 	FilterService service;
 
 	@RequestMapping(value=FilterURI.GET_ALL_UNIVERSITIES,method=RequestMethod.GET)
@@ -39,6 +43,11 @@ public class FilterController {
     }
 	@RequestMapping(value=FilterURI.GET_ALL_CURRENT_USED_TECHNOLOGIES,method=RequestMethod.GET)
 	public Set<String> getAllCurrentUsedTechnologies(){
-		return service.getAllCurrentUsedTechnologies();
+		Set<Technology> techs=service.getAllCurrentUsedTechnologies();
+		Set<String> technames=new HashSet<>();
+		for(Technology tech:techs){
+			technames.add(tech.getName());
+		}
+		return technames;
     }
 }
