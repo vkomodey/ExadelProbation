@@ -25,8 +25,13 @@ public class ProjectController {
         projectService.deleteProjectById(id);
     }
 
-    @RequestMapping(value = ProjectURI.GET_ALL_PROJECTS, method = RequestMethod.POST)
+    @RequestMapping(value = ProjectURI.GET_ALL_PROJECTS, method = RequestMethod.GET)
     public @ResponseBody List<Project> getAllProjects(){
         return projectService.getAll();
+    }
+
+    @RequestMapping(value = ProjectURI.GET_ALL_STUDENTS, method = RequestMethod.GET)
+    public @ResponseBody List<String> getAllProjects(@PathVariable long id){
+        return projectService.getAllStudentsFio(id);
     }
 }

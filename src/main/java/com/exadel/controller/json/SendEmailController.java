@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.apache.commons.lang3.StringEscapeUtils;
 import java.io.IOException;
 import java.util.List;
 
@@ -27,9 +27,11 @@ public class SendEmailController {
     public void sendEmail(@RequestBody String str) throws IOException {
         //TODO create constant for request path
         ObjectMapper mapper = new ObjectMapper();
-        System.out.println(str);
-        str=str.replaceAll("\\([nrt])", "\\\\\\1");
-        System.out.println(str);
+//        System.out.println(str);
+//        str = StringEscapeUtils.escapeJson(str);
+//        System.out.println(str + " after parsing");
+//        str=str.replaceAll("\\([nrt])", "\\\\\\1");
+//        System.out.println(str);
 
         EmailView emailView = mapper.readValue(str, EmailView.class);
         List<String> allEmailsById = emailService.getAllEmailsById(emailView.getId());

@@ -4,4 +4,5 @@ public class ProjectURI {
     public static final String ADD_PROJECT = "proj/add/{title}";
     public static final String REMOVE_PROJECT = "proj/remove/{id}";
     public static final String GET_ALL_PROJECTS = "proj/all";
+    public static final String GET_ALL_STUDENTS = "proj/stud/all/{id}";
 }
