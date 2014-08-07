@@ -18,8 +18,8 @@ import java.util.List;
 
 @Controller
 public class CurrentUsedTechnologyController {
-    public static Logger logger = LoggerFactory
-            .getLogger(FeedbackController.class);
+	private static Logger logger = LoggerFactory
+            .getLogger(CurrentUsedTechnologyController.class);
     @Autowired
     FilterService service;
 

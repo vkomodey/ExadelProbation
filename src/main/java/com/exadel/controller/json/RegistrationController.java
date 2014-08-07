@@ -23,7 +23,7 @@ public class RegistrationController {
 	@Autowired
 	RegistrationService service;
 	
-    static Logger logger= LoggerFactory.getLogger(RegistrationController.class);
+	private static Logger logger= LoggerFactory.getLogger(RegistrationController.class);
 
     @RequestMapping(value = StudURI.CREATE_STUDENT, method = RequestMethod.POST)
     public @ResponseBody void registerStudent(@RequestBody String str) {

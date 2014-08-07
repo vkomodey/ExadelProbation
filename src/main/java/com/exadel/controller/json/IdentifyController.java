@@ -21,7 +21,7 @@ public class IdentifyController {
     @Autowired
     UserService service;
 
-    static Logger logger= LoggerFactory.getLogger(RegistrationController.class);
+    private static Logger logger= LoggerFactory.getLogger(IdentifyController.class);
 
     @RequestMapping(value = MeURI.IDENTIFY_ROLE, method = RequestMethod.GET)
     public @ResponseBody String identifyUserRole(Principal user) throws IOException {

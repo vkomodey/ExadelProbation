@@ -19,7 +19,7 @@ DROP DATABASE "ProjectDataBase";
 -- Name: ProjectDataBase; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE "ProjectDataBase" WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Russian_Russia.1251' LC_CTYPE = 'Russian_Russia.1251';
+CREATE DATABASE "ProjectDataBase" WITH TEMPLATE = template0 ENCODING = 'UTF8';
 
 
 ALTER DATABASE "ProjectDataBase" OWNER TO postgres;
