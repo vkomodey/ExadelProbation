@@ -4,6 +4,7 @@ package com.exadel.model.entity.view;
 import java.util.Set;
 
 import com.exadel.model.constants.EnglishEnum;
+import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.student.Skill;
 import com.exadel.model.entity.student.Study;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,6 +19,8 @@ public class StudentView {
     private String skype;
     private String phone;
     private EnglishEnum english;
+    private StudentStateEnum state;
+
     private Set<Skill> skillSet;
     private Study study;
 
@@ -91,6 +94,15 @@ public class StudentView {
 
     public void setSkillSet(Set<Skill> skillSet) {
         this.skillSet = skillSet;
+    }
+
+
+    public StudentStateEnum getState() {
+        return state;
+    }
+
+    public void setState(StudentStateEnum state) {
+        this.state = state;
     }
 
 }

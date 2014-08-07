@@ -4,16 +4,14 @@ import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Feedback;
+import com.exadel.model.entity.StudentLog;
 import com.exadel.model.entity.User;
 import com.exadel.model.entity.government.Curator;
 import com.exadel.model.entity.view.StudentView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -140,7 +138,12 @@ public class Student extends User {
 		this.setFirstName(view.getFirstName());
 		this.setSecondName(view.getSecondName());
 		this.setSurname(view.getSurname());
-		
+        if(this.getState()!=StudentStateEnum.WORK && view.getState()==StudentStateEnum.WORK){
+            this.setWork(new ExadelWork());
+            this.getWork().setWorkStartDate(Calendar.getInstance());
+        }
+        this.setState(view.getState());
+
 		this.setEmail(view.getEmail());
 		this.setPhone(view.getPhone());
 		this.setSkype(view.getSkype());
