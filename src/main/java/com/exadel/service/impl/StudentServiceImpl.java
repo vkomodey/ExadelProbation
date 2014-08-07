@@ -95,18 +95,6 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	}
 
 	@Transactional
-	public List<Student> getSupervised(long curatorId) {
-		List<Student> list = studentDao.getSupervised(curatorId);
-		for (Student s : list) {
-			lazyTouch(s);
-			/*for (Feedback feedback : s.getCurator().getFeedback()) {
-				feedback.getBillableNow();
-			}*/
-		}
-		return list;
-	}
-
-	@Transactional
 	public void modify(StudentView view, long id) {
         Student st = studentDao.find(id);
         lazyTouch(st);

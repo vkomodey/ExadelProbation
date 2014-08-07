@@ -106,7 +106,7 @@ public class StudentController {
 
         String role = authorities.get(0).toString();
         if(role.equals(SpringSecurityRole.CURATOR)){
-			list=service.getSupervised(userService.findByLogin(user.getName()).getId());
+			list=curatorService.getSupervised(userService.findByLogin(user.getName()).getId());
 		}
 		else{
 		    list=service.getAll();
