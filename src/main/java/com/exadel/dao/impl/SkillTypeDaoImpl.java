@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.exadel.dao.TypesDao;
+import com.exadel.dao.SkillTypeDao;
 import com.exadel.model.entity.student.SkillType;
 @Repository
-public class TypesDaoImpl  extends GenericDaoImpl<SkillType> implements TypesDao{
+public class SkillTypeDaoImpl  extends GenericDaoImpl<SkillType> implements SkillTypeDao{
 
 	@SuppressWarnings("unchecked")
 	public List<SkillType> getAll() {

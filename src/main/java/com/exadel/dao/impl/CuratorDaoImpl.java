@@ -33,4 +33,13 @@ public class CuratorDaoImpl extends GenericLivingDaoImpl<Curator> implements Cur
         return ((Curator)getSessionFactory().getCurrentSession().get(Curator.class,CuratorId)).getStudents();
     }
 
+	@SuppressWarnings("unchecked")
+	public List<Curator> getActive() {
+		return getSessionFactory()
+				.getCurrentSession()
+				.createQuery(
+						"select distinct s.curator from Student s")
+				.list();
+	}
+
 }

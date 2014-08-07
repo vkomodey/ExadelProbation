@@ -15,45 +15,63 @@ public class ExadelWork {
 	private Long id;
 
 	private Integer hours_current;
-    private Integer hours_desired;
-    private Calendar workStartDate;
-    private Calendar hoursDesiredTransferDate;
-    private Calendar billableStartDate;
-    private Calendar vacationNextDateStart;
-    private Calendar vacationNextDateEnd;
-    private Calendar exadelTrainingNextFrom;
-    private Calendar exadelTrainingNextTo;
-    private Set<Project> currentProjects;
-    private CurrentProjectRoleEnum currentProjectRole;
-    private String teamLeadOnCurrent;
-    private String curator;
-    private String exadelTrainingType;
-    private String certificates;
-    private Boolean isBillable;
-    private Boolean wannaChangeProj;
+	private Integer hours_desired;
+	private Calendar workStartDate;
+	private Calendar hoursDesiredTransferDate;
+	private Calendar billableStartDate;
+	private Calendar vacationNextDateStart;
+	private Calendar vacationNextDateEnd;
+	private Calendar exadelTrainingNextFrom;
+	private Calendar exadelTrainingNextTo;
+	private Set<Project> currentProjects;
+	private CurrentProjectRoleEnum currentProjectRole;
+	private String teamLeadOnCurrent;
+	private String curator;
+	private String exadelTrainingType;
+	private String certificates;
+	private Boolean isBillable;
+	private Boolean wannaChangeProj;
+	private Set<Technology> currentUsedTechnologies;
+	private Set<Technology> desiredUsedTechnologies;
 
-    public ExadelWork() {
-    }
+	public ExadelWork() {
+	}
 
-
-    public void setCurrentProjects(Set<Project> currentProjects) {
-        this.currentProjects = currentProjects;
-    }
-
-    public Calendar getBillableStartDate() {
+	public Calendar getBillableStartDate() {
 		return billableStartDate;
 	}
-	
+
 	public String getCertificates() {
 		return certificates;
 	}
 
-    public String getCurator() {
+	public String getCurator() {
 		return curator;
 	}
 
 	public CurrentProjectRoleEnum getCurrentProjectRole() {
 		return currentProjectRole;
+	}
+
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "students")
+	public Set<Project> getCurrentProjects() {
+		return currentProjects;
+	}
+
+	@ManyToMany
+	@JoinTable(name = "student_current_used_technologies", joinColumns = @JoinColumn(name = "stud_id",
+	referencedColumnName = "id"),
+	inverseJoinColumns = @JoinColumn(name = "currentusedtech_id", referencedColumnName = "id"))
+	public Set<Technology> getCurrentUsedTechnologies() {
+		return currentUsedTechnologies;
+	}
+
+	@ManyToMany
+	@JoinTable(name = "student_desired_used_technologies", joinColumns = @JoinColumn(name = "stud_id",
+	referencedColumnName = "id"),
+	inverseJoinColumns = @JoinColumn(name = "desiredusedtech_id", referencedColumnName = "id"))
+	public Set<Technology> getDesiredUsedTechnologies() {
+		return desiredUsedTechnologies;
 	}
 
 	public Calendar getExadelTrainingNextFrom() {
@@ -81,23 +99,22 @@ public class ExadelWork {
 	}
 
 	@Id
-	@Column (name="stud_id")
-    public Long getId() {
+	@Column(name = "stud_id")
+	public Long getId() {
 		return id;
 	}
-	
+
+	public Boolean getIsBillable() {
+		return isBillable;
+	}
+
 	@JsonIgnore
-	@OneToOne(optional=false)
-	@JoinColumn(name="id")
+	@OneToOne(optional = false)
+	@JoinColumn(name = "id")
 	@MapsId
 	public Student getStudent() {
 		return student;
 	}
-
-    @ManyToMany(cascade = CascadeType.ALL,mappedBy="students")
-    public Set<Project> getCurrentProjects() {
-        return currentProjects;
-    }
 
 	public String getTeamLeadOnCurrent() {
 		return teamLeadOnCurrent;
@@ -111,18 +128,14 @@ public class ExadelWork {
 		return vacationNextDateStart;
 	}
 
-	public Calendar getWorkStartDate() {
-        return workStartDate;
-    }
-
-	public Boolean isBillable() {
-		return isBillable;
-	}
-	
-	public Boolean isWannaChangeProj() {
+	public Boolean getWannaChangeProj() {
 		return wannaChangeProj;
 	}
-	
+
+	public Calendar getWorkStartDate() {
+		return workStartDate;
+	}
+
 	public void setBillable(Boolean isBillable) {
 		this.isBillable = isBillable;
 	}
@@ -130,7 +143,7 @@ public class ExadelWork {
 	public void setBillableStartDate(Calendar billableStartDate) {
 		this.billableStartDate = billableStartDate;
 	}
-	
+
 	public void setCertificates(String certificates) {
 		this.certificates = certificates;
 	}
@@ -141,6 +154,20 @@ public class ExadelWork {
 
 	public void setCurrentProjectRole(CurrentProjectRoleEnum currentProjectRole) {
 		this.currentProjectRole = currentProjectRole;
+	}
+
+	public void setCurrentProjects(Set<Project> currentProjects) {
+		this.currentProjects = currentProjects;
+	}
+
+	public void setCurrentUsedTechnologies(
+			Set<Technology> currentUsedTechnologies) {
+		this.currentUsedTechnologies = currentUsedTechnologies;
+	}
+
+	public void setDesiredUsedTechnologies(
+			Set<Technology> desiredUsedTechnologies) {
+		this.desiredUsedTechnologies = desiredUsedTechnologies;
 	}
 
 	public void setExadelTrainingNextFrom(Calendar exadelTrainingNextFrom) {
@@ -167,13 +194,17 @@ public class ExadelWork {
 		this.hoursDesiredTransferDate = hoursDesiredTransferDate;
 	}
 
-	public void setId(Long id){
-		this.id=id;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setIsBillable(Boolean isBillable) {
+		this.isBillable = isBillable;
 	}
 
 	public void setStudent(Student student) {
-			this.student = student;
-		}
+		this.student = student;
+	}
 
 	public void setTeamLeadOnCurrent(String teamLeadOnCurrent) {
 		this.teamLeadOnCurrent = teamLeadOnCurrent;
@@ -191,7 +222,7 @@ public class ExadelWork {
 		this.wannaChangeProj = wannaChangeProj;
 	}
 
-    public void setWorkStartDate(Calendar workStartDate) {
-        this.workStartDate = workStartDate;
-    }
+	public void setWorkStartDate(Calendar workStartDate) {
+		this.workStartDate = workStartDate;
+	}
 }

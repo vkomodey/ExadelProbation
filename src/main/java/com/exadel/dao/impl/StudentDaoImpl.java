@@ -3,6 +3,7 @@ package com.exadel.dao.impl;
 import java.util.List;
 
 import com.exadel.model.entity.government.Curator;
+
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -36,16 +37,33 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
         getSessionFactory().getCurrentSession().merge(st);
     }
 
-	@Override
 	public void detach(Student st) {
 		getSessionFactory().getCurrentSession().evict(st);
 	}
 
     public void attachStudentTo(long id, long curator_id){
         Session session = getSessionFactory().getCurrentSession();
-        Student student = (Student)session.get(Student.class, id);
-        Curator curator = (Curator)session.get(Curator.class, curator_id);
-        student.setCurator(curator);
-        session.update("student", student);
+        Student student = (Student)session.load(Student.class, id);
+        Curator curator = (Curator)session.load(Curator.class, curator_id);
+        student.getCurator().add(curator);
+        //session.update(student);
     }
+
+	@SuppressWarnings("unchecked")
+	public List<String> getFaculties() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createQuery("select distinct s.study.faculty from Student s").list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<String> getUniversities() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createQuery("select distinct s.study.university from Student s").list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Integer> getStudyEndYears() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createQuery("select distinct s.study.graduate_year from Student s").list();
+	}
 }

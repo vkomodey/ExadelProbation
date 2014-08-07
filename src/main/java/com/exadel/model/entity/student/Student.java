@@ -30,7 +30,7 @@ public class Student extends User {
     private String skype;
     private String phone;
 
-    private Curator curator;
+    private Set<Curator> curator;
 
     public Student() {
 		super();
@@ -40,9 +40,9 @@ public class Student extends User {
 	}
     //@JsonBackReference
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "curator", referencedColumnName = "id")
-    public Curator getCurator() {
+    @ManyToMany
+    //@JoinColumn(name = "curator", referencedColumnName = "id")
+    public Set<Curator> getCurator() {
         return curator;
     }
 	public String getEmail() {
@@ -94,7 +94,7 @@ public class Student extends User {
 	public ExadelWork getWork() {
 		return work;
 	}
-	public void setCurator(Curator curator) {
+	public void setCurator(Set<Curator> curator) {
         this.curator = curator;
     }
 	public void setEmail(String email) {

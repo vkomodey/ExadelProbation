@@ -1,35 +1,42 @@
 package com.exadel.controller.json;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.exadel.model.entity.student.Student;
+import com.exadel.controller.json.constants.ExportURI;
+import com.exadel.model.entity.view.FileExportView;
+import com.exadel.service.StudentService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class FileExportController {
 
-    @RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
-    public ModelAndView downloadExcel() {
+    public static org.slf4j.Logger logger = LoggerFactory
+            .getLogger(FeedbackController.class);
+    @Autowired
+    StudentService service;
 
-        // create some sample data
-        List<Student> listBooks = new ArrayList<Student>();
-       /* listBooks.add(new Student("Effective Java", "Joshua Bloch", "0321356683",
-                "May 28, 2008", 38.11F));
-        listBooks.add(new Student("Head First Java", "Kathy Sierra & Bert Bates",
-                "0596009208", "February 9, 2005", 30.80F));
-        listBooks.add(new Student("Java Generics and Collections",
-                "Philip Wadler", "0596527756", "Oct 24, 2006", 29.52F));
-        listBooks.add(new Student("Thinking in Java", "Bruce Eckel", "0596527756",
-                "February 20, 2006", 43.97F));
-        listBooks.add(new Student("Spring in Action", "Craig Walls", "1935182358",
-                "June 29, 2011", 31.98F));*/
+    @RequestMapping(value = ExportURI.DOWNLOAD_EXCEL, method = RequestMethod.GET)
+    public @ResponseBody ModelAndView downloadExcel(@RequestParam("ids")  String str) throws IOException {
+        logger.info("Getting Excel file");
+        ObjectMapper mapper = new ObjectMapper();
+        List<FileExportView> list = mapper.readValue(str, new TypeReference<ArrayList<FileExportView>>() {});
+        return new ModelAndView("excelView", "list", service.getAll(list));
+    }
 
-        // return a view which will be resolved by an excel view resolver
-        return new ModelAndView("excelView", "listBooks", listBooks);
-
+    @RequestMapping(value = ExportURI.DOWNLOAD_PDF, method = RequestMethod.GET)
+    public @ResponseBody ModelAndView downloadPDF(@RequestParam("ids") String str) throws IOException {
+        logger.info("Getting pdf file");
+        ObjectMapper mapper = new ObjectMapper();
+        List<FileExportView> list = mapper.readValue(str, new TypeReference<ArrayList<FileExportView>>() {});
+        return new ModelAndView("pdfView", "list", service.getAll(list));
     }
 }

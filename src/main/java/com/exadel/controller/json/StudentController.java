@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exadel.controller.json.constants.MeURI;
+import com.exadel.controller.json.constants.StudURI;
 import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.constants.StudentStateEnum;
@@ -68,12 +70,12 @@ public class StudentController {
 		stud.setEnglish(EnglishEnum.advanced);
 		return stud;
 	}
-	@RequestMapping(value=RestURIConstants.DUMMY_STUDENT,method=RequestMethod.GET)
+	@RequestMapping(value=StudURI.DUMMY_STUDENT,method=RequestMethod.GET)
 	public @ResponseBody Student getDummyStudent(){
 		logger.info("dummy student sending");
 		return buildDummy();
 	}
-	@RequestMapping(value=RestURIConstants.GET_STUDENT,method=RequestMethod.GET)
+	@RequestMapping(value=StudURI.GET_STUDENT,method=RequestMethod.GET)
 	public @ResponseBody CompositeStudentFeedbackView getStudent(@PathVariable("id") String idString){
 		logger.info("caller role searching");
 		@SuppressWarnings("unchecked")
@@ -92,7 +94,7 @@ public class StudentController {
 		return view;
 	}
 	
-	@RequestMapping(value=RestURIConstants.GET_ALL_STUDENT,method=RequestMethod.GET)
+	@RequestMapping(value=StudURI.GET_ALL_STUDENT,method=RequestMethod.GET)
 	public @ResponseBody List<Student> getAllStudents(Principal user){
 		logger.info("student list fetching");
 		List<Student> list;
@@ -121,16 +123,16 @@ public class StudentController {
 		return list;
 	}
 	
-	@RequestMapping(value=RestURIConstants.DUMMY_STUDENTARRAY,method=RequestMethod.GET)
+	@RequestMapping(value=StudURI.DUMMY_STUDENTARRAY,method=RequestMethod.GET)
 	public @ResponseBody List<Student> getDummyStudentArray(){
 		logger.info("dummy student array sending");
 		ArrayList<Student> ar=new ArrayList<Student>();
-		for(int i=0;i<5;i++)
+		for(int i=0;i<10;i++)
 			ar.add(buildDummy());
 		return ar;
 	}
 
-    @RequestMapping(value = RestURIConstants.EDIT_STUDENT_INFO, method = RequestMethod.POST)
+    @RequestMapping(value = StudURI.EDIT_STUDENT_INFO, method = RequestMethod.POST)
     public @ResponseBody void editStudentInfo(@RequestBody String str, @PathVariable("id") Long id) throws IOException {
         logger.info("Start editing student info.");
         ObjectMapper mapper = new ObjectMapper();
@@ -139,20 +141,15 @@ public class StudentController {
         logger.info("edited"+id);
     }
     
-	@RequestMapping(value=RestURIConstants.GET_ME,method=RequestMethod.GET)
+	@RequestMapping(value=MeURI.GET_ME,method=RequestMethod.GET)
 	public @ResponseBody Student getMe(Principal user){
 		logger.info("real student fetching");
 		Student student=service.findByLogin(user.getName());
 		logger.info("real student sending");
 		return student;
 	}
-	
-	@RequestMapping(value=RestURIConstants.GET_ALL_FILTERED,method=RequestMethod.GET)
-	public @ResponseBody List<Student> getAllStudentsFiltered(@RequestParam Map<String,String> params){
-		return null;
-	}
 
-    @RequestMapping(value = RestURIConstants.ATTACH_STUDENT, method = RequestMethod.POST)
+    @RequestMapping(value = StudURI.ATTACH_STUDENT, method = RequestMethod.POST)
     public @ResponseBody void attachStudentTo(@PathVariable String id,
                                               @PathVariable String curator_id){
         logger.info("start attache student with id " + id + " with curator, which id is " + curator_id);

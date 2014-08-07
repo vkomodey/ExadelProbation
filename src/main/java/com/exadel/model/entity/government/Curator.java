@@ -3,7 +3,7 @@ package com.exadel.model.entity.government;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 
 import com.exadel.model.constants.SpringSecurityRole;
@@ -12,24 +12,23 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Curator extends Feedbackable {
+public class Curator extends Feedbackable  {
 	@Override
 	@Transient
 	@JsonIgnore
-	public String getRole(){
+	public String getRole() {
 		return SpringSecurityRole.CURATOR;
 	}
 
-    @JsonManagedReference
-    private List<Student> students;
+	private List<Student> students;
 
-    @OneToMany(mappedBy = "curator")
-//    @JsonIgnore
-    public List<Student> getStudents() {
-        return students;
-    }
+	@JsonManagedReference
+	@ManyToMany(mappedBy="curator")
+	public List<Student> getStudents() {
+		return students;
+	}
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
 }
