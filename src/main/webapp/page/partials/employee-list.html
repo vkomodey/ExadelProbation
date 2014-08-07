@@ -1,42 +1,21 @@
-<div class="content">
-    <!--<div ng-controller="CuratorsStudentsCtrl" ng-init="PopupCssClass = 'popup-hide' ">
-        <button ng-click="fillList()" class="modern">Studs</button>
-        <div ng-class="PopupCssClass"> <!--модальное окно -
-            <h2>Curator's students</h2> <!-- заголовок мо --
-            <fildset>
-                <form class="studentsOfCurator">
-                    <br>
-
-                    <div class="row">
-                        <div class="col col-sm-10">
-                            <input type="text" ng-model="search.firstName" placeholder="Search" class="toRight">
-                            <table ng-table="tableParams" show-filter="true" class="table">
-
-                                <tr ng-repeat="curStudent in curStudents | filter:search |orderBy:params.orderBy()">
-                                    <td data-title="'Name'">
-                                        {{curStudent.firstName}}
-                                    </td>
-
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="buttons">
-                        <button ng-click="PopupCssClass = 'popup-hide'" class="modern" id="btnclose">Close</button>
-                    </div>
-                </form>
-
-            </fildset>
-        </div>-->
-
-        <input type="text" ng-model="search.fio" placeholder="Search" class="toRight">
-        <table ng-table="tableParams" class="table">
+<div class="container">
+    <div class="row">
+        <div class="pull-right">
+            <div class="input-group custom-search-form">
+                <input type="text" data-ng-model="search.fio" class="form-control" placeholder="Search by fio">
+            </div><!-- /input-group -->
+        </div>
+    </div>
+    <div class="row">
+       <div class="col-lg-12 well-sm">
+        <table data-ng-table="tableParams" class="table">
             <tr ng-repeat="employee in employees | filter:search |orderBy:params.orderBy()">
-                <td data-title="'fio'" sortable="'fio'">{{employee.fio}}</td>
-                <td data-title="'email'" sortable="'email'">{{employee.email}}</td>
-                <td data-title="'role'" sortable="'role'">{{employee.role}}</td>
+                <td data-title="'FIO'" sortable="'fio'">{{employee.fio}}</td>
+                <td data-title="'Email'" sortable="'email'">{{employee.email}}</td>
+                <td data-title="'Role'" sortable="'role'">{{employee.role}}</td>
             </tr>
         </table>
     </div>
-
+        </div>
+</div>
 </div>
