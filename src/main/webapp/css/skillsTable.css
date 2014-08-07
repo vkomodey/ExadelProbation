@@ -1,0 +1,12 @@
+.skills-table select, .skills-table input {
+    height: 30px;
+}
+.skills-table a {
+    margin-top: 8%;
+}
+.skills-table td:last-child {
+    width: 10%;
+}
+table + .ng-scope {
+    display: none;
+}

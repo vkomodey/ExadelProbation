@@ -1,52 +1,37 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html ng-app="studentsApp">
+<html>
 <head lang="en">
     <meta charset="UTF-8">
     <title>Index</title>
-    <!--<link rel="stylesheet" href="../css/popup-style2.css" type="text/css" media="screen" charset="utf-8"/>
-    <link rel="stylesheet" href="../css/nav-style.css" type="text/css" media="screen" charset="utf-8"/>
-    <link rel="stylesheet" href="../css/content-style.css" type="text/css" media="screen" charset="utf-8"/>
-    <link rel="stylesheet" href="../css/popup-style3.css" type="text/css" media="screen" charset="utf-8"/>-->
-    <link rel="stylesheet" href="../css/ng-table.css" type="text/css" media="screen" charset="utf-8"/>
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" media="screen" charset="utf-8"/>
-   <!-- <link rel="stylesheet" href="../css/UserListStyle.css" type="text/css" media="screen" charset="utf-8"/>-->
-    <link rel="stylesheet" href="../css/ExadelProbationStyle.css" type="text/css" media="screen" charset="utf-8"/>
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <script type="text/javascript" src="../lib/angular.min.js"></script>
-    <script type="text/javascript" src="../lib/angular-route.min.js"></script>
-    <script type="text/javascript" src="../lib/angular-animate.min.js"></script>
-    <script type="text/javascript" src="../lib/angular-animate.min.js.map"></script>
-    <script type="text/javascript" src="../lib/angular-resource.min.js"></script>
-    <script type="text/javascript" src="../lib/ng-table.js"></script>
-    <script type="text/javascript" src="../js/configApp.js"></script>
-    <script type="text/javascript" src="../js/controllersApp.js"></script>
-    <script type="text/javascript" src="../js/servicesApp.js"></script>
-
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="../css/ng-table.css"/>
+    <link rel="stylesheet" href="../css/skillsTable.css"/>
+    <link rel="stylesheet" href="../css/projectListTable.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="../js/built.js"></script>
 </head>
-<body class="user-list-container">
-<div class="nav"><!-- для навигационной панели навигационной(невидима) -->
-    <div class="nav-menu"> <!-- навигационное меню  -->
-        <ul id="nav">
-            <li><a href="#">Menu</a>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                  <!--  <li><a href=#>Create User</a></li>-->
-                    <li><a href="#/studentList">Students</a></li>
-                    <li><a href="#/employeeList">Employees</a></li>
-                </ul>
-            </li>
-            <%--<li><a href="log.html">Log out</a>--%>
-            <li style="float: right;">
-                <form action="/do_logout" method="post">
-                <button id="btn" type="submit">Log out</button>
-                </form>
-            </li>
-        </ul>
+<body ng-app="studentsApp">
+<div class="container">
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Exadel</a>
     </div>
-</div>
-<div>
-<a href="/app/send/email">AZAZAZAZA</a>
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="#/studentList">Student List</a></li>
+            <li><a href="#/employeeList">Employee List</a></li>
+            <li><a href="#/projectList">Project list</a></li>
+        </ul>
+        <form action="/do_logout" method="post">
+            <ul class="nav navbar-nav navbar-right">
+                <li><button class="btn btn-default navbar-btn" type="submit">Logout</button></li>
+            </ul>
+        </form>
+    </div>
+    </div>
+</nav>
 </div>
 <div ng-view></div>
 </body>

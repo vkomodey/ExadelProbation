@@ -1,0 +1,398 @@
+<div class="container">
+<ul data-ng-show="studentInfo" class="nav nav-tabs" id="tab">
+    <li class="active"><a href="#personInfo" data-toggle="tab" data-target="#personInfo">Person info</a></li>
+    <li><a href="#contactInfo" data-toggle="tab" data-target="#contactInfo">Contact info</a></li>
+    <li><a href="#studyInfo" data-toggle="tab">Study info</a></li>
+    <li><a href="#skills" data-toggle="tab">Skills</a></li>
+    <li><a href="#exams" data-toggle="tab">Exams</a></li>
+    <li><a href="#feedbacks" data-toggle="tab">Feedbacks table</a></li>
+</ul>
+<form name="studentInfoForm" class="form-horizontal" ng-controller="StudentInfoCtrl">
+<div class="tab-content">
+
+<div class="tab-pane active" id="personInfo" data-ng-show="studentInfo">
+    <div class="pull-right well-sm">
+        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+           class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="firstName">First name</label>
+                <input id="firstName" name="firstName" type="text" ng-model="studentInfo.firstName"
+                       ng-pattern="/^[a-zA-Z]+$/"
+                       class="form-control input-md">
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="firstName">Last name</label>
+                <input id="lastName" name="firstName" type="text" ng-model="studentInfo.secondName"
+                       ng-pattern="/^[a-zA-Z]+$/"
+                       class="form-control input-md">
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="firstName">Surname</label>
+                <input id="surname" name="firstName" type="text" ng-model="studentInfo.surname"
+                       ng-pattern="/^[a-zA-Z]+$/"
+                       class="form-control input-md">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tab-pane" id="contactInfo" data-ng-show="studentInfo">
+    <div class="pull-right well-sm">
+        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+           class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="email">Email</label>
+                <input id="email" name="email" type="email" ng-model="studentInfo.email"
+                       ng-pattern="/^([^\@]+)\@([^\.]+)\.([a-zA-Z]+)$/"
+                       class="form-control input-md">
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="skype">Skype</label>
+                <input id="skype" name="skype" type="text" ng-model="studentInfo.skype"
+                       class="form-control input-md">
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="firstName">Phone</label>
+                <input id="phone" name="phone" type="text" ng-model="studentInfo.phone"
+                       class="form-control input-md">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tab-pane" id="studyInfo" data-ng-show="studentInfo">
+    <div class="pull-right well-sm">
+        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+           class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="graduateYear">Graduate year</label>
+                <input id="graduateYear" name="graduateYear" type="number" ng-model="studentInfo.study.graduate_year"
+                       min="2014" ng-pattern="/^[0-9]{4}$/"
+                       class="form-control input-md">
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="university">University</label>
+                <input id="university" name="university" type="text" ng-model="studentInfo.study.university"
+                       class="form-control input-md">
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="faculty">Faculty</label>
+                <input id="faculty" name="faculty" type="text" ng-model="studentInfo.study.faculty"
+                       class="form-control input-md">
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="specialty">Specialty</label>
+                <input id="specialty" name="specialty" type="text" ng-model="studentInfo.study.specialty"
+                       class="form-control input-md">
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="course_group">Course/group</label>
+                <input id="course_group" name="course_group" type="text" ng-model="studentInfo.study.course_group"
+                       ng-pattern="/^[0-9]/([0-9a-zA-Z]+)$/"
+                       class="form-control input-md">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tab-pane" id="skills" data-ng-show="studentInfo">
+    <div class="pull-right well-sm">
+        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+           class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-1">
+            <table class="table skills-table">
+                <thead>
+                <tr>
+                    <th>Skill name</th>
+                    <th>Skill level</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>English</td>
+                    <td><select class="form-control" ng-model="studentInfo.english"
+                                ng-options="englishLevel.value as englishLevel.name for englishLevel in englishLevels">
+                    </select></td>
+                    <td></td>
+                </tr>
+                <tr ng-repeat="skill in studentInfo.skillSet track by $index">
+                    <td>
+                        <select id="skillType{{$index}}" ng-model="studentInfo.skillSet[$index].type"
+                                class="form-control"
+                                ng-options="skillType.name for skillType in skillTypes track by skillType.id">
+                        </select>
+                    </td>
+                    <td>
+                        <input id="skillLevel" name="englishLevel" type="text"
+                               class="form-control input-sm">
+                    </td>
+                    <td class="text-center">
+                        <a data-ng-click="deleteSkill($index)" class="btn btn-xs btn-danger"><span
+                                class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-7"><a ng-click="addSkill()" class="btn btn-sm btn-success"><span
+                class="glyphicon glyphicon-plus"></span> Add skill</a></div>
+    </div>
+</div>
+<div class="tab-pane" id="exams" data-ng-show="studentInfo">
+    <div class="pull-right well-sm">
+        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+           class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <label class="control-label" for="exam-3">Semester-3</label>
+            <input id="exam-3" name="exam-3" type="text" placeholder="Grade"
+                   class="form-control input-sm">
+        </div>
+        <div class="col-md-2">
+            <label class="control-label" for="exam-4">Semester-4</label>
+            <input id="exam-4" name="exam-4" type="text" placeholder="Grade"
+                   class="form-control input-sm">
+        </div>
+        <div class="col-md-2">
+            <label class="control-label" for="exam-5">Semester-5</label>
+            <input id="exam-5" name="exam-5" type="text" placeholder="Grade"
+                   class="form-control input-sm">
+        </div>
+        <div class="col-md-2">
+            <label class="control-label" for="exam-6">Semester-6</label>
+            <input id="exam-6" name="exam-6" type="text" placeholder="Grade"
+                   class="form-control input-sm">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+
+            <label class="control-label" for="exam-3">Semester-3</label>
+            <input id="exam-3" name="exam-3" type="text" placeholder="Grade"
+                   class="form-control input-sm">
+        </div>
+        <div class="col-md-2">
+            <label class="control-label" for="exam-4">Semester-4</label>
+            <input id="exam-4" name="exam-4" type="text" placeholder="Grade"
+                   class="form-control input-sm">
+        </div>
+        <div class="col-md-2">
+            <label class="control-label" for="exam-5">Semester-5</label>
+            <input id="exam-5" name="exam-5" type="text" placeholder="Grade"
+                   class="form-control input-sm">
+        </div>
+        <div class="col-md-2">
+            <label class="control-label" for="exam-6">Semester-6</label>
+            <input id="exam-6" name="exam-6" type="text" placeholder="Grade"
+                   class="form-control input-sm">
+        </div>
+    </div>
+</div>
+<div class="tab-pane {{active}}" id="feedbacks">
+    <div class="pull-right well-sm">
+        <button data-target="#addFeedback" data-toggle="modal" class="btn btn-success"><span
+                class="glyphicon glyphicon-plus"></span> Add feedback
+        </button>
+    </div>
+    <div class="row">
+        <div class="col-md-12 well-sm">
+            <table ng-table="tableParams" class="table">
+                <tr ng-repeat="feedback in feedbacks | filter:search |orderBy:params.orderBy()">
+                    <td data-title="'Professional suitability'" sortable="'profSuitability'">
+                        {{feedback.profSuitability}}
+                    </td>
+                    <td data-title="'Attitude to work'" sortable="'attitudeToWork'">{{feedback.attitudeToWork}}</td>
+                    <td data-title="'Relations in collective'" sortable="'relations'">
+                        {{feedback.relations}}
+                    </td>
+                    <td data-title="'Progress'" sortable="'progress'">{{feedback.progress}}</td>
+                    <td data-title="'Increase hours'" sortable="'increaseHours'">{{feedback.increaseHours}}</td>
+                    <td data-title="'Work in project'" sortable="'workInProject'">{{feedback.workInProject}}</td>
+                    <td data-title="'Billable'" sortable="'billable'">{{feedback.billable}}</td>
+                    <td data-title="'Feedbacker'" sortable="'feedbacker'">{{feedback.feedbacker}}</td>
+                    <td data-title="'Other'" sortable="'other'" class="td-other">{{feedback.other}}</td>
+                    <td data-title="'Date'" sortable="'date'">{{feedback.date}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</form>
+</div>
+<!--------------------------------------- MODAL FEEDBACK------------------------------------------>
+<div data-backdrop="static" class="modal fade" id="addFeedback" data-ng-controller="AddFeedbackCtrl" tabindex="-1" role="dialog"
+     aria-labelledby="create" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title custom_align" id="Heading">Feedback</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <!-- Multiple Radios (inline) -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="profSuitability">Professional suitability</label>
+
+                        <div class="col-md-4">
+                            <label class="radio-inline" for="profSuitability-0">
+                                <input type="radio" data-ng-model="profSuitability" name="profSuitability"
+                                       id="profSuitability-0" data-ng-value="true"
+                                       data-ng-init="profSuitability = true">
+                                Yes
+                            </label>
+                            <label class="radio-inline" for="profSuitability-1">
+                                <input type="radio" data-ng-model="profSuitability" name="profSuitability"
+                                       id="profSuitability-1" data-ng-value="false">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="attitudeToWork">Attitude to work</label>
+
+                        <div class="col-md-4">
+                            <input data-ng-model="attitudeToWork" id="attitudeToWork" name="attitudeToWork" type="text"
+                                   class="form-control input-md" required>
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="relations">Relations in the collective</label>
+
+                        <div class="col-md-4">
+                            <input id="relations" data-ng-model="relations" name="relations" type="text"
+                                   class="form-control input-md" required>
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="progress">Progress in professional matters</label>
+
+                        <div class="col-md-4">
+                            <input id="progress" data-ng-model="progress" name="progress" type="text"
+                                   class="form-control input-md" required>
+
+                        </div>
+                    </div>
+
+                    <!-- Multiple Radios (inline) -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="increaseHours">Is there a need to move the student to
+                            work more hours?</label>
+
+                        <div class="col-md-4">
+                            <label class="radio-inline" for="increaseHours-0">
+                                <input type="radio" data-ng-model="increaseHours" name="increaseHours"
+                                       id="increaseHours-0" data-ng-value="true"
+                                       checked="checked" data-ng-init="increaseHours = true">
+                                Yes
+                            </label>
+                            <label class="radio-inline" for="increaseHours-1">
+                                <input type="radio" data-ng-model="increaseHours" name="increaseHours"
+                                       id="increaseHours-1" data-ng-value="false">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Multiple Radios (inline) -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="workInProject">Does the student work on a real
+                            project?</label>
+
+                        <div class="col-md-4">
+                            <label class="radio-inline" for="workInProject-0">
+                                <input type="radio" name="workInProject" data-ng-model="workInProject"
+                                       id="workInProject-0" data-ng-value="true"
+                                       checked="checked" data-ng-init="workInProject = true">
+                                Yes
+                            </label>
+                            <label class="radio-inline" for="workInProject-1">
+                                <input type="radio" name="workInProject" data-ng-model="workInProject"
+                                       id="workInProject-1" data-ng-value="false">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Multiple Radios (inline) -->
+                    <div class="form-group" ng-hide="workInProject" class="false">
+                        <label class="col-md-4 control-label" for="prospect">If no, is there prospect of working on a
+                            real project?</label>
+
+                        <div class="col-md-4">
+                            <label class="radio-inline" for="prospect-0">
+                                <input type="radio" data-ng-model="prospect" name="prospect" id="prospect-0"
+                                       data-ng-value="true" checked="checked" data-ng-init="prospect = true">
+                                Yes
+                            </label>
+                            <label class="radio-inline" for="prospect-1">
+                                <input type="radio" data-ng-model="prospect" name="prospect" id="prospect-1"
+                                       data-ng-value="false">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Textarea -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="other">Something else at your discretion</label>
+
+                        <div class="col-md-4">
+                            <textarea class="form-control" data-ng-model="other" id="other" name="other"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer ">
+                <button type="button" data-dismiss="modal" aria-hidden="true" data-ng-click="addFeedback()"
+                        class="btn btn-success btn-lg" style="width: 100%;"><span
+                        class="glyphicon glyphicon-ok-sign"></span> Create
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
