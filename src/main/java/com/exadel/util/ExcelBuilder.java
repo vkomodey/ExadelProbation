@@ -28,28 +28,6 @@ public class ExcelBuilder extends AbstractExcelView {
 
     private String emptyField="empty";
 
-    public ExadelWork tesetSetWork(List<Student> listStud){
-        for(Student item : listStud){
-            if(item.getId()==20){
-                ExadelWork work = new ExadelWork();
-                Technology technology = new Technology();
-                Set<Technology> set =new HashSet<>();
-                set.add(technology);
-                technology.setId((long)0);
-                technology.setName("Java");
-                technology.setId((long)1);
-                technology.setName("C++");
-                technology.setId((long)2);
-                technology.setName("C#");
-                work.setBillable(true);
-                work.setCurrentUsedTechnologies(set);
-                item.setWork(work);
-                return item.getWork();
-            }
-        }
-        return null;
-    }
-
     private String nullCheck(Object o){
         if(o!=null)
             return o.toString();
@@ -116,9 +94,6 @@ public class ExcelBuilder extends AbstractExcelView {
     private void fillTable(HSSFSheet sheet, List<Student> listStud){
         int rowCount = 1;
         for (Student stud : listStud) {
-            ExadelWork work = new ExadelWork();
-            stud.setWork(work);
-            //stud.setWork(tesetSetWork(listStud));
             HSSFRow aRow = sheet.createRow(rowCount++);
             if(stud!=null){
                 aRow.createCell(0).setCellValue(stud.getId());
