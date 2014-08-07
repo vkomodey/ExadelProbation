@@ -27,7 +27,10 @@ public class SendEmailController {
     public void sendEmail(@RequestBody String str) throws IOException {
         //TODO create constant for request path
         ObjectMapper mapper = new ObjectMapper();
+        System.out.println(str);
         str=str.replaceAll("\\([nrt])", "\\\\\\1");
+        System.out.println(str);
+
         EmailView emailView = mapper.readValue(str, EmailView.class);
         List<String> allEmailsById = emailService.getAllEmailsById(emailView.getId());
         SimpleMailMessage message = new SimpleMailMessage();
