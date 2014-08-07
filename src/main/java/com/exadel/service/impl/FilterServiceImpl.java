@@ -1,5 +1,6 @@
 package com.exadel.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,7 +47,11 @@ public class FilterServiceImpl implements FilterService {
 	}
 	@Transactional
 	public List<Integer> getAllStudyEndYears() {
-		return studentDao.getStudyEndYears();
+        List<Integer> l=studentDao.getStudyEndYears();
+        if(l==null){
+            l=new ArrayList<Integer>();
+        }
+        return l;
 	}
 	@Transactional
 	public Set<User> getAllUsedCurators() {
