@@ -76,7 +76,7 @@ public class FilterController {
 		//jsonFactory.setCodec(new ObjectMapper());
 		jg =objectMapper.getFactory().createGenerator(sw);
 		jg.writeStartObject();
-		writeJSONStringObjectArray(getAllCurrentUsedTechnologies(), "technames");
+		writeJSONStringObjectArray(new ArrayList<String>(getAllCurrentUsedTechnologies()), "technames");
 		writeJSONStringObjectArray(getAllStudyEndYears(), "study_end_years");
 		writeJSONStringObjectArray(getAllUniversities(), "universities");
 		writeJSONStringObjectArray(getAllFaculties(), "faculties");
@@ -90,12 +90,12 @@ public class FilterController {
 		return sw.toString();
 	}
 
-	private void writeJSONStringObjectArray(Collection<String> coll, String name)
+	private void writeJSONStringObjectArray(List<String> list, String name)
 			throws IOException {
 		jg.writeArrayFieldStart(name);
-		coll.add("Show All");
-        if(coll!=null) {
-            for (String val : coll) {
+		list.add("Show All");
+        if(list!=null) {
+            for (String val : list) {
                 jg.writeStartObject();
 			/*jg.writeFieldName("name");
 			jg.writeString(tech);*/
