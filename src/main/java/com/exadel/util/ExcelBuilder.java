@@ -46,19 +46,6 @@ public class ExcelBuilder extends AbstractExcelView {
         return emptyField;
     }
 
-    public void test(Student stud){
-        ExadelWork work = new ExadelWork();
-        Technology technology = new Technology();
-        Set<Technology> set = new HashSet<>();
-        work.setBillable(true);
-        technology.setName("Java");
-        technology.setName("C++");
-        technology.setName("C#");
-        set.add(technology);
-        stud.setWork(work);
-        stud.getWork().setCurrentUsedTechnologies(set);
-    }
-
     private void createHeaderRow(HSSFSheet sheet, CellStyle style){
         HSSFRow header = sheet.createRow(0);
         header.createCell(0).setCellValue("Id");
@@ -107,7 +94,6 @@ public class ExcelBuilder extends AbstractExcelView {
     private void fillTable(HSSFSheet sheet, List<Student> listStud){
         int rowCount = 1;
         for (Student stud : listStud) {
-            test(stud);
             HSSFRow aRow = sheet.createRow(rowCount++);
             if(stud!=null){
                 aRow.createCell(0).setCellValue(stud.getId());
