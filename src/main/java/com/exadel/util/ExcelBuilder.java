@@ -39,11 +39,24 @@ public class ExcelBuilder extends AbstractExcelView {
         if(tech!=null){
             for(Technology item : tech){
                 result.append(item.getName());
-                result.append(", ");
+                result.append(" ");
             }
             return result.toString();
         }
         return emptyField;
+    }
+
+    public void test(Student stud){
+        ExadelWork work = new ExadelWork();
+        Technology technology = new Technology();
+        Set<Technology> set = new HashSet<>();
+        work.setBillable(true);
+        technology.setName("Java");
+        technology.setName("C++");
+        technology.setName("C#");
+        set.add(technology);
+        stud.setWork(work);
+        stud.getWork().setCurrentUsedTechnologies(set);
     }
 
     private void createHeaderRow(HSSFSheet sheet, CellStyle style){
@@ -94,6 +107,7 @@ public class ExcelBuilder extends AbstractExcelView {
     private void fillTable(HSSFSheet sheet, List<Student> listStud){
         int rowCount = 1;
         for (Student stud : listStud) {
+            test(stud);
             HSSFRow aRow = sheet.createRow(rowCount++);
             if(stud!=null){
                 aRow.createCell(0).setCellValue(stud.getId());

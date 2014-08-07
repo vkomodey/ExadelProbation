@@ -38,7 +38,7 @@ public class PDFBuilder extends AbstractPdfView {
         if(tech!=null){
             for(Technology item : tech){
                 result.append(item.getName());
-                result.append(", ");
+                result.append(" ");
             }
             return result.toString();
         }
