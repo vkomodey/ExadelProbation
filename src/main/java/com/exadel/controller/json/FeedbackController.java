@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 public class FeedbackController {
 
-	public static Logger logger = LoggerFactory
+	private static Logger logger = LoggerFactory
 			.getLogger(FeedbackController.class);
 	@Autowired
 	StudentService service;
