@@ -3,7 +3,6 @@ package com.exadel.controller.json;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -63,7 +62,7 @@ public class FilterController {
 
 	@RequestMapping(value = FilterURI.GET_ALL_CURRENT_USED_TECHNOLOGIES, method = RequestMethod.GET)
 	public Set<String> getAllCurrentUsedTechnologies() {
-		Set<Technology> techs = service.getAllCurrentUsedTechnologies();
+		Set<Technology> techs = service.getCurrentStudUsedTech();
 		Set<String> technames = new HashSet<>();
 		for (Technology tech : techs) {
 			technames.add(tech.getName());

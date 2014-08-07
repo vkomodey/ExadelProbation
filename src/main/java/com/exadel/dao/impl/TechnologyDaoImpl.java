@@ -28,4 +28,9 @@ public class TechnologyDaoImpl extends GenericDaoImpl<Technology> implements
 		return getSessionFactory().getCurrentSession().createQuery("select distinct s.work.currentUsedTechnologies from Student s").list();
 	}
 
+    @SuppressWarnings("unchecked")
+    public List<Technology> getAllCurrentUsedByProjects() {
+        return getSessionFactory().getCurrentSession().createQuery("select distinct p.usedTechnologies from Project p").list();
+    }
+
 }

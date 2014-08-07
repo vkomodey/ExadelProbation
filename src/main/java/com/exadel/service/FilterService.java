@@ -10,7 +10,9 @@ public interface FilterService {
 
 	List<String> getAllUniversities();
 
-	Set<Technology> getAllCurrentUsedTechnologies();
+	Set<Technology> getCurrentStudUsedTech();
+
+    Set<Technology>  getCurrentProjUsedTech();
 
 	List<String> getAllFaculties();
 

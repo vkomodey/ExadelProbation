@@ -28,8 +28,12 @@ public class FilterServiceImpl implements FilterService {
 	public List<String> getAllUniversities() {
 		return studentDao.getUniversities();
 	}
+    @Transactional
+    public Set<Technology> getCurrentProjUsedTech() {
+        return new HashSet<Technology>(technologyDao.getAllCurrentUsedByProjects());
+    }
 	@Transactional
-	public Set<Technology> getAllCurrentUsedTechnologies() {
+	public Set<Technology> getCurrentStudUsedTech() {
 		return new HashSet<Technology>(technologyDao.getAllCurrentUsedByStudents());
 		/*List<Student> list=studentDao.getAll();
 		Set<Technology> technologies=new HashSet<>();

@@ -7,5 +7,6 @@ import com.exadel.model.entity.student.Technology;
 public interface TechnologyDao extends GenericDao<Technology>{
 
 	List<Technology> getAllCurrentUsedByStudents();
+    List<Technology> getAllCurrentUsedByProjects();
 	
 }
