@@ -18,6 +18,10 @@
         <security:intercept-url pattern="/rest/stud/create" access="ROLE_JOANNA"/>
         <security:intercept-url pattern="/rest/stud/*/feedbacks/push" access="ROLE_JOANNA, ROLE_FEEDBACKER, ROLE_CURATOR"/>
         <security:intercept-url pattern="stud/*/edit" access="ROLE_JOANNA, ROLE_USER"/>
+        <security:intercept-url pattern="/rest/empl/all" access="ROLE_ADMIN"/>
+        <security:intercept-url pattern="/rest/proj/all" access="ROLE_ADMIN, ROLE_PERSONNEL_DEPARTMENT"/>
+        <security:intercept-url pattern="/rest/proj/add" access="ROLE_ADMIN, ROLE_PERSONNEL_DEPARTMENT"/>
+        <security:intercept-url pattern="/rest/proj/remove" access="ROLE_ADMIN, ROLE_PERSONNEL_DEPARTMENT"/>
         <security:form-login login-page="/page/login.jsp"
                              login-processing-url="/do_login"
                              authentication-failure-url="/page/error.jsp"

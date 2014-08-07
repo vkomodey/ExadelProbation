@@ -13,14 +13,11 @@ public class ProjectDaoImpl extends GenericDaoImpl<Project> implements ProjectDa
     }
 
     public List<Project> getAll(){
-        return null;
-    }
-
-    public void addProject(String title){
-//        getSessionFactory().getCurrentSession().save(Project.class,)
+        return getSessionFactory().getCurrentSession().createQuery("from Project ").list();
     }
 
     public void deleteProjectById(long id){
-
+        Project project = (Project)getSessionFactory().getCurrentSession().get(Project.class, id);
+        getSessionFactory().getCurrentSession().delete(project);
     }
 }

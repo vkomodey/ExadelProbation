@@ -7,16 +7,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class ProjectServiceImpl implements ProjectService{
     @Autowired
     ProjectDao projectDao;
     @Transactional
     public void addProject(String title){
-        projectDao.addProject(title);
+        Project project = new Project();
+        project.setTitle(title);
+        projectDao.save(project);
     }
     @Transactional
     public void deleteProjectById(long id){
         projectDao.deleteProjectById(id);
+    }
+
+    @Transactional
+    public List<Project> getAll(){
+        return projectDao.getAll();
     }
 }

@@ -46,8 +46,10 @@
     </div>
 </div>
 <div>
-<a href="/app/send/email">AZAZAZAZA</a>
 </div>
 <div ng-view></div>
+<form action="/rest/proj/add/azazaza" method="post">
+    <input type="submit" value="removeProj">
+</form>
 </body>
 </html>
