@@ -24,14 +24,14 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Autowired
     StudentDao studentDao;
 
-    @Secured({SpringSecurityRole.JOANNA})
+    @Secured({SpringSecurityRole.ADMIN})
     public User initUser(RegistrationView view){
         User user;
         switch (view.getRole()) {
             case SpringSecurityRole.FEEDBACKER:
                 user = new Feedbacker();
                 break;
-            case SpringSecurityRole.JOANNA:
+            case SpringSecurityRole.ADMIN:
                 user = new Joanna();
                 break;
             case SpringSecurityRole.CURATOR:
@@ -50,14 +50,14 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
 	@Transactional
-    @Secured({SpringSecurityRole.JOANNA})
+    @Secured({SpringSecurityRole.ADMIN})
     public void registerAnyone(RegistrationView view) {
         User user=initUser(view);
         switch (view.getRole()) {
             case SpringSecurityRole.FEEDBACKER:
 
                 break;
-            case SpringSecurityRole.JOANNA:
+            case SpringSecurityRole.ADMIN:
 
                 break;
             case SpringSecurityRole.CURATOR:
@@ -72,7 +72,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         }
 	}
     @Transactional
-    @Secured({SpringSecurityRole.JOANNA})
+    @Secured({SpringSecurityRole.ADMIN})
 	public void registerStudent(RegistrationView view) {
 		view.setRole(SpringSecurityRole.STUDENT);
         Student stud=new Student();

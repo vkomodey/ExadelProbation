@@ -115,7 +115,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 		Student stud = studentDao.find(stud_id);
         lazyTouch(stud);
 		CompositeStudentFeedbackView view = new CompositeStudentFeedbackView();
-		if (role.equals(SpringSecurityRole.JOANNA)) {
+		if (role.equals(SpringSecurityRole.ADMIN)) {
 			view.setFeedbacks(this.getFeedbacksForStudentByStudId(stud_id));
 			view.setInfo(stud.toView());
 		} else {

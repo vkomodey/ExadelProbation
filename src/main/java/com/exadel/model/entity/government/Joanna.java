@@ -12,6 +12,6 @@ public class Joanna extends Feedbackable {
 	@Transient
 	@JsonIgnore
 	public String getRole(){
-		return SpringSecurityRole.JOANNA;
+		return SpringSecurityRole.ADMIN;
 	}
 }

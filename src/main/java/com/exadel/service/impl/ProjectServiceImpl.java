@@ -28,4 +28,9 @@ public class ProjectServiceImpl implements ProjectService{
     public List<Project> getAll(){
         return projectDao.getAll();
     }
+
+    @Transactional
+    public List<String> getAllStudentsFio(long projectId){
+        return projectDao.getAllStudentsFio(projectId);
+    }
 }

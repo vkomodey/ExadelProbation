@@ -3,6 +3,7 @@ package com.exadel.model.entity;
 import com.exadel.model.entity.student.ExadelWork;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.student.Technology;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -19,7 +20,8 @@ public class Project {
 	private Set<Technology> usedTechnologies;
 
 	@ManyToMany
-	public Set<Technology> getUsedTechnologies() {
+    @JsonIgnore
+    public Set<Technology> getUsedTechnologies() {
 		return usedTechnologies;
 	}
 
@@ -34,6 +36,7 @@ public class Project {
 	}
 
 	@ManyToMany
+    @JsonIgnore
 	public Set<ExadelWork> getStudents() {
 		return students;
 	}

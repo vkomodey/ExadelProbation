@@ -2,9 +2,7 @@ package com.exadel.controller.json;
 
 import com.exadel.model.entity.view.EmailView;
 import com.exadel.service.EmailService;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +24,14 @@ public class SendEmailController {
     @Autowired
     private MailSender mailSender;
     @RequestMapping(value = "send/email", method = RequestMethod.POST)
-    public void sendEmail(@RequestBody String str,ObjectMapper mapper) throws IOException {
+    public void sendEmail(@RequestBody String str) throws IOException {
         //TODO create constant for request path
-        System.out.println(str);
-        JsonParser parser=mapper.getFactory().createParser(str);
-        //parser.next
-        str=str.replaceAll("\\([nrt])", "\\\\\\1");
-        //System.out.println(str);
+        ObjectMapper mapper = new ObjectMapper();
+//        System.out.println(str);
+//        str = StringEscapeUtils.escapeJson(str);
+//        System.out.println(str + " after parsing");
+//        str=str.replaceAll("\\([nrt])", "\\\\\\1");
+//        System.out.println(str);
 
         EmailView emailView = mapper.readValue(str, EmailView.class);
         List<String> allEmailsById = emailService.getAllEmailsById(emailView.getId());
