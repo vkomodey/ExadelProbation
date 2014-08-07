@@ -39,7 +39,7 @@ public class ExcelBuilder extends AbstractExcelView {
         if(tech!=null){
             for(Technology item : tech){
                 result.append(item.getName());
-                result.append(", ");
+                result.append(" ");
             }
             return result.toString();
         }

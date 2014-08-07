@@ -111,8 +111,8 @@ public class Student extends User {
 		this.phone = phone;
 	}
 	public void setPractice(ExadelPractice practice) {
+        this.practice = practice;
 		if(practice !=null ){
-		this.practice = practice;
 		this.practice.setStudent(this);
 		}
 	}
@@ -131,8 +131,8 @@ public class Student extends User {
 	}
 
     public void setWork(ExadelWork work) {
-		if(practice !=null ){
-		this.work = work;
+        this.work = work;
+		if(work !=null ){
 		this.work.setStudent(this);
 		}
 	}
