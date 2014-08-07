@@ -3,9 +3,11 @@ package com.exadel.model.entity;
 import com.exadel.model.entity.student.ExadelWork;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.student.Technology;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,12 +20,13 @@ public class Project {
 	private Set<Technology> usedTechnologies;
 
 	@ManyToMany
-	public Set<Technology> getUsedTechnologies() {
+    @JsonIgnore
+    public Set<Technology> getUsedTechnologies() {
 		return usedTechnologies;
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long getId() {
 		return id;
 	}
@@ -33,6 +36,7 @@ public class Project {
 	}
 
 	@ManyToMany
+    @JsonIgnore
 	public Set<ExadelWork> getStudents() {
 		return students;
 	}

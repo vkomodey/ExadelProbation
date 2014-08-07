@@ -29,10 +29,7 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 	public List<Student> getAll() {
 		return getSessionFactory().getCurrentSession().createQuery("from Student").list();
 	}
-    @SuppressWarnings("unchecked")
-    public List<Student> getSupervised(long id){
-        return getSessionFactory().getCurrentSession().createQuery("from Student where curator.id=:id").setLong("id", id).list();
-    }
+
     public void updateByMerge(Student st){
         getSessionFactory().getCurrentSession().merge(st);
     }
@@ -43,10 +40,10 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 
     public void attachStudentTo(long id, long curator_id){
         Session session = getSessionFactory().getCurrentSession();
-        Student student = (Student)session.get(Student.class, id);
-        Curator curator = (Curator)session.get(Curator.class, curator_id);
-        student.setCurator(curator);
-        session.update("student", student);
+        Student student = (Student)session.load(Student.class, id);
+        Curator curator = (Curator)session.load(Curator.class, curator_id);
+        student.getCurator().add(curator);
+        //session.update(student);
     }
 
 	@SuppressWarnings("unchecked")
@@ -62,7 +59,7 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Long> getStudyEndYears() {
+	public List<Integer> getStudyEndYears() {
 		// TODO Auto-generated method stub
 		return getSessionFactory().getCurrentSession().createQuery("select distinct s.study.graduate_year from Student s").list();
 	}

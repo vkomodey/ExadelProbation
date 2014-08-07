@@ -39,6 +39,10 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	private void lazyTouch(Student student) {
 		student.getStudy().getExams().size();
 		student.getSkillSet().size();
+        if(student.getWork()!=null){
+        student.getWork().getCurrentUsedTechnologies().size();
+        student.getWork().getDesiredUsedTechnologies().size();
+        }
 	}
 
 	@Transactional
@@ -85,23 +89,11 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 		// have some....lazy
 		for (Student s : list) {
 			lazyTouch(s);
-			if (s.getCurator() != null) {
+			/*if (s.getCurator() != null) {
 				for (Feedback feedback : s.getCurator().getFeedback()) {
 					feedback.getBillableNow();
 				}
-			}
-		}
-		return list;
-	}
-
-	@Transactional
-	public List<Student> getSupervised(long curatorId) {
-		List<Student> list = studentDao.getSupervised(curatorId);
-		for (Student s : list) {
-			lazyTouch(s);
-			for (Feedback feedback : s.getCurator().getFeedback()) {
-				feedback.getBillableNow();
-			}
+			}*/
 		}
 		return list;
 	}
@@ -127,7 +119,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 		Student stud = studentDao.find(stud_id);
         lazyTouch(stud);
 		CompositeStudentFeedbackView view = new CompositeStudentFeedbackView();
-		if (role.equals(SpringSecurityRole.JOANNA)) {
+		if (role.equals(SpringSecurityRole.ADMIN)) {
 			view.setFeedbacks(this.getFeedbacksForStudentByStudId(stud_id));
 			view.setInfo(stud.toView());
 		} else {

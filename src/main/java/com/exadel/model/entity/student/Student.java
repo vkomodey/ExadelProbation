@@ -4,16 +4,14 @@ import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Feedback;
+import com.exadel.model.entity.StudentLog;
 import com.exadel.model.entity.User;
 import com.exadel.model.entity.government.Curator;
 import com.exadel.model.entity.view.StudentView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -30,7 +28,7 @@ public class Student extends User {
     private String skype;
     private String phone;
 
-    private Curator curator;
+    private Set<Curator> curator;
 
     public Student() {
 		super();
@@ -40,9 +38,9 @@ public class Student extends User {
 	}
     //@JsonBackReference
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "curator", referencedColumnName = "id")
-    public Curator getCurator() {
+    @ManyToMany
+    //@JoinColumn(name = "curator", referencedColumnName = "id")
+    public Set<Curator> getCurator() {
         return curator;
     }
 	public String getEmail() {
@@ -94,7 +92,7 @@ public class Student extends User {
 	public ExadelWork getWork() {
 		return work;
 	}
-	public void setCurator(Curator curator) {
+	public void setCurator(Set<Curator> curator) {
         this.curator = curator;
     }
 	public void setEmail(String email) {
@@ -111,8 +109,8 @@ public class Student extends User {
 		this.phone = phone;
 	}
 	public void setPractice(ExadelPractice practice) {
+        this.practice = practice;
 		if(practice !=null ){
-		this.practice = practice;
 		this.practice.setStudent(this);
 		}
 	}
@@ -131,8 +129,8 @@ public class Student extends User {
 	}
 
     public void setWork(ExadelWork work) {
-		if(practice !=null ){
-		this.work = work;
+        this.work = work;
+		if(work !=null ){
 		this.work.setStudent(this);
 		}
 	}
@@ -140,7 +138,12 @@ public class Student extends User {
 		this.setFirstName(view.getFirstName());
 		this.setSecondName(view.getSecondName());
 		this.setSurname(view.getSurname());
-		
+        if(this.getState()!=StudentStateEnum.WORK && view.getState()==StudentStateEnum.WORK){
+            this.setWork(new ExadelWork());
+            this.getWork().setWorkStartDate(Calendar.getInstance());
+        }
+        this.setState(view.getState());
+
 		this.setEmail(view.getEmail());
 		this.setPhone(view.getPhone());
 		this.setSkype(view.getSkype());

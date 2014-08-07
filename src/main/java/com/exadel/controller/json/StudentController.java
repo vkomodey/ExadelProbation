@@ -106,7 +106,7 @@ public class StudentController {
 
         String role = authorities.get(0).toString();
         if(role.equals(SpringSecurityRole.CURATOR)){
-			list=service.getSupervised(userService.findByLogin(user.getName()).getId());
+			list=curatorService.getSupervised(userService.findByLogin(user.getName()).getId());
 		}
 		else{
 		    list=service.getAll();
@@ -147,11 +147,6 @@ public class StudentController {
 		Student student=service.findByLogin(user.getName());
 		logger.info("real student sending");
 		return student;
-	}
-	
-	@RequestMapping(value=StudURI.GET_ALL_FILTERED,method=RequestMethod.GET)
-	public @ResponseBody List<Student> getAllStudentsFiltered(@RequestParam Map<String,String> params){
-		return null;
 	}
 
     @RequestMapping(value = StudURI.ATTACH_STUDENT, method = RequestMethod.POST)

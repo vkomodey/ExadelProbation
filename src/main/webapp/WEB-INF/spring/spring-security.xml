@@ -9,15 +9,18 @@
 
     <security:http pattern="../../css" security="none"/>
     <security:http authentication-manager-ref="authenticationManager">
-        <security:intercept-url pattern="/page/index.jsp" access="ROLE_USER, ROLE_FEEDBACKER, ROLE_JOANNA, ROLE_CURATOR" />
+        <security:intercept-url pattern="/page/index.jsp" access="ROLE_USER, ROLE_FEEDBACKER, ROLE_ADMIN, ROLE_CURATOR" />
         <security:intercept-url pattern="/page/studentPage.jsp" access="ROLE_STUDENT"/>
-        <security:intercept-url pattern="/app/login/admin" access="ROLE_USER"/>
-        <security:intercept-url pattern="/rest/empl/all" access="ROLE_USER"/>
-        <security:intercept-url pattern="/rest/downloadPDF" access="ROLE_JOANNA, ROLE_USER"/>
-        <security:intercept-url pattern="/rest/downloadExcel" access="ROLE_JOANNA, ROLE_USER"/>
-        <security:intercept-url pattern="/rest/stud/create" access="ROLE_JOANNA"/>
-        <security:intercept-url pattern="/rest/stud/*/feedbacks/push" access="ROLE_JOANNA, ROLE_FEEDBACKER, ROLE_CURATOR"/>
-        <security:intercept-url pattern="stud/*/edit" access="ROLE_JOANNA, ROLE_USER"/>
+        <security:intercept-url pattern="/app/login/admin" access="ROLE_USER,ROLE_ADMIN"/>
+        <security:intercept-url pattern="/rest/empl/all" access="ROLE_USER,ROLE_ADMIN"/>
+        <security:intercept-url pattern="/rest/downloadPDF" access="ROLE_ADMIN, ROLE_USER"/>
+        <security:intercept-url pattern="/rest/downloadExcel" access="ROLE_ADMIN, ROLE_USER"/>
+        <security:intercept-url pattern="/rest/stud/create" access="ROLE_ADMIN"/>
+        <security:intercept-url pattern="/rest/stud/*/feedbacks/push" access="ROLE_ADMIN, ROLE_FEEDBACKER, ROLE_CURATOR"/>
+        <security:intercept-url pattern="stud/*/edit" access="ROLE_ADMIN, ROLE_USER"/>
+        <security:intercept-url pattern="/rest/proj/all" access="ROLE_ADMIN, ROLE_USER"/>
+        <security:intercept-url pattern="/rest/proj/add" access="ROLE_ADMIN, ROLE_PERSONNEL_DEPARTMENT"/>
+        <security:intercept-url pattern="/rest/proj/remove" access="ROLE_ADMIN, ROLE_PERSONNEL_DEPARTMENT"/>
         <security:form-login login-page="/page/login.jsp"
                              login-processing-url="/do_login"
                              authentication-failure-url="/page/error.jsp"
@@ -48,7 +51,7 @@
                 <entry key="ROLE_USER" value="/page/index.jsp"/>
                 <entry key="ROLE_FEEDBACKER" value="/page/index.jsp"/>
                 <entry key="ROLE_CURATOR" value="/page/index.jsp"/>
-                <entry key="ROLE_JOANNA" value="/page/index.jsp"/>
+                <entry key="ROLE_ADMIN" value="/page/index.jsp"/>
             </map>
         </property>
     </bean>

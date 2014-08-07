@@ -2,11 +2,7 @@ package com.exadel.model.entity;
 
 import java.util.Calendar;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
@@ -30,6 +26,7 @@ public class StudentLog {
         return id;
     }
 	@Column(name = "new_state")
+    @Enumerated(EnumType.STRING)
     public StudentStateEnum getNewState() {
         return newState;
     }

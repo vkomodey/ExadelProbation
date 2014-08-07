@@ -52,13 +52,13 @@ public class ExadelWork {
 	public CurrentProjectRoleEnum getCurrentProjectRole() {
 		return currentProjectRole;
 	}
-
+    @JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "students")
 	public Set<Project> getCurrentProjects() {
 		return currentProjects;
 	}
 
-	@ManyToMany
+    @ManyToMany
 	@JoinTable(name = "student_current_used_technologies", joinColumns = @JoinColumn(name = "stud_id",
 	referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(name = "currentusedtech_id", referencedColumnName = "id"))

@@ -1,11 +1,12 @@
 package com.exadel.util;
 
+import com.exadel.dao.StudentDao;
+import com.exadel.dao.impl.StudentDaoImpl;
+import com.exadel.model.entity.student.ExadelWork;
 import com.exadel.model.entity.student.Technology;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,8 +37,10 @@ public class ExcelBuilder extends AbstractExcelView {
     private String convertTechnologySet(Set<Technology> tech){
         StringBuilder result= new StringBuilder();
         if(tech!=null){
-            for(Technology item : tech)
+            for(Technology item : tech){
                 result.append(item.getName());
+                result.append(" ");
+            }
             return result.toString();
         }
         return emptyField;
