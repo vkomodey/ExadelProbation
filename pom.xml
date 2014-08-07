@@ -18,6 +18,24 @@
 		<org.hibernate-version>4.1.12.Final</org.hibernate-version>
 		<spring.security.version>3.2.4.RELEASE</spring.security.version>
 	</properties>
+	<repositories>
+		<repository>
+			<id>version99</id>
+			<!-- highly available repository serving empty artifacts -->
+			<url>http://version99.qos.ch/</url>
+		</repository>
+	</repositories>
+<dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>99-empty</version>
+    </dependency>
+  </dependencies>
+</dependencyManagement>
+
+
 	<dependencies>
 		<!--Jackson -->
 		<dependency>
@@ -114,12 +132,6 @@
 			<version>9.3-1102-jdbc41</version>
 		</dependency>
 		<!-- Logging -->
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-			<scope>provided</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
