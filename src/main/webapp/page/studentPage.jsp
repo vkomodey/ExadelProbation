@@ -1,156 +1,262 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
+<head lang="en">
     <meta charset="UTF-8">
-    <title>Student</title>
-    <!--<link rel="stylesheet" href="../css/popup-style2.css" type="text/css" media="screen" charset="utf-8"/>
-    <link rel="stylesheet" href="../css/nav-style.css" type="text/css" media="screen" charset="utf-8"/>
-    <link rel="stylesheet" href="../css/content-style.css" type="text/css" media="screen" charset="utf-8"/>
-    <link rel="stylesheet" href="../css/popup-style3.css" type="text/css" media="screen" charset="utf-8"/>-->
-    <link rel="stylesheet" href="../css/ng-table.css" type="text/css" media="screen" charset="utf-8"/>
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" media="screen" charset="utf-8"/>
-    <!-- <link rel="stylesheet" href="../css/UserListStyle.css" type="text/css" media="screen" charset="utf-8"/>-->
-    <link rel="stylesheet" href="../css/ExadelProbationStyle.css" type="text/css" media="screen" charset="utf-8"/>
-    <script type="text/javascript" src="../lib/angular.min.js"></script>
-    <script type="text/javascript" src="../lib/angular-route.min.js"></script>
-    <script type="text/javascript" src="../lib/angular-animate.min.js"></script>
-    <script type="text/javascript" src="../lib/angular-animate.min.js.map"></script>
-    <script type="text/javascript" src="../lib/angular-resource.min.js"></script>
-    <script type="text/javascript" src="../lib/ng-table.js"></script>
-    <script type="text/javascript" src="../js/configApp.js"></script>
-    <script type="text/javascript" src="../js/servicesApp.js"></script>
-    <script type="text/javascript" src="../js/controllersApp.js"></script>
+    <title>Index</title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="../css/ng-table.css"/>
+    <link rel="stylesheet" href="../css/skillsTable.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="../js/built.js"></script>
 </head>
 <body ng-app="studentsApp">
-<div class="nav"><!-- для навигационной панели навигационной(невидима) -->
-    <div class="nav-menu"> <!-- навигационное меню  -->
-        <ul id="nav">
-            <%--<li><a href="log.html">Log out</a>--%>
-            <li style="float: right;">
+<div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Exadel</a>
+            </div>
+            <div class="collapse navbar-collapse">
                 <form action="/do_logout" method="post">
-                    <button id="btn" type="submit">Log out</button>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><p><button class="btn-link navbar-btn" type="submit">Logout</button></p></li>
+                     </ul>
                 </form>
-            </li>
-        </ul>
-    </div>
+            </div>
+        </div>
+    </nav>
 </div>
-<div class="content student-info-content">
-    <form name="studentForm">
-    <div ng-controller="ctrlForStudent">
-        <table class="student-info-table">
-            <tr>
-                <td>First Name</td>
-                <td><input type="text" ng-model="studentInfo.firstName" ng-pattern="/^[a-zA-Z]+$/" required/></td>
-            </tr>
-            <tr>
-                <td>Second Name</td>
-                <td><input type="text" ng-model="studentInfo.secondName" ng-pattern="/^[a-zA-Z]+$/" required/></td>
-            </tr>
-            <tr>
-                <td>Surname</td>
-                <td><input type="text" ng-model="studentInfo.surname" ng-pattern="/^[a-zA-Z]+$/" required/></td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td><input type="email" ng-model="studentInfo.email" ng-pattern="/^([^\@]+)\@([^\.]+)\.([a-zA-Z]+)$/" required/></td>
-            </tr>
-            <tr>
-                <td>Skype</td>
-                <td><input type="text" ng-model="studentInfo.skype" ng-pattern="/^.+$/" required/></td>
-            </tr>
-            <tr>
-                <td>Phone</td>
-                <td><input type="text" name="phone" ng-model="studentInfo.phone" ng-pattern="/^[0-9]+$/" required/>
-            </tr>
-            <tr>
-                <td>English level</td>
-                <td><select ng-model="studentInfo.english"  ng-options="englishLevel.value as englishLevel.name for englishLevel in englishLevels" required>
-                 <!--  <option  ng-value="'beginner'">Beginner</option>
-                    <option ng-value="'elementary'">Elementary</option>
-                    <option ng-value="'preintermediate'">Pre-Intermediate</option>
-                    <option ng-value="'intermediate'">Intermediate</option>
-                    <option ng-value="'upperintermediate'">Upper-Intermediate</option>
-                    <option ng-value="'advanced'">Advanced</option>-->
-                </select></td>
-            </tr>
-            <tr>
-                <td>Graduate year</td>
-                <td><input type="number" name="graduate_year" ng-model="studentInfo.study.graduate_year" min="1990" ng-pattern="/^[0-9]{4}$/" required/>
-                </td>
-            </tr>
-            <tr>
-                <td>University</td>
-                <td><input type="text" ng-model="studentInfo.study.university" required/></td>
-            </tr>
-            <tr>
-                <td>Faculty</td>
-                <td><input type="text" ng-model="studentInfo.study.faculty" required/></td>
-            </tr>
-            <tr>
-                <td>Specialty</td>
-                <td><input type="text" ng-model="studentInfo.study.specialty" required/></td>
-            </tr>
-            <tr>
-                <td>Course/group</td>
-                <td><input type="text" ng-model="studentInfo.study.course_group" ng-pattern="/^[0-9]/([0-9a-zA-Z]+)$/" required/></td>
-            </tr>
-            <tr>
-                <td>Skills</td>
-                <td>
-                    <table ng-table="skillsParams" class="table exams-table">
-                        <tr class="table" ng-repeat="skill in studentInfo.skillSet track by $index">
-                            <td data-title="'Skill name'">
-                                <select ng-model="studentInfo.skillSet[$index].type" ng-options="skillType.name for skillType in skillTypes track by skillType.id" required>
-                                   <!-- <option ng-repeat="skillType in skillTypes"  ng-value="skillType">
-                                        {{skillType.name}}
-                                    </option>-->
-                                </select>
-                            </td>
-                            <td data-title="'Skill level'"><input type="text"
-                                                                  ng-model="studentInfo.skillSet[$index].level" required/></td>
-                            <td data-title="">
-                                <button ng-click="deleteSkill($index)" class="modern">X</button>
-                            </td>
-                        </tr>
-                    </table>
-                    <button ng-click="addSkill()" class="modern" class="add-field">+</button>
-                </td>
-            </tr>
-            <tr class="exams">
-                <td>Exams</td>
-                <td>
-                    <table ng-table="examsParams" class="table exams-table">
-                        <tr class="table" ng-repeat="exam in studentInfo.study.exams track by $index">
-                            <td data-title="'GRADE'"><input type="text" name="grade{{$index}}"
-                                                            ng-model="studentInfo.study.exams[$index].grade" ng-pattern="/^(10|[0-9]|([0-9][.][0-9]))$/"required/>
-                            </td>
-                            <td data-title="'Summer/winter'">
-                                <input type="radio" ng-model="studentInfo.study.exams[$index].summer"
-                                       ng-value="true"
-                                       id="r{{$index*2}}">
-                                <label for="r{{$index*2}}">Summer </label><br/>
-                                <input type="radio" ng-model="studentInfo.study.exams[$index].summer"
-                                       ng-value="false"
-                                       id="r{{$index*2+1}}">
-                                <label for="r{{$index*2+1}}">Winter</label>
-                            </td>
-                            <td data-title="'Course'"><input type="text" name="course{{$index}}"
-                                                             ng-model="studentInfo.study.exams[$index].course" ng-pattern="/^([1-9])$/"required/>
-                            <td data-title="">
-                                <button ng-click="deleteExam($index)" class="modern">X</button>
-                            </td>
-                        </tr>
-                    </table>
-                    <button ng-click="addExam()" class="modern" class="add-field">+</button>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><button ng-click="sendStudentInfo()" ng-disabled="studentForm.$invalid" class="modern">Save</button></td></tr>
-        </table>
+<div class="container">
+<ul class="nav nav-tabs" id="tab">
+    <li class="active"><a href="#personInfo" data-toggle="tab" data-target="#personInfo">Person info</a></li>
+    <li><a href="#contactInfo" data-toggle="tab" data-target="#contactInfo">Contact info</a></li>
+    <li><a href="#studyInfo" data-toggle="tab">Study info</a></li>
+    <li><a href="#skills" data-toggle="tab">Skills</a></li>
+    <li><a href="#exams" data-toggle="tab">Exams</a></li>
+</ul>
+<form name="studentInfoForm" class="form-horizontal" ng-controller="StudentPageCtrl">
+    <div class="tab-content">
+    <div class="tab-pane active" id="personInfo">
+        <div class="pull-right well-sm">
+            <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-1">
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="control-label" for="firstName">First name</label>
+                    <input id="firstName" name="firstName" type="text"  ng-model="studentInfo.firstName" ng-pattern="/^[a-zA-Z]+$/"
+                           class="form-control input-md">
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="control-label" for="firstName">Last name</label>
+                    <input id="lastName" name="firstName" type="text" ng-model="studentInfo.secondName" ng-pattern="/^[a-zA-Z]+$/"
+                           class="form-control input-md">
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="control-label" for="firstName">Surname</label>
+                    <input id="surname" name="firstName" type="text" ng-model="studentInfo.surname" ng-pattern="/^[a-zA-Z]+$/"
+                           class="form-control input-md">
+                </div>
+            </div>
+        </div>
     </div>
-    </form>
+    <div class="tab-pane" id="contactInfo">
+        <div class="pull-right well-sm">
+            <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-1">
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="control-label" for="email">Email</label>
+                    <input id="email" name="email" type="email" ng-model="studentInfo.email"
+                           ng-pattern="/^([^\@]+)\@([^\.]+)\.([a-zA-Z]+)$/"
+                           class="form-control input-md">
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="control-label" for="skype">Skype</label>
+                    <input id="skype" name="skype" type="text" ng-model="studentInfo.skype"
+                           class="form-control input-md">
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="control-label" for="firstName">Phone</label>
+                    <input id="phone" name="phone" type="text" ng-model="studentInfo.phone"
+                           class="form-control input-md">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="studyInfo">
+        <div class="pull-right well-sm">
+            <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-1">
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="control-label" for="graduateYear">Graduate year</label>
+                    <input id="graduateYear" name="graduateYear" type="number" ng-model="studentInfo.study.graduate_year"
+                           min="2014" ng-pattern="/^[0-9]{4}$/"
+                           class="form-control input-md">
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="control-label" for="university">University</label>
+                    <input id="university" name="university" type="text" ng-model="studentInfo.study.university"
+                           class="form-control input-md">
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="control-label" for="faculty">Faculty</label>
+                    <input id="faculty" name="faculty" type="text" ng-model="studentInfo.study.faculty"
+                           class="form-control input-md">
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="control-label" for="specialty">Specialty</label>
+                    <input id="specialty" name="specialty" type="text" ng-model="studentInfo.study.specialty"
+                           class="form-control input-md">
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="control-label" for="course_group">Course/group</label>
+                    <input id="course_group" name="course_group" type="text" ng-model="studentInfo.study.course_group"
+                           ng-pattern="/^[0-9]/([0-9a-zA-Z]+)$/"
+                           class="form-control input-md">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="skills">
+        <div class="pull-right well-sm">
+            <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+        </div>
+        <!--<div class="row">
+            <div class="col-md-6 col-md-offset-1">
+                <!-- Text input
+                <div class="form-group">
+                    <label class="control-label" for="englishLevel">English level</label>
+                    <input id="englishLevel" name="englishLevel" type="text" placeholder=""
+                           class="form-control input-md">
+                </div>
+            </div>
+        </div>-->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-1">
+                <table class="table skills-table">
+                    <thead>
+                    <tr>
+                        <th>Skill name</th>
+                        <th>Skill level</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>English</td>
+                        <td><select class="form-control" ng-model="studentInfo.english"
+                                    ng-options="englishLevel.value as englishLevel.name for englishLevel in englishLevels">
+                        </select></td>
+                        <td></td>
+                    </tr>
+                    <tr ng-repeat="skill in studentInfo.skillSet track by $index">
+                        <td>
+                            <select id="skillType{{$index}}" ng-model="studentInfo.skillSet[$index].type"
+                                    class="form-control"
+                                    ng-options="skillType.name for skillType in skillTypes track by skillType.id">
+                            </select>
+                        </td>
+                        <td>
+                            <input id="skillLevel" name="englishLevel" type="text"
+                                   class="form-control input-sm">
+                        </td>
+                        <td class="text-center">
+                            <a data-ng-click="deleteSkill($index)" class="btn btn-xs btn-danger"><span
+                                    class="glyphicon glyphicon-trash"></span></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-7"><a ng-click="addSkill()" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus"></span> Add skill</a></div>
+        </div>
+    </div>
+    <div class="tab-pane" id="exams">
+        <div class="pull-right well-sm">
+            <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <label class="control-label" for="exam-3">Semester-3</label>
+                <input id="exam-3" name="exam-3" type="text" placeholder="Grade"
+                       class="form-control input-sm">
+            </div>
+            <div class="col-md-2">
+                <label class="control-label" for="exam-4">Semester-4</label>
+                <input id="exam-4" name="exam-4" type="text" placeholder="Grade"
+                       class="form-control input-sm">
+            </div>
+            <div class="col-md-2">
+                <label class="control-label" for="exam-5">Semester-5</label>
+                <input id="exam-5" name="exam-5" type="text" placeholder="Grade"
+                       class="form-control input-sm">
+            </div>
+            <div class="col-md-2">
+                <label class="control-label" for="exam-6">Semester-6</label>
+                <input id="exam-6" name="exam-6" type="text" placeholder="Grade"
+                       class="form-control input-sm">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+
+                <label class="control-label" for="exam-3">Semester-3</label>
+                <input id="exam-3" name="exam-3" type="text" placeholder="Grade"
+                       class="form-control input-sm">
+            </div>
+            <div class="col-md-2">
+                <label class="control-label" for="exam-4">Semester-4</label>
+                <input id="exam-4" name="exam-4" type="text" placeholder="Grade"
+                       class="form-control input-sm">
+            </div>
+            <div class="col-md-2">
+                <label class="control-label" for="exam-5">Semester-5</label>
+                <input id="exam-5" name="exam-5" type="text" placeholder="Grade"
+                       class="form-control input-sm">
+            </div>
+            <div class="col-md-2">
+                <label class="control-label" for="exam-6">Semester-6</label>
+                <input id="exam-6" name="exam-6" type="text" placeholder="Grade"
+                       class="form-control input-sm">
+            </div>
+        </div>
+    </div>
+        </div>
+</form>
 </div>
 </body>
 </html>
