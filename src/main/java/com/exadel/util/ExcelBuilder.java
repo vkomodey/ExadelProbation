@@ -36,8 +36,10 @@ public class ExcelBuilder extends AbstractExcelView {
     private String convertTechnologySet(Set<Technology> tech){
         StringBuilder result= new StringBuilder();
         if(tech!=null){
-            for(Technology item : tech)
+            for(Technology item : tech){
                 result.append(item.getName());
+                result.append(", ");
+            }
             return result.toString();
         }
         return emptyField;
