@@ -14,7 +14,7 @@ public interface FilterService {
 
 	List<String> getAllFaculties();
 
-	List<Long> getAllStudyEndYears();
+	List<Integer> getAllStudyEndYears();
 
 	Set<User> getAllUsedCurators();
 

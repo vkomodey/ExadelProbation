@@ -1,6 +1,9 @@
 package com.exadel.controller.json;
 
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,39 +18,85 @@ import com.exadel.model.entity.User;
 import com.exadel.model.entity.student.Technology;
 import com.exadel.model.entity.view.IdNameSurnamePersonView;
 import com.exadel.service.FilterService;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 public class FilterController {
 	@Autowired
 	FilterService service;
-
-	@RequestMapping(value=FilterURI.GET_ALL_UNIVERSITIES,method=RequestMethod.GET)
-	public List<String> getAllUniversities(){
+	
+	JsonGenerator jg;
+	@RequestMapping(value = FilterURI.GET_ALL_UNIVERSITIES, method = RequestMethod.GET)
+	public List<String> getAllUniversities() {
 		return service.getAllUniversities();
-    }
-	@RequestMapping(value=FilterURI.GET_ALL_FACULTIES,method=RequestMethod.GET)
-	public List<String> getAllFaculties(){
+	}
+
+	@RequestMapping(value = FilterURI.GET_ALL_FACULTIES, method = RequestMethod.GET)
+	public List<String> getAllFaculties() {
 		return service.getAllFaculties();
-    }
-	@RequestMapping(value=FilterURI.GET_ALL_STUDY_END_YEARS,method=RequestMethod.GET)
-	public List<Long> getAllStudyEndYears(){
-		return service.getAllStudyEndYears();
-    }
-	@RequestMapping(value=FilterURI.GET_ALL_USED_CURATORS,method=RequestMethod.GET)
-	public List<IdNameSurnamePersonView> getAllUsedCurators(){
-		List<IdNameSurnamePersonView> list=new ArrayList<>();
-		for(User u:service.getAllUsedCurators()){
+	}
+
+	@RequestMapping(value = FilterURI.GET_ALL_STUDY_END_YEARS, method = RequestMethod.GET)
+	public List<String> getAllStudyEndYears() {
+		List<Integer> intlist = service.getAllStudyEndYears();
+		List<String> list = new ArrayList<String>(intlist.size());
+		for (Integer l : intlist) {
+			list.add(l.toString());
+		}
+		return list;
+	}
+
+	@RequestMapping(value = FilterURI.GET_ALL_USED_CURATORS, method = RequestMethod.GET)
+	public List<IdNameSurnamePersonView> getAllUsedCurators() {
+		List<IdNameSurnamePersonView> list = new ArrayList<>();
+		for (User u : service.getAllUsedCurators()) {
 			list.add(new IdNameSurnamePersonView(u));
 		}
 		return list;
-    }
-	@RequestMapping(value=FilterURI.GET_ALL_CURRENT_USED_TECHNOLOGIES,method=RequestMethod.GET)
-	public Set<String> getAllCurrentUsedTechnologies(){
-		Set<Technology> techs=service.getAllCurrentUsedTechnologies();
-		Set<String> technames=new HashSet<>();
-		for(Technology tech:techs){
+	}
+
+	@RequestMapping(value = FilterURI.GET_ALL_CURRENT_USED_TECHNOLOGIES, method = RequestMethod.GET)
+	public Set<String> getAllCurrentUsedTechnologies() {
+		Set<Technology> techs = service.getAllCurrentUsedTechnologies();
+		Set<String> technames = new HashSet<>();
+		for (Technology tech : techs) {
 			technames.add(tech.getName());
 		}
 		return technames;
-    }
+	}
+	@RequestMapping(value = FilterURI.GET_EVERYTHING, method = RequestMethod.GET)
+	public String getEverything(ObjectMapper objectMapper) throws IOException {
+		StringWriter sw = new StringWriter();
+		//jsonFactory.setCodec(new ObjectMapper());
+		jg =objectMapper.getFactory().createGenerator(sw);
+		jg.writeStartObject();
+		writeJSONStringObjectArray(getAllCurrentUsedTechnologies(), "technames");
+		writeJSONStringObjectArray(getAllStudyEndYears(), "study_end_years");
+		writeJSONStringObjectArray(getAllUniversities(), "universities");
+		writeJSONStringObjectArray(getAllFaculties(), "faculties");
+		List<IdNameSurnamePersonView> curators=getAllUsedCurators();
+		IdNameSurnamePersonView v=new IdNameSurnamePersonView();
+		v.setSurname("Show All");
+		curators.add(v);
+		jg.writeObjectField("curators", curators);
+		jg.writeEndObject();
+		jg.close();
+		return sw.toString();
+	}
+
+	private void writeJSONStringObjectArray(Collection<String> coll, String name)
+			throws IOException {
+		jg.writeArrayFieldStart(name);
+		coll.add("Show All");
+		for (String val : coll) {
+			jg.writeStartObject();
+			/*jg.writeFieldName("name");
+			jg.writeString(tech);*/
+			jg.writeStringField("name",val);
+			jg.writeEndObject();
+		}
+		jg.writeEndArray();
+		//jg.writeStringField("name", "Show All");
+	}
 }

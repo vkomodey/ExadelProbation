@@ -45,7 +45,7 @@ public class FilterServiceImpl implements FilterService {
 		return studentDao.getFaculties();
 	}
 	@Transactional
-	public List<Long> getAllStudyEndYears() {
+	public List<Integer> getAllStudyEndYears() {
 		return studentDao.getStudyEndYears();
 	}
 	@Transactional
