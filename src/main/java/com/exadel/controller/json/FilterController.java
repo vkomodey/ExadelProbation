@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class FilterController {
 	@Autowired
 	FilterService service;
-	
+
 	JsonGenerator jg;
 	@RequestMapping(value = FilterURI.GET_ALL_UNIVERSITIES, method = RequestMethod.GET)
 	public List<String> getAllUniversities() {
@@ -40,9 +40,14 @@ public class FilterController {
 	@RequestMapping(value = FilterURI.GET_ALL_STUDY_END_YEARS, method = RequestMethod.GET)
 	public List<String> getAllStudyEndYears() {
 		List<Integer> intlist = service.getAllStudyEndYears();
-		List<String> list = new ArrayList<String>(intlist.size());
+        List<String> list = new ArrayList<String>(intlist.size());
 		for (Integer l : intlist) {
-			list.add(l.toString());
+            if(l==null) {
+                list.add(null);
+            }
+            else{
+                list.add(l.toString());
+            }
 		}
 		return list;
 	}
@@ -89,13 +94,15 @@ public class FilterController {
 			throws IOException {
 		jg.writeArrayFieldStart(name);
 		coll.add("Show All");
-		for (String val : coll) {
-			jg.writeStartObject();
+        if(coll!=null) {
+            for (String val : coll) {
+                jg.writeStartObject();
 			/*jg.writeFieldName("name");
 			jg.writeString(tech);*/
-			jg.writeStringField("name",val);
-			jg.writeEndObject();
-		}
+                jg.writeStringField("name", val);
+                jg.writeEndObject();
+            }
+        }
 		jg.writeEndArray();
 		//jg.writeStringField("name", "Show All");
 	}
