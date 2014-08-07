@@ -6,6 +6,7 @@ import com.exadel.model.entity.student.Technology;
 
 import javax.persistence.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -23,7 +24,8 @@ public class Project {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "project_id")
 	public long getId() {
 		return id;
 	}
