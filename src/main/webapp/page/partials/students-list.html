@@ -1,105 +1,121 @@
-
-<!--<div ng-controller="StudentListCtrl">-->
-<div class="content">
-
-  <div ng-controller="CreateStudentCtrl" ng-init="PopupCssClass = 'popup-hide'">
-    <button ng-click="PopupCssClass = 'popup-show'" class="modern">Add student</button>
-    <!-- Modale window -->
-    <div ng-class="PopupCssClass" >
-        <h2 class="login-h2">Create User</h2>
-        <fildset>
-            <form class="login-popup">
-                <p> <input type="text" ng-model="login" placeholder="Login"></p>
-                <button type="submit" ng-click="createStudent()" class="modern">Create</button>
-                <button ng-click="PopupCssClass= 'popup-hide'" class="modern">Cancel</button>
-            </form>
-        </fildset>
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="col-md-3">
+                <button data-target="#create" data-toggle="modal" class="btn btn-primary btn-success"><span
+                        class="glyphicon glyphicon-plus"></span> Create student
+                </button>
+            </div>
+            <div class="col-md-3 col-md-offset-1" data-ng-if="checkedStudArray.length">
+                <button data-target="#sendEmail" data-toggle="modal" class="btn btn-primary btn-success"><span
+                        class="glyphicon glyphicon-envelope"></span> Send email to checked students
+                </button>
+            </div>
+        </div>
+        <div class="pull-right">
+            <div class="input-group custom-search-form">
+                <input type="text" data-ng-model="search.surname" class="form-control" placeholder="Search by surname">
+            </div>
+            <!-- /input-group -->
+        </div>
     </div>
-    </div>
-
     <!--Filter-->
 
-    <select >
-        <option value=""  selected="selected">Please select an university</option>
-        <option value="" ng-repeat="filterParam in filterParams">{{filterParam.firstName}}</option>
+    <select data-ng-model="filterItem.course" data-ng-options="item.name for item in filterOptions.courses">
+    </select>
+    <select data-ng-model="filterItem.workinghour" data-ng-options="item.name for item in filterOptions.workinghours">
+    </select>
+    <select data-ng-model="filterItem.salary" data-ng-options="item.name for item in filterOptions.salaries">
+    </select>
+    <select data-ng-model="filterItem.englishlevel" data-ng-options="item.name for item in filterOptions.englishlevels">
+    </select>
+    <div data-ng-controller="filterParamsCtrl">
+        <select data-ng-model="filterItemF.techname" data-ng-options="item.name for item in filterParams.technames">
+        </select>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 well-sm">
+            <table id="mytable" class="table" ng-table="tableParams">
 
-    </select>
-    <select >
-        <option value=""  selected="selected">Please select a faculty</option>
-        <option value="" ng-repeat="">{{}}</option>
+                <tr data-ng-repeat="user in studentsList| filter:search | orderBy:params.orderBy() |
+                 filter:customFilterCourse | filter:customFilterEnglish | filter:customFilterHours |
+                 filter:customFilterSalary | filter:customFilterTech">
+                    <td><input data-ng-click="checkedStud(user.id)" type="checkbox" class="checkthis"/></td>
+                    <td data-title="'Name'" sortable="'surname'">{{user.firstName + " "+user.surname}}</td>
+                    <td data-title="'Date'" sortable="'work.workStartDate'">{{user.work.workStartDate}}</td>
+                    <td data-title="'Faculty'" sortable="'study.faculty'">{{user.study.faculty}}</td>
+                    <td data-title="'Graduate'" sortable="'study.graduate_year'">{{user.study.graduate_year}}</td>
+                    <td data-title="'Course/Group'" sortable="'study.course_group'">{{user.study.course_group}}</td>
+                    <td data-title="'Hours'" sortable="'work.hours_current'">{{user.work.hours_current}}</td>
+                    <td data-title="'Billable'" sortable="'work.billable'">{{user.work.billable}}</td>
+                    <td data-title="'Role'" sortable="'work.currentProjectRole'">{{user.work.currentProjectRole}}</td>
+                    <td data-title="'Technologies'" sortable="'projectTechnologies'">
+                        <span ng-repeat="technologies in user.work.projectTechnologies"> {{technologies.name}}</span>
+                    </td>
+                    <td data-title="'English'" sortable="'english'">{{user.english}}</td>
+                    <td data-title="'Edit'"class="text-center"><p><a href="#/studentList/{{user.id}}" class="btn btn-sm btn-info"><span
+                            class="glyphicon glyphicon-pencil"></span></a></p></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<!------------------------------------MODAL FOR CREATE STUDENT--------------------------------------->
+<div data-backdrop="static" class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="create"
+     aria-hidden="true"
+     data-ng-controller="CreateStudentCtrl">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title custom_align" id="Heading">Create Student</h4>
+            </div>
+            <div class="modal-body">
+                <input id="login" data-ng-model="login" name="login" type="text" placeholder="Login"
+                       class="form-control input-md" required>
+            </div>
+            <div class="modal-footer ">
+                <button type="button" data-dismiss="modal" aria-hidden="true" data-ng-click="createStudent()"
+                        class="btn btn-success btn-lg" style="width: 100%;"><span
+                        class="glyphicon glyphicon-plus"></span> Create
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 
-    </select>
-    <select>
-        <option value=""  selected="selected">Please select a course</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-    </select>
-    <select>
-        <option value=""  selected="selected">Please select a course</option>
-        <option value="20">20</option>
-        <option value="30">30</option>
-        <option value="40">40</option>
-    </select>
-    <select>
-        <option value=""  selected="selected">Please select billability</option>
-        <option value="1">yes</option>
-        <option value="0">no</option>
-    </select>
-    <select>
-        <option value=""  selected="selected">Please select curator</option>
-        <option value="" ng-repeat="">{{}}</option>
-    </select>
-    <select>
-        <option value=""  selected="selected">Please select english level</option>
-        <option  ng-value="'beginner'">Beginner</option>
-        <option ng-value="'elementary'">Elementary</option>
-        <option ng-value="'preintermediate'">Pre-Intermediate</option>
-        <option ng-value="'intermediate'">Intermediate</option>
-        <option ng-value="'upperintermediate'">Upper-Intermediate</option>
-        <option ng-value="'advanced'">Advanced</option>
-    </select>
-    <select>
-        <option value=""  selected="selected">Please select technology</option>
-        <option value="" ng-repeat="">{{}}</option>
-    </select>
-    <select>
-        <option value=""  selected="selected">Please select technology</option>
-        <option value="" ng-repeat="">{{}}</option>
-    </select>
-    <select>
-        <option value=""  selected="selected">Please select technology</option>
-        <option value="" ng-repeat="">{{}}</option>
-    </select>
-
-
-
-<br>
-    <button ng-click="tableParams.sorting({})" class="modern">Clear sorting</button>
-
-    <!-- Table -->
-    <input type="text" ng-model="search.surname" placeholder = "Search" class="toRight">
-    <table ng-table="tableParams"   class="table" >
-        <tr ng-repeat="user in studentsList| filter:search | orderBy:params.orderBy()">
-        <td width="30" style="text-align: left" header="'ng-table/headers/checkbox.html'">
-            <input type="checkbox" ng-model="checkboxes.items[user.id]" />
-        </td>
-            <td data-title="'LOGIN'" sortable="'login'" >{{user.login}}</td>
-        <td data-title="'FIO'" sortable="'surname'"><a style="color: black;" href="#/studentList/{{user.id}}">{{user.firstName + " "+user.surname}}</a></td>
-        <td data-title="'DATE'" sortable="'work.workStartDate'" >{{user.work.workStartDate}}</td>
-        <td data-title="'FACULTY'" sortable="'study.faculty'" >{{user.study.faculty}}</td>
-        <td data-title="'YEAR'" sortable="'study.graduate_year'" >{{user.study.graduate_year}}</td>
-        <td data-title="'COURSE/GROUP'" sortable="'study.course_group'" >{{user.study.course_group}}</td>
-        <td data-title="'HOURS'" sortable="'work.hours_current'" >{{user.work.hours_current}}</td>
-            <td data-title="'BILLABLE'" sortable="'work.billable'" >{{user.work.billable}}</td>
-        <td data-title="'ROLE'" sortable="'work.currentProjectRole'" >{{user.work.currentProjectRole}}</td>
-        <td data-title="'TECHNOLOGIES'" sortable="'projectTechnologies'">
-                <span ng-repeat="technologies in user.work.projectTechnologies"> {{technologies.name}}</span>
-            <!--{{user.work.projectTechnologies[0].name}}-->
-        </td>
-        <td data-title="'ENGLISH LEVEL'" sortable="'english'" >{{user.english}}</td>
-            <td data-title="" ><a style="color: black;" href="#/studentList/{{user.id}}"><i class="fa fa-info-circle fa-2x"/></a></td>
-        </tr>
-    </table>
+<!------------------------------------MODAL FOR SEND EMAIL--------------------------------------->
+<div data-backdrop="static" class="modal fade" id="sendEmail" tabindex="-1" role="dialog" aria-labelledby="sendEmail"
+     aria-hidden="true"
+     data-ng-controller="SendEmailCtrl">
+    <div name="emailForm" class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title custom_align" id="Heading">Send email</h4>
+            </div>
+            <div class="modal-body">
+                <form name="emailForm" class="form-horizontal">
+                    <div class="well-sm">
+                    <input id="title" data-ng-model="title" name="title" type="text" placeholder="Object"
+                           class="form-control input-md" required>
+                        </div>
+                    <div class="well-sm">
+                    <textarea data-ng-model="message" class="form-control" rows="10" placeholder="Message" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer ">
+                <button data-ng-disabled="emailForm.$invalid" type="button" data-dismiss="modal" aria-hidden="true"
+                        data-ng-click="sendEmail()"
+                        class="btn btn-success btn-lg" style="width: 100%;"><span
+                        class="glyphicon glyphicon-envelope"></span> Send
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
