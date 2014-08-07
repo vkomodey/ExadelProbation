@@ -39,6 +39,10 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	private void lazyTouch(Student student) {
 		student.getStudy().getExams().size();
 		student.getSkillSet().size();
+        if(student.getWork()!=null){
+        student.getWork().getCurrentUsedTechnologies().size();
+        student.getWork().getDesiredUsedTechnologies().size();
+        }
 	}
 
 	@Transactional
