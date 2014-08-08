@@ -20,8 +20,8 @@
             <div class="collapse navbar-collapse">
                 <form action="/do_logout" method="post">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><p><button class="btn-link navbar-btn" type="submit">Logout</button></p></li>
-                     </ul>
+                        <li><button class="btn btn-default navbar-btn" type="submit">Logout</button></li>
+                    </ul>
                 </form>
             </div>
         </div>
@@ -93,7 +93,7 @@
                 <div class="form-group">
                     <label class="control-label" for="firstName">Phone</label>
                     <input id="phone" name="phone" type="text" ng-model="studentInfo.phone"
-                           class="form-control input-md">
+                           data-ng-pattern="/( +)?((\+?7|8) ?)?((\(\d{3}\))|(\d{3}))?( )?(\d{3}[\- ]?\d{2}[\- ]?\d{2})( +)?$/" class="form-control input-md">
                 </div>
             </div>
         </div>
@@ -109,9 +109,8 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="control-label" for="graduateYear">Graduate year</label>
-                    <input id="graduateYear" name="graduateYear" type="number" ng-model="studentInfo.study.graduate_year"
-                           min="2014" ng-pattern="/^[0-9]{4}$/"
-                           class="form-control input-md">
+                    <input type="text" id="graduateYear" name="graduateYear"  ng-model="studentInfo.study.graduate_year"
+                           ng-pattern ="/^(([2-9][0-9][1-9][4-9])|([2-9][1-9][0-9][0-9])|([2-9][0-9][2-9][0-9])){1}$/" class="form-control input-md" >
                 </div>
 
                 <!-- Text input-->

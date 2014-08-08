@@ -725,7 +725,7 @@ var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
         $scope.projectList = projectList;
     }]);
 ProjectListCtrl.projectList = function(projectListFactory,$q) {
-    var deffered = $q.defer;
+    var deffered = $q.defer();
     projectListFactory.getProjectList(function(data) {
         deffered.resolve(data);
     });
