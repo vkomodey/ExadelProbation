@@ -587,12 +587,14 @@ studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routePar
     };
 }])
 
-studentsControllers.controller('CreateProjectCtrl', ['$scope', '$http','$q', function($scope,$http,$q) {
+studentsControllers.controller('CreateProjectCtrl', ['$scope', '$http', function($scope,$http,$q) {
     $scope.createProject = function() {
-        $http.post('/rest/proj/add',$scope.title).error(function(status,data) {
+        $http.post('/rest/proj/add',$scope.title).success(function(){
+            $scope.reloadProjectList();
+        })
+            .error(function(status,data) {
             alert('ERROR: ' + data);
         });
-        $scope.reloadProjectList($q);
     }
 }]);
 studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function($scope,$http){
@@ -617,10 +619,12 @@ studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function
 
 studentsControllers.controller('DeleteProjectCtrl', ['$scope', '$http', function($scope,$http) {
     $scope.deleteProject = function() {
-        $http.post('/rest/proj/remove/'+$scope.deleteProjectId).error(function(status,data){
+        $http.post('/rest/proj/remove/'+$scope.deleteProjectId).success(function(){
+            $scope.reloadProjectList();
+        })
+            .error(function(status,data){
             alert('ERROR:'+ data);
         });
-        $scope.reloadProjectList();
     }
 }]);
 var EmployeeListCtrl = studentsControllers.controller('EmployeeListCtrl', ['$scope', '$routeParams','employeesList','employees','$q', function($scope,$routeParams,employeesList,employees,$q) {
@@ -736,7 +740,11 @@ var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
     '$scope','projectListFactory','projectList','$q',
     function($scope,projectListFactory,projectList,$q) {
         $scope.reloadProjectList = function() {
-            $scope.projectList = ProjectListCtrl.projectList();
+           var deferred = $q.defer();
+            projectListFactory.getProjectList(function(data) {
+                $scope.projectList = data;
+            });
+            deferred.resolve($scope.projectList);
         };
         $scope.projectList = projectList;
         $scope.saveId = function(id){
@@ -744,11 +752,11 @@ var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
         }
     }]);
 ProjectListCtrl.projectList = function(projectListFactory,$q) {
-    var deffered = $q.defer();
+    var deferred = $q.defer();
     projectListFactory.getProjectList(function(data) {
-        deffered.resolve(data);
+        deferred.resolve(data);
     });
-    return deffered.promise;
+    return deferred.promise;
 };
 var FeedbacksCtrl = studentsControllers.controller('SendEmailCtrl', ['$scope', '$http',
     function($scope, $http) {

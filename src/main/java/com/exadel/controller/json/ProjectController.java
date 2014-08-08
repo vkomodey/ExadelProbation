@@ -23,13 +23,12 @@ public class ProjectController {
     FilterService service;
 
     @RequestMapping(value = ProjectURI.ADD_PROJECT, method = RequestMethod.POST)
-    public ModelAndView addProject(@RequestBody String title){
+    public @ResponseBody void addProject(@RequestBody String title){
         projectService.addProject(title);
-        return new ModelAndView("index");
     }
 
     @RequestMapping(value = ProjectURI.REMOVE_PROJECT, method = RequestMethod.POST)
-    public void deleteProject(@PathVariable long id){
+    public @ResponseBody void deleteProject(@PathVariable long id){
         projectService.deleteProjectById(id);
     }
 
@@ -50,9 +49,16 @@ public class ProjectController {
     }
 
     @RequestMapping(value = ProjectURI.ADD_STUDENT_ON_PROJECT, method = RequestMethod.POST)
-    public void addStudentOnProject(@PathVariable("stud_id") String studId, @PathVariable("id") String projId){
+    public @ResponseBody void addStudentOnProject(@PathVariable("stud_id") String studId, @PathVariable("id") String projId){
         long stiId=Long.parseLong(studId);
         long prId=Long.parseLong(projId);
         projectService.addStudentOnProject(stiId,prId);
+    }
+
+    @RequestMapping(value = ProjectURI.REMOVE_STUDENT_FROM_PROJECT, method = RequestMethod.POST)
+    public @ResponseBody void removeStudentFromProject(@PathVariable("stud_id") String studId, @PathVariable("id") String projId){
+        long stiId=Long.parseLong(studId);
+        long prId=Long.parseLong(projId);
+        projectService.removeStudentFromProject(stiId,prId);
     }
 }
