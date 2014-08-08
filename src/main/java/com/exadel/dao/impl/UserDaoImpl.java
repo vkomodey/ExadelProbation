@@ -6,7 +6,7 @@ import java.util.List;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.entity.government.Curator;
 import com.exadel.model.entity.government.Feedbacker;
-import com.exadel.model.entity.view.EmployeeView;
+
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.exadel.dao.UserDao;
 import com.exadel.model.entity.User;
+import com.exadel.model.view.EmployeeView;
 
 @Repository
 public class UserDaoImpl extends GenericLivingDaoImpl<com.exadel.model.entity.User> implements UserDao {

@@ -1,6 +1,6 @@
 package com.exadel.service;
 
-import com.exadel.model.entity.view.RegistrationView;
+import com.exadel.model.view.RegistrationView;
 
 public interface RegistrationService {
 	public void registerAnyone(RegistrationView view);

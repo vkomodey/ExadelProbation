@@ -1,4 +1,4 @@
-package com.exadel.model.entity.view;
+package com.exadel.model.view;
 
 
 public class FeedbackView {
