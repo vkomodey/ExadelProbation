@@ -9,4 +9,5 @@ public class StudURI {
 	public static final String PUSH_FEEDBACK= "stud/{id}/feedbacks/push";
     public static final String EDIT_STUDENT_INFO= "stud/{id}/edit";
 	public static final String ATTACH_STUDENT = "stud/{id}/attach_to_curator/{curator_id}";
+    public static final String ATTACH_STUDENTS_TO_CURATORS="stud/attach/manytomany";
 }

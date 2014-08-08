@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.exadel.model.view.CompositeStudentsCuratorsView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
@@ -60,7 +61,16 @@ public class StudentController {
         studentService.attachStudentTo(Long.parseLong(id), Long.parseLong(curator_id));
         logger.info("attaching success");
     }
-	
+
+    @RequestMapping(value = StudURI.ATTACH_STUDENTS_TO_CURATORS, method = RequestMethod.POST)
+    public @ResponseBody void attachStudentsToCurators(@RequestBody String json) throws IOException{
+        ObjectMapper objectMapper = new ObjectMapper();
+        CompositeStudentsCuratorsView view = objectMapper.readValue(json, CompositeStudentsCuratorsView.class);
+        System.out.println(view.getCursId());
+        System.out.println(view.getStudsId());
+        studentService.attachStudentsToCurators(view.getStudsId(), view.getCursId());
+    }
+
 	@RequestMapping(value = StudURI.EDIT_STUDENT_INFO, method = RequestMethod.POST)
     public @ResponseBody void editStudentInfo(@RequestBody String str, @PathVariable("id") Long id) throws IOException {
         logger.info("Start editing student info.");
