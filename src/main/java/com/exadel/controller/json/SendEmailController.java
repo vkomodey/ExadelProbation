@@ -37,6 +37,7 @@ public class SendEmailController {
         List<String> allEmailsById = emailService.getAllEmailsById(emailView.getId());
         SimpleMailMessage message = new SimpleMailMessage();
         message.setText(emailView.getMessage());
+        message.setSubject(emailView.getTitle());
         for(String email: allEmailsById){
             logger.info("start sending message to " + email);
             message.setTo(email);
