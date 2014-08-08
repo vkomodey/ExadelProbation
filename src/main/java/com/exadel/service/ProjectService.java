@@ -9,6 +9,8 @@ public interface ProjectService {
 
     public void addProject(String title);
 
+    public void addStudentOnProject(long studId, long projId);
+
     public List<Project> getAll();
 
     public List<String> getAllStudentsFio(long projectId);
