@@ -66,8 +66,8 @@
 <!-------------------------------MODAL CREATE PROJECT------------------------------------->
 <div data-ng-controller="CreateProjectCtrl" data-backdrop="static" class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="createProject"
      aria-hidden="true">
-    <div name="emailForm" class="modal-dialog modal-sm">
-        <div class="modal-content">
+    <div class="modal-dialog modal-sm">
+        <form name="createProjectForm" class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title custom_align" id="Heading">Create project</h4>
@@ -77,13 +77,13 @@
                        class="form-control input-md" required>
             </div>
             <div class="modal-footer ">
-                <button type="button" data-dismiss="modal" aria-hidden="true" data-ng-click="createProject()"
+                <button data-ng-disabled="createProjectForm.$invalid" type="submit" data-dismiss="modal" aria-hidden="true" data-ng-click="createProject()"
                         class="btn btn-success btn-lg" style="width: 100%;"><span
                         class="glyphicon glyphicon-plus"></span> Create project
                 </button>
             </div>
             <!-- /.modal-content -->
-        </div>
+        </form>
         <!-- /.modal-dialog -->
     </div>
 </div>

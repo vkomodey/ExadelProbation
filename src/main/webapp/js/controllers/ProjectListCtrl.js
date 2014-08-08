@@ -5,11 +5,11 @@ var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
     '$scope','projectListFactory','projectList','$q',
     function($scope,projectListFactory,projectList,$q) {
         $scope.reloadProjectList = function() {
-           var deffered = $q.defer();
+           var deferred = $q.defer();
             projectListFactory.getProjectList(function(data) {
                 $scope.projectList = data;
             });
-            deffered.resolve($scope.projectList);
+            deferred.resolve($scope.projectList);
         };
         $scope.projectList = projectList;
         $scope.saveId = function(id){
@@ -17,9 +17,9 @@ var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
         }
     }]);
 ProjectListCtrl.projectList = function(projectListFactory,$q) {
-    var deffered = $q.defer();
+    var deferred = $q.defer();
     projectListFactory.getProjectList(function(data) {
-        deffered.resolve(data);
+        deferred.resolve(data);
     });
-    return deffered.promise;
+    return deferred.promise;
 };

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/bootstrap-theme.css"/>
     <link rel="stylesheet" href="../css/ng-table.css"/>
     <link rel="stylesheet" href="../css/skillsTable.css"/>
+    <link rel="stylesheet" href="../css/table-style.css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../js/built.js"></script>
 </head>
@@ -40,7 +41,7 @@
     <div class="tab-pane active" id="personInfo">
         <div class="pull-right well-sm">
             <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
-               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+               class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
         </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-1">
@@ -70,7 +71,7 @@
     <div class="tab-pane" id="contactInfo">
         <div class="pull-right well-sm">
             <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
-               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+               class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
         </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-1">
@@ -101,7 +102,7 @@
     <div class="tab-pane" id="studyInfo">
         <div class="pull-right well-sm">
             <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
-               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+               class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
         </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-1">
@@ -189,7 +190,7 @@
                                    class="form-control input-sm">
                         </td>
                         <td class="text-center">
-                            <a data-ng-click="deleteSkill($index)" class="btn btn-xs btn-danger"><span
+                            <a data-ng-click="deleteSkill($index)" class="btn btn-sm btn-danger"><span
                                     class="glyphicon glyphicon-trash"></span></a>
                         </td>
                     </tr>
@@ -204,7 +205,7 @@
     <div class="tab-pane" id="exams">
         <div class="pull-right well-sm">
             <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
-               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+               class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
         </div>
 
         <div class="row">
