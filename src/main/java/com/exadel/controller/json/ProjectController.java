@@ -6,6 +6,7 @@ import com.exadel.model.entity.Project;
 import com.exadel.model.entity.student.Technology;
 import com.exadel.service.FilterService;
 import com.exadel.service.ProjectService;
+import com.exadel.util.JsonGenUtil;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -46,13 +48,7 @@ public class ProjectController {
     public @ResponseBody String getAllStudents(@PathVariable("id") long id,ObjectMapper om) throws IOException{
     	StringWriter sw=new StringWriter();
     	JsonGenerator jg=om.getFactory().createGenerator(sw);
-    	jg.writeStartArray();
-    	for(String name:projectService.getAllStudentsFio(id)){
-    		jg.writeStartObject();
-    		jg.writeStringField("name",name);
-    		jg.writeEndObject();
-    	}
-    	jg.writeEndArray();
+    	JsonGenUtil.writeJSONStringObjectArray(jg, projectService.getAllStudentsFio(id));
     	jg.close();
     	logger.info("json created in getAllStudents() for project "+String.valueOf(id)+":"+sw.toString());
         return sw.toString();

@@ -17,6 +17,7 @@ import com.exadel.model.entity.User;
 import com.exadel.model.entity.student.Technology;
 import com.exadel.model.view.IdNameSurnamePersonView;
 import com.exadel.service.FilterService;
+import com.exadel.util.JsonGenUtil;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -90,22 +91,10 @@ public class FilterController {
 	}
 
 	private void writeJSONStringObjectArray(List<String> list, String name)
-			throws IOException {
-		jg.writeArrayFieldStart(name);
+	throws IOException {
+		
 		list.add("Show All");
-        if(list!=null) {
-            for (String val : list) {
-            	if(val==null){
-            		val="";
-            	}
-                jg.writeStartObject();
-			/*jg.writeFieldName("name");
-			jg.writeString(tech);*/
-                jg.writeStringField("name", val);
-                jg.writeEndObject();
-            }
-        }
-		jg.writeEndArray();
-		//jg.writeStringField("name", "Show All");
+		jg.writeFieldName(name);
+		JsonGenUtil.writeJSONStringObjectArray(jg, list);
 	}
 }
