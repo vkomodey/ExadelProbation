@@ -46,19 +46,7 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Transactional
-    public Project findById(long projId) {
-        Project project = projectDao.find(projId);
-        // laaaazy
-        lazyTouch(project);
-        return project;
-    }
-
-    @Transactional
     public void addStudentOnProject(long studId, long projId){
-        Student stud = new Student();
-        stud =studentDao.find(studId);
-        Set<Project> set = stud.getWork().getCurrentProjects();
-        set.add(findById(projId));
-        projectDao.addStudentOnProject(stud);
+        projectDao.find(projId).getStudents().add(studentDao.find(studId));
     }
 }

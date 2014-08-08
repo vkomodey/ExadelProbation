@@ -49,9 +49,4 @@ public class ProjectDaoImpl extends GenericDaoImpl<Project> implements ProjectDa
                 Project.class, id);
     }
 
-    public void addStudentOnProject(Student stud) {
-        Session session = getSessionFactory().getCurrentSession();
-        session.update(stud);
-    }
-
 }
