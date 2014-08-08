@@ -5,7 +5,11 @@ var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
     '$scope','projectListFactory','projectList','$q',
     function($scope,projectListFactory,projectList,$q) {
         $scope.reloadProjectList = function() {
-            $scope.projectList = ProjectListCtrl.projectList();
+           var deffered = $q.defer();
+            projectListFactory.getProjectList(function(data) {
+                $scope.projectList = data;
+            });
+            deffered.resolve($scope.projectList);
         };
         $scope.projectList = projectList;
         $scope.saveId = function(id){
