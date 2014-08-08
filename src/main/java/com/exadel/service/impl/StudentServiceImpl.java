@@ -28,6 +28,7 @@ import com.exadel.model.view.FeedbackView;
 import com.exadel.model.view.FileExportView;
 import com.exadel.model.view.StudentView;
 import com.exadel.service.StudentService;
+import com.exadel.util.LazyUtil;
 
 @Service
 public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
@@ -43,25 +44,11 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	@Autowired
 	FeedbackableDao feedbackableDao;
 
-	// wake up all students, they so laaaazy. denis - glazier//
-    public static void lazyTouch(Student student){
-        student.getStudy().getExams().size();
-        student.getSkillSet().size();
-    }
-
-	public static void lazyTouchWithTechs(Student student) {
-		lazyTouch(student);
-        if(student.getWork()!=null){
-        student.getWork().getCurrentUsedTechnologies().size();
-        student.getWork().getDesiredUsedTechnologies().size();
-        }
-	}
-
 	@Transactional
 	public Student findById(long id) {
 		Student student = studentDao.find(id);
 		// laaaazy
-		lazyTouchWithTechs(student);
+		LazyUtil.lazyTouchWithTechs(student);
 		return student;
 	}
 
@@ -69,7 +56,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	public Student findByLogin(String login) {
 		Student student = studentDao.find(login);
 		// laaaazy
-		lazyTouchWithTechs(student);
+		LazyUtil.lazyTouchWithTechs(student);
 		return student;
 	}
 
@@ -99,7 +86,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 		List<Student> list = studentDao.getAll();
 		List<StudentView> vlist = new ArrayList<StudentView>();
 		for (Student s : list) {
-			lazyTouch(s);
+			LazyUtil.lazyTouch(s);
 			vlist.add(s.toView());
 		}
 		return vlist;
@@ -108,7 +95,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	@Transactional
 	public void modify(StudentView view, long id) {
         Student st = studentDao.find(id);
-        lazyTouchWithTechs(st);
+        LazyUtil.lazyTouchWithTechs(st);
         //studentDao.detach(st);
         
         st.fromView(view);
@@ -124,7 +111,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	public CompositeStudentFeedbackView generateStudentViewForUser(
 			long stud_id, String role) {
 		Student stud = studentDao.find(stud_id);
-        lazyTouchWithTechs(stud);
+        LazyUtil.lazyTouchWithTechs(stud);
 		CompositeStudentFeedbackView view = new CompositeStudentFeedbackView();
 		if (role.equals(SpringSecurityRole.ADMIN)) {
 			view.setFeedbacks(this.getFeedbacksForStudentByStudId(stud_id));

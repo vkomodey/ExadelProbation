@@ -13,11 +13,23 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class StudentView {
+	private Long id;
+    public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    private List<IdNameSurnamePersonView> curator;
+	private List<IdNameSurnamePersonView> curator;
     private String email;
     private EnglishEnum english;
-    private String firstName;
+
+	private String firstName;
+
+	private Integer hours_current;
+    private Boolean isBillable;
+    private String login;
     private String phone;
     private String secondName;
     private Set<Skill> skillSet;
@@ -26,10 +38,22 @@ public class StudentView {
     private StudentStateEnum state;
     private Study study;
     private String surname;
-    private Integer hours_current;
-    private Boolean isBillable;
+    public List<IdNameSurnamePersonView> getCurator() {
+		return curator;
+	}
+    public String getEmail() {
+        return email;
+    }
     
-    public Integer getHours_current() {
+    public EnglishEnum getEnglish() {
+        return english;
+    }
+
+	public String getFirstName() {
+        return firstName;
+    }
+
+	public Integer getHours_current() {
 		return hours_current;
 	}
 
@@ -37,29 +61,9 @@ public class StudentView {
 		return isBillable;
 	}
 
-	public void setHours_current(Integer hours_current) {
-		this.hours_current = hours_current;
+	public String getLogin() {
+		return login;
 	}
-
-	public void setIsBillable(Boolean isBillable) {
-		this.isBillable = isBillable;
-	}
-
-	public List<IdNameSurnamePersonView> getCurator() {
-		return curator;
-	}
-
-    public String getEmail() {
-        return email;
-    }
-
-    public EnglishEnum getEnglish() {
-        return english;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
 
     public String getPhone() {
         return phone;
@@ -104,6 +108,18 @@ public class StudentView {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
+    public void setHours_current(Integer hours_current) {
+		this.hours_current = hours_current;
+	}
+
+    public void setIsBillable(Boolean isBillable) {
+		this.isBillable = isBillable;
+	}
+
+    public void setLogin(String login) {
+		this.login = login;
+	}
 
     public void setPhone(String phone) {
         this.phone = phone;

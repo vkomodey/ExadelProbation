@@ -13,6 +13,7 @@ import com.exadel.model.entity.government.Curator;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.view.StudentView;
 import com.exadel.service.CuratorService;
+import com.exadel.util.LazyUtil;
 
 @Service
 public class CuratorServiceImpl extends GenericLivingServiceImpl<Curator> implements CuratorService {
@@ -29,7 +30,7 @@ public class CuratorServiceImpl extends GenericLivingServiceImpl<Curator> implem
         List<Student>list = curatorDao.getSupervised(curatorId);
         List<StudentView> viewlist=new ArrayList<>();
         for(Student s:list){
-        	StudentServiceImpl.lazyTouch(s);
+        	LazyUtil.lazyTouch(s);
             viewlist.add(s.toView());
         }
         return viewlist;
