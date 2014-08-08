@@ -39,7 +39,7 @@ public class Student extends User {
     //@JsonBackReference
     @JsonIgnore
     @ManyToMany
-    //@JoinColumn(name = "curator", referencedColumnName = "id")
+    @JoinColumn
     public Set<Curator> getCurator() {
         return curator;
     }
