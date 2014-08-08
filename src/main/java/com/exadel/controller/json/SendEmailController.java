@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,8 +27,7 @@ public class SendEmailController {
     @Autowired
     private MailSender mailSender;
     @RequestMapping(value = EmailURI.SEND_EMAIL, method = RequestMethod.POST)
-    public void sendEmail(@RequestBody String str) throws IOException {
-        //TODO create constant for request path
+    public @ResponseBody void sendEmail(@RequestBody String str) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         EmailView emailView = mapper.readValue(str, EmailView.class);
         List<String> allEmailsById = emailService.getAllEmailsById(emailView.getId());
