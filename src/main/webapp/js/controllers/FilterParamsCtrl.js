@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 07.08.2014.
  */
-var filterParamsCtrl = studentsControllers.controller('filterParamsCtrl', ['$scope', '$routeParams','filterParamsFactory', '$q', function($scope,$routeParams,filterParamsFactory,  $q) {
+/*var filterParamsCtrl = studentsControllers.controller('filterParamsCtrl', ['$scope', '$routeParams','filterParamsFactory', '$q', function($scope,$routeParams,filterParamsFactory,  $q) {
 
     filterParamsFactory.getFilterParams(function(data) {
         $scope.filterParams = data;
@@ -23,8 +23,9 @@ var filterParamsCtrl = studentsControllers.controller('filterParamsCtrl', ['$sco
          return false;
          }}}
 
-         };*/
+         };
 
     });
 
 }]);
+*/

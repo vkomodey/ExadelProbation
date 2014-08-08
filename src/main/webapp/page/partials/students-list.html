@@ -30,17 +30,29 @@
     </select>
     <select data-ng-model="filterItem.englishlevel" data-ng-options="item.name for item in filterOptions.englishlevels">
     </select>
-    <div data-ng-controller="filterParamsCtrl">
-        <select data-ng-model="filterItemF.techname" data-ng-options="item.name for item in filterParams.technames">
-        </select>
-    </div>
+    <select data-ng-model="filterItem.techname" data-ng-options="item.name for item in filterParams.technames">
+    </select>
+    <select data-ng-model="filterItem.techname" data-ng-options="item.name for item in filterParams.technames">
+    </select>
+    <select data-ng-model="filterItem.techname" data-ng-options="item.name for item in filterParams.technames">
+    </select>
+    <select data-ng-model="filterItem.faculty" data-ng-options="item.name for item in filterParams.faculties">
+    </select>
+    <select data-ng-model="filterItem.university" data-ng-options="item.name for item in filterParams.universities">
+    </select>
+    <select data-ng-model="filterItem.study_end_year" data-ng-options="item.name for item in filterParams.study_end_years">
+    </select>
+    <select data-ng-model="filterItem.curatorSurname" data-ng-options="item.surname for item in filterParams.curators">
+    </select>
+
     <div class="row">
         <div class="col-lg-12 well-sm">
             <table id="mytable" class="table" ng-table="tableParams">
 
                 <tr data-ng-repeat="user in studentsList| filter:search | orderBy:params.orderBy() |
                  filter:customFilterCourse | filter:customFilterEnglish | filter:customFilterHours |
-                 filter:customFilterSalary | filter:customFilterTech">
+                 filter:customFilterSalary | filter:customFilterTech|filter:customFilterFaculty|
+                 filter:customFilterUniversity|filter:customFilterGraduate">
                     <td><input data-ng-click="checkedStud(user.id)" type="checkbox" class="checkthis"/></td>
                     <td data-title="'Login'" sortable="'Login'">{{user.login}}</td>
                     <td data-title="'Name'" sortable="'surname'">{{user.firstName + " "+user.surname}}</td>
