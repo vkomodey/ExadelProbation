@@ -10,7 +10,6 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
             );
             deferred.resolve($scope.studentsList);
         };
-        alert('1');
         /*$interval(function() {
             $scope.reloadList();
         },60000);*/
@@ -37,8 +36,12 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
                 $defer.resolve(data.slice());
             }, $scope: { studentsList: {} }
         });
-
-
+        $scope.toJsonStudentCheckedArray = function(){
+            if($scope.checkedStudArray!=null)
+            {
+angular.toJson($scope.checkedStudArray);
+            }
+        };
         /////////////////////////////////////////////////////////////////////////////////////// LERA STYLE NEXT  ///////////////////////////////////////////////////
        filterParamsFactory.getFilterParams(function(data) {
             $scope.filterParams = data;
