@@ -3,7 +3,7 @@
  */
 studentsControllers.controller('CreateProjectCtrl', ['$scope', '$http', function($scope,$http) {
     $scope.createProject = function() {
-        $http.post('rest/proj/add',$scope.title).error(function(status,data) {
+        $http.post('/rest/proj/add',$scope.title).error(function(status,data) {
             alert('ERROR: ' + data);
         });
         $scope.reloadProjectList();
