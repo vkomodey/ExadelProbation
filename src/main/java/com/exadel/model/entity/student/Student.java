@@ -4,7 +4,6 @@ import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Feedback;
-import com.exadel.model.entity.StudentLog;
 import com.exadel.model.entity.User;
 import com.exadel.model.entity.government.Curator;
 import com.exadel.model.entity.view.StudentView;
@@ -60,8 +59,7 @@ public class Student extends User {
 		return phone;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL, optional=true,orphanRemoval=true)
-	@JoinColumn (name="id", nullable=false)
+	@Embedded
 	public ExadelPractice getPractice() {
 		return practice;
 	}
@@ -87,8 +85,7 @@ public class Student extends User {
 	public Study getStudy() {
 		return study;
 	}
-	@OneToOne(cascade = CascadeType.ALL, optional=true,orphanRemoval=true)
-	@JoinColumn (name="id", nullable=false)
+	@Embedded
 	public ExadelWork getWork() {
 		return work;
 	}
@@ -110,9 +107,6 @@ public class Student extends User {
 	}
 	public void setPractice(ExadelPractice practice) {
         this.practice = practice;
-		if(practice !=null ){
-		this.practice.setStudent(this);
-		}
 	}
 	public void setSkillSet(Set<Skill> skillSet) {
 		this.skillSet = skillSet;
@@ -130,9 +124,6 @@ public class Student extends User {
 
     public void setWork(ExadelWork work) {
         this.work = work;
-		if(work !=null ){
-		this.work.setStudent(this);
-		}
 	}
 	public void fromView(StudentView view) {
 		this.setFirstName(view.getFirstName());

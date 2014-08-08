@@ -41,7 +41,7 @@ public class User implements IEntity{
     	return getFirstName()+" "+getSurname()+" "+getSecondName();
     }
     @Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
 	public Long getId() {
 	    return id;
