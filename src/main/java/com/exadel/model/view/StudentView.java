@@ -1,4 +1,4 @@
-package com.exadel.model.entity.view;
+package com.exadel.model.view;
 
 
 import java.util.Set;

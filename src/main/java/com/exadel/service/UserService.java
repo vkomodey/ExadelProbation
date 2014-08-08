@@ -1,11 +1,11 @@
 package com.exadel.service;
 
-import com.exadel.model.entity.view.EmployeeView;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.exadel.model.entity.User;
+import com.exadel.model.view.EmployeeView;
 
 import java.util.List;
 

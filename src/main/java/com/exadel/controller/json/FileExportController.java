@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.exadel.controller.json.constants.ExportURI;
-import com.exadel.model.entity.view.FileExportView;
+import com.exadel.model.view.FileExportView;
 import com.exadel.service.StudentService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
