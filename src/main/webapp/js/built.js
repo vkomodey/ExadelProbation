@@ -956,7 +956,7 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
             university: $scope.filterParams.universities[$scope.filterParams.universities.length-1],
             study_end_year: $scope.filterParams.study_end_years[$scope.filterParams.study_end_years.length-1],
             curator: $scope.filterParams.curators[$scope.filterParams.curators.length-1]
-        };fgshjs
+        };
 
         $scope.customFilterEnglish  = function (studentsList) {
             if(studentsList.english === null && $scope.filterItem.englishlevel.name!== 'Show All'){
