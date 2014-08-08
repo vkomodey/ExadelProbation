@@ -2,13 +2,9 @@ package com.exadel.controller.json;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,23 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exadel.controller.json.constants.MeURI;
 import com.exadel.controller.json.constants.StudURI;
-import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.constants.SpringSecurityRole;
-import com.exadel.model.constants.StudentStateEnum;
-import com.exadel.model.entity.Feedback;
-import com.exadel.model.entity.student.ExadelPractice;
-import com.exadel.model.entity.student.ExadelWork;
-import com.exadel.model.entity.student.Skill;
-import com.exadel.model.entity.student.SkillType;
 import com.exadel.model.entity.student.Student;
-import com.exadel.model.entity.student.StudentExams;
-import com.exadel.model.entity.student.Study;
-import com.exadel.model.entity.student.Technology;
 import com.exadel.model.view.CompositeStudentFeedbackView;
 import com.exadel.model.view.StudentView;
 import com.exadel.service.CuratorService;

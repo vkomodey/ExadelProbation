@@ -1,8 +1,6 @@
 package com.exadel.controller.json;
 
 import com.exadel.controller.json.constants.EmployeeURI;
-import com.exadel.dao.UserDao;
-import com.exadel.model.entity.User;
 import com.exadel.model.entity.government.Curator;
 import com.exadel.model.view.EmployeeView;
 import com.exadel.model.view.IdNameSurnamePersonView;

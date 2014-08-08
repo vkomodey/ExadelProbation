@@ -1,10 +1,6 @@
 package com.exadel.dao.impl;
 
-import java.util.Calendar;
 import java.util.List;
-
-import com.exadel.model.entity.government.Curator;
-import com.exadel.model.entity.join.StudentCuratorJoin;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
