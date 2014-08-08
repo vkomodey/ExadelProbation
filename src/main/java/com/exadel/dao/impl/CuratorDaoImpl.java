@@ -10,39 +10,40 @@ import com.exadel.model.entity.government.Curator;
 import com.exadel.model.entity.student.Student;
 
 @Repository
-public class CuratorDaoImpl extends GenericLivingDaoImpl<Curator> implements CuratorDao{
+public class CuratorDaoImpl extends GenericLivingDaoImpl<Curator> implements
+		CuratorDao {
 
-    public Curator find(String login) {
-        Session session = getSessionFactory().getCurrentSession();
-        Curator cur = (Curator) session.bySimpleNaturalId(Curator.class).load(
-                login);
-        return cur;
-    }
+	public Curator find(String login) {
+		Session session = getSessionFactory().getCurrentSession();
+		Curator cur = (Curator) session.bySimpleNaturalId(Curator.class).load(
+				login);
+		return cur;
+	}
 
-    public Curator find(long id) {
-        return (Curator) getSessionFactory().getCurrentSession().get(
-                Curator.class, id);
-    }
+	public Curator find(long id) {
+		return (Curator) getSessionFactory().getCurrentSession().get(
+				Curator.class, id);
+	}
 
-    @SuppressWarnings("unchecked")
-    public List<Curator> getAll() {
-        return getSessionFactory().getCurrentSession().createQuery("from Curator ").list();
-    }
+	@SuppressWarnings("unchecked")
+	public List<Curator> getAll() {
+		return getSessionFactory().getCurrentSession()
+				.createQuery("from Curator ").list();
+	}
 
-    public List<Student> getSupervised(long CuratorId){
-        return ((Curator)getSessionFactory().
-                getCurrentSession().
-                get(Curator.class,CuratorId)).
-                getStudents();
+	@SuppressWarnings("unchecked")
+	public List<Student> getSupervised(long CuratorId){
+		return getSessionFactory()
+				.getCurrentSession()
+				.createQuery(
+						"select j.student from StudentCuratorJoin j where j.curator.id=:id")
+				.setLong("id", CuratorId).list();
     }
 
 	@SuppressWarnings("unchecked")
 	public List<Curator> getActive() {
-		return getSessionFactory()
-				.getCurrentSession()
-				.createQuery(
-						"select distinct s.curator from Student s")
-				.list();
+		return getSessionFactory().getCurrentSession()
+				.createQuery("select distinct j.curator from StudentCuratorJoin j").list();
 	}
 
 }

@@ -5,7 +5,8 @@ import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.User;
-import com.exadel.model.entity.government.Curator;
+import com.exadel.model.entity.join.StudentCuratorJoin;
+import com.exadel.model.view.IdNameSurnamePersonView;
 import com.exadel.model.view.StudentView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -28,7 +29,7 @@ public class Student extends User {
     private String skype;
     private String phone;
 
-    private Set<Curator> curator;
+    private Set<StudentCuratorJoin> curator;
 
     public Student() {
 		super();
@@ -38,9 +39,8 @@ public class Student extends User {
 	}
     //@JsonBackReference
     @JsonIgnore
-    @ManyToMany
-    @JoinColumn
-    public Set<Curator> getCurator() {
+    @OneToMany(mappedBy="student")
+    public Set<StudentCuratorJoin> getCurator() {
         return curator;
     }
 	public String getEmail() {
@@ -90,7 +90,7 @@ public class Student extends User {
 	public ExadelWork getWork() {
 		return work;
 	}
-	public void setCurator(Set<Curator> curator) {
+	public void setCurator(Set<StudentCuratorJoin> curator) {
         this.curator = curator;
     }
 	public void setEmail(String email) {
@@ -166,6 +166,13 @@ public class Student extends User {
 		view.setEnglish(this.getEnglish());
 		view.setSkillSet(this.getSkillSet());
 		view.setStudy(this.getStudy());
+		view.setIsBillable(this.getWork().getIsBillable());
+		view.setHours_current(this.getWork().getHours_current());
+		List<IdNameSurnamePersonView> viewcurators=new ArrayList<IdNameSurnamePersonView>();
+		for(StudentCuratorJoin scj:this.getCurator()){
+			viewcurators.add(new IdNameSurnamePersonView(scj.getCurator()));
+		}
+		view.setCurator(viewcurators);
 		return view;
 	}
 }
