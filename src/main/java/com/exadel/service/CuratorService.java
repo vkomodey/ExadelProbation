@@ -12,5 +12,7 @@ public interface CuratorService extends GenericLivingService<Curator> {
 
     public Curator find(String login);
 
+	public List<Curator> getAll();
+
 
 }
