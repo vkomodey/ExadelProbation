@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exadel.controller.json.constants.StudURI;
-import com.exadel.model.entity.view.FeedbackView;
+import com.exadel.model.view.FeedbackView;
 import com.exadel.service.StudentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class FeedbackController {
 
-	public static Logger logger = LoggerFactory
+	private static Logger logger = LoggerFactory
 			.getLogger(FeedbackController.class);
 	@Autowired
 	StudentService service;

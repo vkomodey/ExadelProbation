@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="row">
         <div class="col-md-7">
@@ -53,6 +54,7 @@
                  filter:customFilterSalary | filter:customFilterTech|filter:customFilterFaculty|
                  filter:customFilterUniversity|filter:customFilterGraduate">
                     <td><input data-ng-click="checkedStud(user.id)" type="checkbox" class="checkthis"/></td>
+                    <td data-title="'Login'" sortable="'Login'">{{user.login}}</td>
                     <td data-title="'Name'" sortable="'surname'">{{user.firstName + " "+user.surname}}</td>
                     <td data-title="'Date'" sortable="'work.workStartDate'">{{user.work.workStartDate}}</td>
                     <td data-title="'Faculty'" sortable="'study.faculty'">{{user.study.faculty}}</td>
@@ -65,11 +67,11 @@
                         <span ng-repeat="technologies in user.work.projectTechnologies"> {{technologies.name}}</span>
                     </td>
                     <td data-title="'English'" sortable="'english'">{{user.english}}</td>
-                    <td data-title="'Edit'"class="text-center"><p><a href="#/studentList/{{user.id}}" class="btn btn-sm btn-info"><span
+                    <td data-title="'Edit'"class="text-center"><p><a href="#/studentList/{{user.id}}" class="btn btn-sm btn-primary"><span
                             class="glyphicon glyphicon-pencil"></span></a></p></td>
                 </tr>
             </table>
-        </div>
+            </div>
     </div>
 </div>
 <!------------------------------------MODAL FOR CREATE STUDENT--------------------------------------->
@@ -77,7 +79,7 @@
      aria-hidden="true"
      data-ng-controller="CreateStudentCtrl">
     <div class="modal-dialog modal-sm">
-        <div class="modal-content">
+        <form name="createStudentForm" class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title custom_align" id="Heading">Create Student</h4>
@@ -87,12 +89,12 @@
                        class="form-control input-md" required>
             </div>
             <div class="modal-footer ">
-                <button type="button" data-dismiss="modal" aria-hidden="true" data-ng-click="createStudent()"
+                <button type="submit" data-ng-disabled="createStudentForm.$invalid" data-dismiss="modal" aria-hidden="true" data-ng-click="createStudent()"
                         class="btn btn-success btn-lg" style="width: 100%;"><span
                         class="glyphicon glyphicon-plus"></span> Create
                 </button>
             </div>
-        </div>
+        </form>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->

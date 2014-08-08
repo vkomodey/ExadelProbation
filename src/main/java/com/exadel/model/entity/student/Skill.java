@@ -20,7 +20,7 @@ public class Skill {
 		this.type=st;
 	}
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     @JsonIgnore
 	public Long getId() {
 		return id;

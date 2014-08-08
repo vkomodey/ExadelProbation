@@ -1,8 +1,11 @@
 .skills-table select, .skills-table input {
-    height: 30px;
+    height: 40px;
+}
+.skills-table {
+    font-size: 15px;
 }
 .skills-table a {
-    margin-top: 8%;
+    margin-top: 11%;
 }
 .skills-table td:last-child {
     width: 10%;

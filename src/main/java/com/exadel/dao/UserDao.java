@@ -1,10 +1,10 @@
 package com.exadel.dao;
 
-import com.exadel.model.entity.view.EmployeeView;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.exadel.model.entity.User;
+import com.exadel.model.view.EmployeeView;
 
 import java.util.List;
 

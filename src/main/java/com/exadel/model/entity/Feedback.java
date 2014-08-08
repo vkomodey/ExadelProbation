@@ -6,6 +6,7 @@ import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 
 import com.exadel.model.entity.government.Feedbackable;
 import com.exadel.model.entity.student.Student;
-import com.exadel.model.entity.view.FeedbackView;
+import com.exadel.model.view.FeedbackView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -94,7 +95,7 @@ public class Feedback {
 	}
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
 	public Long getId() {
 		return id;

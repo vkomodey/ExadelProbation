@@ -12,7 +12,7 @@ public interface FilterService {
 
 	Set<Technology> getCurrentStudUsedTech();
 
-    Set<Technology>  getCurrentProjUsedTech();
+    Set<Technology>  getCurrentProjUsedTech(long projectId);
 
 	List<String> getAllFaculties();
 

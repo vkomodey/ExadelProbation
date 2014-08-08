@@ -1,31 +1,39 @@
 package com.exadel.service.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-import com.exadel.model.entity.view.FileExportView;
+import com.exadel.model.view.FileExportView;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.exadel.dao.CuratorDao;
 import com.exadel.dao.FeedbackDao;
 import com.exadel.dao.FeedbackableDao;
 import com.exadel.dao.StudentDao;
 import com.exadel.dao.UserDao;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.entity.Feedback;
+import com.exadel.model.entity.government.Curator;
 import com.exadel.model.entity.government.Feedbackable;
+import com.exadel.model.entity.join.StudentCuratorJoin;
 import com.exadel.model.entity.student.Student;
-import com.exadel.model.entity.view.CompositeStudentFeedbackView;
-import com.exadel.model.entity.view.FeedbackView;
-import com.exadel.model.entity.view.StudentView;
+import com.exadel.model.view.CompositeStudentFeedbackView;
+import com.exadel.model.view.FeedbackView;
+import com.exadel.model.view.FileExportView;
+import com.exadel.model.view.StudentView;
 import com.exadel.service.StudentService;
 
 @Service
 public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 		implements StudentService {
+	@Autowired
+	CuratorDao curatorDao;
 	@Autowired
 	UserDao userDao;
 	@Autowired
@@ -169,6 +177,14 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 
     @Transactional
     public void attachStudentTo(long id, long curator_id){
-        studentDao.attachStudentTo(id,curator_id);
+    	Student student = studentDao.find(id);
+        Curator curator = curatorDao.find(curator_id);
+        StudentCuratorJoin scj=new StudentCuratorJoin();
+        scj.setStudent(student);
+        scj.setCurator(curator);
+        scj.setAssignmentDate(Calendar.getInstance());
+        //don't do this at home
+        studentDao.saveEntity(scj);
+        
     }
 }

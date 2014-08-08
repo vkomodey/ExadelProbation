@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/bootstrap-theme.css"/>
     <link rel="stylesheet" href="../css/ng-table.css"/>
     <link rel="stylesheet" href="../css/skillsTable.css"/>
+    <link rel="stylesheet" href="../css/table-style.css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../js/built.js"></script>
 </head>
@@ -20,8 +21,8 @@
             <div class="collapse navbar-collapse">
                 <form action="/do_logout" method="post">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><p><button class="btn-link navbar-btn" type="submit">Logout</button></p></li>
-                     </ul>
+                        <li><button class="btn btn-default navbar-btn" type="submit">Logout</button></li>
+                    </ul>
                 </form>
             </div>
         </div>
@@ -40,7 +41,7 @@
     <div class="tab-pane active" id="personInfo">
         <div class="pull-right well-sm">
             <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
-               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+               class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
         </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-1">
@@ -70,7 +71,7 @@
     <div class="tab-pane" id="contactInfo">
         <div class="pull-right well-sm">
             <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
-               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+               class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
         </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-1">
@@ -93,7 +94,7 @@
                 <div class="form-group">
                     <label class="control-label" for="firstName">Phone</label>
                     <input id="phone" name="phone" type="text" ng-model="studentInfo.phone"
-                           class="form-control input-md">
+                           data-ng-pattern="/( +)?((\+?7|8) ?)?((\(\d{3}\))|(\d{3}))?( )?(\d{3}[\- ]?\d{2}[\- ]?\d{2})( +)?$/" class="form-control input-md">
                 </div>
             </div>
         </div>
@@ -101,7 +102,7 @@
     <div class="tab-pane" id="studyInfo">
         <div class="pull-right well-sm">
             <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
-               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+               class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
         </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-1">
@@ -109,9 +110,8 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="control-label" for="graduateYear">Graduate year</label>
-                    <input id="graduateYear" name="graduateYear" type="number" ng-model="studentInfo.study.graduate_year"
-                           min="2014" ng-pattern="/^[0-9]{4}$/"
-                           class="form-control input-md">
+                    <input type="text" id="graduateYear" name="graduateYear"  ng-model="studentInfo.study.graduate_year"
+                           ng-pattern ="/^(([2-9][0-9][1-9][4-9])|([2-9][1-9][0-9][0-9])|([2-9][0-9][2-9][0-9])){1}$/" class="form-control input-md" >
                 </div>
 
                 <!-- Text input-->
@@ -148,7 +148,7 @@
     <div class="tab-pane" id="skills">
         <div class="pull-right well-sm">
             <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
-               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+               class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
         </div>
         <!--<div class="row">
             <div class="col-md-6 col-md-offset-1">
@@ -161,7 +161,7 @@
             </div>
         </div>-->
         <div class="row">
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-8 col-md-offset-1 well-sm">
                 <table class="table skills-table">
                     <thead>
                     <tr>
@@ -190,7 +190,7 @@
                                    class="form-control input-sm">
                         </td>
                         <td class="text-center">
-                            <a data-ng-click="deleteSkill($index)" class="btn btn-xs btn-danger"><span
+                            <a data-ng-click="deleteSkill($index)" class="btn btn-sm btn-danger"><span
                                     class="glyphicon glyphicon-trash"></span></a>
                         </td>
                     </tr>
@@ -205,7 +205,7 @@
     <div class="tab-pane" id="exams">
         <div class="pull-right well-sm">
             <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
-               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+               class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
         </div>
 
         <div class="row">

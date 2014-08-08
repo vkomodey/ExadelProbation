@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exadel.controller.json.constants.GeneralURI;
 import com.exadel.controller.json.constants.StudURI;
-import com.exadel.model.entity.view.RegistrationView;
+import com.exadel.model.view.RegistrationView;
 import com.exadel.service.RegistrationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -23,7 +23,7 @@ public class RegistrationController {
 	@Autowired
 	RegistrationService service;
 	
-    static Logger logger= LoggerFactory.getLogger(RegistrationController.class);
+	private static Logger logger= LoggerFactory.getLogger(RegistrationController.class);
 
     @RequestMapping(value = StudURI.CREATE_STUDENT, method = RequestMethod.POST)
     public @ResponseBody void registerStudent(@RequestBody String str) {

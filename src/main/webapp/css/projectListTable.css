@@ -1,3 +1,6 @@
 .projectList-table td:last-child {
     width: 23%;
 }
+.projectList-table td:first-child {
+    width: 14%;
+}

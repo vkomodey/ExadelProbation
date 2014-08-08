@@ -4,13 +4,14 @@ import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Feedback;
-import com.exadel.model.entity.StudentLog;
 import com.exadel.model.entity.User;
-import com.exadel.model.entity.government.Curator;
-import com.exadel.model.entity.view.StudentView;
+import com.exadel.model.entity.join.StudentCuratorJoin;
+import com.exadel.model.view.IdNameSurnamePersonView;
+import com.exadel.model.view.StudentView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+
 import java.util.*;
 
 
@@ -28,7 +29,7 @@ public class Student extends User {
     private String skype;
     private String phone;
 
-    private Set<Curator> curator;
+    private Set<StudentCuratorJoin> curator;
 
     public Student() {
 		super();
@@ -38,9 +39,8 @@ public class Student extends User {
 	}
     //@JsonBackReference
     @JsonIgnore
-    @ManyToMany
-    //@JoinColumn(name = "curator", referencedColumnName = "id")
-    public Set<Curator> getCurator() {
+    @OneToMany(mappedBy="student")
+    public Set<StudentCuratorJoin> getCurator() {
         return curator;
     }
 	public String getEmail() {
@@ -60,8 +60,7 @@ public class Student extends User {
 		return phone;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL, optional=true,orphanRemoval=true)
-	@JoinColumn (name="id", nullable=false)
+	@Embedded
 	public ExadelPractice getPractice() {
 		return practice;
 	}
@@ -87,12 +86,11 @@ public class Student extends User {
 	public Study getStudy() {
 		return study;
 	}
-	@OneToOne(cascade = CascadeType.ALL, optional=true,orphanRemoval=true)
-	@JoinColumn (name="id", nullable=false)
+	@Embedded
 	public ExadelWork getWork() {
 		return work;
 	}
-	public void setCurator(Set<Curator> curator) {
+	public void setCurator(Set<StudentCuratorJoin> curator) {
         this.curator = curator;
     }
 	public void setEmail(String email) {
@@ -110,9 +108,6 @@ public class Student extends User {
 	}
 	public void setPractice(ExadelPractice practice) {
         this.practice = practice;
-		if(practice !=null ){
-		this.practice.setStudent(this);
-		}
 	}
 	public void setSkillSet(Set<Skill> skillSet) {
 		this.skillSet = skillSet;
@@ -130,9 +125,6 @@ public class Student extends User {
 
     public void setWork(ExadelWork work) {
         this.work = work;
-		if(work !=null ){
-		this.work.setStudent(this);
-		}
 	}
 	public void fromView(StudentView view) {
 		this.setFirstName(view.getFirstName());
@@ -174,6 +166,13 @@ public class Student extends User {
 		view.setEnglish(this.getEnglish());
 		view.setSkillSet(this.getSkillSet());
 		view.setStudy(this.getStudy());
+		view.setIsBillable(this.getWork().getIsBillable());
+		view.setHours_current(this.getWork().getHours_current());
+		List<IdNameSurnamePersonView> viewcurators=new ArrayList<IdNameSurnamePersonView>();
+		for(StudentCuratorJoin scj:this.getCurator()){
+			viewcurators.add(new IdNameSurnamePersonView(scj.getCurator()));
+		}
+		view.setCurator(viewcurators);
 		return view;
 	}
 }
