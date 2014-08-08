@@ -29,8 +29,8 @@ public class FilterServiceImpl implements FilterService {
 		return studentDao.getUniversities();
 	}
     @Transactional
-    public Set<Technology> getCurrentProjUsedTech() {
-        return new HashSet<Technology>(technologyDao.getAllCurrentUsedByProjects());
+    public Set<Technology> getCurrentProjUsedTech(long projectId) {
+        return new HashSet<Technology>(technologyDao.getAllCurrentUsedByProjects(projectId));
     }
 	@Transactional
 	public Set<Technology> getCurrentStudUsedTech() {

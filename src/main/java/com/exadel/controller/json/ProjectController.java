@@ -3,17 +3,22 @@ package com.exadel.controller.json;
 
 import com.exadel.controller.json.constants.ProjectURI;
 import com.exadel.model.entity.Project;
+import com.exadel.model.entity.student.Technology;
+import com.exadel.service.FilterService;
 import com.exadel.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class ProjectController {
     @Autowired
     ProjectService projectService;
+    @Autowired
+    FilterService service;
 
     @RequestMapping(value = ProjectURI.ADD_PROJECT, method = RequestMethod.POST)
     public void addProject(@PathVariable String title){
@@ -33,5 +38,11 @@ public class ProjectController {
     @RequestMapping(value = ProjectURI.GET_ALL_STUDENTS, method = RequestMethod.GET)
     public @ResponseBody List<String> getAllProjects(@PathVariable long id){
         return projectService.getAllStudentsFio(id);
+    }
+
+    @RequestMapping(value = ProjectURI.GET_ALL_CURRENT_PROJECT_USED_TECHNOLOGIES, method = RequestMethod.GET)
+    public @ResponseBody List<Technology> returnTechList (@PathVariable("id") String idString) {
+        long id=Long.parseLong(idString);
+        return new ArrayList<Technology>(service.getCurrentProjUsedTech(id));
     }
 }

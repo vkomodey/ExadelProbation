@@ -8,6 +8,5 @@ public class FilterURI {
 	public static final String GET_ALL_USED_CURATORS = "filter/used_curator";
 	public static final String GET_ALL_CURRENT_USED_TECHNOLOGIES = "filter/current_used_tech";
 	public static final String GET_EVERYTHING = "filter/everything";
-    public static final String GET_ALL_CURRENT_PROJECT_USED_TECHNOLOGIES = "filter/current_project_used_tech";
 
 }
