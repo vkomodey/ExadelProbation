@@ -2,9 +2,10 @@ package com.exadel.dao.impl;
 
 import com.exadel.dao.ProjectDao;
 import com.exadel.model.entity.Project;
+import com.exadel.model.entity.student.ExadelWork;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.student.Technology;
-
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -12,13 +13,12 @@ import java.util.List;
 
 @Repository
 public class ProjectDaoImpl extends GenericDaoImpl<Project> implements ProjectDao {
-    public Project find(long id){
-        return null;
-    }
 
-    @SuppressWarnings("unchecked")
-	public List<Project> getAll(){
-        List<Project> list = getSessionFactory().getCurrentSession().createQuery("from Project").list();
+    public List<Project> getAll(){
+        List<Project> list = getSessionFactory().getCurrentSession().createQuery("from Project ").list();
+//        for(Project project:list){
+//            lazyTouchProject(project);
+//        }
         return list;
     }
     public void lazyTouchProject(Project project){
@@ -43,4 +43,15 @@ public class ProjectDaoImpl extends GenericDaoImpl<Project> implements ProjectDa
         }
         return fio;
     }
+
+    public Project find(long id) {
+        return (Project) getSessionFactory().getCurrentSession().get(
+                Project.class, id);
+    }
+
+    public void addStudentOnProject(Student stud) {
+        Session session = getSessionFactory().getCurrentSession();
+        session.update(stud);
+    }
+
 }

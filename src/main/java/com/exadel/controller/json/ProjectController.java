@@ -45,4 +45,11 @@ public class ProjectController {
         long id=Long.parseLong(idString);
         return new ArrayList<Technology>(service.getCurrentProjUsedTech(id));
     }
+
+    @RequestMapping(value = ProjectURI.ADD_STUDENT_ON_PROJECT, method = RequestMethod.POST)
+    public void addStudentOnProject(@PathVariable("id") String studId, @PathVariable("proj_id") String projId,@RequestBody String body){
+        long stiId=Long.parseLong(studId);
+        long prId=Long.parseLong(projId);
+        projectService.addStudentOnProject(stiId,prId);
+    }
 }
