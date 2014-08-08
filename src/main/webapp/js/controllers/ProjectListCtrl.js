@@ -8,6 +8,9 @@ var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
             $scope.projectList = ProjectListCtrl.projectList();
         };
         $scope.projectList = projectList;
+        $scope.saveId = function(id){
+            $scope.deleteProjectId = id;
+        }
     }]);
 ProjectListCtrl.projectList = function(projectListFactory,$q) {
     var deffered = $q.defer();

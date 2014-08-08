@@ -1,4 +1,4 @@
-/*! FrontEnd-Project - v0.0.1 - 2014-08-07 */
+/*! FrontEnd-Project - v0.0.1 - 2014-08-08 */
 
 (function(Z,Q,r){'use strict';function F(b){return function(){var a=arguments[0],c,a="["+(b?b+":":"")+a+"] http://errors.angularjs.org/1.2.9/"+(b?b+"/":"")+a;for(c=1;c<arguments.length;c++)a=a+(1==c?"?":"&")+"p"+(c-1)+"="+encodeURIComponent("function"==typeof arguments[c]?arguments[c].toString().replace(/ \{[\s\S]*$/,""):"undefined"==typeof arguments[c]?"undefined":"string"!=typeof arguments[c]?JSON.stringify(arguments[c]):arguments[c]);return Error(a)}}function rb(b){if(null==b||Aa(b))return!1;var a=
 b.length;return 1===b.nodeType&&a?!0:D(b)||K(b)||0===a||"number"===typeof a&&0<a&&a-1 in b}function q(b,a,c){var d;if(b)if(L(b))for(d in b)"prototype"==d||("length"==d||"name"==d||b.hasOwnProperty&&!b.hasOwnProperty(d))||a.call(c,b[d],d);else if(b.forEach&&b.forEach!==q)b.forEach(a,c);else if(rb(b))for(d=0;d<b.length;d++)a.call(c,b[d],d);else for(d in b)b.hasOwnProperty(d)&&a.call(c,b[d],d);return b}function Pb(b){var a=[],c;for(c in b)b.hasOwnProperty(c)&&a.push(c);return a.sort()}function Pc(b,
@@ -587,6 +587,14 @@ studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routePar
     };
 }])
 
+studentsControllers.controller('CreateProjectCtrl', ['$scope', '$http', function($scope,$http) {
+    $scope.createProject = function() {
+        $http.post('rest/proj/add',$scope.title).error(function(status,data) {
+            alert('ERROR: ' + data);
+        });
+        $scope.reloadProjectList();
+    }
+}]);
 studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function($scope,$http){
     $scope.createStudent = function() {
         if($scope.login == undefined) {
@@ -607,6 +615,14 @@ studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function
     };
 }]);
 
+studentsControllers.controller('DeleteProjectCtrl', ['$scope', '$http', function($scope,$http) {
+    $scope.deleteProject = function() {
+        $http.get('proj/remove/'+$scope.deleteProjectId).error(function(status,data){
+            alert('ERROR:'+ data);
+        });
+        $scope.reloadProjectList();
+    }
+}]);
 var EmployeeListCtrl = studentsControllers.controller('EmployeeListCtrl', ['$scope', '$routeParams','employeesList','employees','$q', function($scope,$routeParams,employeesList,employees,$q) {
 
     $scope.reloadList = function (){
@@ -723,6 +739,9 @@ var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
             $scope.projectList = ProjectListCtrl.projectList();
         };
         $scope.projectList = projectList;
+        $scope.saveId = function(id){
+            $scope.deleteProjectId = id;
+        }
     }]);
 ProjectListCtrl.projectList = function(projectListFactory,$q) {
     var deffered = $q.defer();
