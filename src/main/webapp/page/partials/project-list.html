@@ -4,14 +4,14 @@
             <a data-target="#createProject" data-toggle="modal" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-plus"></span>Add new project </a>
     <table class="table projectList-table" ng-table="projectTableParams">
         <tr ng-repeat="project in projectList | filter:search | orderBy:params.orderBy()">
-            <td data-title="'Delete'" >
+            <td data-title="'Delete'"  class="text-center">
                 <a data-ng-click="saveId(project.id)" data-target="#delete" data-toggle="modal" class="btn btn-primary btn-danger"><span class="glyphicon glyphicon-trash"></span> </a>
             </td>
             <td data-title="'Project name'" sortable="'title'">
                 {{project.title}}
             </td>
             <td data-title="'Students on project'" class="text-center">
-                <a data-target="#studentsOnProject" data-toggle="modal" class="btn btn-primary btn-info"><span class="glyphicon glyphicon-user"></span> </a>
+                <a data-target="#studentsOnProject" data-toggle="modal" class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-user"></span> </a>
             </td>
         </tr>
     </table>

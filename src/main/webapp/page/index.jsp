@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/ng-table.css"/>
     <link rel="stylesheet" href="../css/skillsTable.css"/>
     <link rel="stylesheet" href="../css/projectListTable.css"/>
+    <link rel="stylesheet" href="../css/table-style.css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../js/built.js"></script>
 </head>

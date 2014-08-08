@@ -147,7 +147,7 @@
     <div class="tab-pane" id="skills">
         <div class="pull-right well-sm">
             <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
-               class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+               class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
         </div>
         <!--<div class="row">
             <div class="col-md-6 col-md-offset-1">
@@ -160,7 +160,7 @@
             </div>
         </div>-->
         <div class="row">
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-8 col-md-offset-1 well-sm">
                 <table class="table skills-table">
                     <thead>
                     <tr>
