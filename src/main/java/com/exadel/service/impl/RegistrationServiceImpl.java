@@ -14,7 +14,7 @@ import com.exadel.model.entity.government.Feedbacker;
 import com.exadel.model.entity.government.Joanna;
 import com.exadel.model.entity.government.PersonnelDepartment;
 import com.exadel.model.entity.student.Student;
-import com.exadel.model.entity.view.RegistrationView;
+import com.exadel.model.view.RegistrationView;
 import com.exadel.service.RegistrationService;
 @Service
 public class RegistrationServiceImpl implements RegistrationService {

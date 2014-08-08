@@ -35,7 +35,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12 well-sm">
-            <table id="mytable" class="table " ng-table="tableParams">
+            <table id="mytable" class="table" ng-table="tableParams">
 
                 <tr data-ng-repeat="user in studentsList| filter:search | orderBy:params.orderBy() |
                  filter:customFilterCourse | filter:customFilterEnglish | filter:customFilterHours |
@@ -54,11 +54,11 @@
                         <span ng-repeat="technologies in user.work.projectTechnologies"> {{technologies.name}}</span>
                     </td>
                     <td data-title="'English'" sortable="'english'">{{user.english}}</td>
-                    <td data-title="'Edit'"class="text-center"><p><a href="#/studentList/{{user.id}}" class="btn btn-sm btn-info"><span
+                    <td data-title="'Edit'"class="text-center"><p><a href="#/studentList/{{user.id}}" class="btn btn-sm btn-primary"><span
                             class="glyphicon glyphicon-pencil"></span></a></p></td>
                 </tr>
             </table>
-        </div>
+            </div>
     </div>
 </div>
 <!------------------------------------MODAL FOR CREATE STUDENT--------------------------------------->

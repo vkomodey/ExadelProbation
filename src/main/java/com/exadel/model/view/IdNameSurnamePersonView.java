@@ -1,4 +1,4 @@
-package com.exadel.model.entity.view;
+package com.exadel.model.view;
 
 import com.exadel.model.entity.User;
 

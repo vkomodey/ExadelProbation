@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 import com.exadel.model.entity.government.Feedbackable;
 import com.exadel.model.entity.student.Student;
-import com.exadel.model.entity.view.FeedbackView;
+import com.exadel.model.view.FeedbackView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity

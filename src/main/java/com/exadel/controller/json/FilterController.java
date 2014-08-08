@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.exadel.controller.json.constants.FilterURI;
 import com.exadel.model.entity.User;
 import com.exadel.model.entity.student.Technology;
-import com.exadel.model.entity.view.IdNameSurnamePersonView;
+import com.exadel.model.view.IdNameSurnamePersonView;
 import com.exadel.service.FilterService;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;

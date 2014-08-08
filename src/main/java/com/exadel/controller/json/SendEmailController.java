@@ -1,9 +1,10 @@
 package com.exadel.controller.json;
 
 import com.exadel.controller.json.constants.EmailURI;
-import com.exadel.model.entity.view.EmailView;
+import com.exadel.model.view.EmailView;
 import com.exadel.service.EmailService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

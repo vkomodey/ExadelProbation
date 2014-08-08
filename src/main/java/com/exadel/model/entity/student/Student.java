@@ -6,10 +6,11 @@ import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.User;
 import com.exadel.model.entity.government.Curator;
-import com.exadel.model.entity.view.StudentView;
+import com.exadel.model.view.StudentView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+
 import java.util.*;
 
 

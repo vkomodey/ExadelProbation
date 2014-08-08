@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.exadel.model.entity.student.Student;
-import com.exadel.model.entity.view.CompositeStudentFeedbackView;
-import com.exadel.model.entity.view.FeedbackView;
-import com.exadel.model.entity.view.FileExportView;
-import com.exadel.model.entity.view.StudentView;
+import com.exadel.model.view.CompositeStudentFeedbackView;
+import com.exadel.model.view.FeedbackView;
+import com.exadel.model.view.FileExportView;
+import com.exadel.model.view.StudentView;
 
 public interface StudentService extends GenericLivingService<Student> {
 	public List<FeedbackView> getFeedbacksForStudentByStudId(long id);

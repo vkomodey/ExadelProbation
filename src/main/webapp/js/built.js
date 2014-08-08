@@ -587,12 +587,12 @@ studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routePar
     };
 }])
 
-studentsControllers.controller('CreateProjectCtrl', ['$scope', '$http','$q', function($scope,$http,$q) {
+studentsControllers.controller('CreateProjectCtrl', ['$scope', '$http', function($scope,$http,$q) {
     $scope.createProject = function() {
         $http.post('/rest/proj/add',$scope.title).error(function(status,data) {
             alert('ERROR: ' + data);
         });
-        $scope.reloadProjectList($q);
+        $scope.reloadProjectList();
     }
 }]);
 studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function($scope,$http){
@@ -736,7 +736,11 @@ var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
     '$scope','projectListFactory','projectList','$q',
     function($scope,projectListFactory,projectList,$q) {
         $scope.reloadProjectList = function() {
-            $scope.projectList = ProjectListCtrl.projectList();
+           var deffered = $q.defer();
+            projectListFactory.getProjectList(function(data) {
+                $scope.projectList = data;
+            });
+            deffered.resolve($scope.projectList);
         };
         $scope.projectList = projectList;
         $scope.saveId = function(id){

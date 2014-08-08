@@ -49,4 +49,10 @@ public class ProjectServiceImpl implements ProjectService{
     public void addStudentOnProject(long studId, long projId){
         projectDao.find(projId).getStudents().add(studentDao.find(studId));
     }
+
+    @Transactional
+    public void removeStudentFromProject(long studId, long projId) {
+        projectDao.find(projId).getStudents().remove(studentDao.find(studId));
+    }
+
 }
