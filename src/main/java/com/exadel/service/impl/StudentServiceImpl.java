@@ -187,4 +187,13 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
         studentDao.saveEntity(scj);
         
     }
+
+    @Transactional
+    public void attachStudentsToCurators(List<Long> listId, List<Long> curators_id){
+        for(long id: listId){
+            for(long curId:curators_id){
+                attachStudentTo(id, curId);
+            }
+        }
+    }
 }
