@@ -10,7 +10,5 @@ public interface ProjectDao extends GenericDao<Project> {
 
     public List<String> getAllStudentsFio(long projectId);
 
-    public void addStudentOnProject(Student stud);
-
 
 }
