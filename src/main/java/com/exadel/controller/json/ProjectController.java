@@ -8,7 +8,9 @@ import com.exadel.service.FilterService;
 import com.exadel.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +23,9 @@ public class ProjectController {
     FilterService service;
 
     @RequestMapping(value = ProjectURI.ADD_PROJECT, method = RequestMethod.POST)
-    public void addProject(@RequestBody String title){
+    public ModelAndView addProject(@RequestBody String title){
         projectService.addProject(title);
+        return new ModelAndView("index");
     }
 
     @RequestMapping(value = ProjectURI.REMOVE_PROJECT, method = RequestMethod.POST)
