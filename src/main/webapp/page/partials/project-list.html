@@ -1,30 +1,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-lg-offset-2">
-    <table class="table projectList-table">
-        <a data-target="#createProject" data-toggle="modal" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-plus"></span>Add new project </a>
-        <thead>
-        <tr>
-            <th>Delete</th>
-            <th>Project name</th>
-            <th>Students on project</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><a data-target="#delete" data-toggle="modal" class="btn btn-primary btn-danger"><span class="glyphicon glyphicon-calendar"></span> </a></td>
-            <td>Some project name</td>
-            <td> <a data-target="#studentsOnProject" data-toggle="modal" class="btn btn-primary btn-info"><span class="glyphicon glyphicon-user"></span> </a></td>
-        </tr>
-        </tbody>
+            <a data-target="#createProject" data-toggle="modal" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-plus"></span>Add new project </a>
+    <table class="table projectList-table" ng-table="projectTableParams">
         <tr ng-repeat="project in projectList | filter:search | orderBy:params.orderBy()">
-            <td data-ng-if="canDelete()" data-title="Delete" >
-                <a data-target="#delete" data-toggle="modal" class="btn btn-primary btn-danger"><span class="glyphicon glyphicon-calendar"></span> </a>
+            <td data-title="'Delete'" >
+                <a data-target="#delete" data-toggle="modal" class="btn btn-primary btn-danger"><span class="glyphicon glyphicon-trash"></span> </a>
             </td>
-            <td data-title="Project name">
-                {{project.name}}
+            <td data-title="'Project name'" sortable="'title'">
+                {{project.title}}
             </td>
-            <td data-title="Students on project" class="text-center">
+            <td data-title="'Students on project'" class="text-center">
                 <a data-target="#studentsOnProject" data-toggle="modal" class="btn btn-primary btn-info"><span class="glyphicon glyphicon-user"></span> </a>
             </td>
         </tr>
@@ -34,8 +20,7 @@
 </div>
 <!-------------------------------MODAL STUDENTS ON PROJECT------------------------------------->
 <div data-backdrop="static" class="modal fade" id="studentsOnProject" tabindex="-1" role="dialog" aria-labelledby="studentsOnProject"
-     aria-hidden="true"
-     data-ng-controller="StudentsOnProjectListCtrl">
+     aria-hidden="true">
     <div name="emailForm" class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -58,8 +43,7 @@
     </div>
 <!-------------------------------MODAL DELETE PROJECT------------------------------------->
 <div data-backdrop="static" class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete"
-     aria-hidden="true"
-     data-ng-controller="StudentsOnProjectListCtrl">
+     aria-hidden="true">
     <div name="emailForm" class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
@@ -81,13 +65,12 @@
 
 <!-------------------------------MODAL DELETE PROJECT------------------------------------->
 <div data-backdrop="static" class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="createProject"
-     aria-hidden="true"
-     data-ng-controller="StudentsOnProjectListCtrl">
+     aria-hidden="true">
     <div name="emailForm" class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title custom_align text-danger" id="Heading">Create project</h4>
+                <h4 class="modal-title custom_align" id="Heading">Create project</h4>
             </div>
             <div class="modal-body">
                 <input id="login" data-ng-model="login" name="login" type="text" placeholder="Project name"
