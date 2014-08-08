@@ -589,7 +589,7 @@ studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routePar
 
 studentsControllers.controller('CreateProjectCtrl', ['$scope', '$http', function($scope,$http) {
     $scope.createProject = function() {
-        $http.post('rest/proj/add',$scope.title).error(function(status,data) {
+        $http.post('/rest/proj/add',$scope.title).error(function(status,data) {
             alert('ERROR: ' + data);
         });
         $scope.reloadProjectList();
@@ -617,7 +617,7 @@ studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function
 
 studentsControllers.controller('DeleteProjectCtrl', ['$scope', '$http', function($scope,$http) {
     $scope.deleteProject = function() {
-        $http.get('proj/remove/'+$scope.deleteProjectId).error(function(status,data){
+        $http.get('/rest/proj/remove/'+$scope.deleteProjectId).error(function(status,data){
             alert('ERROR:'+ data);
         });
         $scope.reloadProjectList();
