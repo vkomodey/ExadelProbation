@@ -29,8 +29,8 @@ public class TechnologyDaoImpl extends GenericDaoImpl<Technology> implements
 	}
 
     @SuppressWarnings("unchecked")
-    public List<Technology> getAllCurrentUsedByProjects() {
-        return getSessionFactory().getCurrentSession().createQuery("select distinct p.usedTechnologies from Project p").list();
+    public List<Technology> getAllCurrentUsedByProjects(long projectId) {
+        return getSessionFactory().getCurrentSession().createQuery("select distinct p.usedTechnologies from Project p where p.id=:id ").setLong("id",projectId).list();
     }
 
 }
