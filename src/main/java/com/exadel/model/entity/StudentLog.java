@@ -20,8 +20,7 @@ public class StudentLog {
 	public StudentLog() {
     }
 	@Id
-    @Column(name = "id",columnDefinition = "serial")
-	@Generated(GenerationTime.INSERT)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
