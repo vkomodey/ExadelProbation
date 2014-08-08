@@ -18,7 +18,7 @@ module.exports = function (grunt) {
                     //'js/services/*.js',
                     //'js/controllers/*.js'
                     'lib/angular.min.js',
-                    'lib/bootstrap.min.js',
+                   'lib/bootstrap.min.js',
                     'lib/bootstrap-modal.js',
                     'lib/bootstrap-tab.js',
                     'lib/*.js',

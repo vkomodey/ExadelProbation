@@ -6,4 +6,4 @@
 .settings/
 /src/test/
 out/
-/src/webapp/js/node_modules/
+src/webapp/js/node_modules/
