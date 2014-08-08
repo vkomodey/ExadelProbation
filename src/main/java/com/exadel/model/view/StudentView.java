@@ -3,6 +3,8 @@ package com.exadel.model.view;
 
 import java.util.Set;
 
+import java.util.List;
+
 import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.student.Skill;
@@ -12,84 +14,103 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class StudentView {
 
-    private String firstName;
-    private String secondName;
-    private String surname;
+    private List<IdNameSurnamePersonView> curator;
     private String email;
-    private String skype;
-    private String phone;
     private EnglishEnum english;
-    private StudentStateEnum state;
-
+    private String firstName;
+    private String phone;
+    private String secondName;
     private Set<Skill> skillSet;
+    private String skype;
+    
+    private StudentStateEnum state;
     private Study study;
+    private String surname;
+    private Integer hours_current;
+    private Boolean isBillable;
+    
+    public Integer getHours_current() {
+		return hours_current;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public Boolean getIsBillable() {
+		return isBillable;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setHours_current(Integer hours_current) {
+		this.hours_current = hours_current;
+	}
 
-    public String getSecondName() {
-        return secondName;
-    }
+	public void setIsBillable(Boolean isBillable) {
+		this.isBillable = isBillable;
+	}
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
+	public List<IdNameSurnamePersonView> getCurator() {
+		return curator;
+	}
 
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSkype() {
-        return skype;
-    }
-
-    public void setSkype(String skype) {
-        this.skype = skype;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Study getStudy() {
-        return study;
-    }
-
-    public void setStudy(Study study) {
-        this.study = study;
     }
 
     public EnglishEnum getEnglish() {
         return english;
     }
 
-    public void setEnglish(EnglishEnum englishLevel) {
-        this.english = englishLevel;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getSecondName() {
+        return secondName;
     }
 
     public Set<Skill> getSkillSet() {
         return skillSet;
+    }
+
+    public String getSkype() {
+        return skype;
+    }
+
+    public StudentStateEnum getState() {
+        return state;
+    }
+
+    public Study getStudy() {
+        return study;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setCurator(List<IdNameSurnamePersonView> curator) {
+		this.curator = curator;
+	}
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setEnglish(EnglishEnum englishLevel) {
+        this.english = englishLevel;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     public void setSkillSet(Set<Skill> skillSet) {
@@ -97,12 +118,20 @@ public class StudentView {
     }
 
 
-    public StudentStateEnum getState() {
-        return state;
+    public void setSkype(String skype) {
+        this.skype = skype;
     }
 
     public void setState(StudentStateEnum state) {
         this.state = state;
+    }
+
+	public void setStudy(Study study) {
+        this.study = study;
+    }
+
+	public void setSurname(String surname) {
+        this.surname = surname;
     }
 
 }

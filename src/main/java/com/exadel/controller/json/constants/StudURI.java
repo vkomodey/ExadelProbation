@@ -2,8 +2,6 @@ package com.exadel.controller.json.constants;
 
 public class StudURI {
 
-	public static final String DUMMY_STUDENT = "stud/dummy";
-	public static final String DUMMY_STUDENTARRAY = "stud/dummyarr";
 	public static final String GET_STUDENT = "stud/{id}";
     public static final String GET_ALL_STUDENT = "stud/all";
     public static final String GET_FEEDBACK_ARRAY= "stud/{id}/feedbacks/get";

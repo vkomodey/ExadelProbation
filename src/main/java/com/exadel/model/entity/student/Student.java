@@ -6,6 +6,7 @@ import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.User;
 import com.exadel.model.entity.join.StudentCuratorJoin;
+import com.exadel.model.view.IdNameSurnamePersonView;
 import com.exadel.model.view.StudentView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -165,6 +166,13 @@ public class Student extends User {
 		view.setEnglish(this.getEnglish());
 		view.setSkillSet(this.getSkillSet());
 		view.setStudy(this.getStudy());
+		view.setIsBillable(this.getWork().getIsBillable());
+		view.setHours_current(this.getWork().getHours_current());
+		List<IdNameSurnamePersonView> viewcurators=new ArrayList<IdNameSurnamePersonView>();
+		for(StudentCuratorJoin scj:this.getCurator()){
+			viewcurators.add(new IdNameSurnamePersonView(scj.getCurator()));
+		}
+		view.setCurator(viewcurators);
 		return view;
 	}
 }

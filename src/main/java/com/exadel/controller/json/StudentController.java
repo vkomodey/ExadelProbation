@@ -43,39 +43,67 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class StudentController {
+	private static Logger logger=LoggerFactory.getLogger(StudentController.class);
 	@Autowired
-	StudentService service;
-	@Autowired
-	UserService userService;
-    @Autowired
     CuratorService curatorService;
     @Autowired
+	StudentService service;
+    @Autowired
     StudentService studentService;
-	private static Logger logger=LoggerFactory.getLogger(StudentController.class);
-	private Student buildDummy(){
-		logger.info("dummy student build");
-		Student stud=new Student();
-		stud.setFirstName("Wasya");
-		stud.setLogin("wasya");
-		stud.setSecondName("wasyan");
-		stud.setState(StudentStateEnum.PROBATION);
-		stud.setSurname("wasyanchik");
-		stud.setWork(new ExadelWork());
-		stud.setPractice(new ExadelPractice());
-		stud.setStudy(new Study());
-		stud.getStudy().setExams(new ArrayList<StudentExams>());
-		stud.getStudy().getExams().add(new StudentExams());
-		stud.getSkillSet().add(new Skill(new SkillType("fapskill")));
-		stud.getFeedback().add(new Feedback());
-		stud.setEnglish(EnglishEnum.advanced);
-		return stud;
+	@Autowired
+	UserService userService;
+	
+	@RequestMapping(value = StudURI.ATTACH_STUDENT, method = RequestMethod.POST)
+    public @ResponseBody void attachStudentToCurator(@PathVariable String id,
+                                              @PathVariable String curator_id){
+        logger.info("start attache student with id " + id + " with curator, which id is " + curator_id);
+        studentService.attachStudentTo(Long.parseLong(id), Long.parseLong(curator_id));
+        logger.info("attaching success");
+    }
+	
+	@RequestMapping(value = StudURI.EDIT_STUDENT_INFO, method = RequestMethod.POST)
+    public @ResponseBody void editStudentInfo(@RequestBody String str, @PathVariable("id") Long id) throws IOException {
+        logger.info("Start editing student info.");
+        ObjectMapper mapper = new ObjectMapper();
+        StudentView view =  mapper.readValue(str,StudentView.class);
+        service.modify(view, id);
+        logger.info("edited"+id);
+    }
+
+    @RequestMapping(value=StudURI.GET_ALL_STUDENT,method=RequestMethod.GET)
+	public @ResponseBody List<StudentView> getAllStudents(Principal user){
+		logger.info("student list fetching");
+		List<Student> studlist;
+        @SuppressWarnings("unchecked")
+		List<SimpleGrantedAuthority> authorities = (List<SimpleGrantedAuthority>)SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getAuthorities();
+
+        String role = authorities.get(0).toString();
+        if(role.equals(SpringSecurityRole.CURATOR)){
+			studlist=curatorService.getSupervised(userService.findByLogin(user.getName()).getId());
+		}
+		else{
+		    studlist=service.getAll();
+		}
+        List<StudentView> list=new ArrayList<StudentView>();
+        for(Student stud:studlist){
+        	list.add(stud.toView());
+        }
+		logger.info("student list sending");
+		return list;
 	}
-	@RequestMapping(value=StudURI.DUMMY_STUDENT,method=RequestMethod.GET)
-	public @ResponseBody Student getDummyStudent(){
-		logger.info("dummy student sending");
-		return buildDummy();
+    
+	@RequestMapping(value=MeURI.GET_ME,method=RequestMethod.GET)
+	public @ResponseBody Student getMe(Principal user){
+		logger.info("real student fetching");
+		Student student=service.findByLogin(user.getName());
+		logger.info("real student sending");
+		return student;
 	}
-	@RequestMapping(value=StudURI.GET_STUDENT,method=RequestMethod.GET)
+
+    @RequestMapping(value=StudURI.GET_STUDENT,method=RequestMethod.GET)
 	public @ResponseBody CompositeStudentFeedbackView getStudent(@PathVariable("id") String idString){
 		logger.info("caller role searching");
 		@SuppressWarnings("unchecked")
@@ -93,67 +121,4 @@ public class StudentController {
 		logger.info("student info sending");
 		return view;
 	}
-	
-	@RequestMapping(value=StudURI.GET_ALL_STUDENT,method=RequestMethod.GET)
-	public @ResponseBody List<Student> getAllStudents(Principal user){
-		logger.info("student list fetching");
-		List<Student> list;
-        @SuppressWarnings("unchecked")
-		List<SimpleGrantedAuthority> authorities = (List<SimpleGrantedAuthority>)SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getAuthorities();
-
-        String role = authorities.get(0).toString();
-        if(role.equals(SpringSecurityRole.CURATOR)){
-			list=curatorService.getSupervised(userService.findByLogin(user.getName()).getId());
-		}
-		else{
-		    list=service.getAll();
-		}
-		logger.info("student list sending");
-/*        int inc=0;
-        for(Student item : list){
-            item.setFirstName("sutud_first_name "+inc);
-            item.setSecondName("stud_second_name"+inc);
-            item.setSurname("stud_surname"+inc);
-            inc++;
-            System.out.println(inc);
-        }*/
-		return list;
-	}
-	
-	@RequestMapping(value=StudURI.DUMMY_STUDENTARRAY,method=RequestMethod.GET)
-	public @ResponseBody List<Student> getDummyStudentArray(){
-		logger.info("dummy student array sending");
-		ArrayList<Student> ar=new ArrayList<Student>();
-		for(int i=0;i<10;i++)
-			ar.add(buildDummy());
-		return ar;
-	}
-
-    @RequestMapping(value = StudURI.EDIT_STUDENT_INFO, method = RequestMethod.POST)
-    public @ResponseBody void editStudentInfo(@RequestBody String str, @PathVariable("id") Long id) throws IOException {
-        logger.info("Start editing student info.");
-        ObjectMapper mapper = new ObjectMapper();
-        StudentView view =  mapper.readValue(str,StudentView.class);
-        service.modify(view, id);
-        logger.info("edited"+id);
-    }
-    
-	@RequestMapping(value=MeURI.GET_ME,method=RequestMethod.GET)
-	public @ResponseBody Student getMe(Principal user){
-		logger.info("real student fetching");
-		Student student=service.findByLogin(user.getName());
-		logger.info("real student sending");
-		return student;
-	}
-
-    @RequestMapping(value = StudURI.ATTACH_STUDENT, method = RequestMethod.POST)
-    public @ResponseBody void attachStudentTo(@PathVariable String id,
-                                              @PathVariable String curator_id){
-        logger.info("start attache student with id " + id + " with curator, which id is " + curator_id);
-        studentService.attachStudentTo(Long.parseLong(id), Long.parseLong(curator_id));
-        logger.info("attaching success");
-    }
 }
