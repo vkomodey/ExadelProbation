@@ -33,9 +33,9 @@ public class Student extends User {
 
     public Student() {
 		super();
-		this.setSkillSet(new HashSet<Skill>());
-		this.setFeedback(new ArrayList<Feedback>());
-		this.setStudy(new Study());
+//		this.setSkillSet(new HashSet<Skill>());
+//		this.setFeedback(new ArrayList<Feedback>());
+//		this.setStudy(new Study());
 	}
     //@JsonBackReference
     @JsonIgnore
@@ -144,11 +144,13 @@ public class Student extends User {
 		this.getSkillSet().clear();
 		this.getSkillSet().addAll(view.getSkillSet());
 		//WOW! SUCH HIBERNATE 
+		for(StudentExams se:this.getStudy().getExams()){
+			se.setStudent(null);
+		}
 		this.getStudy().getExams().clear();
 		this.getStudy().getExams().addAll(view.getStudy().getExams());
-		List<StudentExams> lse=this.getStudy().getExams();
+		view.getStudy().setExams(this.getStudy().getExams());
 		this.setStudy(view.getStudy());
-		this.getStudy().setExams(lse);
         for(StudentExams se:this.getStudy().getExams()){
             se.setStudent(this);
         }
