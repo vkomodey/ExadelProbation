@@ -11,15 +11,11 @@ import java.io.Serializable;
 public class StudentExams implements Serializable {
 	private Long id;
     private double grade;
-    private Boolean summer;
     private Student student;
-    private Integer course;
+    private Integer semester;
 	public StudentExams() {
     }
-	@NaturalId
-	public Integer getCourse() {
-		return course;
-	}
+	
 	public double getGrade() {
 		return grade;
 	}
@@ -28,6 +24,10 @@ public class StudentExams implements Serializable {
 	public Long getId() {
 		return id;
 	}
+	@NaturalId
+	public Integer getSemester() {
+		return semester;
+	}
 	@JsonIgnore
 	@NaturalId
 	@ManyToOne
@@ -35,24 +35,16 @@ public class StudentExams implements Serializable {
 	public Student getStudent() {
 		return student;
 	}
-	@NaturalId
-	public Boolean isSummer() {
-		return summer;
-	}
-	public void setCourse(Integer course) {
-		this.course = course;
-	}
 	public void setGrade(double grade) {
 		this.grade = grade;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public void setSemester(Integer semester) {
+		this.semester = semester;
+	}
 	public void setStudent(Student student) {
 		this.student = student;
 	}
-	public void setSummer(Boolean summer) {
-		this.summer = summer;
-	}
-
 }
