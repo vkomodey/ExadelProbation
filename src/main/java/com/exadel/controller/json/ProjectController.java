@@ -36,7 +36,7 @@ public class ProjectController {
     }
 
     @RequestMapping(value = ProjectURI.GET_ALL_STUDENTS, method = RequestMethod.GET)
-    public @ResponseBody List<String> getAllProjects(@PathVariable long id){
+    public @ResponseBody List<String> getAllStudents(@PathVariable long id){
         return projectService.getAllStudentsFio(id);
     }
 
