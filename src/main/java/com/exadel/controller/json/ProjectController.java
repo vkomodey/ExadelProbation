@@ -23,13 +23,12 @@ public class ProjectController {
     FilterService service;
 
     @RequestMapping(value = ProjectURI.ADD_PROJECT, method = RequestMethod.POST)
-    public ModelAndView addProject(@RequestBody String title){
+    public @ResponseBody void addProject(@RequestBody String title){
         projectService.addProject(title);
-        return new ModelAndView("index");
     }
 
     @RequestMapping(value = ProjectURI.REMOVE_PROJECT, method = RequestMethod.POST)
-    public void deleteProject(@PathVariable long id){
+    public @ResponseBody void deleteProject(@PathVariable long id){
         projectService.deleteProjectById(id);
     }
 
