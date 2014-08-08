@@ -36,8 +36,12 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
                 $defer.resolve(data.slice());
             }, $scope: { studentsList: {} }
         });
-
-
+        $scope.toJsonStudentCheckedArray = function(){
+            if($scope.checkedStudArray!=null)
+            {
+angular.toJson($scope.checkedStudArray);
+            }
+        };
         /////////////////////////////////////////////////////////////////////////////////////// LERA STYLE NEXT  ///////////////////////////////////////////////////
        filterParamsFactory.getFilterParams(function(data) {
             $scope.filterParams = data;

@@ -557,6 +557,11 @@ studentsServices.factory('studentsListFactory',['$resource','$routeParams', func
     });
 } ]);
 
+studentsServices.factory('StudentsListOnProjectFactory',['$resource', function($resource) {
+    return $resource('/rest/proj/:projectId/stud/all',{},{
+        getStudentsListOnProject: {method: 'GET', isArray: true}
+    });
+}])
 studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routeParams', function($scope,$http,$routeParams){
     $scope.addFeedback = function() {
         if($scope.profSuitability == undefined ||
@@ -619,7 +624,7 @@ studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function
 
 studentsControllers.controller('DeleteProjectCtrl', ['$scope', '$http', function($scope,$http) {
     $scope.deleteProject = function() {
-        $http.post('/rest/proj/remove/'+$scope.deleteProjectId).success(function(){
+        $http.post('/rest/proj/+$scope.deleteProjectId'/remove/').success(function(){
             $scope.reloadProjectList();
         })
             .error(function(status,data){
@@ -747,8 +752,11 @@ var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
             deferred.resolve($scope.projectList);
         };
         $scope.projectList = projectList;
-        $scope.saveId = function(id){
+        $scope.saveIdForDelete = function(id){
             $scope.deleteProjectId = id;
+        }
+        $scope.saveIdForShowStudentsList = function(id) {
+            $scope.studentsListOnProjectId = id;
         }
     }]);
 ProjectListCtrl.projectList = function(projectListFactory,$q) {
@@ -907,8 +915,12 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
                 $defer.resolve(data.slice());
             }, $scope: { studentsList: {} }
         });
-
-
+        $scope.toJsonStudentCheckedArray = function(){
+            if($scope.checkedStudArray!=null)
+            {
+angular.toJson($scope.checkedStudArray);
+            }
+        };
         /////////////////////////////////////////////////////////////////////////////////////// LERA STYLE NEXT  ///////////////////////////////////////////////////
        filterParamsFactory.getFilterParams(function(data) {
             $scope.filterParams = data;
@@ -1165,6 +1177,26 @@ var StudentPageCtrl = studentsControllers.controller('StudentPageCtrl',['$scope'
     $scope.deleteExam = function () {
         StudentInfoCtrl.deleteExam($scope);
     };
+}]);
+studentsControllers.controller('StudentsListOnProjectCtrl', ['$scope', 'StudentsListOnProjectFactory','$q', function($scope,StudentsListOnProjectFactory,$q) {
+    var reloadStudentsOnProject = function(){
+        if($scope.studentsListOnProjectId == null)
+        return;
+        var deferred = $q.defer();
+        StudentsListOnProjectFactory.getStudentsListOnProject({projectId: $scope.studentsListOnProjectId},function(data){
+            $scope.studentsOnProjectList = data;
+        });
+        deferred.resolve($scope.studentsOnProjectList);
+    };
+    $scope.$watch("studentsListOnProjectId", function(){
+        if($scope.studentsListOnProjectId == null)
+            return;
+        var deferred = $q.defer();
+        StudentsListOnProjectFactory.getStudentsListOnProject({projectId: $scope.studentsListOnProjectId},function(data){
+            $scope.studentsOnProjectList = data;
+        });
+        deferred.resolve($scope.studentsOnProjectList);
+    });
 }]);
 studentsControllers.controller('testSend', ['$scope', '$http', function($scope,$http){
     var mas=[{"id":19}, {"id":20}];

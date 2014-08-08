@@ -12,12 +12,25 @@
                         class="glyphicon glyphicon-envelope"></span> Send email to checked students
                 </button>
             </div>
+
         </div>
         <div class="pull-right">
             <div class="input-group custom-search-form">
                 <input type="text" data-ng-model="search.surname" class="form-control" placeholder="Search by surname">
             </div>
             <!-- /input-group -->
+        </div>
+    </div>
+    <div class="row well-sm">
+        <div class="col-md-3">
+            <a href="/rest/downloadPDF?ids={{toJsonStudentCheckedArray()}}" class="btn btn-primary btn-success"><span
+                    class="glyphicon glyphicon-envelope"></span>PDF
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/rest//downloadExcel?ids={{toJsonStudentCheckedArray()}}" class="btn btn-primary btn-success"><span
+                    class="glyphicon glyphicon-envelope"></span>Excel
+            </a>
         </div>
     </div>
     <!--Filter-->
