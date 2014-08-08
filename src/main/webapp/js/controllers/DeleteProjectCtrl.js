@@ -3,7 +3,7 @@
  */
 studentsControllers.controller('DeleteProjectCtrl', ['$scope', '$http', function($scope,$http) {
     $scope.deleteProject = function() {
-        $http.post('/rest/proj/+$scope.deleteProjectId'/remove/').success(function(){
+        $http.post('/rest/proj/'+$scope.deleteProjectId+'/remove/').success(function(){
             $scope.reloadProjectList();
         })
             .error(function(status,data){
