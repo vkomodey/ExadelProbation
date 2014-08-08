@@ -21,7 +21,7 @@ public class ProjectController {
     FilterService service;
 
     @RequestMapping(value = ProjectURI.ADD_PROJECT, method = RequestMethod.POST)
-    public void addProject(@PathVariable String title){
+    public void addProject(@RequestBody String title){
         projectService.addProject(title);
     }
 
