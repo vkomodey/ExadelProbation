@@ -95,6 +95,9 @@ public class FilterController {
 		list.add("Show All");
         if(list!=null) {
             for (String val : list) {
+            	if(val==null){
+            		val="";
+            	}
                 jg.writeStartObject();
 			/*jg.writeFieldName("name");
 			jg.writeString(tech);*/
