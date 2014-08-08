@@ -1,19 +1,20 @@
 package com.exadel.model.entity.student;
 
+import java.util.Calendar;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
 import com.exadel.model.constants.CurrentProjectRoleEnum;
 import com.exadel.model.entity.Project;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
-import java.util.Calendar;
-import java.util.Set;
-
-@Entity
-@Table(name = "exadel_work")
+@Embeddable
 public class ExadelWork {
-	private Student student;
-	private Long id;
-
 	private Integer hours_current;
 	private Integer hours_desired;
 	private Calendar workStartDate;
@@ -98,22 +99,8 @@ public class ExadelWork {
 		return hoursDesiredTransferDate;
 	}
 
-	@Id
-	@Column(name = "stud_id")
-	public Long getId() {
-		return id;
-	}
-
 	public Boolean getIsBillable() {
 		return isBillable;
-	}
-
-	@JsonIgnore
-	@OneToOne(optional = false)
-	@JoinColumn(name = "id")
-	@MapsId
-	public Student getStudent() {
-		return student;
 	}
 
 	public String getTeamLeadOnCurrent() {
@@ -194,16 +181,8 @@ public class ExadelWork {
 		this.hoursDesiredTransferDate = hoursDesiredTransferDate;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public void setIsBillable(Boolean isBillable) {
 		this.isBillable = isBillable;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
 	}
 
 	public void setTeamLeadOnCurrent(String teamLeadOnCurrent) {

@@ -2,8 +2,9 @@ package com.exadel.dao.impl;
 
 import com.exadel.dao.ProjectDao;
 import com.exadel.model.entity.Project;
-import com.exadel.model.entity.student.ExadelWork;
+import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.student.Technology;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -15,15 +16,13 @@ public class ProjectDaoImpl extends GenericDaoImpl<Project> implements ProjectDa
         return null;
     }
 
-    public List<Project> getAll(){
-        List<Project> list = getSessionFactory().getCurrentSession().createQuery("from Project ").list();
-//        for(Project project:list){
-//            lazyTouchProject(project);
-//        }
+    @SuppressWarnings("unchecked")
+	public List<Project> getAll(){
+        List<Project> list = getSessionFactory().getCurrentSession().createQuery("from Project").list();
         return list;
     }
     public void lazyTouchProject(Project project){
-        for(ExadelWork student:project.getStudents()){
+        for(Student student:project.getStudents()){
             student.getId();
         }
         for(Technology technology:project.getUsedTechnologies()){
@@ -39,8 +38,8 @@ public class ProjectDaoImpl extends GenericDaoImpl<Project> implements ProjectDa
     public List<String> getAllStudentsFio(long projectId){
         Project project = (Project)getSessionFactory().getCurrentSession().get(Project.class, projectId);
         List<String> fio = new ArrayList<String>();
-        for(ExadelWork student:project.getStudents()){
-            fio.add(student.getStudent().getFullName());
+        for(Student student:project.getStudents()){
+            fio.add(student.getFullName());
         }
         return fio;
     }
