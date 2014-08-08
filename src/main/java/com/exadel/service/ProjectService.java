@@ -11,6 +11,8 @@ public interface ProjectService {
 
     public void addStudentOnProject(long studId, long projId);
 
+    public void removeStudentFromProject(long studId, long projId);
+
     public List<Project> getAll();
 
     public List<String> getAllStudentsFio(long projectId);
