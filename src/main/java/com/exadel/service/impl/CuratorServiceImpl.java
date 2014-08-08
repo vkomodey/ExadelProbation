@@ -47,4 +47,9 @@ public class CuratorServiceImpl extends GenericLivingServiceImpl<Curator> implem
 	public void save(Curator entity) {
 		curatorDao.save(entity);
 	}
+
+	@Override
+	public List<Curator> getAll() {
+		return curatorDao.getAll();
+	}
 }
