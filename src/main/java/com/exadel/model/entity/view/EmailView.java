@@ -6,6 +6,7 @@ import java.util.List;
 public class EmailView {
     private List<Long> id;
     private String message;
+    private String title;
 
     public List<Long> getId() {
         return id;
@@ -21,5 +22,13 @@ public class EmailView {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

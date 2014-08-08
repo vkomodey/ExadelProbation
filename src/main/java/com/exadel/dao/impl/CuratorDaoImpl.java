@@ -30,7 +30,10 @@ public class CuratorDaoImpl extends GenericLivingDaoImpl<Curator> implements Cur
     }
 
     public List<Student> getSupervised(long CuratorId){
-        return ((Curator)getSessionFactory().getCurrentSession().get(Curator.class,CuratorId)).getStudents();
+        return ((Curator)getSessionFactory().
+                getCurrentSession().
+                get(Curator.class,CuratorId)).
+                getStudents();
     }
 
 	@SuppressWarnings("unchecked")

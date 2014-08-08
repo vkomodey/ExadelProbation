@@ -21,7 +21,7 @@ public class ProjectController {
     FilterService service;
 
     @RequestMapping(value = ProjectURI.ADD_PROJECT, method = RequestMethod.POST)
-    public void addProject(@PathVariable String title){
+    public void addProject(@RequestBody String title){
         projectService.addProject(title);
     }
 
@@ -36,7 +36,7 @@ public class ProjectController {
     }
 
     @RequestMapping(value = ProjectURI.GET_ALL_STUDENTS, method = RequestMethod.GET)
-    public @ResponseBody List<String> getAllProjects(@PathVariable long id){
+    public @ResponseBody List<String> getAllStudents(@PathVariable long id){
         return projectService.getAllStudentsFio(id);
     }
 
