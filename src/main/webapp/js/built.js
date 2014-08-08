@@ -557,6 +557,11 @@ studentsServices.factory('studentsListFactory',['$resource','$routeParams', func
     });
 } ]);
 
+studentsServices.factory('StudentsListOnProjectFactory',['$resource', function($resource) {
+    return $resource('/rest/proj/stud/all/:projectId',{},{
+        getStudentsListOnProject: {method: 'GET', isArray: true}
+    });
+}])
 studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routeParams', function($scope,$http,$routeParams){
     $scope.addFeedback = function() {
         if($scope.profSuitability == undefined ||
@@ -747,8 +752,11 @@ var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
             deferred.resolve($scope.projectList);
         };
         $scope.projectList = projectList;
-        $scope.saveId = function(id){
+        $scope.saveIdForDelete = function(id){
             $scope.deleteProjectId = id;
+        }
+        $scope.saveIdForShowStudentsList = function(id) {
+            $scope.studentsListOnProjectId = id;
         }
     }]);
 ProjectListCtrl.projectList = function(projectListFactory,$q) {
@@ -880,6 +888,7 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
             );
             deferred.resolve($scope.studentsList);
         };
+        alert('1');
         /*$interval(function() {
             $scope.reloadList();
         },60000);*/
@@ -1077,6 +1086,16 @@ var StudentPageCtrl = studentsControllers.controller('StudentPageCtrl',['$scope'
     $scope.deleteExam = function () {
         StudentInfoCtrl.deleteExam($scope);
     };
+}]);
+studentsControllers.controller('StudentsListOnProjectCtrl', ['$scope', 'StudentListOnProjectFactory','$q', function($scope,StudentListOnProjectFactory,$q) {
+    var reloadStudentsOnProject = function(){
+        var deferred = $q.defer();
+        StudentListOnProjectFactory.getStudentsListOnProject({projectId: $scope.studentsListOnProjectId},function(data){
+            $scope.studentsOnProjectList = data;
+        })
+        deferred.resolve($scope.studentsOnProjectList);
+    };
+    $scope.$watch($scope.studentsListOnProjectId, reloadStudentsOnProject());
 }]);
 studentsControllers.controller('testSend', ['$scope', '$http', function($scope,$http){
     var mas=[{"id":19}, {"id":20}];

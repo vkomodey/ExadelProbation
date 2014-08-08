@@ -12,6 +12,7 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
             );
             deferred.resolve($scope.studentsList);
         };
+        alert('1');
         /*$interval(function() {
             $scope.reloadList();
         },60000);*/
