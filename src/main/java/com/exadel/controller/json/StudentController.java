@@ -73,7 +73,7 @@ public class StudentController {
     @RequestMapping(value=StudURI.GET_ALL_STUDENT,method=RequestMethod.GET)
 	public @ResponseBody List<StudentView> getAllStudents(Principal user){
 		logger.info("student list fetching");
-		List<Student> studlist;
+		List<StudentView> studlist;
         @SuppressWarnings("unchecked")
 		List<SimpleGrantedAuthority> authorities = (List<SimpleGrantedAuthority>)SecurityContextHolder
                 .getContext()
@@ -87,12 +87,8 @@ public class StudentController {
 		else{
 		    studlist=service.getAll();
 		}
-        List<StudentView> list=new ArrayList<StudentView>();
-        for(Student stud:studlist){
-        	list.add(stud.toView());
-        }
-		logger.info("student list sending");
-		return list;
+        logger.info("student list sending");
+		return studlist;
 	}
     
 	@RequestMapping(value=MeURI.GET_ME,method=RequestMethod.GET)
