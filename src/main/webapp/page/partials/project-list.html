@@ -5,7 +5,7 @@
     <table class="table projectList-table" ng-table="projectTableParams">
         <tr ng-repeat="project in projectList | filter:search | orderBy:params.orderBy()">
             <td data-title="'Delete'" >
-                <a data-target="#delete" data-toggle="modal" class="btn btn-primary btn-danger"><span class="glyphicon glyphicon-trash"></span> </a>
+                <a data-ng-click="saveId(project.id)" data-target="#delete" data-toggle="modal" class="btn btn-primary btn-danger"><span class="glyphicon glyphicon-trash"></span> </a>
             </td>
             <td data-title="'Project name'" sortable="'title'">
                 {{project.title}}
@@ -42,7 +42,7 @@
 </div>
     </div>
 <!-------------------------------MODAL DELETE PROJECT------------------------------------->
-<div data-backdrop="static" class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete"
+<div data-ng-controller="DeleteProjectCtrl" data-backdrop="static" class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete"
      aria-hidden="true">
     <div name="emailForm" class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -53,7 +53,7 @@
             <div class="modal-body">
                 <p>Are you sure you want to delete the project?</p>
                 <div class="modal-footer ">
-                            <button id="button1id" name="button1id" class="btn btn-success">Yes</button>
+                            <button data-dismiss="modal" data-ng-click="deleteProject()" id="button1id" name="button1id" class="btn btn-success">Yes</button>
                             <button data-dismiss="modal" id="button2id" name="button2id" class="btn btn-danger">No</button>
                 </div>
             </div>
@@ -63,8 +63,8 @@
     </div>
 </div>
 
-<!-------------------------------MODAL DELETE PROJECT------------------------------------->
-<div data-backdrop="static" class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="createProject"
+<!-------------------------------MODAL CREATE PROJECT------------------------------------->
+<div data-ng-controller="CreateProjectCtrl" data-backdrop="static" class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="createProject"
      aria-hidden="true">
     <div name="emailForm" class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -73,7 +73,7 @@
                 <h4 class="modal-title custom_align" id="Heading">Create project</h4>
             </div>
             <div class="modal-body">
-                <input id="login" data-ng-model="login" name="login" type="text" placeholder="Project name"
+                <input id="title" data-ng-model="title" name="title" type="text" placeholder="Project name"
                        class="form-control input-md" required>
             </div>
             <div class="modal-footer ">
