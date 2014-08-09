@@ -10,4 +10,5 @@ public interface StudentDao extends GenericLivingDao<Student> {
 	public List<String> getFaculties();
 	public List<String> getUniversities();
 	public List<Integer> getStudyEndYears();
+	List<String> getEmails(List<Long> students_id);
 }

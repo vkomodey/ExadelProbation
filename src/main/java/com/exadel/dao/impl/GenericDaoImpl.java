@@ -7,12 +7,10 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
-import org.springframework.stereotype.Repository;
 
 import com.exadel.dao.GenericDao;
 
-@Repository
-public class GenericDaoImpl<ENTITY> extends HibernateDaoSupport
+public abstract class GenericDaoImpl<ENTITY> extends HibernateDaoSupport
 		implements GenericDao<ENTITY> {
 	protected Type type;
 

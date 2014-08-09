@@ -41,15 +41,12 @@ public class StudentController {
     public @ResponseBody void attachStudentToCurator(@PathVariable String id,
                                               @PathVariable String curator_id){
         logger.info("start attache student with id " + id + " with curator, which id is " + curator_id);
-        studentService.attachStudentTo(Long.parseLong(id), Long.parseLong(curator_id));
+        studentService.attachStudentToCurator(Long.parseLong(id), Long.parseLong(curator_id));
         logger.info("attaching success");
     }
 
     @RequestMapping(value = StudURI.ATTACH_STUDENTS_TO_CURATORS, method = RequestMethod.POST)
     public @ResponseBody void attachStudentsToCurators(@RequestBody String json,ObjectMapper om) throws IOException{
-//        CompositeStudentsCuratorsView view = objectMapper.readValue(json, CompositeStudentsCuratorsView.class);
-//        System.out.println(view.getCursId());
-//        System.out.println(view.getStudsId());
     	JsonNode rootnode=om.readTree(json);
     	JsonNode studnode=rootnode.path("studsId");
     	JsonNode curnode=rootnode.path("cursId");
