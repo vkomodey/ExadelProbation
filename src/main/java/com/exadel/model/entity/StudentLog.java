@@ -4,9 +4,6 @@ import java.util.Calendar;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-
 import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.student.Student;
 

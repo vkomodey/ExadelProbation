@@ -1,8 +1,6 @@
 package com.exadel.dao.impl;
 
 import java.util.List;
-import java.util.Set;
-
 import org.springframework.stereotype.Repository;
 
 import com.exadel.dao.TechnologyDao;

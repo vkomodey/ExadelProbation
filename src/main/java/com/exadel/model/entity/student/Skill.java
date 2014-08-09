@@ -30,9 +30,8 @@ public class Skill {
 	public String getLevel() {
 		return level;
 	}
-	@OneToOne(optional = false)
-	@Immutable
-	@JoinColumn(name="type_id")
+	@OneToOne
+//	@JoinColumn(name="type_id")
 	public SkillType getType() {
 		return type;
 	}

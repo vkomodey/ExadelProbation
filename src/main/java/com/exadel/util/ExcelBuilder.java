@@ -1,9 +1,7 @@
 package com.exadel.util;
 
-import com.exadel.dao.StudentDao;
-import com.exadel.dao.impl.StudentDaoImpl;
-import com.exadel.model.entity.student.ExadelWork;
 import com.exadel.model.entity.student.Technology;
+
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -120,7 +118,8 @@ public class ExcelBuilder extends AbstractExcelView {
         }
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     protected void buildExcelDocument(Map<String, Object> model, HSSFWorkbook workbook,
                                       HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Student> listStud = (List<Student>) model.get("list");

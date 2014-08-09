@@ -2,10 +2,8 @@ package com.exadel.dao.impl;
 
 import com.exadel.dao.ProjectDao;
 import com.exadel.model.entity.Project;
-import com.exadel.model.entity.student.ExadelWork;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.student.Technology;
-import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

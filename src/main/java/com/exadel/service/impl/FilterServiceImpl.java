@@ -13,7 +13,6 @@ import com.exadel.dao.CuratorDao;
 import com.exadel.dao.StudentDao;
 import com.exadel.dao.TechnologyDao;
 import com.exadel.model.entity.User;
-import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.student.Technology;
 import com.exadel.service.FilterService;
 @Service
