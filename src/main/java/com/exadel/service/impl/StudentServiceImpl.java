@@ -1,9 +1,6 @@
 package com.exadel.service.impl;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.exadel.model.view.FileExportView;
 
@@ -177,8 +174,23 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
     public void attachStudentsToCurators(List<Long> listId, List<Long> curators_id){
         for(long id: listId){
             for(long curId:curators_id){
-                attachStudentTo(id, curId);
+                if(!isStudentAttachedToThisCurator(id, curId)){
+                    attachStudentTo(id, curId);
+                }
             }
         }
+    }
+
+    @Transactional
+    public boolean isStudentAttachedToThisCurator(long id, long curId){
+        Student student = studentDao.find(id);
+        Curator curator = curatorDao.find(curId);
+        Set<StudentCuratorJoin> list = student.getCurator();
+        for(StudentCuratorJoin studentCuratorJoin: list){
+            if(studentCuratorJoin.getStudent().getId() == curId){
+                return true;
+            }
+        }
+        return false;
     }
 }
