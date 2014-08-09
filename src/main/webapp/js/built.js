@@ -529,6 +529,11 @@ studentsApp.config(['$routeProvider', '$locationProvider', function($routeProvid
         });
 
 }]);
+studentsServices.factory('CuratorsListFactory',['$resource', function($resource) {
+    return $resource('/rest/empl/all',{},{
+        getCuratorsList:{method: 'GET', isArray: true}
+    });
+}]);
 studentsServices.factory('employeesList',['$resource','$routeParams', function($resource,$routeParams) {
     return $resource('/rest/empl/all', {}, {
         getEmployeeList: {method: 'GET', isArray: true}
@@ -622,6 +627,22 @@ studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function
     };
 }]);
 
+studentsControllers.controller('CuratorsListForAppointCtrl', ['$scope', '$http', function($scope,$http) {
+    $scope.checkedCuratorArray = [];
+    $scope.checkedCurator = function(id) {
+        StudentListCtrl.checkElement(id,$scope.checkedCuratorArray);
+    };
+    $scope.appointCuratorsForStudents = function(){
+        var checkedStudAndCurator = {
+            studId: $scope.checkedStudArray,
+            curId: $scope.checkedCuratorArray
+        };
+        $http.post('/rest/stud/attach/manytomany',checkedStudAndCurator)
+            .error(function(status,data){
+                alert(data);
+        });
+    };
+}]);
 studentsControllers.controller('DeleteProjectCtrl', ['$scope', '$http', function($scope,$http) {
     $scope.deleteProject = function() {
         $http.post('/rest/proj/'+$scope.deleteProjectId+'/remove/').success(function(){
@@ -879,8 +900,8 @@ StudentInfoCtrl.deleteExam = function($scope,index) {
 
 
 var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
-    '$scope','$filter','$routeParams','studentsListFactory','filterParamsFactory', 'ngTableParams','$q','studentsList','$interval',
-    function( $scope, $filter,$routeParams, studentsListFactory,filterParamsFactory, ngTableParams, $q,studentsList,$interval) {
+    '$scope','$filter','$routeParams','studentsListFactory','CuratorsListFactory','filterParamsFactory', 'ngTableParams','$q','studentsList','$interval',
+    function( $scope, $filter,$routeParams, studentsListFactory,CuratorsListFactory,filterParamsFactory, ngTableParams, $q,studentsList,$interval) {
         $scope.reloadList = function() {
             var deferred = $q.defer();
             studentsListFactory.getStudentsList(function (data) {
@@ -893,8 +914,8 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
             $scope.reloadList();
         },60000);*/
         $scope.checkedStudArray=[];
-        $scope.checkedStud = function(id){
-            StudentListCtrl.checkedStud(id,$scope.checkedStudArray);
+        $scope.checkElement = function(id){
+            StudentListCtrl.checkElement(id,$scope.checkedStudArray);
         };
         $scope.studentsList = studentsList;
         $scope.tableParams = new ngTableParams({
@@ -916,10 +937,23 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
             }, $scope: { studentsList: {} }
         });
         $scope.toJsonStudentCheckedArray = function(){
-            if($scope.checkedStudArray!=null)
+            if($scope.checkedStudArray.length!=0)
             {
-angular.toJson($scope.checkedStudArray);
+                var arrayForPdfOrExcel = [];
+                $scope.checkedStudArray.forEach(function(element,index,array){
+                    arrayForPdfOrExcel.push({
+                        id: element
+                    });
+                });
+                return angular.toJson(arrayForPdfOrExcel);
             }
+        };
+        $scope.reloadCuratorsList = function(){
+          var deferred = $q.defer();
+            CuratorsListFactory.getCuratorsList(function(data) {
+                $scope.curatorsList = data;
+            });
+            deferred.resolve($scope.curatorsList);
         };
         /////////////////////////////////////////////////////////////////////////////////////// LERA STYLE NEXT  ///////////////////////////////////////////////////
        filterParamsFactory.getFilterParams(function(data) {
@@ -1142,14 +1176,14 @@ StudentListCtrl.student =
         );
         return deferred.promise;
     }
-StudentListCtrl.checkedStud = function(id,checkedStudArray) {
-    for(var i=0;i<checkedStudArray.length;i++) {
-        if(checkedStudArray[i] == id) {
-            checkedStudArray.splice(i,1);
+StudentListCtrl.checkElement = function(id,checkedArray) {
+    for(var i=0;i<checkedArray.length;i++) {
+        if(checkedArray[i] == id) {
+            checkedArray.splice(i,1);
             return
         }
     }
-    checkedStudArray.push(id);
+    checkedArray.push(id);
 }
 var StudentPageCtrl = studentsControllers.controller('StudentPageCtrl',['$scope','$q','$http', function($scope,$q,$http) {
     var getStudentInfo = function() {

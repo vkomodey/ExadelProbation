@@ -1,4 +1,3 @@
-
 <div class="container">
     <div class="row">
         <div class="col-md-7">
@@ -32,6 +31,11 @@
                     class="glyphicon glyphicon-envelope"></span>Excel
             </a>
         </div>
+        <div class="col-md-3" data-ng-if="checkedStudArray.length">
+            <button data-ng-click="reloadCuratorsList()" data-target="#curatorsListModal" data-toggle="modal" class="btn btn-primary btn-success"><span
+                    class="glyphicon glyphicon-envelope" ></span> Appoint a curator
+            </button>
+        </div>
     </div>
     <!--Filter-->
 
@@ -53,7 +57,8 @@
     </select>
     <select data-ng-model="filterItem.university" data-ng-options="item.name for item in filterParams.universities">
     </select>
-    <select data-ng-model="filterItem.study_end_year" data-ng-options="item.name for item in filterParams.study_end_years">
+    <select data-ng-model="filterItem.study_end_year"
+            data-ng-options="item.name for item in filterParams.study_end_years">
     </select>
     <select data-ng-model="filterItem.curatorSurname" data-ng-options="item.surname for item in filterParams.curators">
     </select>
@@ -66,7 +71,7 @@
                  filter:customFilterCourse | filter:customFilterEnglish | filter:customFilterHours |
                  filter:customFilterSalary | filter:customFilterTech|filter:customFilterFaculty|
                  filter:customFilterUniversity|filter:customFilterGraduate">
-                    <td><input data-ng-click="checkedStud(user.id)" type="checkbox" class="checkthis"/></td>
+                    <td><input data-ng-click="checkElement(user.id)" type="checkbox" class="checkthis"/></td>
                     <td data-title="'Login'" sortable="'Login'">{{user.login}}</td>
                     <td data-title="'Name'" sortable="'surname'">{{user.firstName + " "+user.surname}}</td>
                     <td data-title="'Date'" sortable="'work.workStartDate'">{{user.work.workStartDate}}</td>
@@ -80,11 +85,12 @@
                         <span ng-repeat="technologies in user.work.projectTechnologies"> {{technologies.name}}</span>
                     </td>
                     <td data-title="'English'" sortable="'english'">{{user.english}}</td>
-                    <td data-title="'Edit'"class="text-center"><p><a href="#/studentList/{{user.id}}" class="btn btn-sm btn-primary"><span
+                    <td data-title="'Edit'" class="text-center"><p><a href="#/studentList/{{user.id}}"
+                                                                      class="btn btn-sm btn-primary"><span
                             class="glyphicon glyphicon-pencil"></span></a></p></td>
                 </tr>
             </table>
-            </div>
+        </div>
     </div>
 </div>
 <!------------------------------------MODAL FOR CREATE STUDENT--------------------------------------->
@@ -102,7 +108,8 @@
                        class="form-control input-md" required>
             </div>
             <div class="modal-footer ">
-                <button type="submit" data-ng-disabled="createStudentForm.$invalid" data-dismiss="modal" aria-hidden="true" data-ng-click="createStudent()"
+                <button type="submit" data-ng-disabled="createStudentForm.$invalid" data-dismiss="modal"
+                        aria-hidden="true" data-ng-click="createStudent()"
                         class="btn btn-success btn-lg" style="width: 100%;"><span
                         class="glyphicon glyphicon-plus"></span> Create
                 </button>
@@ -126,11 +133,12 @@
             <div class="modal-body">
                 <form name="emailForm" class="form-horizontal">
                     <div class="well-sm">
-                    <input id="title" data-ng-model="title" name="title" type="text" placeholder="Object"
-                           class="form-control input-md" required>
-                        </div>
+                        <input id="title" data-ng-model="title" name="title" type="text" placeholder="Object"
+                               class="form-control input-md" required>
+                    </div>
                     <div class="well-sm">
-                    <textarea data-ng-model="message" class="form-control" rows="10" placeholder="Message" required></textarea>
+                        <textarea data-ng-model="message" class="form-control" rows="10" placeholder="Message"
+                                  required></textarea>
                     </div>
                 </form>
             </div>
@@ -140,6 +148,39 @@
                         class="btn btn-success btn-lg" style="width: 100%;"><span
                         class="glyphicon glyphicon-envelope"></span> Send
                 </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!------------------------------------MODAL CURATORS LIST-------------------------------------->
+<div data-backdrop="static" class="modal fade" id="curatorsListModal" tabindex="-1" role="dialog"
+     aria-labelledby="curatorsListModal"
+     aria-hidden="true"
+     data-ng-controller="CuratorsListForAppointCtrl">
+    <div name="emailForm" class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title custom_align" id="Heading">Appoint a curator</h4>
+            </div>
+            <div class="modal-body">
+                <button data-ng-disabled="emailForm.$invalid" type="button" data-dismiss="modal" aria-hidden="true"
+                        data-ng-click="appointCuratorsForStudents()"
+                        class="btn btn-success btn-lg" style="width: 100%;"><span
+                        class="glyphicon glyphicon-envelope"></span> Appoint
+                </button>
+                <table class="table" data-ng-table="curatorsListParams">
+                    <tr data-ng-repeat="curator in curatorsList | orderBy: params.orderBy()">
+                        <td>
+                            <input data-ng-click="checkedCurator(curator.id)" type="checkbox" class="checkthis"/>
+                        </td>
+                        <td data-title="'Name'" sortable="fio">
+                            {{curator.fio}}
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
         <!-- /.modal-content -->
