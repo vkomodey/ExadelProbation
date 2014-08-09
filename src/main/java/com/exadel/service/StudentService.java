@@ -18,5 +18,5 @@ public interface StudentService extends GenericLivingService<Student> {
 	public List<Student> getAll(List<FileExportView> ids);
     public void attachStudentToCurator(long id, long curator_id);
     public void attachStudentsToCurators(List<Long> students_id, List<Long> curators_id);
-    public List<String> getAllEmailsOfStudents(List<Long> students_id);
+    public List<String> getAllEmailAddressesOfStudents(List<Long> students_id);
 }

@@ -30,7 +30,7 @@ public class SendEmailController {
     public @ResponseBody void sendEmail(@RequestBody String str) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         EmailView emailView = mapper.readValue(str, EmailView.class);
-        List<String> allEmailsById = studentService.getAllEmailsOfStudents(emailView.getId());
+        List<String> allEmailsById = studentService.getAllEmailAddressesOfStudents(emailView.getId());
         SimpleMailMessage message = new SimpleMailMessage();
         message.setText(emailView.getMessage());
         message.setSubject(emailView.getTitle());

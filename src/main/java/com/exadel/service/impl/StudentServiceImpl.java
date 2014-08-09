@@ -169,7 +169,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
         }
     }
     @Transactional
-    public List<String> getAllEmailsOfStudents(List<Long> students_id){
+    public List<String> getAllEmailAddressesOfStudents(List<Long> students_id){
         return studentDao.getEmails(students_id);
     }
 }
