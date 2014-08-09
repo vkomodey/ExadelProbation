@@ -11,50 +11,80 @@
             </div>
 
         </div>
-        <div class="pull-right">
-            <div class="input-group custom-search-form">
-                <input type="text" data-ng-model="search.surname" class="form-control" placeholder="Search by surname">
-            </div>
-            <!-- /input-group -->
-        </div>
     </div>
     <!--Filter-->
-    <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion2" href="#filter">
-            Filter
-        </a>
-    </h4>
-    <div id="filter" class="panel-collapse collapse">
-        <div class="panel-body">
-    <select data-ng-model="filterItem.course" data-ng-options="item.name for item in filterOptions.courses">
-    </select>
-    <select data-ng-model="filterItem.workinghour" data-ng-options="item.name for item in filterOptions.workinghours">
-    </select>
-    <select data-ng-model="filterItem.salary" data-ng-options="item.name for item in filterOptions.salaries">
-    </select>
-    <select data-ng-model="filterItem.englishlevel" data-ng-options="item.name for item in filterOptions.englishlevels">
-    </select>
-    <select data-ng-model="filterItem.techname" data-ng-options="item.name for item in filterParams.technames">
-    </select>
-    <select data-ng-model="filterItem.techname" data-ng-options="item.name for item in filterParams.technames">
-    </select>
-    <select data-ng-model="filterItem.techname" data-ng-options="item.name for item in filterParams.technames">
-    </select>
-    <select data-ng-model="filterItem.faculty" data-ng-options="item.name for item in filterParams.faculties">
-    </select>
-    <select data-ng-model="filterItem.university" data-ng-options="item.name for item in filterParams.universities">
-    </select>
-    <select data-ng-model="filterItem.study_end_year"
-            data-ng-options="item.name for item in filterParams.study_end_years">
-    </select>
-    <select data-ng-model="filterItem.curatorSurname" data-ng-options="item.surname for item in filterParams.curators">
-    </select>
-            </div>
+    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">
+            Students In Exadel
+            </h2>
+        <div class="pull-right">
+                    <span class="clickable" href="/rest/downloadPDF?ids={{toJsonStudentCheckedArray()}}" data-ng-if="checkedStudArray.length" ><span
+                            class="glyphicon glyphicon-file"></span> PDF
+                    </span>
+                    <span  class="clickable" href="/rest//downloadExcel?ids={{toJsonStudentCheckedArray()}}" data-ng-if="checkedStudArray.length" ><span
+                            class="glyphicon glyphicon-file"></span> Excel
+                    </span>
+
+                    <span class="clickable" data-ng-if="checkedStudArray.length" data-ng-click="reloadCuratorsList()" data-target="#curatorsListModal" data-toggle="modal"
+                     ><span class="glyphicon glyphicon-user"></span> Appoint curator
+                    </span>
+                    <span  class="clickable" data-ng-if="checkedStudArray.length"  data-target="#sendEmail" title="Send email to checked students" data-toggle="modal"><span
+                            class="glyphicon glyphicon-envelope"></span>
+                    </span>
+         <span class=" clickable" data-toggle="collapse"  data-parent="#accordion2" data-target="#filter" title="Filter">
+            <span class="glyphicon glyphicon-filter"></span>
+         </span>
+            <span>
+                <input type="text" data-ng-model="search.surname" class="form-control search" placeholder="Search by surname">
+                </span>
         </div>
 
-    <div class="row">
-        <div class="col-lg-12 well-sm">
-            <div class="btn-toolbar">
+    </div>
+        <div class="panel-body">
+    <div id="filter" class="collapse">
+        <div class=" row well-sm">
+     <div class="col-md-2">
+    <select class="form-control" data-ng-model="filterItem.course" data-ng-options="item.name for item in filterOptions.courses">
+    </select>
+     </div>
+            <div class="col-md-2">
+    <select class="form-control" data-ng-model="filterItem.workinghour" data-ng-options="item.name for item in filterOptions.workinghours">
+    </select></div>
+                <div class="col-md-2">
+    <select class="form-control" data-ng-model="filterItem.salary" data-ng-options="item.name for item in filterOptions.salaries">
+    </select></div>
+                    <div class="col-md-2">
+    <select class="form-control" data-ng-model="filterItem.englishlevel" data-ng-options="item.name for item in filterOptions.englishlevels">
+    </select></div>
+                        <div class="col-md-2">
+    <select class="form-control" data-ng-model="filterItem.techname" data-ng-options="item.name for item in filterParams.technames">
+    </select></div>
+                            <div class="col-md-2">
+    <select class="form-control" data-ng-model="filterItem.techname" data-ng-options="item.name for item in filterParams.technames">
+    </select></div>
+                                <div class="col-md-2">
+    <select class="form-control" data-ng-model="filterItem.techname" data-ng-options="item.name for item in filterParams.technames">
+    </select></div>
+                                    <div class="col-md-2">
+    <select class="form-control" data-ng-model="filterItem.faculty" data-ng-options="item.name for item in filterParams.faculties">
+    </select></div>
+                                        <div class="col-md-2">
+    <select class="form-control" data-ng-model="filterItem.university" data-ng-options="item.name for item in filterParams.universities">
+    </select></div>
+                                            <div class="col-md-2">
+    <select class="form-control" data-ng-model="filterItem.study_end_year"
+            data-ng-options="item.name for item in filterParams.study_end_years">
+    </select>
+                                                </div>
+            <div class="col-md-2">
+    <select class="form-control" data-ng-model="filterItem.curatorSurname" data-ng-options="item.surname for item in filterParams.curators">
+    </select>
+                </div>
+        </div>
+        </div>
+    </div>
+       <!--     <div class="btn-toolbar">
                 <div class="btn-group">
                     <a href="/rest/downloadPDF?ids={{toJsonStudentCheckedArray()}}" data-ng-if="checkedStudArray.length"  class="btn btn-primary"><span
                             class="glyphicon glyphicon-file"></span> PDF
@@ -70,7 +100,7 @@
                             class="glyphicon glyphicon-envelope"></span> Send email to checked students
                     </a>
                 </div>
-            </div>
+            </div>-->
             <table id="mytable" class="table" ng-table="tableParams">
                 <tr data-ng-repeat="user in studentsList| filter:search | orderBy:params.orderBy() |
                  filter:customFilterCourse | filter:customFilterEnglish | filter:customFilterHours |
@@ -95,9 +125,8 @@
                             class="glyphicon glyphicon-pencil"></span></a></p></td>
                 </tr>
             </table>
-        </div>
-    </div>
 </div>
+    </div>
 <!------------------------------------MODAL FOR CREATE STUDENT--------------------------------------->
 <div data-backdrop="static" class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="create"
      aria-hidden="true"
