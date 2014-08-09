@@ -3,21 +3,16 @@
  */
 studentsControllers.controller('StudentsListOnProjectCtrl', ['$scope', 'StudentsListOnProjectFactory','$q', function($scope,StudentsListOnProjectFactory,$q) {
     var reloadStudentsOnProject = function(){
-        if($scope.studentsListOnProjectId == null)
-        return;
+
         var deferred = $q.defer();
-        StudentsListOnProjectFactory.getStudentsListOnProject({projectId: $scope.studentsListOnProjectId},function(data){
-            $scope.studentsOnProjectList = data;
+        StudentsListOnProjectFactory.getStudentsListOnProject({projectId: 7},function(data){
+            $scope.studentsListOnProject = data;
         });
-        deferred.resolve($scope.studentsOnProjectList);
+        deferred.resolve($scope.studentsListOnProject);
     };
     $scope.$watch("studentsListOnProjectId", function(){
         if($scope.studentsListOnProjectId == null)
             return;
-        var deferred = $q.defer();
-        StudentsListOnProjectFactory.getStudentsListOnProject({projectId: $scope.studentsListOnProjectId},function(data){
-            $scope.studentsOnProjectList = data;
-        });
-        deferred.resolve($scope.studentsOnProjectList);
+        reloadStudentsOnProject();
     });
 }]);

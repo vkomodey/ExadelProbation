@@ -28,9 +28,9 @@
                 <h4 class="modal-title custom_align" id="Heading">Students on project</h4>
             </div>
             <div class="modal-body">
-                <table class="table">
-                    <tr data-OnProjectParamsent in studentsOnProjectList">
-                        <td></td>
+                <table class="table" data-ng-table="studentsListOnProjectParams">
+                    <tr data-ng-repeat="student in studentsListOnProject | orderBy: params.orderBy() ">
+                        <td data-title="'Name'" sortable="'name'">{{student.name}}</td>
                     </tr>
                 </table>
             <div class="modal-footer ">

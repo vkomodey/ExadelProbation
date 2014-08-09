@@ -14,10 +14,10 @@ var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
         $scope.projectList = projectList;
         $scope.saveIdForDelete = function(id){
             $scope.deleteProjectId = id;
-        }
+        };
         $scope.saveIdForShowStudentsList = function(id) {
             $scope.studentsListOnProjectId = id;
-        }
+        };
     }]);
 ProjectListCtrl.projectList = function(projectListFactory,$q) {
     var deferred = $q.defer();
