@@ -20,7 +20,7 @@ public class StudentExams implements Serializable {
 		return grade;
 	}
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
