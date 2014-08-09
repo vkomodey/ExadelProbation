@@ -1,8 +1,10 @@
 package com.exadel.controller.json;
 
 import com.exadel.controller.json.constants.EmailURI;
-import com.exadel.model.view.EmailView;
-import com.exadel.service.EmailService;
+import com.exadel.service.StudentService;
+import com.exadel.util.JsonUtil;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.slf4j.Logger;
@@ -23,17 +25,18 @@ import java.util.List;
 public class SendEmailController {
     private static Logger logger= LoggerFactory.getLogger(SendEmailController.class);
     @Autowired
-    EmailService emailService;
+    StudentService studentService;
     @Autowired
     private MailSender mailSender;
     @RequestMapping(value = EmailURI.SEND_EMAIL, method = RequestMethod.POST)
-    public @ResponseBody void sendEmail(@RequestBody String str) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        EmailView emailView = mapper.readValue(str, EmailView.class);
-        List<String> allEmailsById = emailService.getAllEmailsById(emailView.getId());
+    public @ResponseBody void sendEmail(@RequestBody String str,ObjectMapper om) throws IOException {
+    	JsonNode rootnode=om.readTree(str);
+    	List<Long> ids=om.readValue(rootnode.path("id").traverse(), JsonUtil.listOfLongTypeRef);
+    	String messageText=rootnode.get("message").asText();
+        List<String> allEmailsById = studentService.getAllEmailAddressesOfStudents(ids);
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setText(emailView.getMessage());
-        message.setSubject(emailView.getTitle());
+        message.setText(messageText);
+        message.setSubject(messageText);
         for(String email: allEmailsById){
             logger.info("start sending message to " + email);
             message.setTo(email);

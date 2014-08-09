@@ -27,11 +27,6 @@ public class UserDaoImpl extends GenericLivingDaoImpl<com.exadel.model.entity.Us
             add(new SimpleGrantedAuthority(user.getRole()));
         }});
     }
-
-    public com.exadel.model.entity.User find(long id) {
-        return (com.exadel.model.entity.User) getSessionFactory().getCurrentSession().load(com.exadel.model.entity.User.class, id);
-    }
-
     public com.exadel.model.entity.User find(String login) {
 
         return (com.exadel.model.entity.User) getSessionFactory().getCurrentSession().bySimpleNaturalId(com.exadel.model.entity.User.class).load(login);

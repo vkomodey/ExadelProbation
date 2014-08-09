@@ -3,7 +3,6 @@ package com.exadel.service.impl;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 
 import com.exadel.model.view.FileExportView;
 
@@ -15,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.exadel.dao.CuratorDao;
 import com.exadel.dao.FeedbackDao;
 import com.exadel.dao.FeedbackableDao;
+import com.exadel.dao.StudCuratorJoinDao;
 import com.exadel.dao.StudentDao;
 import com.exadel.dao.UserDao;
 import com.exadel.model.constants.SpringSecurityRole;
@@ -43,6 +43,9 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	@Autowired
 	FeedbackableDao feedbackableDao;
 
+	@Autowired
+	StudCuratorJoinDao studCuratorJoinDao;
+	
 	@Transactional
 	public Student findById(long id) {
 		Student student = studentDao.find(id);
@@ -132,13 +135,6 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	}
 
 	@Transactional
-	public List<Student> getFiltered(Map<String, String> params) {
-		// TODO Auto-generated method stub
-		
-		return null;
-	}
-
-	@Transactional
 	public List<Student> getAll(List<FileExportView> ids) {
 		List<Student> list=new ArrayList<>();
         try{
@@ -151,34 +147,29 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 		return list;
 	}
 
-/*    @Transactional
-    public List<Student> getAll(List<Long> ids) {
-        List<Student> list=new ArrayList<>();
-        for(Long item :ids){
-            list.add(studentDao.find(item));
-        }
-        return list;
-    }*/
-
     @Transactional
-    public void attachStudentTo(long id, long curator_id){
+    public void attachStudentToCurator(long id, long curator_id){
     	Student student = studentDao.find(id);
         Curator curator = curatorDao.find(curator_id);
         StudentCuratorJoin scj=new StudentCuratorJoin();
         scj.setStudent(student);
         scj.setCurator(curator);
         scj.setAssignmentDate(Calendar.getInstance());
-        //don't do this at home
-        studentDao.saveEntity(scj);
+        
+        studCuratorJoinDao.save(scj);
         
     }
 
     @Transactional
-    public void attachStudentsToCurators(List<Long> listId, List<Long> curators_id){
-        for(long id: listId){
+    public void attachStudentsToCurators(List<Long> students_id, List<Long> curators_id){
+        for(long id: students_id){
             for(long curId:curators_id){
-                attachStudentTo(id, curId);
+                attachStudentToCurator(id, curId);
             }
         }
+    }
+    @Transactional
+    public List<String> getAllEmailAddressesOfStudents(List<Long> students_id){
+        return studentDao.getEmails(students_id);
     }
 }
