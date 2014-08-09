@@ -17,7 +17,7 @@ import com.exadel.model.entity.User;
 import com.exadel.model.entity.student.Technology;
 import com.exadel.model.view.IdNameSurnamePersonView;
 import com.exadel.service.FilterService;
-import com.exadel.util.JsonGenUtil;
+import com.exadel.util.JsonUtil;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -95,6 +95,6 @@ public class FilterController {
 		
 		list.add("Show All");
 		jg.writeFieldName(name);
-		JsonGenUtil.writeJSONStringObjectArray(jg, list);
+		JsonUtil.writeJSONStringObjectArray(jg, list);
 	}
 }

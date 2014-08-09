@@ -158,7 +158,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
     }*/
 
     @Transactional
-    public void attachStudentTo(long id, long curator_id){
+    public void attachStudentToCurator(long id, long curator_id){
     	Student student = studentDao.find(id);
         Curator curator = curatorDao.find(curator_id);
         StudentCuratorJoin scj=new StudentCuratorJoin();
@@ -171,14 +171,18 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
     }
 
     @Transactional
-    public void attachStudentsToCurators(List<Long> listId, List<Long> curators_id){
-        for(long id: listId){
+    public void attachStudentsToCurators(List<Long> students_id, List<Long> curators_id){
+        for(long id: students_id){
             for(long curId:curators_id){
                 if(!isStudentAttachedToThisCurator(id, curId)){
-                    attachStudentTo(id, curId);
+                    attachStudentToCurator(id, curId);
                 }
             }
         }
+    }
+    @Transactional
+    public List<String> getAllEmailAddressesOfStudents(List<Long> students_id){
+        return studentDao.getEmails(students_id);
     }
 
     @Transactional

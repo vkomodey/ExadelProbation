@@ -5,12 +5,15 @@ import com.exadel.controller.json.constants.StudURI;
 import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.view.CompositeStudentFeedbackView;
-import com.exadel.model.view.CompositeStudentsCuratorsView;
 import com.exadel.model.view.StudentView;
 import com.exadel.service.CuratorService;
 import com.exadel.service.StudentService;
 import com.exadel.service.UserService;
+import com.exadel.util.JsonUtil;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,17 +42,18 @@ public class StudentController {
     public @ResponseBody void attachStudentToCurator(@PathVariable String id,
                                               @PathVariable String curator_id){
         logger.info("start attache student with id " + id + " with curator, which id is " + curator_id);
-        studentService.attachStudentTo(Long.parseLong(id), Long.parseLong(curator_id));
+        studentService.attachStudentToCurator(Long.parseLong(id), Long.parseLong(curator_id));
         logger.info("attaching success");
     }
 
     @RequestMapping(value = StudURI.ATTACH_STUDENTS_TO_CURATORS, method = RequestMethod.POST)
-    public @ResponseBody void attachStudentsToCurators(@RequestBody String json) throws IOException{
-        ObjectMapper objectMapper = new ObjectMapper();
-        CompositeStudentsCuratorsView view = objectMapper.readValue(json, CompositeStudentsCuratorsView.class);
-        System.out.println(view.getCursId());
-        System.out.println(view.getStudsId());
-        studentService.attachStudentsToCurators(view.getStudsId(), view.getCursId());
+    public @ResponseBody void attachStudentsToCurators(@RequestBody String json,ObjectMapper om) throws IOException{
+    	JsonNode rootnode=om.readTree(json);
+    	JsonNode studnode=rootnode.path("studsId");
+    	JsonNode curnode=rootnode.path("cursId");
+    	List<Long> stud=om.readValue(studnode.traverse(), JsonUtil.listOfLongTypeRef);
+        List<Long> cur=om.readValue(curnode.traverse(), JsonUtil.listOfLongTypeRef);
+        studentService.attachStudentsToCurators(stud, cur);
     }
 
 	@RequestMapping(value = StudURI.EDIT_STUDENT_INFO, method = RequestMethod.POST)
