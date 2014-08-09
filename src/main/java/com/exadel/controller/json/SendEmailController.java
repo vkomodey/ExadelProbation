@@ -2,6 +2,7 @@ package com.exadel.controller.json;
 
 import com.exadel.controller.json.constants.EmailURI;
 import com.exadel.service.StudentService;
+import com.exadel.util.JsonUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,9 +30,8 @@ public class SendEmailController {
     private MailSender mailSender;
     @RequestMapping(value = EmailURI.SEND_EMAIL, method = RequestMethod.POST)
     public @ResponseBody void sendEmail(@RequestBody String str,ObjectMapper om) throws IOException {
-    	TypeReference<List<Long>> listOfLongType=new TypeReference<List<Long>>() {};
     	JsonNode rootnode=om.readTree(str);
-    	List<Long> ids=om.readValue(rootnode.path("id").traverse(), listOfLongType);
+    	List<Long> ids=om.readValue(rootnode.path("id").traverse(), JsonUtil.listOfLongTypeRef);
     	String messageText=rootnode.get("message").asText();
         List<String> allEmailsById = studentService.getAllEmailAddressesOfStudents(ids);
         SimpleMailMessage message = new SimpleMailMessage();

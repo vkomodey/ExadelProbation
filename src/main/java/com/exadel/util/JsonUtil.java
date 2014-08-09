@@ -4,8 +4,15 @@ import java.io.IOException;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.type.TypeReference;
 
-public class JsonGenUtil {
+public class JsonUtil {
+
+	public static final TypeReference<List<Long>> listOfLongTypeRef;
+	static {
+		listOfLongTypeRef = new TypeReference<List<Long>>() {
+		};
+	}
 
 	public static void writeJSONStringObjectArray(JsonGenerator jg,
 			List<String> list) throws IOException {

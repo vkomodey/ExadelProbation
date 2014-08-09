@@ -9,6 +9,7 @@ import com.exadel.model.view.StudentView;
 import com.exadel.service.CuratorService;
 import com.exadel.service.StudentService;
 import com.exadel.service.UserService;
+import com.exadel.util.JsonUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,9 +51,8 @@ public class StudentController {
     	JsonNode rootnode=om.readTree(json);
     	JsonNode studnode=rootnode.path("studsId");
     	JsonNode curnode=rootnode.path("cursId");
-    	TypeReference<List<Long>> typeref=new TypeReference<List<Long>>() {};
-        List<Long> stud=om.readValue(studnode.traverse(), typeref);
-        List<Long> cur=om.readValue(curnode.traverse(), typeref);
+    	List<Long> stud=om.readValue(studnode.traverse(), JsonUtil.listOfLongTypeRef);
+        List<Long> cur=om.readValue(curnode.traverse(), JsonUtil.listOfLongTypeRef);
         studentService.attachStudentsToCurators(stud, cur);
     }
 
