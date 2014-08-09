@@ -11,21 +11,12 @@ import com.exadel.model.entity.student.Student;
 @Repository
 public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 		StudentDao {
-	public Student find(long id) {
-		return (Student) getSessionFactory().getCurrentSession().get(
-				Student.class, id);
-	}
 
 	public Student find(String login) {
 		Session session = getSessionFactory().getCurrentSession();
 		Student stud = (Student) session.bySimpleNaturalId(Student.class).load(
 				login);
 		return stud;
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<Student> getAll() {
-		return getSessionFactory().getCurrentSession().createQuery("from Student").list();
 	}
 
     public void updateByMerge(Student st){
