@@ -656,6 +656,7 @@ studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routePar
 studentsControllers.controller('CreateProjectCtrl', ['$scope', '$http', function($scope,$http,$q) {
     $scope.createProject = function() {
         $http.post('/rest/proj/add',$scope.title).success(function(){
+            $scope.title=null;
             $scope.reloadProjectList();
         })
             .error(function(status,data) {
@@ -674,7 +675,7 @@ studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function
         };
         $http.post('/rest/stud/create',newStudent)
             .success(function() {
-                $scope.PopupCssClass = 'popup-hide';
+                $scope.login=null;
                 $scope.reloadList();
             })
             .error(function(data,status) {
