@@ -13,7 +13,7 @@ import com.exadel.dao.GenericDao;
 public abstract class GenericDaoImpl<ENTITY> extends HibernateDaoSupport
 		implements GenericDao<ENTITY> {
 	protected Type type;
-
+	protected String typeString;
 	/**
 	 * stolen from jackson TypeReference constructor
 	 */
@@ -24,18 +24,19 @@ public abstract class GenericDaoImpl<ENTITY> extends HibernateDaoSupport
 					"Internal error: TypeReference constructed without actual type information");
 		}
 		type = ((ParameterizedType) superClass).getActualTypeArguments()[0];
+		typeString= type.toString().replace("class ","");
 	}
 
 	@SuppressWarnings("unchecked")
 	public ENTITY find(long id) {
 		return (ENTITY) getSessionFactory().getCurrentSession().load(
-				type.getClass(), id);
+				typeString, id);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<ENTITY> getAll() {
 		return (List<ENTITY>) getSessionFactory().getCurrentSession()
-				.createQuery("from " + type.toString());
+				.createQuery("from " + typeString).list();
 	}
 
 	@Autowired
