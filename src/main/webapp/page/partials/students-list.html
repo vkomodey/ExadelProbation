@@ -7,9 +7,7 @@
                 </button>
             </div>
             <div class="col-md-3 col-md-offset-1" data-ng-if="checkedStudArray.length">
-                <button data-target="#sendEmail" data-toggle="modal" class="btn btn-primary btn-success"><span
-                        class="glyphicon glyphicon-envelope"></span> Send email to checked students
-                </button>
+
             </div>
 
         </div>
@@ -20,25 +18,14 @@
             <!-- /input-group -->
         </div>
     </div>
-    <div class="row well-sm">
-        <div class="col-md-3">
-            <a href="/rest/downloadPDF?ids={{toJsonStudentCheckedArray()}}" class="btn btn-primary btn-success"><span
-                    class="glyphicon glyphicon-envelope"></span>PDF
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="/rest//downloadExcel?ids={{toJsonStudentCheckedArray()}}" class="btn btn-primary btn-success"><span
-                    class="glyphicon glyphicon-envelope"></span>Excel
-            </a>
-        </div>
-        <div class="col-md-3" data-ng-if="checkedStudArray.length">
-            <button data-ng-click="reloadCuratorsList()" data-target="#curatorsListModal" data-toggle="modal" class="btn btn-primary btn-success"><span
-                    class="glyphicon glyphicon-envelope" ></span> Appoint a curator
-            </button>
-        </div>
-    </div>
     <!--Filter-->
-
+    <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion2" href="#filter">
+            Filter
+        </a>
+    </h4>
+    <div id="filter" class="panel-collapse collapse">
+        <div class="panel-body">
     <select data-ng-model="filterItem.course" data-ng-options="item.name for item in filterOptions.courses">
     </select>
     <select data-ng-model="filterItem.workinghour" data-ng-options="item.name for item in filterOptions.workinghours">
@@ -62,11 +49,29 @@
     </select>
     <select data-ng-model="filterItem.curatorSurname" data-ng-options="item.surname for item in filterParams.curators">
     </select>
+            </div>
+        </div>
 
     <div class="row">
         <div class="col-lg-12 well-sm">
-            <table id="mytable" class="table" ng-table="tableParams">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <a href="/rest/downloadPDF?ids={{toJsonStudentCheckedArray()}}" data-ng-if="checkedStudArray.length"  class="btn btn-primary"><span
+                            class="glyphicon glyphicon-file"></span> PDF
+                    </a>
+                    <a href="/rest//downloadExcel?ids={{toJsonStudentCheckedArray()}}" data-ng-if="checkedStudArray.length" class="btn btn-primary"><span
+                            class="glyphicon glyphicon-file"></span> Excel
+                    </a>
 
+                    <a data-ng-if="checkedStudArray.length" data-ng-click="reloadCuratorsList()" data-target="#curatorsListModal" data-toggle="modal"
+                            class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> Appoint a curator
+                    </a>
+                    <a data-ng-if="checkedStudArray.length"  data-target="#sendEmail" data-toggle="modal" class="btn btn-primary btn-primary"><span
+                            class="glyphicon glyphicon-envelope"></span> Send email to checked students
+                    </a>
+                </div>
+            </div>
+            <table id="mytable" class="table" ng-table="tableParams">
                 <tr data-ng-repeat="user in studentsList| filter:search | orderBy:params.orderBy() |
                  filter:customFilterCourse | filter:customFilterEnglish | filter:customFilterHours |
                  filter:customFilterSalary | filter:customFilterTech|filter:customFilterFaculty|
@@ -176,8 +181,8 @@
                         <td>
                             <input data-ng-click="checkedCurator(curator.id)" type="checkbox" class="checkthis"/>
                         </td>
-                        <td data-title="'Name'" sortable="fio">
-                            {{curator.fio}}
+                        <td data-title="'Name'" sortable="'surname'">
+                            {{curator.firstname + ' ' + curator.surname}}
                         </td>
                     </tr>
                 </table>
