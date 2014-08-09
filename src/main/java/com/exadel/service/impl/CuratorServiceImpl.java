@@ -48,6 +48,7 @@ public class CuratorServiceImpl extends GenericLivingServiceImpl<Curator> implem
 	}
 
 	@Override
+    @Transactional
 	public List<Curator> getAll() {
 		return curatorDao.getAll();
 	}
