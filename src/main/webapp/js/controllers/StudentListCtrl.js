@@ -1,7 +1,25 @@
 
 var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
-    '$scope','$filter','$routeParams','studentsListFactory','CuratorsListFactory','filterParamsFactory', 'ngTableParams','$q','studentsList','$interval',
-    function( $scope, $filter,$routeParams, studentsListFactory,CuratorsListFactory,filterParamsFactory, ngTableParams, $q,studentsList,$interval) {
+    '$scope','$filter','$routeParams','studentsListFactory','CuratorsListFactory','filterParamsFactory', 'ngTableParams','$q','studentsList','$interval','$http',
+    function( $scope, $filter,$routeParams, studentsListFactory,CuratorsListFactory,filterParamsFactory, ngTableParams, $q,studentsList,$interval,$http) {
+    	$scope.exportExcel= function() {
+            $http.post('/rest/downloadExcel',$scope.checkedStudArray)
+                .success(function(data) {
+                    window.location.href='/rest/downloadExcel/'+data
+                })
+                .error(function(data,status) {
+                    alert('ERROR '+ status);
+                });
+        };
+        $scope.exportPDF= function() {
+            $http.post('/rest/downloadPDF',$scope.checkedStudArray)
+                .success(function(data) {
+                    window.location.href='/rest/downloadPDF/'+data                   
+                })
+                .error(function(data,status) {
+                    alert('ERROR '+ status);
+                });
+        };
         $scope.reloadList = function() {
             var deferred = $q.defer();
             studentsListFactory.getStudentsList(function (data) {
