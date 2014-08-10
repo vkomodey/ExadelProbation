@@ -4,8 +4,8 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
     function( $scope, $filter,$routeParams, studentsListFactory,CuratorsListFactory,filterParamsFactory, ngTableParams, $q,studentsList,$interval,$http) {
     	$scope.exportExcel= function() {
             $http.post('/rest/downloadExcel',$scope.checkedStudArray)
-                .success(function() {
-                    window.location.href='/rest/downloadExcel'                   
+                .success(function(data) {
+                    window.location.href='/rest/downloadExcel/'+data
                 })
                 .error(function(data,status) {
                     alert('ERROR '+ status);
@@ -13,8 +13,8 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
         };
         $scope.exportPDF= function() {
             $http.post('/rest/downloadPDF',$scope.checkedStudArray)
-                .success(function() {
-                    window.location.href='/rest/downloadPDF'                   
+                .success(function(data) {
+                    window.location.href='/rest/downloadPDF/'+data                   
                 })
                 .error(function(data,status) {
                     alert('ERROR '+ status);
