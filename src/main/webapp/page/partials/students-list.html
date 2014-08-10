@@ -19,10 +19,10 @@
             Students In Exadel
             </h2>
         <div class="pull-right">
-                    <span class="clickable" href="/rest/downloadPDF?ids={{toJsonStudentCheckedArray()}}" data-ng-if="checkedStudArray.length" ><span
+                    <span class="clickable" data-ng-if="checkedStudArray.length" data-ng-click="exportPDF()"><span
                             class="glyphicon glyphicon-file"></span> PDF
                     </span>
-                    <span  class="clickable" href="/rest//downloadExcel?ids={{toJsonStudentCheckedArray()}}" data-ng-if="checkedStudArray.length" ><span
+                    <span  class="clickable" data-ng-if="checkedStudArray.length" data-ng-click="exportExcel()"><span
                             class="glyphicon glyphicon-file"></span> Excel
                     </span>
 
