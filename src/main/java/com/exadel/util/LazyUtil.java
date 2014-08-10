@@ -14,7 +14,7 @@ public class LazyUtil {
 	    }
 	}
 
-	// wake up all students, they so laaaazy. denis - glazier//
+	// wake up all students, they so laaaazy. denis - vasya//
 	public static void lazyTouch(Student student){
 	    student.getStudy().getExams().size();
 	    student.getSkillSet().size();

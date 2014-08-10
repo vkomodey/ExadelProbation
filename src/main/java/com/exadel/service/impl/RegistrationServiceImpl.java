@@ -1,5 +1,6 @@
 package com.exadel.service.impl;
 
+import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.student.ExadelWork;
 import com.exadel.model.entity.student.ExadelPractice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,8 +84,9 @@ public class RegistrationServiceImpl implements RegistrationService {
         Student stud=new Student();
         stud.setLogin(view.getLogin());
         stud.setPassword(DEFAULT_PASSWORD);
+        stud.setState(StudentStateEnum.PRACTICE);
         ExadelPractice studPractice = new ExadelPractice();
-        studPractice.setOnProbation(true);
+        studPractice.setOnProbation(false);
         studPractice.setPracticeStart(Calendar.getInstance());
         stud.setPractice(studPractice);
         studentDao.save(stud);
