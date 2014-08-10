@@ -1,11 +1,22 @@
 <div class="container">
 <ul data-ng-show="studentInfo" class="nav nav-tabs" id="tab">
-    <li class="active"><a href="#personInfo" data-toggle="tab" data-target="#personInfo">Person info</a></li>
+    <li class="active">
+        <a href="#personInfo" data-toggle="tab" data-target="#personInfo">Person info</a>
+    </li>
     <li><a href="#contactInfo" data-toggle="tab" data-target="#contactInfo">Contact info</a></li>
     <li><a href="#studyInfo" data-toggle="tab">Study info</a></li>
     <li><a href="#skills" data-toggle="tab">Skills</a></li>
-    <li><a href="#exams" data-toggle="tab">Exams</a></li>
+    <li>
+        <a data-ng-show="" href="#exams" data-toggle="tab">Exams</a></li>
     <li><a href="#feedbacks" data-toggle="tab">Feedbacks table</a></li>
+    <div class="pull-right">
+    <a data-ng-if="studentInfo" href='/rest/downloadPDF?ids=["id":{{studentInfo.id}}]'  class="btn btn-primary"><span
+            class="glyphicon glyphicon-file"></span> PDF
+                    </a>
+                    <a data-ng-if="studentInfo"  class="btn btn-primary" href='/rest//downloadExcel?ids=["id":{{studentInfo.id}}]'><span
+                            class="glyphicon glyphicon-file"></span> Excel
+                    </a>
+    </div>
 </ul>
 <form name="studentInfoForm" class="form-horizontal" ng-controller="StudentInfoCtrl">
 <div class="tab-content">

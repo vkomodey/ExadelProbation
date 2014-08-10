@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="../css/projectListTable.css"/>
     <link rel="stylesheet" href="../css/table-style.css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/transition.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/collapse.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/tooltip.js"></script>
     <script src="../js/built.js"></script>
 </head>
 <body ng-app="studentsApp">

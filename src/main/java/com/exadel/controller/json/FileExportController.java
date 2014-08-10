@@ -1,13 +1,11 @@
 package com.exadel.controller.json;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.exadel.controller.json.constants.ExportURI;
-import com.exadel.model.view.FileExportView;
 import com.exadel.service.StudentService;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.exadel.util.JsonUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.slf4j.Logger;
@@ -26,18 +24,18 @@ public class FileExportController {
     StudentService service;
 
     @RequestMapping(value = ExportURI.DOWNLOAD_EXCEL, method = RequestMethod.GET)
-    public @ResponseBody ModelAndView downloadExcel(@RequestParam("ids")  String str) throws IOException {
+    public ModelAndView downloadExcel(@RequestParam("ids")  String str,ObjectMapper mapper) throws IOException {
         logger.info("Getting Excel file");
-        ObjectMapper mapper = new ObjectMapper();
-        List<FileExportView> list = mapper.readValue(str, new TypeReference<ArrayList<FileExportView>>() {});
+        List<Long> list=JsonUtil.readBelskiyIdObject(str);
+        //List<Long> list=mapper.readValue(str, JsonUtil.listOfLongTypeRef);
         return new ModelAndView("excelView", "list", service.getAll(list));
     }
 
     @RequestMapping(value = ExportURI.DOWNLOAD_PDF, method = RequestMethod.GET)
-    public @ResponseBody ModelAndView downloadPDF(@RequestParam("ids") String str) throws IOException {
+    public ModelAndView downloadPDF(@RequestParam("ids") String str,ObjectMapper mapper) throws IOException {
         logger.info("Getting pdf file");
-        ObjectMapper mapper = new ObjectMapper();
-        List<FileExportView> list = mapper.readValue(str, new TypeReference<ArrayList<FileExportView>>() {});
+        List<Long> list=JsonUtil.readBelskiyIdObject(str);
+        //List<Long> list=mapper.readValue(str, JsonUtil.listOfLongTypeRef);
         return new ModelAndView("pdfView", "list", service.getAll(list));
     }
 }

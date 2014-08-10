@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.exadel.dao.CuratorDao;
 import com.exadel.dao.FeedbackDao;
 import com.exadel.dao.FeedbackableDao;
+import com.exadel.dao.SkillTypeDao;
+import com.exadel.dao.StudCuratorJoinDao;
 import com.exadel.dao.StudentDao;
 import com.exadel.dao.UserDao;
 import com.exadel.model.constants.SpringSecurityRole;
@@ -19,7 +21,10 @@ import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.government.Curator;
 import com.exadel.model.entity.government.Feedbackable;
 import com.exadel.model.entity.join.StudentCuratorJoin;
+import com.exadel.model.entity.student.Skill;
+import com.exadel.model.entity.student.SkillType;
 import com.exadel.model.entity.student.Student;
+import com.exadel.model.entity.student.StudentExams;
 import com.exadel.model.view.CompositeStudentFeedbackView;
 import com.exadel.model.view.FeedbackView;
 import com.exadel.model.view.StudentView;
@@ -39,6 +44,11 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	StudentDao studentDao;
 	@Autowired
 	FeedbackableDao feedbackableDao;
+
+	@Autowired
+	StudCuratorJoinDao studCuratorJoinDao;
+	@Autowired
+	SkillTypeDao skillTypeDao;
 
 	@Transactional
 	public Student findById(long id) {
@@ -90,12 +100,30 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 
 	@Transactional
 	public void modify(StudentView view, long id) {
-        Student st = studentDao.find(id);
-        LazyUtil.lazyTouchWithTechs(st);
-        //studentDao.detach(st);
-        
-        st.fromView(view);
-        studentDao.updateByMerge(st);
+		Student st = studentDao.find(id);
+		Set<String> skillnames = skillTypeDao.getSkillNames();
+		Iterator<Skill> it = view.getSkillSet().iterator();
+		while (it.hasNext()) {
+			Skill s = it.next();
+			s.setId(null);
+			try {
+				String skillname = s.getType().getName();
+				if (skillname == null
+						|| !skillnames.contains(s.getType().getName())) {
+					it.remove();
+				} else {
+					s.setType(skillTypeDao.find(skillname)); //get rid of id problem
+					skillnames.remove(skillname); //allow no two skills with same name for student
+				}
+			} catch (NullPointerException x) {
+				it.remove();
+			}
+		}
+		for (StudentExams se : view.getStudy().getExams()) {
+			se.setId(null);
+		}
+		st.fromView(view);
+		studentDao.updateByMerge(st);
 	}
 
 	@Transactional
@@ -107,7 +135,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	public CompositeStudentFeedbackView generateStudentViewForUser(
 			long stud_id, String role) {
 		Student stud = studentDao.find(stud_id);
-        LazyUtil.lazyTouchWithTechs(stud);
+		LazyUtil.lazyTouchWithTechs(stud);
 		CompositeStudentFeedbackView view = new CompositeStudentFeedbackView();
 		if (role.equals(SpringSecurityRole.ADMIN)) {
 			view.setFeedbacks(this.getFeedbacksForStudentByStudId(stud_id));
@@ -116,11 +144,11 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 			switch (role) {
 			case SpringSecurityRole.CURATOR:
 			case SpringSecurityRole.FEEDBACKER:
-                view.setFeedbacks(this.getFeedbacksForStudentByStudId(stud_id));
+				view.setFeedbacks(this.getFeedbacksForStudentByStudId(stud_id));
 				break;
 			case SpringSecurityRole.PERSONNEL_DEPARTMENT:
 			case SpringSecurityRole.GOVERNMENT:
-                view.setFeedbacks(this.getFeedbacksForStudentByStudId(stud_id));
+				view.setFeedbacks(this.getFeedbacksForStudentByStudId(stud_id));
 				break;
 			}
 		}
@@ -129,45 +157,24 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	}
 
 	@Transactional
-	public List<Student> getFiltered(Map<String, String> params) {
-		// TODO Auto-generated method stub
-		
-		return null;
-	}
-
-	@Transactional
-	public List<Student> getAll(List<FileExportView> ids) {
-		List<Student> list=new ArrayList<>();
-        try{
-		for(FileExportView item :ids){
-			list.add(studentDao.find(item.getId()));
+	public List<Student> getAll(List<Long> ids) {
+		List<Student> list = new ArrayList<>();
+		for(Long id:ids){
+			list.add(this.findById(id));
 		}
-        }catch(Exception e){
-            e.printStackTrace();
-        }
 		return list;
 	}
 
-/*    @Transactional
-    public List<Student> getAll(List<Long> ids) {
-        List<Student> list=new ArrayList<>();
-        for(Long item :ids){
-            list.add(studentDao.find(item));
-        }
-        return list;
-    }*/
-
-    @Transactional
-    public void attachStudentToCurator(long id, long curator_id){
-    	Student student = studentDao.find(id);
+	@Transactional
+	public void attachStudentToCurator(long id, long curator_id) {
+        Student student = studentDao.find(id);
         Curator curator = curatorDao.find(curator_id);
-        StudentCuratorJoin scj=new StudentCuratorJoin();
+        StudentCuratorJoin scj = new StudentCuratorJoin();
         scj.setStudent(student);
         scj.setCurator(curator);
         scj.setAssignmentDate(Calendar.getInstance());
-        //don't do this at home
-        studentDao.saveEntity(scj);
-        
+
+        studCuratorJoinDao.save(scj);
     }
 
     @Transactional
