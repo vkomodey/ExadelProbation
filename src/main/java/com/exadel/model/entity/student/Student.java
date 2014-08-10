@@ -172,7 +172,6 @@ public class Student extends User {
 		this.setStudy(view.getStudy());
 		for (StudentExams se : this.getStudy().getExams()) {
 			se.setStudent(this);
-			se.setId(null);
 		}
 	}
 
