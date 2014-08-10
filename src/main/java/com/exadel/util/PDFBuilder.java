@@ -84,10 +84,10 @@ public class PDFBuilder extends AbstractPdfView {
 
             if(stud.getWork()!=null){
                 table.addCell(nullCheck(stud.getWork().getWorkStartDate()));
-                table.addCell(nullCheck(stud.getWork().getHours_current().toString()));
-                table.addCell(nullCheck(stud.getWork().getIsBillable().toString()));
-                table.addCell(nullCheck(stud.getWork().getBillableStartDate().toString()));
-                table.addCell(nullCheck(stud.getWork().getCurrentProjectRole().toString()));
+                table.addCell(nullCheck(stud.getWork().getHours_current()));
+                table.addCell(nullCheck(stud.getWork().getIsBillable()));
+                table.addCell(nullCheck(stud.getWork().getBillableStartDate()));
+                table.addCell(nullCheck(stud.getWork().getCurrentProjectRole()));
                 table.addCell(convertTechnologySet(stud.getWork().getCurrentUsedTechnologies()));
             }else{
                 fillEmpty(table,workNumber);
