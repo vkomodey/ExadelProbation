@@ -121,7 +121,6 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
             study_end_year: $scope.filterParams.study_end_years[$scope.filterParams.study_end_years.length-1],
             curator: $scope.filterParams.curators[$scope.filterParams.curators.length-1]
         };
-
         $scope.customFilterEnglish  = function (studentsList) {
             if(studentsList.english === null && $scope.filterItem.englishlevel.name!== 'Show All'){
                 return false;
@@ -153,36 +152,24 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
 
         };
         $scope.customFilterHours= function (studentsList) {
-            if(studentsList.work===null && $scope.filterItem.workinghour.name!== 'Show All'){
-                return false;
-            }else{ if(studentsList.work===null && $scope.filterItem.workinghour.name ==='Show All'){
-                return true;
-            }else{
-                if(studentsList.work.hours_current===null && $scope.filterItem.workinghour.name!== 'Show All'){
+                if(studentsList.hours_current===null && $scope.filterItem.workinghour.name!== 'Show All'){
                     return false;
-                }else{ if(studentsList.work.hours_current===null && $scope.filterItem.workinghour.name ==='Show All'){
+                }else{ if(studentsList.hours_current===null && $scope.filterItem.workinghour.name ==='Show All'){
                     return true;
                 }else{
 
-                    if ( studentsList.work.hours_current[0]=== $scope.filterItem.workinghour.name[0]) {
+                    if ( studentsList.hours_current[0]=== $scope.filterItem.workinghour.name[0]) {
                         return true;
                     } else if ($scope.filterItem.workinghour.name ==='Show All') {
                         return true;
                     } else {
                         return false;
-                    }}}}}
+                    }}}
 
         };
         $scope.customFilterSalary= function (studentsList) {
-            if(studentsList.work === null){
-                if($scope.filterItem.salary.state=== 1){
-                    return false;
-                }else
-                {
-                    return true;
-                }
-            }else{
-                if(studentsList.work.isBillable === null){
+
+                if(studentsList.isBillable === null){
                     if($scope.filterItem.salary.state=== 1){
                         return false;
                     }else
@@ -190,7 +177,7 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
                         return true;
                     }
                 }else{
-                    if ( studentsList.work.isBillable=== $scope.filterItem.salary.state) {
+                    if ( studentsList.isBillable=== $scope.filterItem.salary.state) {
                         return true;
                     } else if ($scope.filterItem.salary.name ==='Show All') {
                         return true;
@@ -198,7 +185,7 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
                         return false;
                     }
                 }
-            }
+
 
 
         };
@@ -247,35 +234,42 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
                    }}}
            };
         $scope.customFilterGraduate  = function (studentsList) {
-               if(studentsList.study.graduate_year === null && $scope.filterItem.study_end_year.name!== 'Show All'){
+               if(studentsList.study.graduate_year === null && $scope.filterItem.study_end_year.name!== 'Show All')
+               {
                    return false;
-               }else{ if(studentsList.study.graduate_year=== null && $scope.filterItem.study_end_year.name ==='Show All'){
-                   return true;
                }else{
-                   if ( studentsList.study.graduate_year.toString() === $scope.filterItem.study_end_year.name) {
+                   if(studentsList.study.graduate_year=== null && $scope.filterItem.study_end_year.name ==='Show All')
+                   {
+                   return true;
+                    }else
+                   {
+                   if ( studentsList.study.graduate_year.toString() === $scope.filterItem.study_end_year.name)
+                   {
                        return true;
-                   } else if ($scope.filterItem.study_end_year.name ==='Show All') {
+                   } else {if ($scope.filterItem.study_end_year.name ==='Show All') {
                        return true;
                    } else {
                        return false;
-                   }}}
+                   }}}}
            };
            ////do not work
         $scope.customFilterCurator  = function (studentsList) {
-               if(studentsList.study.graduate_year === null && $scope.filterItem.study_end_year.name!== 'Show All'){
-                   return false;
-               }else{ if(studentsList.study.graduate_year=== null && $scope.filterItem.study_end_year.name ==='Show All'){
-                   return true;
-               }else{
-                   if ( studentsList.study.graduate_year.toString() === $scope.filterItem.study_end_year.name) {
-                       return true;
-                   } else if ($scope.filterItem.study_end_year.name ==='Show All') {
-                       return true;
-                   } else {
-                       return false;
-                   }}}
+            if(studentsList.curator.length ===0 &&$scope.filterItem.curator.surname !=='Show All')
+            {
+                return false;
+            }else{if(studentsList.curator.length ===0 && $scope.filterItem.curator.surname ==='Show All'){
+                return true;
+            }else{
+            if ( studentsList.curator.surname === $scope.filterItem.curator.surname) {
+                return true;
+            } else{
+                if ($scope.filterItem.curator.surname ==='Show All') {
+                    return true;
+            } else {
+                return false;
+            }
+            }}}
            };
-
        });
     }]);
 StudentListCtrl.studentsList =
