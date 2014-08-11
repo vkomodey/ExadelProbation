@@ -125,6 +125,9 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 				it.remove();
 			}
 		}
+        st.getStudy().getExams().clear();
+        studentDao.flush();
+        st.getStudy().fromView(view.getStudy());
 		st.fromView(view);
 		studentDao.updateByMerge(st);
 	}

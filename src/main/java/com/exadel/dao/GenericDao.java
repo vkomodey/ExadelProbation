@@ -12,4 +12,5 @@ public interface GenericDao<ENTITY> {
 	public abstract List<ENTITY> getAll();
 
     public abstract void saveEntity(Object o);
+    public abstract void flush();
 }

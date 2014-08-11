@@ -163,9 +163,9 @@ public class Student extends User {
 		this.getSkillSet().clear();
 		this.getSkillSet().addAll(view.getSkillSet());
 		// WOW! SUCH HIBERNATE
-		for (StudentExams se : this.getStudy().getExams()) {
+		/*for (StudentExams se : this.getStudy().getExams()) {
 			se.setStudent(null);
-		}
+		}*/
 
 		this.getStudy().getExams().clear();
         this.getStudy().fromView(view.getStudy());

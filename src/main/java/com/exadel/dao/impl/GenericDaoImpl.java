@@ -51,4 +51,7 @@ public abstract class GenericDaoImpl<ENTITY> extends HibernateDaoSupport
 	public void saveEntity(Object o) {
 		getSessionFactory().getCurrentSession().saveOrUpdate(o);
 	}
+    public void flush(){
+        getSessionFactory().getCurrentSession().flush();
+    }
 }
