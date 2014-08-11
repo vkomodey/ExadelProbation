@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,9 @@ public class SendEmailController {
     StudentService studentService;
     @Autowired
     private MailSender mailSender;
+
+    @Autowired
+    private JavaMailSender javaMailSender;
     @RequestMapping(value = EmailURI.SEND_EMAIL, method = RequestMethod.POST)
     public @ResponseBody void sendEmail(@RequestBody String str,ObjectMapper om) throws IOException {
     	JsonNode rootnode=om.readTree(str);
