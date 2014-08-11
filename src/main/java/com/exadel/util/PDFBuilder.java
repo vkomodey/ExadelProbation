@@ -17,7 +17,7 @@ import java.util.Set;
 @Service
 public class PDFBuilder extends AbstractPdfView {
 
-    static final int tableSize=14;
+    static final int tableSize=13;
     static final int studyNumber=3;
     static final int workNumber=6;
     private String emptyField="empty";
@@ -46,7 +46,6 @@ public class PDFBuilder extends AbstractPdfView {
     }
 
     private void addHeader(Table table) throws BadElementException {
-        table.addCell("Id");
         table.addCell("First Name");
         table.addCell("Second Name");
         table.addCell("Surname");
@@ -68,7 +67,6 @@ public class PDFBuilder extends AbstractPdfView {
     private void fillTable(Table table,List<Student> listStud) throws BadElementException {
         for (Student stud : listStud) {
 
-            table.addCell(stud.getId().toString());
             table.addCell(stud.getFirstName());
             table.addCell(stud.getSecondName());
             table.addCell(stud.getSurname());

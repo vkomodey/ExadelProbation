@@ -94,7 +94,7 @@
                 <div class="form-group">
                     <label class="control-label" for="firstName">Phone</label>
                     <input id="phone" name="phone" type="text" ng-model="studentInfo.phone"
-                           data-ng-pattern="/ +)?((\+?7|8) ?)?((\(\d{3}\))|(\d{3}))?( )?(\d{3}[\- ]?\d{2}[\- ]?\d{2})( +)?$/" class="form-control input-md">
+                           data-ng-pattern="/ (+)?((\+?7|8) ?)?((\(\d{3}\))|(\d{3}))?( )?(\d{3}[\- ]?\d{2}[\- ]?\d{2})( +)?$/" class="form-control input-md">
                 </div>
             </div>
         </div>

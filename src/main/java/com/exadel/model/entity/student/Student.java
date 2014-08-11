@@ -170,6 +170,8 @@ public class Student extends User {
 		this.getStudy().getExams().addAll(view.getStudy().getExams());
 		view.getStudy().setExams(this.getStudy().getExams());
 		this.setStudy(view.getStudy());
+        //this.setWork(new ExadelWork());
+        this.getWork().setCurrentProjects(view.getCurrentProjects());
 		for (StudentExams se : this.getStudy().getExams()) {
 			se.setStudent(this);
 		}
@@ -192,6 +194,7 @@ public class Student extends User {
 		view.setStudy(this.getStudy());
 		view.setIsBillable(this.getWork().getIsBillable());
 		view.setHours_current(this.getWork().getHours_current());
+        view.setCurrentProjects(this.getWork().getCurrentProjects());
 		List<IdNameSurnamePersonView> viewcurators = new ArrayList<IdNameSurnamePersonView>();
 		for (StudentCuratorJoin scj : this.getCurator()) {
 			viewcurators.add(new IdNameSurnamePersonView(scj.getCurator()));

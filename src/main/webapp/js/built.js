@@ -483,6 +483,13 @@ var studentsControllers = angular.module('studentsControllers',['ngTable']);
 studentsServices = angular.module('studentsServices',['ngResource']);
 
 
+studentsApp.filter('reverse',function(){
+    return function(array) {
+        if(array == null)
+        return;
+        return array.slice().reverse();
+    };
+});
 studentsApp.config(['$routeProvider', '$locationProvider', function($routeProvider,$locationProvider){
     $routeProvider.
         when('/studentList', {
@@ -550,6 +557,12 @@ studentsServices.factory('filterParamsFactory',['$resource','$routeParams', func
         getFilterParams: {method: 'GET', isArray: false}
     });
 }]);
+studentsServices.factory('LogListFactory',['$resource',function($resource) {
+    return $resource('/rest/stud/:studId/get_log',{},{
+        getLogList: {method: 'GET', isArray: true}
+    })
+}]);
+
 studentsServices.factory('projectListFactory',['$resource', function($resource) {
     return $resource('/rest/proj/all', {}, {
         getProjectList: {method: 'GET', isArray: true}
@@ -776,6 +789,22 @@ FeedbacksCtrl.feedbacks = function (feedbacksListFactory, $q, $route) {
 
 }]);
 */
+var LogListCtrl = studentsControllers.controller('LogListCtrl', ['$scope','LogListFactory','$q', function($scope,LogListFactory,$q) {
+    var reloadLogList = function() {
+        if($scope.studIdForLog==null) {
+            return;
+        }
+        var deferred = $q.defer();
+        LogListFactory.getLogList({studId: $scope.studIdForLog},function(data) {
+            $scope.logList = data;
+        });
+        deferred.resolve($scope.logList);
+    };
+    $scope.$watch('studIdForLog',function(){
+        reloadLogList();
+    });
+}]);
+
 var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
     '$scope','projectListFactory','projectList','$q',
     function($scope,projectListFactory,projectList,$q) {
@@ -906,8 +935,8 @@ StudentInfoCtrl.deleteExam = function ($scope, index) {
 };
 
 var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
-    '$scope', '$filter', '$routeParams', 'studentsListFactory', 'CuratorsListFactory', 'filterParamsFactory', 'ngTableParams', '$q', 'studentsList', '$interval', '$http',
-    function ($scope, $filter, $routeParams, studentsListFactory, CuratorsListFactory, filterParamsFactory, ngTableParams, $q, studentsList, $interval, $http) {
+    '$scope', '$filter', '$routeParams', 'studentsListFactory', 'CuratorsListFactory','LogListFactory', 'filterParamsFactory', 'ngTableParams', '$q', 'studentsList', '$interval', '$http',
+    function ($scope, $filter, $routeParams, studentsListFactory, CuratorsListFactory,LogListFactory, filterParamsFactory, ngTableParams, $q, studentsList, $interval, $http) {
 
 
         $scope.exportExcel = function () {
@@ -927,6 +956,10 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
         /*$interval(function() {
          $scope.reloadList();
          },60000);*/
+        $scope.studIdForLog = null;
+        $scope.saveIdForLog = function(id){
+          $scope.studIdForLog = id;
+        };
         $scope.checkedStudArray = [];
         $scope.checkElement = function (id) {
             StudentListCtrl.checkElement(id, $scope.checkedStudArray);

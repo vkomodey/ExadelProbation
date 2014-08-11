@@ -1,31 +1,20 @@
 <div class="container">
-  <!--  <div class="row">
-        <div class="col-md-7">
-            <div class="col-md-3">
-                <button data-target="#create" data-toggle="modal" class="btn btn-primary btn-success"><span
-                        class="glyphicon glyphicon-plus"></span> Create student
-                </button>
-            </div>
-            <div class="col-md-3 col-md-offset-1" data-ng-if="checkedStudArray.length">
-
-            </div>
-
-        </div>
-    </div>-->
-    <!--Filter-->
     <div class="panel panel-primary">
         <div class="panel-heading scroll">
             <h2 class="panel-title col-md-3">
+                <span class="clickable" data-ng-click="reloadList()"><span
+                        class="glyphicon glyphicon-refresh"></span>
+                    </span>
                 Students In Exadel
             </h2>
 
             <div class="pull-right">
-                    <span class="clickable" data-ng-if="checkedStudArray.length" data-ng-click="exportPDF()"><span
+                    <a href="/rest/download/PDF?ids={{checkedStudArray}}" class="clickable" data-ng-if="checkedStudArray.length"><span
                             class="glyphicon glyphicon-file"></span> PDF
-                    </span>
-                    <span class="clickable" data-ng-if="checkedStudArray.length" data-ng-click="exportExcel()"><span
+                    </a>
+                    <a href="/rest/download/EXCEL?ids={{checkedStudArray}}" class="clickable" data-ng-if="checkedStudArray.length"><span
                             class="glyphicon glyphicon-file"></span> Excel
-                    </span>
+                    </a>
 
                     <span class="clickable" data-ng-if="checkedStudArray.length" data-ng-click="reloadCuratorsList()"
                           data-target="#curatorsListModal" data-toggle="modal"
@@ -141,6 +130,9 @@
                 <td data-title="'Edit'" class="text-center"><p><a href="#/studentList/{{user.id}}"
                                                                   class="btn btn-sm btn-primary"><span
                         class="glyphicon glyphicon-pencil"></span></a></p></td>
+                <td data-title="'Log'"  class="text-center"><button data-ng-click="saveIdForLog(user.id)" data-target="#logModal" data-toggle="modal" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-book">
+
+                </span></button></td>
             </tr>
         </table>
         </div>
@@ -231,6 +223,35 @@
                         </td>
                         <td data-title="'Name'" sortable="'surname'">
                             {{curator.firstname + ' ' + curator.surname}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<!------------------------------------MODAL LOG LIST-------------------------------------->
+<div data-backdrop="static" class="modal fade" id="logModal" tabindex="-1" role="dialog"
+     aria-labelledby="logModal"
+     aria-hidden="true"
+     data-ng-controller="LogListCtrl">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title custom_align" id="Heading">Log</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table" data-ng-table="logParams">
+                    <tr  data-ng-repeat="log in logList | reverse">
+                        <td data-title="'New State'">
+                            {{log.state}}
+                        </td>
+                        <td data-title="'Date'">
+                            {{log.time}}
                         </td>
                     </tr>
                 </table>

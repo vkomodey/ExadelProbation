@@ -5,7 +5,7 @@ studentsControllers.controller('StudentsListOnProjectCtrl', ['$scope', 'Students
     var reloadStudentsOnProject = function(){
 
         var deferred = $q.defer();
-        StudentsListOnProjectFactory.getStudentsListOnProject({projectId: 7},function(data){
+        StudentsListOnProjectFactory.getStudentsListOnProject({projectId: $scope.studentsListOnProjectId},function(data){
             $scope.studentsListOnProject = data;
         });
         deferred.resolve($scope.studentsListOnProject);
