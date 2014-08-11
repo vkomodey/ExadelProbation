@@ -45,9 +45,13 @@ public class FeedbackController {
 			@PathVariable("id") long studId, Principal user) throws IOException {
 		logger.info("Start saving feedback.");
 		ObjectMapper mapper = new ObjectMapper();
+        try{
 			FeedbackView feedback = mapper.readValue(str, FeedbackView.class);
 			service.saveNewFeedbackForStudentByStudId(feedback, studId,
 					user.getName());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 	}
 
 }
