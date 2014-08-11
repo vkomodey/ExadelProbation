@@ -234,22 +234,22 @@
         <div class="row">
             <div class="col-md-2">
 
-                <label class="control-label" for="exam-3">Semester-3</label>
+                <label class="control-label" for="exam-3">Semester-7</label>
                 <input id="exam-3" name="exam-3" type="text" placeholder="Grade"
                        class="form-control input-sm">
             </div>
             <div class="col-md-2">
-                <label class="control-label" for="exam-4">Semester-4</label>
+                <label class="control-label" for="exam-4">Semester-8</label>
                 <input id="exam-4" name="exam-4" type="text" placeholder="Grade"
                        class="form-control input-sm">
             </div>
             <div class="col-md-2">
-                <label class="control-label" for="exam-5">Semester-5</label>
+                <label class="control-label" for="exam-5">Semester-9</label>
                 <input id="exam-5" name="exam-5" type="text" placeholder="Grade"
                        class="form-control input-sm">
             </div>
             <div class="col-md-2">
-                <label class="control-label" for="exam-6">Semester-6</label>
+                <label class="control-label" for="exam-6">Semester-10</label>
                 <input id="exam-6" name="exam-6" type="text" placeholder="Grade"
                        class="form-control input-sm">
             </div>
