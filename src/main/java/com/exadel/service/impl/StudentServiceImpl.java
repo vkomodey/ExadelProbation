@@ -98,7 +98,6 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 		List<StudentView> vlist = new ArrayList<StudentView>();
 		for (Student s : list) {
 			LazyUtil.lazyTouch(s);
-			s.getWork().getCurrentProjects().size();
 			vlist.add(s.toView());
 		}
 		return vlist;

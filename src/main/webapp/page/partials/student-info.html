@@ -9,6 +9,8 @@
     <li>
         <a data-ng-show="" href="#exams" data-toggle="tab">Exams</a></li>
     <li><a href="#feedbacks" data-toggle="tab">Feedbacks table</a></li>
+    <li><a href="#workInfo" data-toggle="tab">Work info</a></li>
+
     <li class="pull-right">
         <div class="btn-toolbar ">
         <a data-ng-if="studentInfo" href="/rest/download/PDF?ids=[{{studentInfo.id}}]" class="btn btn-primary"><span
@@ -264,6 +266,46 @@
             </table>
         </div>
     </div>
+
+</div>
+<div class="tab-pane {{active}}" id="workInfo">
+    <div class="pull-right well-sm">
+        <a data-ng-click="sendWorkInfo()" data-ng-disabled="studentInfoForm.$invalid"
+           class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            <!-- Select input-->
+            <div class="form-group">
+                <label class="control-label" >Bill</label>
+                <select class="form-control" data-ng-model="studentInfo.isBillable"
+                        data-ng-options="item.value as item.name for item in salaries">
+                </select>
+            </div>
+            <!-- Select input-->
+            <div class="form-group">
+                <label class="control-label" >Current hours</label>
+                <select class="form-control" data-ng-model="studentInfo.hours_current"
+                        data-ng-options="item.value as item.name for item in currentHours">
+                </select>
+            </div>
+            <!-- Select input-->
+            <div class="form-group">
+                <label class="control-label" >Project</label>
+                <select class="form-control" data-ng-model="filterItem.study_end_year"
+                        data-ng-options="item.name for item in filterParams.study_end_years">
+                </select>
+            </div>
+            <!-- Select input-->
+            <div class="form-group">
+                <label class="control-label" >State</label>
+                <select class="form-control" ng-model="studentInfo.state"
+                        ng-options="item.value as item.name for item in states">
+                </select>
+            </div>
+
+        </div>
+    </div>
 </div>
 </div>
 </form>
@@ -402,7 +444,8 @@
                 </form>
             </div>
             <div class="modal-footer ">
-                <button type="button" data-dismiss="modal" data-ng-disabled="feedbackForm.$invalid" aria-hidden="true" data-ng-click="addFeedback()"
+                <button type="button" data-dismiss="modal" data-ng-disabled="feedbackForm.$invalid" aria-hidden="true"
+                        data-ng-click="addFeedback()"
                         class="btn btn-success btn-lg" style="width: 100%;"><span
                         class="glyphicon glyphicon-ok-sign"></span> Create
                 </button>

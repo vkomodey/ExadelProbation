@@ -213,18 +213,24 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                 } }
            };
         $scope.customFilterUniversity  = function (studentsList) {
-               if(studentsList.study.university === null && $scope.filterItem.university.name!== 'Show All'){
-                   return false;
-               }else{ if(studentsList.study.university=== null && $scope.filterItem.university.name ==='Show All'){
-                   return true;
-               }else{
-                   if ( studentsList.study.university=== $scope.filterItem.university.name) {
-                       return true;
-                   } else if ($scope.filterItem.university.name ==='Show All') {
-                       return true;
-                   } else {
-                       return false;
-                   }}}
+            if(studentsList.study.university === null && $scope.filterItem.university.name=== 'Show All')
+            {
+                return true;
+            }else{
+                if(studentsList.study.university=== null && $scope.filterItem.university.name !=='')
+                {
+                    return false;
+                }else{if(studentsList.study.university=== null && $scope.filterItem.university.name ===''){return true;}else
+                {
+                    if ( studentsList.study.university.toString() === $scope.filterItem.university.name)
+                    {
+                        return true;
+                    } else if ($scope.filterItem.university.name ==='Show All') {
+                        return true;
+                    } else {
+                        return false;
+                    }}
+                } }
            };
         $scope.customFilterGraduate  = function (studentsList) {
                if(studentsList.study.graduate_year === null && $scope.filterItem.study_end_year.name=== 'Show All')
@@ -291,4 +297,13 @@ StudentListCtrl.checkElement = function (id, checkedArray) {
         }
     }
     checkedArray.push(id);
+};
+StudentListCtrl.export = function (url, exportData, $http) {
+    $http.post(url, exportData)
+        .success(function (data) {
+            window.location.href = url + '/' + data
+        })
+        .error(function (data, status) {
+            alert('ERROR ' + status);
+        });
 };
