@@ -10,12 +10,12 @@
         <a data-ng-show="" href="#exams" data-toggle="tab">Exams</a></li>
     <li><a href="#feedbacks" data-toggle="tab">Feedbacks table</a></li>
     <div class="pull-right">
-    <a data-ng-if="studentInfo" href='/rest/downloadPDF?ids=["id":{{studentInfo.id}}]'  class="btn btn-primary"><span
-            class="glyphicon glyphicon-file"></span> PDF
-                    </a>
-                    <a data-ng-if="studentInfo"  class="btn btn-primary" href='/rest//downloadExcel?ids=["id":{{studentInfo.id}}]'><span
-                            class="glyphicon glyphicon-file"></span> Excel
-                    </a>
+        <button data-ng-if="studentInfo" data-ng-click="exportPDF()" class="btn btn-primary"><span
+                class="glyphicon glyphicon-file"></span> PDF
+        </button>
+        <button data-ng-if="studentInfo" data-ng-click="exportExcel()" class="btn btn-primary"><span
+                class="glyphicon glyphicon-file"></span> Excel
+        </button>
     </div>
 </ul>
 <form name="studentInfoForm" class="form-horizontal" ng-controller="StudentInfoCtrl">
@@ -80,7 +80,8 @@
             <div class="form-group">
                 <label class="control-label" for="firstName">Phone</label>
                 <input id="phone" name="phone" type="text" ng-model="studentInfo.phone"
-                       data-ng-pattern="/( +)?((\+?7|8) ?)?((\(\d{3}\))|(\d{3}))?( )?(\d{3}[\- ]?\d{2}[\- ]?\d{2})( +)?$/" class="form-control input-md">
+                       data-ng-pattern="/( +)?((\+?7|8) ?)?((\(\d{3}\))|(\d{3}))?( )?(\d{3}[\- ]?\d{2}[\- ]?\d{2})( +)?$/"
+                       class="form-control input-md">
             </div>
         </div>
     </div>
@@ -96,8 +97,9 @@
             <!-- Text input-->
             <div class="form-group">
                 <label class="control-label" for="graduateYear">Graduate year</label>
-                <input type="text" id="graduateYear" name="graduateYear"  ng-model="studentInfo.study.graduate_year"
-                         ng-pattern ="/^(([2-9][0-9][1-9][4-9])|([2-9][1-9][0-9][0-9])|([2-9][0-9][2-9][0-9])){1}$/" class="form-control input-md" >
+                <input type="text" id="graduateYear" name="graduateYear" ng-model="studentInfo.study.graduate_year"
+                       ng-pattern="/^(([2-9][0-9][1-9][4-9])|([2-9][1-9][0-9][0-9])|([2-9][0-9][2-9][0-9])){1}$/"
+                       class="form-control input-md">
             </div>
             <!-- Text input-->
             <div class="form-group">
@@ -161,7 +163,8 @@
                         </select>
                     </td>
                     <td>
-                        <input id="skillLevel" name="skillLevel" type="text" ng-model="studentInfo.skillSet[$index].level"
+                        <input id="skillLevel" name="skillLevel" type="text"
+                               ng-model="studentInfo.skillSet[$index].level"
                                class="form-control input-sm">
                     </td>
                     <td class="text-center">
@@ -264,7 +267,8 @@
 </form>
 </div>
 <!--------------------------------------- MODAL FEEDBACK------------------------------------------>
-<div data-backdrop="static" class="modal fade" id="addFeedback" data-ng-controller="AddFeedbackCtrl" tabindex="-1" role="dialog"
+<div data-backdrop="static" class="modal fade" id="addFeedback" data-ng-controller="AddFeedbackCtrl" tabindex="-1"
+     role="dialog"
      aria-labelledby="create" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

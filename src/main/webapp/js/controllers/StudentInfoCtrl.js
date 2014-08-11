@@ -1,14 +1,7 @@
 /**
  * Created by Administrator on 04.08.2014.
  */
-var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl',['$scope','$routeParams','$q','$http',function($scope,$routeParams,$q,$http) {
-    /*var getStudentInfo = function () {
-     var deferred = $q.defer();
-     $http.get('../json/studentInfo.json').success(function(data){
-     $scope.studentInfo = data;
-     });
-     deferred.resolve($scope.studentInfo);
-     };*/
+var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope', '$routeParams', '$q', '$http', function ($scope, $routeParams, $q, $http) {
     if ($scope.studentInfo == null) { //make feedback-list-tab active
         $scope.active = 'active';
     }
@@ -56,39 +49,39 @@ StudentInfoCtrl.englishLevels = [
  });
  return deferred.promise;
  }*/
-StudentInfoCtrl.getSkillSet = function($scope,$http,$q) {
+StudentInfoCtrl.getSkillSet = function ($scope, $http, $q) {
     var deferred = $q.defer();
-    $http.get('/rest/types/skill/get').success(function(data){
+    $http.get('/rest/types/skill/get').success(function (data) {
         $scope.skillTypes = data;
     });
     deferred.resolve($scope.skillTypes);
 };
-StudentInfoCtrl.addExam = function($scope){
+StudentInfoCtrl.addExam = function ($scope) {
     $scope.studentInfo.study.exams.push({
         grade: null,
         summer: true,
         course: null
     });
 }
-StudentInfoCtrl.sendStudentInfo = function($scope,$http,id) {
-    $http.post('/rest/stud/'+id+'/edit',$scope.studentInfo)
-        .success(function(){
+StudentInfoCtrl.sendStudentInfo = function ($scope, $http, id) {
+    $http.post('/rest/stud/' + id + '/edit', $scope.studentInfo)
+        .success(function () {
             alert('the info is sent');
         })
-        .error(function(data,status){
-            alert('Error: '+status);
+        .error(function (data, status) {
+            alert('Error: ' + status);
         });
 };
-StudentInfoCtrl.addSkill = function($scope) {
-    $scope.studentInfo.skillSet.push( {
+StudentInfoCtrl.addSkill = function ($scope) {
+    $scope.studentInfo.skillSet.push({
         level: null,
         id: 0,
         type: null
     })
 };
-StudentInfoCtrl.deleteSkill = function($scope,index) {
-    $scope.studentInfo.skillSet.splice(index,1);
+StudentInfoCtrl.deleteSkill = function ($scope, index) {
+    $scope.studentInfo.skillSet.splice(index, 1);
 };
-StudentInfoCtrl.deleteExam = function($scope,index) {
-    $scope.studentInfo.study.exams.splice(index,1);
+StudentInfoCtrl.deleteExam = function ($scope, index) {
+    $scope.studentInfo.study.exams.splice(index, 1);
 };

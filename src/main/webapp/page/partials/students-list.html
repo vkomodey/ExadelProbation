@@ -206,8 +206,8 @@
                         class="glyphicon glyphicon-envelope"></span> Appoint
                 </button>
                 <table class="table" data-ng-table="curatorsListParams">
-                    <tr data-ng-repeat="curator in curatorsList | orderBy: params.orderBy()">
-                        <td>
+                    <tr  data-ng-repeat="curator in curatorsList | orderBy: params.orderBy()">
+                        <td class="checkbox-td">
                             <input data-ng-click="checkedCurator(curator.id)" type="checkbox" class="checkthis"/>
                         </td>
                         <td data-title="'Name'" sortable="'surname'">

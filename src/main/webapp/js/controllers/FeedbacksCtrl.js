@@ -2,12 +2,12 @@
  * Created by Administrator on 04.08.2014.
  */
 var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
-    '$scope', '$routeParams','feedbacksListFactory','$q','studentsListFactory','$interval','student',
-    function($scope,$routeParams,feedbacksListFactory,$q,studentsListFactory,$interval,student) {
+    '$scope', '$routeParams', 'feedbacksListFactory', '$q', 'studentsListFactory', '$interval', 'student', '$http',
+    function ($scope, $routeParams, feedbacksListFactory, $q, studentsListFactory, $interval, student, $http) {
 
-        $scope.reloadList = function (){
+        $scope.reloadList = function () {
             var deferred = $q.defer();
-            feedbacksListFactory.getFeedbacksList({studId: $routeParams.studId},function(data) {
+            feedbacksListFactory.getFeedbacksList({studId: $routeParams.studId}, function (data) {
                 $scope.feedbacks = data;
             });
 
@@ -15,14 +15,26 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
 
         };
         // $scope.reloadList();
-        $interval(function() {
-            $scope.reloadList();
-        },60000);
+        /* $interval(function() {
+         $scope.reloadList();
+         },60000);*/
 
         $scope.feedbacks = student.feedbacks;
         $scope.studentInfo = student.info;
-        if($scope.feedbacks == null) {
-            $scope.cssFeedbacksList='feedbacksList-hide';
+        if ($scope.feedbacks == null) {
+            $scope.cssFeedbacksList = 'feedbacksList-hide';
+        }
+        if ($scope.studentInfo != null) {
+            $scope.exportExcel = function () {
+                var arrayToExport = [];
+                arrayToExport.push($scope.studentInfo.id);
+                StudentListCtrl.export('/rest/downloadExcel', arrayToExport, $http);
+            };
+            $scope.exportPDF = function () {
+                var arrayToExport = [];
+                arrayToExport.push($scope.studentInfo.id);
+                StudentListCtrl.export('/rest/downloadPDF', arrayToExport, $http);
+            };
         }
         // $scope.studentInfo = studentInfo;
         /*var emptyExam = {
@@ -54,10 +66,11 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
          }*/
 
     }]);
-FeedbacksCtrl.feedbacks = function(feedbacksListFactory,$q,$route) {
+FeedbacksCtrl.feedbacks = function (feedbacksListFactory, $q, $route) {
     var deferred = $q.defer();
-    feedbacksListFactory.getFeedbacksList({studId: $route.current.params.studId},function(data){
-            deferred.resolve(data);}
+    feedbacksListFactory.getFeedbacksList({studId: $route.current.params.studId}, function (data) {
+            deferred.resolve(data);
+        }
     );
     return deferred.promise;
 }
