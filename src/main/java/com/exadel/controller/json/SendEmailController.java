@@ -37,11 +37,12 @@ public class SendEmailController {
     	JsonNode rootnode=om.readTree(str);
     	List<Long> ids=om.readValue(rootnode.path("id").traverse(), JsonUtil.listOfLongTypeRef);
     	String messageText=rootnode.get("message").asText();
+        String subjectText=rootnode.get("title").asText();
         String password = rootnode.get("password").asText();
         List<String> allEmailsById = studentService.getAllEmailAddressesOfStudents(ids);
         SimpleMailMessage message = new SimpleMailMessage();
         message.setText(messageText);
-        message.setSubject(messageText);
+        message.setSubject(subjectText);
         javaMailSender.setPassword(password);
         for(String email: allEmailsById){
             logger.info("start sending message to " + email);
