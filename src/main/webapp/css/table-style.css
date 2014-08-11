@@ -24,3 +24,9 @@
 .checkbox-td {
     width: 10px;
 }
+.scroll {
+    overflow-x: auto;
+}
+.table {
+    margin-bottom: 0;
+}

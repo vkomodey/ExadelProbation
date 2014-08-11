@@ -9,14 +9,16 @@
     <li>
         <a data-ng-show="" href="#exams" data-toggle="tab">Exams</a></li>
     <li><a href="#feedbacks" data-toggle="tab">Feedbacks table</a></li>
-    <div class="pull-right">
+    <li class="pull-right">
+        <div class="btn-toolbar ">
         <button data-ng-if="studentInfo" data-ng-click="exportPDF()" class="btn btn-primary"><span
                 class="glyphicon glyphicon-file"></span> PDF
         </button>
         <button data-ng-if="studentInfo" data-ng-click="exportExcel()" class="btn btn-primary"><span
                 class="glyphicon glyphicon-file"></span> Excel
         </button>
-    </div>
+        </div>
+    </li>
 </ul>
 <form name="studentInfoForm" class="form-horizontal" ng-controller="StudentInfoCtrl">
 <div class="tab-content">
@@ -277,7 +279,7 @@
                 <h4 class="modal-title custom_align" id="Heading">Feedback</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal">
+                <form name="feedbackForm" class="form-horizontal">
                     <!-- Multiple Radios (inline) -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="profSuitability">Professional suitability</label>
@@ -400,7 +402,7 @@
                 </form>
             </div>
             <div class="modal-footer ">
-                <button type="button" data-dismiss="modal" aria-hidden="true" data-ng-click="addFeedback()"
+                <button type="button" data-dismiss="modal" data-ng-disabled="feedbackForm.$invalid" aria-hidden="true" data-ng-click="addFeedback()"
                         class="btn btn-success btn-lg" style="width: 100%;"><span
                         class="glyphicon glyphicon-ok-sign"></span> Create
                 </button>

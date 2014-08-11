@@ -13,6 +13,7 @@
             </div>
             </div>
         <div class="panel-body">
+            <div class="scroll">
         <table data-ng-table="tableParams" class="table">
             <tr ng-repeat="employee in employees | filter:search |orderBy:params.orderBy()">
                 <td data-title="'FIO'" sortable="'fio'">{{employee.fio}}</td>
@@ -20,6 +21,7 @@
                 <td data-title="'Role'" sortable="'role'">{{employee.role}}</td>
             </tr>
         </table>
+            </div>
         </div>
 </div>
 </div>

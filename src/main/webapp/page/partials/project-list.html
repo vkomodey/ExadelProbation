@@ -10,6 +10,7 @@
                 </span>
         </div>
         </div>
+        <div class="scroll">
         <table class="table projectList-table" ng-table="projectTableParams">
             <tr ng-repeat="project in projectList | filter:search | orderBy:params.orderBy()">
                 <td data-title="'Delete'" class="text-center">
@@ -26,6 +27,7 @@
                 </td>
             </tr>
         </table>
+        </div>
     </div>
 </div>
 </div>
@@ -33,7 +35,7 @@
 <div data-ng-controller="StudentsListOnProjectCtrl" data-backdrop="static" class="modal fade" id="studentsOnProject"
      tabindex="-1" role="dialog" aria-labelledby="studentsOnProject"
      aria-hidden="true">
-    <div name="emailForm" class="modal-dialog modal-lg">
+    <div name="studentsOnProject" class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

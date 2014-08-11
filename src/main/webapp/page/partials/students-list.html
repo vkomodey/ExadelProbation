@@ -15,6 +15,7 @@
     <!--Filter-->
     <div class="panel panel-primary">
         <div class="panel-heading">
+
             <h2 class="panel-title">
                 Students In Exadel
             </h2>
@@ -115,6 +116,7 @@
                      </a>
                  </div>
              </div>-->
+        <div class="scroll">
         <table id="mytable" class="table" ng-table="tableParams">
             <tr data-ng-repeat="user in studentsList| filter:search | orderBy:params.orderBy() |
                  filter:customFilterCourse | filter:customFilterEnglish | filter:customFilterHours |
@@ -139,6 +141,7 @@
                         class="glyphicon glyphicon-pencil"></span></a></p></td>
             </tr>
         </table>
+        </div>
     </div>
 </div>
 <!------------------------------------MODAL FOR CREATE STUDENT--------------------------------------->
