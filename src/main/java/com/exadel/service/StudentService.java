@@ -3,13 +3,11 @@ package com.exadel.service;
 import java.util.List;
 
 import com.exadel.model.entity.student.Student;
-import com.exadel.model.view.CompositeStudentFeedbackView;
-import com.exadel.model.view.FeedbackView;
-import com.exadel.model.view.FileExportView;
-import com.exadel.model.view.StudentView;
+import com.exadel.model.view.*;
 
 public interface StudentService extends GenericLivingService<Student> {
 	public List<FeedbackView> getFeedbacksForStudentByStudId(long id);
+    public List<StudentStateView> getStudentStateList(long id);
 	public void saveNewFeedbackForStudentByStudId(FeedbackView feedback,long id, String creator);
 	public List<StudentView> getAll();
     void modify(StudentView entity,long id);

@@ -10,6 +10,6 @@ public class GenericLivingDaoImpl <ENTITY extends IEntity>
 	@SuppressWarnings("unchecked")
 	public ENTITY find(String login) {
 		return (ENTITY) getSessionFactory().getCurrentSession()
-				.bySimpleNaturalId(type.getClass()).load(login);
+				.bySimpleNaturalId(typeString).load(login);
     }
 }

@@ -1,11 +1,13 @@
 package com.exadel.model.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.persistence.*;
 
 import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.student.Student;
+import com.exadel.model.view.StudentStateView;
 
 @Entity
 @Table(name = "student_log")
@@ -48,4 +50,12 @@ public class StudentLog {
 	public void setTime(Calendar time) {
 		this.time = time;
 	}
+
+    public StudentStateView toView() {
+        StudentStateView view=new StudentStateView();
+        SimpleDateFormat f=new SimpleDateFormat("dd.MM.YYYY");
+        view.setState(getNewState());
+        view.setTime(f.format(this.getTime().getTime()));
+        return view;
+    }
 }
