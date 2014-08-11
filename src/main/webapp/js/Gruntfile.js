@@ -23,6 +23,7 @@ module.exports = function (grunt) {
                     'lib/bootstrap-tab.js',
                     'lib/*.js',
 					'app.js',
+                    'filters/*.js',
 					'config/*.js',
 					'services/*.js',
 					'controllers/*.js'

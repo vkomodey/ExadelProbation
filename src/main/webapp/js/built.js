@@ -539,6 +539,13 @@ var studentsControllers = angular.module('studentsControllers',['ngTable']);
 studentsServices = angular.module('studentsServices',['ngResource']);
 
 
+studentsApp.filter('reverse',function(){
+    return function(array) {
+        if(array == null)
+        return;
+        return array.slice().reverse();
+    };
+});
 studentsApp.config(['$routeProvider', '$locationProvider', function($routeProvider,$locationProvider){
     $routeProvider.
         when('/studentList', {
@@ -606,6 +613,12 @@ studentsServices.factory('filterParamsFactory',['$resource','$routeParams', func
         getFilterParams: {method: 'GET', isArray: false}
     });
 }]);
+studentsServices.factory('LogListFactory',['$resource',function($resource) {
+    return $resource('/rest/stud/:studId/get_log',{},{
+        getLogList: {method: 'GET', isArray: true}
+    })
+}]);
+
 studentsServices.factory('projectListFactory',['$resource', function($resource) {
     return $resource('/rest/proj/all', {}, {
         getProjectList: {method: 'GET', isArray: true}
@@ -832,6 +845,22 @@ FeedbacksCtrl.feedbacks = function (feedbacksListFactory, $q, $route) {
 
 }]);
 */
+var LogListCtrl = studentsControllers.controller('LogListCtrl', ['$scope','LogListFactory','$q', function($scope,LogListFactory,$q) {
+    var reloadLogList = function() {
+        if($scope.studIdForLog==null) {
+            return;
+        }
+        var deferred = $q.defer();
+        LogListFactory.getLogList({studId: $scope.studIdForLog},function(data) {
+            $scope.logList = data;
+        });
+        deferred.resolve($scope.logList);
+    };
+    $scope.$watch('studIdForLog',function(){
+        reloadLogList();
+    });
+}]);
+
 var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
     '$scope','projectListFactory','projectList','$q',
     function($scope,projectListFactory,projectList,$q) {
@@ -962,8 +991,8 @@ StudentInfoCtrl.deleteExam = function ($scope, index) {
 };
 
 var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
-    '$scope', '$filter', '$routeParams', 'studentsListFactory', 'CuratorsListFactory', 'filterParamsFactory', 'ngTableParams', '$q', 'studentsList', '$interval', '$http',
-    function ($scope, $filter, $routeParams, studentsListFactory, CuratorsListFactory, filterParamsFactory, ngTableParams, $q, studentsList, $interval, $http) {
+    '$scope', '$filter', '$routeParams', 'studentsListFactory', 'CuratorsListFactory','LogListFactory', 'filterParamsFactory', 'ngTableParams', '$q', 'studentsList', '$interval', '$http',
+    function ($scope, $filter, $routeParams, studentsListFactory, CuratorsListFactory,LogListFactory, filterParamsFactory, ngTableParams, $q, studentsList, $interval, $http) {
 
 
         $scope.exportExcel = function () {
@@ -983,6 +1012,10 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
         /*$interval(function() {
          $scope.reloadList();
          },60000);*/
+        $scope.studIdForLog = null;
+        $scope.saveIdForLog = function(id){
+          $scope.studIdForLog = id;
+        };
         $scope.checkedStudArray = [];
         $scope.checkElement = function (id) {
             StudentListCtrl.checkElement(id, $scope.checkedStudArray);
@@ -1158,18 +1191,24 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
             }
            };
         $scope.customFilterFaculty  = function (studentsList) {
-               if(studentsList.study.faculty === null && $scope.filterItem.faculty.name!== 'Show All'){
-                   return false;
-               }else{ if(studentsList.study.faculty=== null && $scope.filterItem.faculty.name ==='Show All'){
-                   return true;
-               }else{
-                   if ( studentsList.study.faculty=== $scope.filterItem.faculty.name) {
-                       return true;
-                   } else if ($scope.filterItem.faculty.name ==='Show All') {
-                       return true;
-                   } else {
-                       return false;
-                   }}}
+            if(studentsList.study.faculty === null && $scope.filterItem.faculty.name=== 'Show All')
+            {
+                return true;
+            }else{
+                if(studentsList.study.faculty=== null && $scope.filterItem.faculty.name !=='')
+                {
+                    return false;
+                }else{if(studentsList.study.faculty=== null && $scope.filterItem.faculty.name ===''){return true;}else
+                {
+                    if ( studentsList.study.faculty.toString() === $scope.filterItem.faculty.name)
+                    {
+                        return true;
+                    } else if ($scope.filterItem.faculty.name ==='Show All') {
+                        return true;
+                    } else {
+                        return false;
+                    }}
+                } }
            };
         $scope.customFilterUniversity  = function (studentsList) {
                if(studentsList.study.university === null && $scope.filterItem.university.name!== 'Show All'){
@@ -1186,40 +1225,40 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                    }}}
            };
         $scope.customFilterGraduate  = function (studentsList) {
-               if(studentsList.study.graduate_year === null && $scope.filterItem.study_end_year.name!== 'Show All')
+               if(studentsList.study.graduate_year === null && $scope.filterItem.study_end_year.name=== 'Show All')
                {
-                   return false;
-               }else{
-                   if(studentsList.study.graduate_year=== null && $scope.filterItem.study_end_year.name ==='Show All')
-                   {
                    return true;
-                    }else
+               }else{
+                   if(studentsList.study.graduate_year=== null && $scope.filterItem.study_end_year.name !=='')
                    {
-                   if ( studentsList.study.graduate_year.toString() === $scope.filterItem.study_end_year.name)
+                   return false;
+                    }else{if(studentsList.study.graduate_year=== null && $scope.filterItem.study_end_year.name ===''){return true;}else
                    {
-                       return true;
-                   } else {if ($scope.filterItem.study_end_year.name ==='Show All') {
-                       return true;
-                   } else {
-                       return false;
-                   }}}}
+                       if ( studentsList.study.graduate_year.toString() === $scope.filterItem.study_end_year.name)
+                       {
+                           return true;
+                       } else if ($scope.filterItem.study_end_year.name ==='Show All') {
+                           return true;
+                       } else {
+                           return false;
+                       }}
+                   } }
            };
-           ////do not work
         $scope.customFilterCurator  = function (studentsList) {
-            if(studentsList.curator.length ===0 &&$scope.filterItem.curator.surname !=='Show All')
-            {
-                return false;
-            }else{if(studentsList.curator.length ===0 && $scope.filterItem.curator.surname ==='Show All'){
+            var i;
+            if ($scope.filterItem.curator.surname ==='Show All'){
                 return true;
-            }else{
-            if ( studentsList.curator.surname === $scope.filterItem.curator.surname) {
-                return true;
-            } else{
-                if ($scope.filterItem.curator.surname ==='Show All') {
+            }else
+            {if ($scope.filterItem.curator.surname !=='Show All'){
+                for(i=0; i<$scope.filterParams.curators.length; i++){
+                    if(studentsList.curator.length!==0)
+                    {if(studentsList.curator[i].surname === $scope.filterItem.curator.surname)
+                {
                     return true;
-            } else {
-                return false;
-            }
+                }else
+                {
+                    return false;
+                }}else{return false;}
             }}}
            };
        });

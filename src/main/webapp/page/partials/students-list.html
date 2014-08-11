@@ -119,7 +119,7 @@
                  </div>
              </div>-->
         <div class="scroll">
-        <table id="mytable" class="table" ng-table="tableParams">
+        <table id="mytable"  class="table" ng-table="tableParams">
             <tr data-ng-repeat="user in studentsList| filter:search | orderBy:params.orderBy() |
                  filter:customFilterCourse | filter:customFilterEnglish | filter:customFilterHours |
                  filter:customFilterSalary | filter:customFilterTech|filter:customFilterFaculty|
@@ -130,7 +130,7 @@
                 <td data-title="'Date'" sortable="'work.workStartDate'">{{user.work.workStartDate}}</td>
                 <td data-title="'Faculty'" sortable="'study.faculty'">{{user.study.faculty}}</td>
                 <td data-title="'Graduate'" sortable="'study.graduate_year'">{{user.study.graduate_year}}</td>
-                <td data-title="'Course/Group'" sortable="'study.course_group'">{{user.study.course_group}}</td>
+                <td class="course-group" data-title="'Course'" sortable="'study.course_group'">{{user.study.course_group[0]}}</td>
                 <td data-title="'Hours'" sortable="'work.hours_current'">{{user.work.hours_current}}</td>
                 <td data-title="'Billable'" sortable="'work.billable'">{{user.work.billable}}</td>
                 <td data-title="'Role'" sortable="'work.currentProjectRole'">{{user.work.currentProjectRole}}</td>
@@ -141,6 +141,9 @@
                 <td data-title="'Edit'" class="text-center"><p><a href="#/studentList/{{user.id}}"
                                                                   class="btn btn-sm btn-primary"><span
                         class="glyphicon glyphicon-pencil"></span></a></p></td>
+                <td data-title="'Log'"  class="text-center"><button data-ng-click="saveIdForLog(user.id)" data-target="#logModal" data-toggle="modal" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-book">
+
+                </span></button></td>
             </tr>
         </table>
         </div>
@@ -231,6 +234,35 @@
                         </td>
                         <td data-title="'Name'" sortable="'surname'">
                             {{curator.firstname + ' ' + curator.surname}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<!------------------------------------MODAL LOG LIST-------------------------------------->
+<div data-backdrop="static" class="modal fade" id="logModal" tabindex="-1" role="dialog"
+     aria-labelledby="logModal"
+     aria-hidden="true"
+     data-ng-controller="LogListCtrl">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title custom_align" id="Heading">Log</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table" data-ng-table="logParams">
+                    <tr  data-ng-repeat="log in logList | reverse">
+                        <td data-title="'New State'">
+                            {{log.state}}
+                        </td>
+                        <td data-title="'Date'">
+                            {{log.time}}
                         </td>
                     </tr>
                 </table>

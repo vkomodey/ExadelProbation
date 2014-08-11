@@ -1,6 +1,6 @@
 var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
-    '$scope', '$filter', '$routeParams', 'studentsListFactory', 'CuratorsListFactory', 'filterParamsFactory', 'ngTableParams', '$q', 'studentsList', '$interval', '$http',
-    function ($scope, $filter, $routeParams, studentsListFactory, CuratorsListFactory, filterParamsFactory, ngTableParams, $q, studentsList, $interval, $http) {
+    '$scope', '$filter', '$routeParams', 'studentsListFactory', 'CuratorsListFactory','LogListFactory', 'filterParamsFactory', 'ngTableParams', '$q', 'studentsList', '$interval', '$http',
+    function ($scope, $filter, $routeParams, studentsListFactory, CuratorsListFactory,LogListFactory, filterParamsFactory, ngTableParams, $q, studentsList, $interval, $http) {
 
 
         $scope.exportExcel = function () {
@@ -20,6 +20,10 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
         /*$interval(function() {
          $scope.reloadList();
          },60000);*/
+        $scope.studIdForLog = null;
+        $scope.saveIdForLog = function(id){
+          $scope.studIdForLog = id;
+        };
         $scope.checkedStudArray = [];
         $scope.checkElement = function (id) {
             StudentListCtrl.checkElement(id, $scope.checkedStudArray);
