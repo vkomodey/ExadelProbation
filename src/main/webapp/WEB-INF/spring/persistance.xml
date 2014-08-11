@@ -37,6 +37,7 @@
                 <value>com.exadel.model.entity.government.PersonnelDepartment</value>
                 <value>com.exadel.model.entity.Project</value>
                 <value>com.exadel.model.entity.join.StudentCuratorJoin</value>
+                <value>com.exadel.model.entity.ProjectHistory</value>
             </list>
         </property>
         <property name="hibernateProperties">
