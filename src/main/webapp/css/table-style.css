@@ -12,6 +12,15 @@
 }
 .clickable{
     cursor: pointer;
+    color: white;
+}
+.clickable:hover {
+    -webkit-transition: color 0.2s;
+    -moz-transition: color 0.2s;
+    -o-transition: color 0.2s;
+    transition: color 0.2s;
+    text-decoration: none;
+    color: #dddddd;
 }
 .search {
     display: inline-block;

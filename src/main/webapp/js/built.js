@@ -767,18 +767,6 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
         if ($scope.feedbacks == null) {
             $scope.cssFeedbacksList = 'feedbacksList-hide';
         }
-        if ($scope.studentInfo != null) {
-            $scope.exportExcel = function () {
-                var arrayToExport = [];
-                arrayToExport.push($scope.studentInfo.id);
-                StudentListCtrl.export('/rest/downloadExcel', arrayToExport, $http);
-            };
-            $scope.exportPDF = function () {
-                var arrayToExport = [];
-                arrayToExport.push($scope.studentInfo.id);
-                StudentListCtrl.export('/rest/downloadPDF', arrayToExport, $http);
-            };
-        }
         // $scope.studentInfo = studentInfo;
         /*var emptyExam = {
          grade: null,
@@ -995,12 +983,6 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
     function ($scope, $filter, $routeParams, studentsListFactory, CuratorsListFactory,LogListFactory, filterParamsFactory, ngTableParams, $q, studentsList, $interval, $http) {
 
 
-        $scope.exportExcel = function () {
-            StudentListCtrl.export('/rest/downloadExcel', $scope.checkedStudArray, $http);
-        };
-        $scope.exportPDF = function () {
-            StudentListCtrl.export('/rest/downloadPDF', $scope.checkedStudArray, $http);
-        };
         $scope.reloadList = function() {
             var deferred = $q.defer();
             studentsListFactory.getStudentsList(function (data) {
@@ -1290,15 +1272,6 @@ StudentListCtrl.checkElement = function (id, checkedArray) {
     }
     checkedArray.push(id);
 };
-StudentListCtrl.export = function (url, exportData, $http) {
-    $http.post(url, exportData)
-        .success(function (data) {
-            window.location.href = url + '/' + data
-        })
-        .error(function (data, status) {
-            alert('ERROR ' + status);
-        });
-};
 var StudentPageCtrl = studentsControllers.controller('StudentPageCtrl',['$scope','$q','$http', function($scope,$q,$http) {
     var getStudentInfo = function() {
         var deferred = $q.defer();
@@ -1330,7 +1303,7 @@ studentsControllers.controller('StudentsListOnProjectCtrl', ['$scope', 'Students
     var reloadStudentsOnProject = function(){
 
         var deferred = $q.defer();
-        StudentsListOnProjectFactory.getStudentsListOnProject({projectId: 7},function(data){
+        StudentsListOnProjectFactory.getStudentsListOnProject({projectId: $scope.studentsListOnProjectId},function(data){
             $scope.studentsListOnProject = data;
         });
         deferred.resolve($scope.studentsListOnProject);

@@ -24,18 +24,6 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
         if ($scope.feedbacks == null) {
             $scope.cssFeedbacksList = 'feedbacksList-hide';
         }
-        if ($scope.studentInfo != null) {
-            $scope.exportExcel = function () {
-                var arrayToExport = [];
-                arrayToExport.push($scope.studentInfo.id);
-                StudentListCtrl.export('/rest/downloadExcel', arrayToExport, $http);
-            };
-            $scope.exportPDF = function () {
-                var arrayToExport = [];
-                arrayToExport.push($scope.studentInfo.id);
-                StudentListCtrl.export('/rest/downloadPDF', arrayToExport, $http);
-            };
-        }
         // $scope.studentInfo = studentInfo;
         /*var emptyExam = {
          grade: null,

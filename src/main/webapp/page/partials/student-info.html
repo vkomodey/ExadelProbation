@@ -11,12 +11,12 @@
     <li><a href="#feedbacks" data-toggle="tab">Feedbacks table</a></li>
     <li class="pull-right">
         <div class="btn-toolbar ">
-        <button data-ng-if="studentInfo" data-ng-click="exportPDF()" class="btn btn-primary"><span
+        <a data-ng-if="studentInfo" href="/rest/download/PDF?ids=[{{studentInfo.id}}]" class="btn btn-primary"><span
                 class="glyphicon glyphicon-file"></span> PDF
-        </button>
-        <button data-ng-if="studentInfo" data-ng-click="exportExcel()" class="btn btn-primary"><span
+        </a>
+        <a data-ng-if="studentInfo" href="/rest/download/PDF?ids=[{{studentInfo.id}}]" class="btn btn-primary"><span
                 class="glyphicon glyphicon-file"></span> Excel
-        </button>
+        </a>
         </div>
     </li>
 </ul>

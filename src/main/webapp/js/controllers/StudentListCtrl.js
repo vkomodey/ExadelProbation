@@ -3,12 +3,6 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
     function ($scope, $filter, $routeParams, studentsListFactory, CuratorsListFactory,LogListFactory, filterParamsFactory, ngTableParams, $q, studentsList, $interval, $http) {
 
 
-        $scope.exportExcel = function () {
-            StudentListCtrl.export('/rest/downloadExcel', $scope.checkedStudArray, $http);
-        };
-        $scope.exportPDF = function () {
-            StudentListCtrl.export('/rest/downloadPDF', $scope.checkedStudArray, $http);
-        };
         $scope.reloadList = function() {
             var deferred = $q.defer();
             studentsListFactory.getStudentsList(function (data) {
@@ -297,13 +291,4 @@ StudentListCtrl.checkElement = function (id, checkedArray) {
         }
     }
     checkedArray.push(id);
-};
-StudentListCtrl.export = function (url, exportData, $http) {
-    $http.post(url, exportData)
-        .success(function (data) {
-            window.location.href = url + '/' + data
-        })
-        .error(function (data, status) {
-            alert('ERROR ' + status);
-        });
 };
