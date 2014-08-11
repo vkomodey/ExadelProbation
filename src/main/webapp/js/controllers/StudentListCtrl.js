@@ -206,18 +206,24 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
             }
            };
         $scope.customFilterFaculty  = function (studentsList) {
-               if(studentsList.study.faculty === null && $scope.filterItem.faculty.name!== 'Show All'){
-                   return false;
-               }else{ if(studentsList.study.faculty=== null && $scope.filterItem.faculty.name ==='Show All'){
-                   return true;
-               }else{
-                   if ( studentsList.study.faculty=== $scope.filterItem.faculty.name) {
-                       return true;
-                   } else if ($scope.filterItem.faculty.name ==='Show All') {
-                       return true;
-                   } else {
-                       return false;
-                   }}}
+            if(studentsList.study.faculty === null && $scope.filterItem.faculty.name=== 'Show All')
+            {
+                return true;
+            }else{
+                if(studentsList.study.faculty=== null && $scope.filterItem.faculty.name !=='')
+                {
+                    return false;
+                }else{if(studentsList.study.faculty=== null && $scope.filterItem.faculty.name ===''){return true;}else
+                {
+                    if ( studentsList.study.faculty.toString() === $scope.filterItem.faculty.name)
+                    {
+                        return true;
+                    } else if ($scope.filterItem.faculty.name ==='Show All') {
+                        return true;
+                    } else {
+                        return false;
+                    }}
+                } }
            };
         $scope.customFilterUniversity  = function (studentsList) {
                if(studentsList.study.university === null && $scope.filterItem.university.name!== 'Show All'){
@@ -234,40 +240,40 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
                    }}}
            };
         $scope.customFilterGraduate  = function (studentsList) {
-               if(studentsList.study.graduate_year === null && $scope.filterItem.study_end_year.name!== 'Show All')
+               if(studentsList.study.graduate_year === null && $scope.filterItem.study_end_year.name=== 'Show All')
                {
-                   return false;
-               }else{
-                   if((studentsList.study.graduate_year=== null && $scope.filterItem.study_end_year.name ==='Show All')||(studentsList.study.graduate_year=== null && $scope.filterItem.study_end_year.name ===''))
-                   {
                    return true;
-                    }else
+               }else{
+                   if(studentsList.study.graduate_year=== null && $scope.filterItem.study_end_year.name !=='')
                    {
-                   if ( studentsList.study.graduate_year.toString() === $scope.filterItem.study_end_year.name)
+                   return false;
+                    }else{if(studentsList.study.graduate_year=== null && $scope.filterItem.study_end_year.name ===''){return true;}else
                    {
-                       return true;
-                   } else if ($scope.filterItem.study_end_year.name ==='Show All') {
-                       return true;
-                   } else {
-                       return false;
-                   }}}
+                       if ( studentsList.study.graduate_year.toString() === $scope.filterItem.study_end_year.name)
+                       {
+                           return true;
+                       } else if ($scope.filterItem.study_end_year.name ==='Show All') {
+                           return true;
+                       } else {
+                           return false;
+                       }}
+                   } }
            };
-           ////do not work
         $scope.customFilterCurator  = function (studentsList) {
-            if(studentsList.curator.length ===0 &&$scope.filterItem.curator.surname !=='Show All')
-            {
-                return false;
-            }else{if(studentsList.curator.length ===0 && $scope.filterItem.curator.surname ==='Show All'){
+            var i;
+            if ($scope.filterItem.curator.surname ==='Show All'){
                 return true;
-            }else{
-            if ( studentsList.curator.surname === $scope.filterItem.curator.surname) {
-                return true;
-            } else{
-                if ($scope.filterItem.curator.surname ==='Show All') {
+            }else
+            {if ($scope.filterItem.curator.surname !=='Show All'){
+                for(i=0; i<$scope.filterParams.curators.length; i++){
+                    if(studentsList.curator.length!==0)
+                    {if(studentsList.curator[i].surname === $scope.filterItem.curator.surname)
+                {
                     return true;
-            } else {
-                return false;
-            }
+                }else
+                {
+                    return false;
+                }}else{return false;}
             }}}
            };
        });
