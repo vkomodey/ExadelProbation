@@ -9,12 +9,12 @@
             </h2>
 
             <div class="pull-right">
-                    <span class="clickable" data-ng-if="checkedStudArray.length" data-ng-click="exportPDF()"><span
+                    <a href="/rest/download/PDF?ids={{checkedStudArray}}" class="clickable" data-ng-if="checkedStudArray.length"><span
                             class="glyphicon glyphicon-file"></span> PDF
-                    </span>
-                    <span class="clickable" data-ng-if="checkedStudArray.length" data-ng-click="exportExcel()"><span
+                    </a>
+                    <a href="/rest/download/EXCEL?ids={{checkedStudArray}}" class="clickable" data-ng-if="checkedStudArray.length"><span
                             class="glyphicon glyphicon-file"></span> Excel
-                    </span>
+                    </a>
 
                     <span class="clickable" data-ng-if="checkedStudArray.length" data-ng-click="reloadCuratorsList()"
                           data-target="#curatorsListModal" data-toggle="modal"
