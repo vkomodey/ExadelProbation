@@ -211,47 +211,47 @@
         <div class="row">
             <div class="col-md-2">
                 <label class="control-label" for="exam-3">Semester-3</label>
-                <input id="exam-3" name="exam-3" type="text" placeholder="Grade"
-                       class="form-control input-sm">
+                <input data-ng-model="studentInfo.study.exams.sem3" id="exam-3" name="exam-3" type="text" placeholder="Grade"
+                       class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
             <div class="col-md-2">
                 <label class="control-label" for="exam-4">Semester-4</label>
-                <input id="exam-4" name="exam-4" type="text" placeholder="Grade"
-                       class="form-control input-sm">
+                <input data-ng-model="studentInfo.study.exams.sem4" id="exam-4" name="exam-4" type="text" placeholder="Grade"
+                       class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
             <div class="col-md-2">
                 <label class="control-label" for="exam-5">Semester-5</label>
-                <input id="exam-5" name="exam-5" type="text" placeholder="Grade"
-                       class="form-control input-sm">
+                <input data-ng-model="studentInfo.study.exams.sem5" id="exam-5" name="exam-5" type="text" placeholder="Grade"
+                       class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
             <div class="col-md-2">
                 <label class="control-label" for="exam-6">Semester-6</label>
-                <input id="exam-6" name="exam-6" type="text" placeholder="Grade"
-                       class="form-control input-sm">
+                <input data-ng-model="studentInfo.study.exams.sem6" id="exam-6" name="exam-6" type="text" placeholder="Grade"
+                       class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-2">
 
-                <label class="control-label" for="exam-3">Semester-7</label>
-                <input id="exam-3" name="exam-3" type="text" placeholder="Grade"
-                       class="form-control input-sm">
+                <label class="control-label" for="exam-7">Semester-7</label>
+                <input data-ng-model="studentInfo.study.exams.sem7" id="exam-7" name="exam-7" type="text" placeholder="Grade"
+                       class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
             <div class="col-md-2">
-                <label class="control-label" for="exam-4">Semester-8</label>
-                <input id="exam-4" name="exam-4" type="text" placeholder="Grade"
-                       class="form-control input-sm">
+                <label class="control-label" for="exam-8">Semester-8</label>
+                <input data-ng-model="studentInfo.study.exams.sem8" id="exam-8" name="exam-8" type="text" placeholder="Grade"
+                       class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
             <div class="col-md-2">
-                <label class="control-label" for="exam-5">Semester-9</label>
-                <input id="exam-5" name="exam-5" type="text" placeholder="Grade"
-                       class="form-control input-sm">
+                <label class="control-label" for="exam-9">Semester-9</label>
+                <input data-ng-model="studentInfo.study.exams.sem9" id="exam-9" name="exam-9" type="text" placeholder="Grade"
+                       class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
             <div class="col-md-2">
-                <label class="control-label" for="exam-6">Semester-10</label>
-                <input id="exam-6" name="exam-6" type="text" placeholder="Grade"
-                       class="form-control input-sm">
+                <label class="control-label" for="exam-10">Semester-10</label>
+                <input data-ng-model="studentInfo.study.exams.sem10" id="exam-10" name="exam-10" type="text" placeholder="Grade"
+                       class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
         </div>
     </div>
