@@ -167,9 +167,6 @@ public class Student extends User {
 			se.setStudent(null);
 		}
 		this.getStudy().getExams().clear();
-		this.getStudy().getExams().addAll(view.getStudy().getExams());
-		view.getStudy().setExams(this.getStudy().getExams());
-		this.setStudy(view.getStudy());
         //this.setWork(new ExadelWork());
         this.getWork().setCurrentProjects(view.getCurrentProjects());
 		for (StudentExams se : this.getStudy().getExams()) {
@@ -191,7 +188,7 @@ public class Student extends User {
 
 		view.setEnglish(this.getEnglish());
 		view.setSkillSet(this.getSkillSet());
-		view.setStudy(this.getStudy());
+		view.setStudy(this.getStudy().toView());
 		view.setIsBillable(this.getWork().getIsBillable());
 		view.setHours_current(this.getWork().getHours_current());
         view.setCurrentProjects(this.getWork().getCurrentProjects());

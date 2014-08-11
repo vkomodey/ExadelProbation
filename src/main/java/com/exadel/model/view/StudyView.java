@@ -11,6 +11,7 @@ public class StudyView {
     private Map<String,Double> exams;
 	public static final String SEM_PREFIX="sem";
 	public static final Integer EXAM_COUNT =10;
+	public static final Integer EXAM_START_VALUE =3;
 	public Integer getGraduate_year() {
 		return graduate_year;
 	}

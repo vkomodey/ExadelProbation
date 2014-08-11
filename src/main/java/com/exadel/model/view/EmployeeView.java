@@ -1,6 +1,6 @@
 package com.exadel.model.view;
 
-public class EmployeeView  {
+public class EmployeeView{
     private long id;
     private String FIO;
     private String email;

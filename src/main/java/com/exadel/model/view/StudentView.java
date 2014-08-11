@@ -9,7 +9,6 @@ import com.exadel.model.constants.EnglishEnum;
 import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Project;
 import com.exadel.model.entity.student.Skill;
-import com.exadel.model.entity.student.Study;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
@@ -37,7 +36,7 @@ public class StudentView {
     private String skype;
     private Set<Project> currentProjects;
     private StudentStateEnum state;
-    private Study study;
+    private StudyView study;
     private String surname;
     public List<IdNameSurnamePersonView> getCurator() {
 		return curator;
@@ -86,7 +85,7 @@ public class StudentView {
         return state;
     }
 
-    public Study getStudy() {
+    public StudyView getStudy() {
         return study;
     }
 
@@ -143,7 +142,7 @@ public class StudentView {
         this.state = state;
     }
 
-	public void setStudy(Study study) {
+	public void setStudy(StudyView study) {
         this.study = study;
     }
 

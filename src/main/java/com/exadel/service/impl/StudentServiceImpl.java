@@ -1,6 +1,7 @@
 package com.exadel.service.impl;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 import com.exadel.model.entity.StudentLog;
 import com.exadel.model.view.*;
@@ -123,9 +124,6 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 			} catch (NullPointerException x) {
 				it.remove();
 			}
-		}
-		for (StudentExams se : view.getStudy().getExams()) {
-			se.setId(null);
 		}
 		st.fromView(view);
 		studentDao.updateByMerge(st);
