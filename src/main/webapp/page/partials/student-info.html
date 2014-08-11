@@ -9,14 +9,15 @@
     <li>
         <a data-ng-show="" href="#exams" data-toggle="tab">Exams</a></li>
     <li><a href="#feedbacks" data-toggle="tab">Feedbacks table</a></li>
+    <li><a href="#workInfo" data-toggle="tab">Work info</a></li>
     <li class="pull-right">
         <div class="btn-toolbar ">
-        <button data-ng-if="studentInfo" data-ng-click="exportPDF()" class="btn btn-primary"><span
-                class="glyphicon glyphicon-file"></span> PDF
-        </button>
-        <button data-ng-if="studentInfo" data-ng-click="exportExcel()" class="btn btn-primary"><span
-                class="glyphicon glyphicon-file"></span> Excel
-        </button>
+            <button data-ng-if="studentInfo" data-ng-click="exportPDF()" class="btn btn-primary"><span
+                    class="glyphicon glyphicon-file"></span> PDF
+            </button>
+            <button data-ng-if="studentInfo" data-ng-click="exportExcel()" class="btn btn-primary"><span
+                    class="glyphicon glyphicon-file"></span> Excel
+            </button>
         </div>
     </li>
 </ul>
@@ -56,38 +57,7 @@
         </div>
     </div>
 </div>
-<div class="tab-pane" id="contactInfo" data-ng-show="studentInfo">
-    <div class="pull-right well-sm">
-        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
-           class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
-    </div>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-1">
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="control-label" for="email">Email</label>
-                <input id="email" name="email" type="email" ng-model="studentInfo.email"
-                       ng-pattern="/^([^\@]+)\@([^\.]+)\.([a-zA-Z]+)$/"
-                       class="form-control input-md">
-            </div>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="control-label" for="skype">Skype</label>
-                <input id="skype" name="skype" type="text" ng-model="studentInfo.skype"
-                       class="form-control input-md">
-            </div>
-
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="control-label" for="firstName">Phone</label>
-                <input id="phone" name="phone" type="text" ng-model="studentInfo.phone"
-                       data-ng-pattern="/( +)?((\+?7|8) ?)?((\(\d{3}\))|(\d{3}))?( )?(\d{3}[\- ]?\d{2}[\- ]?\d{2})( +)?$/"
-                       class="form-control input-md">
-            </div>
-        </div>
-    </div>
-</div>
 <div class="tab-pane" id="studyInfo" data-ng-show="studentInfo">
     <div class="pull-right well-sm">
         <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
@@ -129,6 +99,38 @@
                 <label class="control-label" for="course_group">Course/group</label>
                 <input id="course_group" name="course_group" type="text" ng-model="studentInfo.study.course_group"
                        ng-pattern="/^[0-9]/([0-9a-zA-Z]+)$/"
+                       class="form-control input-md">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tab-pane" id="contactInfo" data-ng-show="studentInfo">
+    <div class="pull-right well-sm">
+        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+           class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="email">Email</label>
+                <input id="email" name="email" type="email" ng-model="studentInfo.email"
+                       ng-pattern="/^([^\@]+)\@([^\.]+)\.([a-zA-Z]+)$/"
+                       class="form-control input-md">
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="skype">Skype</label>
+                <input id="skype" name="skype" type="text" ng-model="studentInfo.skype"
+                       class="form-control input-md">
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="firstName">Phone</label>
+                <input id="phone" name="phone" type="text" ng-model="studentInfo.phone"
+                       data-ng-pattern="/( +)?((\+?7|8) ?)?((\(\d{3}\))|(\d{3}))?( )?(\d{3}[\- ]?\d{2}[\- ]?\d{2})( +)?$/"
                        class="form-control input-md">
             </div>
         </div>
@@ -262,6 +264,46 @@
                     <td data-title="'Date'" sortable="'date'">{{feedback.date}}</td>
                 </tr>
             </table>
+        </div>
+    </div>
+
+</div>
+<div class="tab-pane {{active}}" id="workInfo">
+    <div class="pull-right well-sm">
+        <a data-ng-click="sendWorkInfo()" data-ng-disabled="studentInfoForm.$invalid"
+           class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            <!-- Select input-->
+            <div class="form-group">
+                <label class="control-label" >Bill</label>
+                <select class="form-control" data-ng-model="studentInfo.isBillable"
+                        data-ng-options="item.value as item.name for item in salaries">
+                </select>
+            </div>
+            <!-- Select input-->
+            <div class="form-group">
+                <label class="control-label" >Current hours</label>
+                <select class="form-control" data-ng-model="studentInfo.hours_current"
+                        data-ng-options="item.value as item.name for item in currentHours">
+                </select>
+            </div>
+            <!-- Select input-->
+            <div class="form-group">
+                <label class="control-label" >Project</label>
+                <select class="form-control" data-ng-model="filterItem.study_end_year"
+                        data-ng-options="item.name for item in filterParams.study_end_years">
+                </select>
+            </div>
+            <!-- Select input-->
+            <div class="form-group">
+                <label class="control-label" >State</label>
+                <select class="form-control" ng-model="studentInfo.state"
+                        ng-options="item.value as item.name for item in states">
+                </select>
+            </div>
+
         </div>
     </div>
 </div>
@@ -402,7 +444,8 @@
                 </form>
             </div>
             <div class="modal-footer ">
-                <button type="button" data-dismiss="modal" data-ng-disabled="feedbackForm.$invalid" aria-hidden="true" data-ng-click="addFeedback()"
+                <button type="button" data-dismiss="modal" data-ng-disabled="feedbackForm.$invalid" aria-hidden="true"
+                        data-ng-click="addFeedback()"
                         class="btn btn-success btn-lg" style="width: 100%;"><span
                         class="glyphicon glyphicon-ok-sign"></span> Create
                 </button>

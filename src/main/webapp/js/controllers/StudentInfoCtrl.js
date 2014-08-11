@@ -7,6 +7,9 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
     }
     else {
         $scope.englishLevels = StudentInfoCtrl.englishLevels;
+        $scope.salaries = StudentInfoCtrl.salaries;
+        $scope.currentHours = StudentInfoCtrl.currentHours;
+        $scope.states = StudentInfoCtrl.states;
         StudentInfoCtrl.getSkillSet($scope, $http, $q);
         $scope.addExam = function () {
             StudentInfoCtrl.addExam($scope);
@@ -85,3 +88,19 @@ StudentInfoCtrl.deleteSkill = function ($scope, index) {
 StudentInfoCtrl.deleteExam = function ($scope, index) {
     $scope.studentInfo.study.exams.splice(index, 1);
 };
+StudentInfoCtrl.salaries = [
+    {name: 'Billable', value: true},
+    {name: 'Not billable', value: false}
+];
+
+StudentInfoCtrl.currentHours = [
+    {name: '20 hours', value: 20},
+    {name: '30 hours', value: 30},
+    {name: '40 hours', value: 40}
+];
+
+StudentInfoCtrl.states = [
+    {name: 'Work', value: 'work'},
+    {name: 'Practise', value: 'practise'},
+    {name: 'Probation', value: 'probation'}
+];
