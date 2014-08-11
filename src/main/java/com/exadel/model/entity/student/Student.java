@@ -166,7 +166,9 @@ public class Student extends User {
 		for (StudentExams se : this.getStudy().getExams()) {
 			se.setStudent(null);
 		}
+
 		this.getStudy().getExams().clear();
+        this.getStudy().fromView(view.getStudy());
         //this.setWork(new ExadelWork());
         this.getWork().setCurrentProjects(view.getCurrentProjects());
 		for (StudentExams se : this.getStudy().getExams()) {

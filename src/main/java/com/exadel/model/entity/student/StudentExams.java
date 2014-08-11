@@ -10,13 +10,13 @@ import java.io.Serializable;
 @Table(name = "exam")
 public class StudentExams implements Serializable {
 	private Long id;
-    private double grade;
+    private Double grade;
     private Student student;
     private Integer semester;
 	public StudentExams() {
     }
 	
-	public double getGrade() {
+	public Double getGrade() {
 		return grade;
 	}
 	@Id
@@ -35,7 +35,7 @@ public class StudentExams implements Serializable {
 	public Student getStudent() {
 		return student;
 	}
-	public void setGrade(double grade) {
+	public void setGrade(Double grade) {
 		this.grade = grade;
 	}
 	public void setId(Long id) {

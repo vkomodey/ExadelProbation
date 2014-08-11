@@ -106,11 +106,13 @@ public class Study {
 		this.setSpecialty(view.getSpecialty());
 		this.setUniversity(view.getUniversity());
 		for (Entry<String,Double> seview : view.getExams().entrySet()) {
-			StudentExams se=new StudentExams();
-			se.setGrade(seview.getValue());
-			Integer sem=Integer.parseInt(seview.getKey().replace(StudyView.SEM_PREFIX, ""));
-			se.setSemester(sem);
-			this.getExams().add(se);
+            if(seview.getValue()!=null) {
+                StudentExams se = new StudentExams();
+                se.setGrade(seview.getValue());
+                Integer sem = Integer.parseInt(seview.getKey().replace(StudyView.SEM_PREFIX, ""));
+                se.setSemester(sem);
+                this.getExams().add(se);
+            }
 		}
 	}
 }
