@@ -849,6 +849,20 @@ var LogListCtrl = studentsControllers.controller('LogListCtrl', ['$scope','LogLi
     });
 }]);
 
+studentsControllers.controller('MakeRoleCtrl', ['$scope','$http','$q', function($scope, $http,$q) {
+    var deferred = $q.defer();
+    $http.get('/rest/me/role').success(function(data){
+        if(data=='ROLE_ADMIN') {
+            $scope.link_ProjectList = true;
+            $scope.link_EmployeeList = true;
+            $scope.link_Pdf_Excel = true;
+            $scope.link_Email_AppointCurator = true;
+            $scope.link_AddStudent = true;
+        }
+    });
+    deferred.resolve($scope.meRole);
+}]);
+
 var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
     '$scope','projectListFactory','projectList','$q',
     function($scope,projectListFactory,projectList,$q) {

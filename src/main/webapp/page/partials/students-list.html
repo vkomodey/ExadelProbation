@@ -9,22 +9,22 @@
             </h2>
 
             <div class="pull-right">
-                    <a href="/rest/download/PDF?ids={{checkedStudArray}}" class="clickable" data-ng-if="checkedStudArray.length"><span
+                    <a  href="/rest/download/PDF?ids={{checkedStudArray}}" class="clickable" data-ng-if="checkedStudArray.length && link_PDF_Excel"><span
                             class="glyphicon glyphicon-file"></span> PDF
                     </a>
-                    <a href="/rest/download/EXCEL?ids={{checkedStudArray}}" class="clickable" data-ng-if="checkedStudArray.length"><span
+                    <a  href="/rest/download/EXCEL?ids={{checkedStudArray}}" class="clickable" data-ng-if="checkedStudArray.length && link_PDF_Excel"><span
                             class="glyphicon glyphicon-file"></span> Excel
                     </a>
 
-                    <span class="clickable" data-ng-if="checkedStudArray.length" data-ng-click="reloadCuratorsList()"
+                    <span  class="clickable" data-ng-if="checkedStudArray.length && link_Email_AppointCurator" data-ng-click="reloadCuratorsList()"
                           data-target="#curatorsListModal" data-toggle="modal"
                             ><span class="glyphicon glyphicon-user"></span> Appoint curator
                     </span>
-                    <span class="clickable" data-ng-if="checkedStudArray.length" data-target="#sendEmail"
+                    <span class="clickable" data-ng-if="checkedStudArray.length && link_Email_AppointCurator" data-target="#sendEmail"
                           title="Send email to checked students" data-toggle="modal"><span
                             class="glyphicon glyphicon-envelope"></span> Send email
                     </span>
-                <span data-target="#create" data-toggle="modal" class="clickable"><span
+                <span  data-ng-if="link_AddStudent" data-target="#create" data-toggle="modal" class="clickable"><span
                         class="glyphicon glyphicon-plus"></span> Create student
                 </span>
          <span class=" clickable" data-toggle="collapse" data-parent="#accordion2" data-target="#filter" title="Filter">

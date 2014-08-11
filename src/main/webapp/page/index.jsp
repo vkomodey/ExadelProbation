@@ -12,7 +12,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../js/built.js"></script>
 </head>
-<body ng-app="studentsApp">
+<body ng-app="studentsApp" data-ng-controller="MakeRoleCtrl">
 <div class="container">
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
@@ -21,8 +21,8 @@
     </div>
         <ul class="nav navbar-nav">
             <li><a href="#/studentList">Student List</a></li>
-            <li><a href="#/employeeList">Employee List</a></li>
-            <li><a href="#/projectList">Project list</a></li>
+            <li data-ng-if="link_EmployeeList"><a href="#/employeeList">Employee List</a></li>
+            <li data-ng-if="link_ProjectList"><a href="#/projectList">Project list</a></li>
         </ul>
         <form action="/do_logout" method="post">
               <button class="btn btn-default navbar-btn pull-right" type="submit">Logout</button>
