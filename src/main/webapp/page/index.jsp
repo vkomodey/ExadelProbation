@@ -19,19 +19,16 @@
     <div class="navbar-header">
         <a class="navbar-brand" href="#">Exadel</a>
     </div>
-    <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li><a href="#/studentList">Student List</a></li>
             <li><a href="#/employeeList">Employee List</a></li>
             <li><a href="#/projectList">Project list</a></li>
         </ul>
         <form action="/do_logout" method="post">
-            <ul class="nav navbar-nav navbar-right">
-                <li><button class="btn btn-default navbar-btn" type="submit">Logout</button></li>
-            </ul>
-        </form>
+              <button class="btn btn-default navbar-btn pull-right" type="submit">Logout</button>
+            </form>
     </div>
-    </div>
+
 </nav>
 </div>
 <div ng-view></div>
