@@ -39,8 +39,6 @@ public class FileExportController {
     @RequestMapping(value = ExportURI.DOWNLOAD_EXCEL+URI_NAME_PATH_SUFFIX, method = RequestMethod.GET)
     public ModelAndView getPreparedExcel(HttpSession session,@PathVariable(PATHVARIABLE_NAME) String filename) throws IOException {
         logger.info("Getting Excel file");
-        //List<Long> list=JsonUtil.readBelskiyIdObject(str);
-        //List<Long> list=mapper.readValue(str, JsonUtil.listOfLongTypeRef);
         @SuppressWarnings("unchecked")
 		List<Long> list=(List<Long>) session.getAttribute(filename);
         List<Student> students=service.getAll(list);
@@ -60,9 +58,7 @@ public class FileExportController {
     @RequestMapping(value = ExportURI.DOWNLOAD_EXCEL, method = RequestMethod.POST)
     public @ResponseBody String prepareExcel(@RequestBody  String str,ObjectMapper mapper,HttpSession session) throws IOException {
         logger.info("preparing studlist for Excel file");
-        //List<Long> list=JsonUtil.readBelskiyIdObject(str);
         List<Long> list=mapper.readValue(str, JsonUtil.listOfLongTypeRef);
-        //return new ModelAndView("excelView", "list", service.getAll(list));
         String filename=filenameGen(EXCEL_FILENAME);
         session.setAttribute(filename, list);
         return filename;
@@ -70,12 +66,10 @@ public class FileExportController {
     @RequestMapping(value = ExportURI.DOWNLOAD_PDF, method = RequestMethod.POST)
     public @ResponseBody String preparePDF(@RequestBody String str,ObjectMapper mapper,HttpSession session) throws IOException {
         logger.info("preparing studlist for PDF file");
-        //List<Long> list=JsonUtil.readBelskiyIdObject(str);
         List<Long> list=mapper.readValue(str, JsonUtil.listOfLongTypeRef);
         String filename = filenameGen(PDF_FILENAME);
         session.setAttribute(filename, list);
         return filename;
-        //return new ModelAndView("pdfView", "list", service.getAll(list));
     }
 
 	private String filenameGen(String base) {
