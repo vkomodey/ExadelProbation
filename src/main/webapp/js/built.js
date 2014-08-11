@@ -899,6 +899,9 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
     }
     else {
         $scope.englishLevels = StudentInfoCtrl.englishLevels;
+        $scope.salaries = StudentInfoCtrl.salaries;
+        $scope.currentHours = StudentInfoCtrl.currentHours;
+        $scope.states = StudentInfoCtrl.states;
         StudentInfoCtrl.getSkillSet($scope, $http, $q);
         $scope.addExam = function () {
             StudentInfoCtrl.addExam($scope);
@@ -977,7 +980,22 @@ StudentInfoCtrl.deleteSkill = function ($scope, index) {
 StudentInfoCtrl.deleteExam = function ($scope, index) {
     $scope.studentInfo.study.exams.splice(index, 1);
 };
+StudentInfoCtrl.salaries = [
+    {name: 'Billable', value: true},
+    {name: 'Not billable', value: false}
+];
 
+StudentInfoCtrl.currentHours = [
+    {name: '20 hours', value: 20},
+    {name: '30 hours', value: 30},
+    {name: '40 hours', value: 40}
+];
+
+StudentInfoCtrl.states = [
+    {name: 'Work', value: 'work'},
+    {name: 'Practise', value: 'practise'},
+    {name: 'Probation', value: 'probation'}
+];
 var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
     '$scope', '$filter', '$routeParams', 'studentsListFactory', 'CuratorsListFactory','LogListFactory', 'filterParamsFactory', 'ngTableParams', '$q', 'studentsList', '$interval', '$http',
     function ($scope, $filter, $routeParams, studentsListFactory, CuratorsListFactory,LogListFactory, filterParamsFactory, ngTableParams, $q, studentsList, $interval, $http) {
@@ -1193,18 +1211,24 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                 } }
            };
         $scope.customFilterUniversity  = function (studentsList) {
-               if(studentsList.study.university === null && $scope.filterItem.university.name!== 'Show All'){
-                   return false;
-               }else{ if(studentsList.study.university=== null && $scope.filterItem.university.name ==='Show All'){
-                   return true;
-               }else{
-                   if ( studentsList.study.university=== $scope.filterItem.university.name) {
-                       return true;
-                   } else if ($scope.filterItem.university.name ==='Show All') {
-                       return true;
-                   } else {
-                       return false;
-                   }}}
+            if(studentsList.study.university === null && $scope.filterItem.university.name=== 'Show All')
+            {
+                return true;
+            }else{
+                if(studentsList.study.university=== null && $scope.filterItem.university.name !=='')
+                {
+                    return false;
+                }else{if(studentsList.study.university=== null && $scope.filterItem.university.name ===''){return true;}else
+                {
+                    if ( studentsList.study.university.toString() === $scope.filterItem.university.name)
+                    {
+                        return true;
+                    } else if ($scope.filterItem.university.name ==='Show All') {
+                        return true;
+                    } else {
+                        return false;
+                    }}
+                } }
            };
         $scope.customFilterGraduate  = function (studentsList) {
                if(studentsList.study.graduate_year === null && $scope.filterItem.study_end_year.name=== 'Show All')
@@ -1272,6 +1296,16 @@ StudentListCtrl.checkElement = function (id, checkedArray) {
     }
     checkedArray.push(id);
 };
+StudentListCtrl.export = function (url, exportData, $http) {
+    $http.post(url, exportData)
+        .success(function (data) {
+            window.location.href = url + '/' + data
+        })
+        .error(function (data, status) {
+            alert('ERROR ' + status);
+        });
+};
+
 var StudentPageCtrl = studentsControllers.controller('StudentPageCtrl',['$scope','$q','$http', function($scope,$q,$http) {
     var getStudentInfo = function() {
         var deferred = $q.defer();
