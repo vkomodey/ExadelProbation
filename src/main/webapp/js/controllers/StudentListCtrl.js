@@ -238,7 +238,7 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
                {
                    return false;
                }else{
-                   if(studentsList.study.graduate_year=== null && $scope.filterItem.study_end_year.name ==='Show All')
+                   if((studentsList.study.graduate_year=== null && $scope.filterItem.study_end_year.name ==='Show All')||(studentsList.study.graduate_year=== null && $scope.filterItem.study_end_year.name ===''))
                    {
                    return true;
                     }else
@@ -246,11 +246,11 @@ var StudentListCtrl =  studentsControllers.controller('StudentListCtrl',[
                    if ( studentsList.study.graduate_year.toString() === $scope.filterItem.study_end_year.name)
                    {
                        return true;
-                   } else {if ($scope.filterItem.study_end_year.name ==='Show All') {
+                   } else if ($scope.filterItem.study_end_year.name ==='Show All') {
                        return true;
                    } else {
                        return false;
-                   }}}}
+                   }}}
            };
            ////do not work
         $scope.customFilterCurator  = function (studentsList) {
