@@ -1,5 +1,8 @@
 package com.exadel.service.impl;
 
+import com.exadel.model.constants.StudentStateEnum;
+import com.exadel.model.entity.student.ExadelWork;
+import com.exadel.model.entity.student.ExadelPractice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,9 @@ import com.exadel.model.entity.government.PersonnelDepartment;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.view.RegistrationView;
 import com.exadel.service.RegistrationService;
+
+import java.util.Calendar;
+
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
     public static final String DEFAULT_PASSWORD = "11111";
@@ -78,6 +84,11 @@ public class RegistrationServiceImpl implements RegistrationService {
         Student stud=new Student();
         stud.setLogin(view.getLogin());
         stud.setPassword(DEFAULT_PASSWORD);
+        stud.setState(StudentStateEnum.PRACTICE);
+        ExadelPractice studPractice = new ExadelPractice();
+        studPractice.setOnProbation(false);
+        studPractice.setPracticeStart(Calendar.getInstance());
+        stud.setPractice(studPractice);
         studentDao.save(stud);
 	}
 }

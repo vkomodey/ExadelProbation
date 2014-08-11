@@ -1,10 +1,6 @@
 package com.exadel.service.impl;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import com.exadel.model.view.FileExportView;
 
@@ -171,29 +167,41 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 
 	@Transactional
 	public void attachStudentToCurator(long id, long curator_id) {
-		Student student = studentDao.find(id);
-		Curator curator = curatorDao.find(curator_id);
-		StudentCuratorJoin scj = new StudentCuratorJoin();
-		scj.setStudent(student);
-		scj.setCurator(curator);
-		scj.setAssignmentDate(Calendar.getInstance());
+        Student student = studentDao.find(id);
+        Curator curator = curatorDao.find(curator_id);
+        StudentCuratorJoin scj = new StudentCuratorJoin();
+        scj.setStudent(student);
+        scj.setCurator(curator);
+        scj.setAssignmentDate(Calendar.getInstance());
 
-		studCuratorJoinDao.save(scj);
+        studCuratorJoinDao.save(scj);
+    }
 
-	}
+    @Transactional
+    public void attachStudentsToCurators(List<Long> students_id, List<Long> curators_id){
+        for(long id: students_id){
+            for(long curId:curators_id){
+                if(!isStudentAttachedToThisCurator(id, curId)){
+                    attachStudentToCurator(id, curId);
+                }
+            }
+        }
+    }
+    @Transactional
+    public List<String> getAllEmailAddressesOfStudents(List<Long> students_id){
+        return studentDao.getEmails(students_id);
+    }
 
-	@Transactional
-	public void attachStudentsToCurators(List<Long> students_id,
-			List<Long> curators_id) {
-		for (long id : students_id) {
-			for (long curId : curators_id) {
-				attachStudentToCurator(id, curId);
-			}
-		}
-	}
-
-	@Transactional
-	public List<String> getAllEmailAddressesOfStudents(List<Long> students_id) {
-		return studentDao.getEmails(students_id);
-	}
+    @Transactional
+    public boolean isStudentAttachedToThisCurator(long id, long curId){
+        Student student = studentDao.find(id);
+        Curator curator = curatorDao.find(curId);
+        Set<StudentCuratorJoin> list = student.getCurator();
+        for(StudentCuratorJoin studentCuratorJoin: list){
+            if(studentCuratorJoin.getStudent().getId() == curId){
+                return true;
+            }
+        }
+        return false;
+    }
 }
