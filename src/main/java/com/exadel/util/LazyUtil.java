@@ -19,6 +19,7 @@ public class LazyUtil {
 	public static void lazyTouch(Student student){
 	    student.getStudy().getExams().size();
 	    student.getSkillSet().size();
+	    student.getWork().getCurrentProjects().size();
 	    }
 
 	public static void lazyTouchProject(Project project){
