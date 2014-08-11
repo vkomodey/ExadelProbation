@@ -11,6 +11,7 @@ public class LazyUtil {
 	    if(student.getWork()!=null){
 	    student.getWork().getCurrentUsedTechnologies().size();
 	    student.getWork().getDesiredUsedTechnologies().size();
+	    student.getWork().getCurrentProjects().size();
 	    }
 	}
 
@@ -18,7 +19,7 @@ public class LazyUtil {
 	public static void lazyTouch(Student student){
 	    student.getStudy().getExams().size();
 	    student.getSkillSet().size();
-	}
+	    }
 
 	public static void lazyTouchProject(Project project){
 	    for(Student student:project.getStudents()){
