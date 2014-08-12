@@ -14,13 +14,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class StudentView {
 	private Long id;
-    public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	private List<IdNameSurnamePersonView> curator;
     private String email;
     private EnglishEnum english;
@@ -38,9 +31,11 @@ public class StudentView {
     private StudentStateEnum state;
     private StudyView study;
     private String surname;
+
     public List<IdNameSurnamePersonView> getCurator() {
 		return curator;
 	}
+
     public String getEmail() {
         return email;
     }
@@ -133,7 +128,6 @@ public class StudentView {
         this.skillSet = skillSet;
     }
 
-
     public void setSkype(String skype) {
         this.skype = skype;
     }
@@ -156,5 +150,13 @@ public class StudentView {
 
     public void setCurrentProjects(Set<Project> currentProjects) {
         this.currentProjects = currentProjects;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
