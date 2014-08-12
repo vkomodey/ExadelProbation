@@ -2,8 +2,8 @@
  * Created by Administrator on 04.08.2014.
  */
 var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
-    '$scope', '$routeParams', 'feedbacksListFactory', '$q', 'studentsListFactory', '$interval', 'student', '$http',
-    function ($scope, $routeParams, feedbacksListFactory, $q, studentsListFactory, $interval, student, $http) {
+    '$scope', '$routeParams', 'feedbacksListFactory', '$q', 'studentsListFactory', '$interval','ProjectHistoryFactory', 'student', '$http',
+    function ($scope, $routeParams, feedbacksListFactory, $q, studentsListFactory, $interval,ProjectHistoryFactory, student, $http) {
 
         $scope.reloadList = function () {
             var deferred = $q.defer();
@@ -24,6 +24,9 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
         if ($scope.feedbacks == null) {
             $scope.cssFeedbacksList = 'feedbacksList-hide';
         }
+        $scope.reloadProjectHistory = function(){
+            $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
+        };
         // $scope.studentInfo = studentInfo;
         /*var emptyExam = {
          grade: null,

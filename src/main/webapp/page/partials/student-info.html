@@ -494,9 +494,9 @@
                     <h4 class="modal-title custom_align" id="Heading">Project history</h4>
                 </div>
                 <div class="modal-body">
-                    <table class="table ng-table" data-ng-table="projectHistoryParams">
-                        <tr  data-ng-repeat="proj in projectHistoryList | reverse |orderBy: params.orderBy()">
-                            <td data-title="'Project name'" sortable="name">
+                    <table class="table" ng-table="projectHistoryParams">
+                        <tr  data-ng-repeat="proj in projectHistoryList | reverse | orderBy:params.orderBy()">
+                            <td data-title="'Project name'" sortable="'name'">
                                 {{proj.name}}
                             </td>
                         </tr>
