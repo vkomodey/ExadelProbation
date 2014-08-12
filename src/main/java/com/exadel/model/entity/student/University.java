@@ -11,6 +11,7 @@ import com.exadel.model.NamedEntity;
 
 @Entity
 public class University implements NamedEntity{
+
 	private Long id;
 	private String name;
 	public University(){
