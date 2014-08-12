@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.exadel.dao.CuratorDao;
 import com.exadel.dao.StudentDao;
-import com.exadel.dao.TechnologyDao;
+import com.exadel.dao.TechDao;
 import com.exadel.model.entity.User;
 import com.exadel.model.entity.student.Technology;
 import com.exadel.service.FilterService;
@@ -22,15 +22,15 @@ public class FilterServiceImpl implements FilterService {
 	@Autowired
 	CuratorDao curatorDao;
 	@Autowired
-	TechnologyDao technologyDao;
+	TechDao techDao;
 	
     @Transactional
     public Set<Technology> getCurrentProjUsedTech(long projectId) {
-        return new HashSet<Technology>(technologyDao.getAllCurrentUsedByProjects(projectId));
+        return new HashSet<Technology>(techDao.getAllCurrentUsedByProjects(projectId));
     }
 	@Transactional
 	public Set<Technology> getCurrentStudUsedTech() {
-		return new HashSet<Technology>(technologyDao.getAllCurrentUsedByStudents());
+		return new HashSet<Technology>(techDao.getAllCurrentUsedByStudents());
 		/*List<Student> list=studentDao.getAll();
 		Set<Technology> technologies=new HashSet<>();
 		for(Student stud:list){

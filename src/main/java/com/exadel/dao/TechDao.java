@@ -6,8 +6,9 @@ import java.util.Set;
 import com.exadel.model.entity.student.Technology;
 
 
-public interface TechDao extends GenericDao<Technology>{
+public interface TechDao extends GenericNamedDao<Technology>{
 	public Set<String> getNames();
 	public Technology find(String name);
-	public List<String> getActiveNames();
+	List<Technology> getAllCurrentUsedByStudents();
+	List<Technology> getAllCurrentUsedByProjects(long projectId);
 }

@@ -23,12 +23,14 @@ public class TechDaoImpl extends GenericDaoImpl<Technology> implements
 		return (Technology) getSessionFactory().getCurrentSession()
 				.bySimpleNaturalId(Technology.class).load(name);
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	@Override
-	public List<String> getActiveNames() {
-		return getSessionFactory().getCurrentSession()
-				.createQuery("select distinct s.type.name from Skill s").list();
+	public List<Technology> getAllCurrentUsedByStudents() {
+		return getSessionFactory().getCurrentSession().createQuery("select distinct s.work.currentUsedTechnologies from Student s").list();
 	}
 
+    @SuppressWarnings("unchecked")
+    public List<Technology> getAllCurrentUsedByProjects(long projectId) {
+        return getSessionFactory().getCurrentSession().createQuery("select distinct p.usedTechnologies from Project p where p.id=:id ").setLong("id",projectId).list();
+    }
 }

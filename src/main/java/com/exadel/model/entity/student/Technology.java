@@ -8,8 +8,10 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.exadel.model.NamedEntity;
+
 @Entity
-public class Technology {
+public class Technology implements NamedEntity{
 	private Long id;
 	private String name;
 	public Technology() {
