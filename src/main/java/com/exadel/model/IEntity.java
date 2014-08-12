@@ -1,4 +1,4 @@
 package com.exadel.model;
 
-public interface IEntity {
+public interface IEntity extends NamedEntity{
 }

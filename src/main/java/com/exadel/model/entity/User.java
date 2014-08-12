@@ -141,4 +141,12 @@ public class User implements IEntity,Serializable{
                 ", surname='" + surname + '\'' +
                 '}';
     }
+	@Override
+	public String getName() {
+		return getLogin();
+	}
+	@Override
+	public void setName(String name) {
+		setLogin(name);
+	}
 }
