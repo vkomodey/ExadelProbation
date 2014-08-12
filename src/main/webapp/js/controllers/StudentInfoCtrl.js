@@ -32,9 +32,9 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         $scope.deleteProject = function(index){
             StudentInfoCtrl.deleteProject($scope,index);
         }
-        $scope.reloadProjectHistory = function(){
-            $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
-        }
+//        $scope.reloadProjectHistory = function(){
+//            $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
+//        };
     }
 }]);
 
