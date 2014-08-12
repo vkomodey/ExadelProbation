@@ -26,5 +26,9 @@ public class TypesServiceImpl implements TypesService {
 	public List<SkillType> getAllSkillTypes() {
 		return typesDao.getAll();
 	}
-
+    
+    @Transactional
+	public List<String> getActiveSkillTypes() {
+		return typesDao.getActiveNames();
+	}
 }

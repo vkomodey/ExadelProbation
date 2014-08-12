@@ -275,7 +275,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                        return true;
                    } else {
                        if ($scope.filterItem.curator.surname !== 'Show All') {
-                           for (i = 0; i < $scope.filterParams.curators.length;) {
+                           for (i = 0; i < studentsList.curator.length;) {
                                if (studentsList.curator.length !== 0) {
                                    if (studentsList.curator[i].surname === $scope.filterItem.curator.surname) {
                                        return true;

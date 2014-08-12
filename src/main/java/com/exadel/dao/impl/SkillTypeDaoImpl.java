@@ -16,12 +16,19 @@ public class SkillTypeDaoImpl extends GenericDaoImpl<SkillType> implements
 	@SuppressWarnings("unchecked")
 	public Set<String> getSkillNames() {
 		return new HashSet<String>(getSessionFactory().getCurrentSession()
-				.createQuery("select t.name from SkillType t").list());
+				.createQuery("select distinct t.name from SkillType t").list());
 	}
 
 	public SkillType find(String name) {
 		return (SkillType) getSessionFactory().getCurrentSession()
 				.bySimpleNaturalId(SkillType.class).load(name);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getActiveNames() {
+		return getSessionFactory().getCurrentSession()
+				.createQuery("select distinct s.type.name from Skill s").list();
 	}
 
 }
