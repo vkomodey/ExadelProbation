@@ -201,10 +201,10 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
     @Transactional
     public boolean isStudentAttachedToThisCurator(long id, long curId){
         Student student = studentDao.find(id);
-        Curator curator = curatorDao.find(curId);
+        student.getCurator();
         Set<StudentCuratorJoin> list = student.getCurator();
         for(StudentCuratorJoin studentCuratorJoin: list){
-            if(studentCuratorJoin.getStudent().getId() == curId){
+            if(studentCuratorJoin.getCurator().getId() == curId){
                 return true;
             }
         }
