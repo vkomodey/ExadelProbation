@@ -33,7 +33,6 @@ public class FeedbackController {
 			@PathVariable("id") String id, Principal user) {
 
 		logger.info("Sending feedback list");
-		@SuppressWarnings("unchecked")
 		String role = SecurityUtil.getRole();
 		long studId = Long.parseLong(id);
 		if (SecurityUtil.isFeedbackableNotAdmin(role)) {
