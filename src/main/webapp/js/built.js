@@ -870,6 +870,10 @@ studentsControllers.controller('MakeRoleCtrl', ['$scope','$http', function($scop
                 $scope.link_AddStudent = true;
                 $scope.disableStudentInfo = true;
                 break;
+            case "ROLE_CURATOR":
+            case "ROLE_FEEDBACKER":
+                $scope.disableStudentInfo = true;
+                break;
         }
     });
 }]);
@@ -904,7 +908,8 @@ var FeedbacksCtrl = studentsControllers.controller('SendEmailCtrl', ['$scope', '
         $scope.sendEmail = function() {
             var email = {
                 id: $scope.checkedStudArray,
-                message: $scope.message
+                message: $scope.message,
+                password: $scope.password
 //                object: $scope.title
             };
             /*var myJSONString = JSON.stringify(email);
@@ -918,6 +923,7 @@ var FeedbacksCtrl = studentsControllers.controller('SendEmailCtrl', ['$scope', '
                 });
         }
     }]);
+
 var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope', '$routeParams', '$q', '$http', function ($scope, $routeParams, $q, $http) {
     if ($scope.studentInfo == null) { //make feedback-list-tab active
         $scope.active = 'active';
@@ -928,6 +934,7 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         $scope.currentHours = StudentInfoCtrl.currentHours;
         $scope.states = StudentInfoCtrl.states;
         StudentInfoCtrl.getSkillSet($scope, $http, $q);
+        StudentInfoCtrl.getProjectList($scope, $http, $q);
         $scope.addExam = function () {
             StudentInfoCtrl.addExam($scope);
 
@@ -944,6 +951,12 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         $scope.deleteExam = function () {
             StudentInfoCtrl.deleteExam($scope);
         };
+        $scope.addProject = function(){
+            StudentInfoCtrl.addProject($scope);
+        };
+        $scope.deleteProject = function(){
+            StudentInfoCtrl.deleteProject($scope);
+        }
     }
 }]);
 
@@ -976,6 +989,7 @@ StudentInfoCtrl.getSkillSet = function ($scope, $http, $q) {
     });
     deferred.resolve($scope.skillTypes);
 };
+
 StudentInfoCtrl.addExam = function ($scope) {
     $scope.studentInfo.study.exams.push({
         grade: null,
@@ -1021,6 +1035,27 @@ StudentInfoCtrl.states = [
     {name: 'Practise', value: 'practise'},
     {name: 'Probation', value: 'probation'}
 ];
+
+StudentInfoCtrl.getProjectList = function ($scope, $http, $q) {
+    var deferred = $q.defer();
+    $http.get('/rest/proj/all').success(function (data) {
+        $scope.projectNames = data;
+    });
+    deferred.resolve($scope.projectNames);
+
+};
+StudentInfoCtrl.addProject = function ($scope) {
+    $scope.studentInfo.currentProjects.push({
+        id: 0,
+        title: null
+    })
+};
+
+StudentInfoCtrl.deleteProject = function ($scope, index) {
+    $scope.studentInfo.currentProjects.splice(index, 1);
+};
+
+
 var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
     '$scope', '$filter', '$routeParams', 'studentsListFactory', 'CuratorsListFactory','LogListFactory', 'filterParamsFactory', 'ngTableParams', '$q', 'studentsList', '$interval', '$http',
     function ($scope, $filter, $routeParams, studentsListFactory, CuratorsListFactory,LogListFactory, filterParamsFactory, ngTableParams, $q, studentsList, $interval, $http) {
