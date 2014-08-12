@@ -81,7 +81,7 @@ public class User implements IEntity,Serializable{
 
 	@Column(name = "login")
 	@NaturalId
-	public String getLogin() {
+	public String getName() {
 	    return login;
 	}
 
@@ -116,7 +116,7 @@ public class User implements IEntity,Serializable{
         this.id= id;
     }
 
-    public void setLogin(String login) {
+    public void setName(String login) {
         this.login = login;
     }
 
@@ -141,12 +141,4 @@ public class User implements IEntity,Serializable{
                 ", surname='" + surname + '\'' +
                 '}';
     }
-	@Override
-	public String getName() {
-		return getLogin();
-	}
-	@Override
-	public void setName(String name) {
-		setLogin(name);
-	}
 }

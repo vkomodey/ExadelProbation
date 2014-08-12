@@ -181,7 +181,7 @@ public class Student extends User {
 	public StudentView toView() {
 		StudentView view = new StudentView();
 		view.setId(this.getId());
-		view.setLogin(this.getLogin());
+		view.setLogin(this.getName());
 		view.setFirstName(this.getFirstName());
 		view.setSecondName(this.getSecondName());
 		view.setSurname(this.getSurname());

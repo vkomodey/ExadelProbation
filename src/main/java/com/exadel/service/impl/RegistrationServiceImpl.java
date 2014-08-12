@@ -50,7 +50,7 @@ public class RegistrationServiceImpl implements RegistrationService {
                 user = new User();
                 break;
         }
-        user.setLogin(view.getLogin());
+        user.setName(view.getLogin());
         user.setPassword(DEFAULT_PASSWORD);
         return user;
     }
@@ -82,7 +82,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	public void registerStudent(RegistrationView view) {
 		view.setRole(SpringSecurityRole.STUDENT);
         Student stud=new Student();
-        stud.setLogin(view.getLogin());
+        stud.setName(view.getLogin());
         stud.setPassword(DEFAULT_PASSWORD);
         stud.setState(StudentStateEnum.PRACTICE);
         ExadelPractice studPractice = new ExadelPractice();

@@ -21,7 +21,7 @@ public class UserDaoImpl extends GenericLivingDaoImpl<com.exadel.model.entity.Us
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         System.out.println("CHECK CHECK dao");
         final com.exadel.model.entity.User user = this.find(login);
-        return new org.springframework.security.core.userdetails.User(user.getLogin(),
+        return new org.springframework.security.core.userdetails.User(user.getName(),
                 user.getPassword(),
                 new ArrayList<SimpleGrantedAuthority>(1){{
             add(new SimpleGrantedAuthority(user.getRole()));
