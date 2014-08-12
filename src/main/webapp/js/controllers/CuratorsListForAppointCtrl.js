@@ -16,11 +16,7 @@ studentsControllers.controller('CuratorsListForAppointCtrl', ['$scope', '$http',
                 alert(data);
         })
                 .success(function(){
-                var deferred = $q.defer();
-                  filterParamsFactory.getFilterParams(function(data) {
-                      $scope.filterParams = data;
-                  });
-                deferred.resolve($scope.filterParams);
+                $scope.reloadFilterParams();
                 });
     };
 }]);
