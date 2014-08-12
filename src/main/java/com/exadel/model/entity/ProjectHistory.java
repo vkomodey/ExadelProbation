@@ -22,6 +22,7 @@ public class ProjectHistory {
     }
 
     @OneToOne
+    @JoinColumn(name = "student_id")
     public Student getStudent() {
         return student;
     }
