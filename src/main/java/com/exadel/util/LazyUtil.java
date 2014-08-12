@@ -12,6 +12,7 @@ public class LazyUtil {
 	    student.getWork().getCurrentUsedTechnologies().size();
 	    student.getWork().getDesiredUsedTechnologies().size();
 	    student.getWork().getCurrentProjects().size();
+        student.getCurator().size();
 	    }
 	}
 
