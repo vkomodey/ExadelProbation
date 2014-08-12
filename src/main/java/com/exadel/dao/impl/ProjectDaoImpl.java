@@ -17,13 +17,17 @@ public class ProjectDaoImpl extends GenericDaoImpl<Project> implements ProjectDa
         getSessionFactory().getCurrentSession().delete(project);
     }
 
-    public List<String> getAllStudentsFio(long projectId){
-        Project project = (Project)getSessionFactory().getCurrentSession().load(Project.class, projectId);
+    public List<String> getAllStudentsFio(long id){
+        Project project = (Project)getSessionFactory().getCurrentSession().load(Project.class, id);
         List<String> fio = new ArrayList<String>();
         for(Student student:project.getStudents()){
             fio.add(student.getFullName());
         }
         return fio;
+    }
+
+    public List<String> getProjectHistory(long studId){
+        return getSessionFactory().getCurrentSession().createQuery("select title from ProjectHistory where student.id=:studId").setLong("studId",studId).list();
     }
 
 }
