@@ -61,6 +61,9 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
             });
             deferred.resolve($scope.curatorsList);
         };
+        $scope.checkAllStudent = function(){
+
+        };
         /////////////////////////////////////////////////////////////////////////////////////// LERA STYLE NEXT  ///////////////////////////////////////////////////
         ($scope.reloadFilterParams = function() {
            filterParamsFactory.getFilterParams(function (data) {
@@ -325,3 +328,4 @@ StudentListCtrl.export = function (url, exportData, $http) {
             alert('ERROR ' + status);
         });
 };
+

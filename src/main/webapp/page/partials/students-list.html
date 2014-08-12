@@ -127,7 +127,7 @@
                  filter:customFilterCourse | filter:customFilterEnglish | filter:customFilterHours |
                  filter:customFilterSalary | filter:customFilterTech|filter:customFilterFaculty|
                  filter:customFilterUniversity|filter:customFilterGraduate|filter:customFilterCurator">
-                <td><input data-ng-click="checkElement(user.id)" type="checkbox" class="checkthis"/></td>
+                <td> <!--header="'headers/checkbox.html'"--><input data-ng-click="checkElement(user.id)" type="checkbox" class="checkthis"/></td>
                 <td data-title="'Login'" sortable="'login'">{{user.login}}</td>
                 <td data-title="'Name'" sortable="'surname'">{{user.firstName + " "+user.surname}}</td>
                 <td data-title="'Date'" sortable="'work.workStartDate'">{{user.work.workStartDate}}</td>
@@ -152,6 +152,11 @@
         </div>
     </div>
 </div>
+        <!--- checkbox -->
+<script type="text/ng-template" id="headers/checkboxStudent.html">
+    <input type="checkbox"  data-ng-model="checkAll" id="select_all"/>
+</script>
+
 <!------------------------------------MODAL FOR CREATE STUDENT--------------------------------------->
 <div data-backdrop="static" class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="create"
      aria-hidden="true"
@@ -200,8 +205,8 @@
                                   required></textarea>
                     </div>
                     <div class="well-sm">
-                        <input id="password" data-ng-model="password" name="password" type="text" placeholder="Password"
-                               class="form-control input-md">
+                        <input id="password" data-ng-model="password" name="password" type="password" placeholder="Password"
+                               class="form-control input-md" required>
                     </div>
                 </form>
             </div>
