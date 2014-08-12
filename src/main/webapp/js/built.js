@@ -930,8 +930,8 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         $scope.addSkill = function () {
             StudentInfoCtrl.addSkill($scope);
         };
-        $scope.deleteSkill = function () {
-            StudentInfoCtrl.deleteSkill($scope);
+        $scope.deleteSkill = function (index) {
+            StudentInfoCtrl.deleteSkill($scope,index);
         };
         $scope.deleteExam = function () {
             StudentInfoCtrl.deleteExam($scope);
