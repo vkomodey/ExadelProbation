@@ -955,8 +955,8 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         $scope.addProject = function(){
             StudentInfoCtrl.addProject($scope);
         };
-        $scope.deleteProject = function(){
-            StudentInfoCtrl.deleteProject($scope);
+        $scope.deleteProject = function(index){
+            StudentInfoCtrl.deleteProject($scope,index);
         }
     }
 }]);
