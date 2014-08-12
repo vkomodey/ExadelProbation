@@ -126,11 +126,15 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 			}
 		}
         st.getStudy().getExams().clear();
-        st.getWork().getCurrentProjects().clear();
+        Set<Project> projectSet=st.getWork().getCurrentProjects();
         studentDao.flush();
         for(Project proj:view.getCurrentProjects()){
         	Project actual_proj=projectDao.find(proj.getId());
         	actual_proj.getStudents().add(st);
+            projectSet.remove(actual_proj);
+        }
+        for(Project discarded:projectSet){
+            discarded.getStudents().remove(st);
         }
         st.getStudy().fromView(view.getStudy());
 		st.fromView(view);
