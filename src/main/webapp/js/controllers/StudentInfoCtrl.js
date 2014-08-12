@@ -106,9 +106,9 @@ StudentInfoCtrl.currentHours = [
 ];
 
 StudentInfoCtrl.states = [
-    {name: 'Work', value: 'work'},
-    {name: 'Practise', value: 'practise'},
-    {name: 'Probation', value: 'probation'}
+    {name: 'Work', value: 'WORK'},
+    {name: 'Practise', value: 'PRACTISE'},
+    {name: 'Probation', value: 'PROBATION'}
 ];
 
 StudentInfoCtrl.getProjectList = function ($scope, $http, $q) {
