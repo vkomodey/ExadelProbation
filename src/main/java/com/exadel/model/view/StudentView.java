@@ -1,6 +1,8 @@
 package com.exadel.model.view;
 
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Set;
 
 import java.util.List;
@@ -10,6 +12,8 @@ import com.exadel.model.constants.StudentStateEnum;
 import com.exadel.model.entity.Project;
 import com.exadel.model.entity.student.Skill;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import sun.util.calendar.BaseCalendar;
+import sun.util.calendar.LocalGregorianCalendar;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class StudentView {
@@ -38,6 +42,7 @@ public class StudentView {
     private StudentStateEnum state;
     private StudyView study;
     private String surname;
+    private Calendar workStartDate;
     public List<IdNameSurnamePersonView> getCurator() {
 		return curator;
 	}
@@ -156,5 +161,13 @@ public class StudentView {
 
     public void setCurrentProjects(Set<Project> currentProjects) {
         this.currentProjects = currentProjects;
+    }
+
+    public Calendar getWorkStartDate() {
+        return workStartDate;
+    }
+
+    public void setWorkStartDate(Calendar workStartDate) {
+        this.workStartDate = workStartDate;
     }
 }
