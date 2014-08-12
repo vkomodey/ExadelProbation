@@ -7,8 +7,8 @@ var FeedbacksCtrl = studentsControllers.controller('SendEmailCtrl', ['$scope', '
             var email = {
                 id: $scope.checkedStudArray,
                 message: $scope.message,
-                password: $scope.password
-//                object: $scope.title
+                password: $scope.password,
+                title: $scope.title
             };
             /*var myJSONString = JSON.stringify(email);
             var myEscapedJSONString = myJSONString.replace(/\\n/g, "\\n");
