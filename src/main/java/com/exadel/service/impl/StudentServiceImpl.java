@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.exadel.dao.CuratorDao;
 import com.exadel.dao.FeedbackableDao;
+import com.exadel.dao.GenericDao;
+import com.exadel.dao.GenericNamedDao;
 import com.exadel.dao.ProjectDao;
 import com.exadel.dao.TechDao;
 import com.exadel.dao.StudCuratorJoinDao;
@@ -22,8 +24,10 @@ import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.government.Curator;
 import com.exadel.model.entity.government.Feedbackable;
 import com.exadel.model.entity.join.StudentCuratorJoin;
+import com.exadel.model.entity.student.Faculty;
 import com.exadel.model.entity.student.Skill;
 import com.exadel.model.entity.student.Student;
+import com.exadel.model.entity.student.University;
 import com.exadel.service.StudentService;
 import com.exadel.util.LazyUtil;
 
@@ -44,7 +48,10 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	StudCuratorJoinDao studCuratorJoinDao;
 	@Autowired
 	TechDao techDao;
-	
+	@Autowired
+	GenericNamedDao<Faculty> facultyDao;
+	@Autowired
+	GenericNamedDao<University> universityDao;
 	@Transactional
 	public Student findById(long id) {
 		Student student = studentDao.find(id);
@@ -138,6 +145,8 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
         }
         st.getStudy().fromView(view.getStudy());
 		st.fromView(view);
+		st.getStudy().setFaculty(facultyDao.find(view.getStudy().getFaculty()));
+		st.getStudy().setUniversity(universityDao.find(view.getStudy().getUniversity()));
 		studentDao.updateByMerge(st);
 	}
 

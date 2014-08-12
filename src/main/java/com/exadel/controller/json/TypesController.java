@@ -2,6 +2,7 @@ package com.exadel.controller.json;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.exadel.controller.json.constants.TypeURI;
 import com.exadel.model.constants.StudentStateEnum;
+import com.exadel.model.entity.student.Faculty;
 import com.exadel.model.entity.student.Technology;
+import com.exadel.model.entity.student.University;
 import com.exadel.service.TypesService;
 @RestController
 public class TypesController {
@@ -32,4 +35,14 @@ public class TypesController {
     public List<String> getAllStates(){
         return states;
     }
+    
+    @RequestMapping(value=TypeURI.GET_ALL_UNIVERSITIES,method=RequestMethod.GET)
+    public List<University> getAllUniversities(){
+    	return typesService.getAllUniversities();
+    }
+    @RequestMapping(value=TypeURI.GET_ALL_FACULTIES,method=RequestMethod.GET)
+    public List<Faculty> getAllFaculties(){
+    	return typesService.getAllFaculties();
+    }
+    
 }

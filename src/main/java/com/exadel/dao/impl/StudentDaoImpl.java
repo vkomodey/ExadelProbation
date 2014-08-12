@@ -4,12 +4,15 @@ import java.util.List;
 
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.StudentLog;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import com.exadel.dao.StudentDao;
+import com.exadel.model.entity.student.Faculty;
 import com.exadel.model.entity.student.Student;
+import com.exadel.model.entity.student.University;
 
 @Repository
 public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
@@ -31,7 +34,7 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<String> getFaculties() {
+	public List<Faculty> getActiveFaculties() {
 		// TODO Auto-generated method stub
 		return getSessionFactory().getCurrentSession()
 				.createQuery("select distinct s.study.faculty from Student s")
@@ -39,7 +42,7 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<String> getUniversities() {
+	public List<University> getActiveUniversities() {
 		// TODO Auto-generated method stub
 		return getSessionFactory()
 				.getCurrentSession()

@@ -10,7 +10,7 @@ import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import com.exadel.dao.GenericDao;
 
-public abstract class GenericDaoImpl<ENTITY> extends HibernateDaoSupport
+public class GenericDaoImpl<ENTITY> extends HibernateDaoSupport
 		implements GenericDao<ENTITY> {
 	protected Type type;
 	protected String typeString;

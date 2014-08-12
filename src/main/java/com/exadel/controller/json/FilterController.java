@@ -32,12 +32,12 @@ public class FilterController {
 	TypesService typesService;
 	@RequestMapping(value = FilterURI.GET_ALL_UNIVERSITIES, method = RequestMethod.GET)
 	public List<String> getAllUniversities() {
-		return service.getAllUniversities();
+		return typesService.getActiveUniversities();
 	}
 
 	@RequestMapping(value = FilterURI.GET_ALL_FACULTIES, method = RequestMethod.GET)
 	public List<String> getAllFaculties() {
-		return service.getAllFaculties();
+		return typesService.getActiveFaculties();
 	}
 
 	@RequestMapping(value = FilterURI.GET_ALL_STUDY_END_YEARS, method = RequestMethod.GET)

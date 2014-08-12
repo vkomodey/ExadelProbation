@@ -23,10 +23,7 @@ public class FilterServiceImpl implements FilterService {
 	CuratorDao curatorDao;
 	@Autowired
 	TechnologyDao technologyDao;
-	@Transactional
-	public List<String> getAllUniversities() {
-		return studentDao.getUniversities();
-	}
+	
     @Transactional
     public Set<Technology> getCurrentProjUsedTech(long projectId) {
         return new HashSet<Technology>(technologyDao.getAllCurrentUsedByProjects(projectId));
@@ -43,11 +40,7 @@ public class FilterServiceImpl implements FilterService {
 		}
 		return technologies;*/
 	}
-	@Transactional
-	public List<String> getAllFaculties() {
-		
-		return studentDao.getFaculties();
-	}
+
 	@Transactional
 	public List<Integer> getAllStudyEndYears() {
         List<Integer> l=studentDao.getStudyEndYears();
