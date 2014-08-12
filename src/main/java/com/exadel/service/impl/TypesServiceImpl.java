@@ -11,20 +11,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.exadel.dao.GenericDao;
+import com.exadel.dao.GenericNamedDao;
 import com.exadel.dao.StudentDao;
 import com.exadel.dao.TechDao;
 import com.exadel.service.TypesService;
 @Service
 public class TypesServiceImpl implements TypesService {
 	@Autowired
-	GenericDao<University> universityDao;
+	GenericNamedDao<University> universityDao;
 	@Autowired
 	StudentDao studentDao;
 	@Autowired
 	TechDao techDao;
 	@Autowired
-	GenericDao<Faculty> facultyDao;
+	GenericNamedDao<Faculty> facultyDao;
     @Transactional
 	public List<Technology> getAllTechs() {
 		return techDao.getAll();

@@ -6,10 +6,5 @@ import com.exadel.dao.GenericLivingDao;
 import com.exadel.model.IEntity;
 @Repository
 public class GenericLivingDaoImpl <ENTITY extends IEntity>
-        extends GenericDaoImpl<ENTITY> implements GenericLivingDao<ENTITY> {
-	@SuppressWarnings("unchecked")
-	public ENTITY find(String login) {
-		return (ENTITY) getSessionFactory().getCurrentSession()
-				.bySimpleNaturalId(typeString).load(login);
-    }
+        extends GenericNamedDaoImpl<ENTITY> implements GenericLivingDao<ENTITY> {
 }
