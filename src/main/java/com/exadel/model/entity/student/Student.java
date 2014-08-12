@@ -187,6 +187,7 @@ public class Student extends User {
 		view.setEmail(this.getEmail());
 		view.setPhone(this.getPhone());
 		view.setSkype(this.getSkype());
+        view.setState(this.getState());
 
 		view.setEnglish(this.getEnglish());
 		view.setSkillSet(this.getSkillSet());

@@ -16,7 +16,7 @@
         <a data-ng-if="studentInfo" href="/rest/download/PDF?ids=[{{studentInfo.id}}]" class="btn btn-primary"><span
                 class="glyphicon glyphicon-file"></span> PDF
         </a>
-        <a data-ng-if="studentInfo" href="/rest/download/PDF?ids=[{{studentInfo.id}}]" class="btn btn-primary"><span
+        <a data-ng-if="studentInfo" href="/rest/download/EXCEL?ids=[{{studentInfo.id}}]" class="btn btn-primary"><span
                 class="glyphicon glyphicon-file"></span> Excel
         </a>
         </div>
@@ -188,7 +188,7 @@
 <div class="tab-pane" id="exams" data-ng-show="studentInfo">
     <div class="pull-right well-sm">
         <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
-           class="btn btn-primary btn-info"><span class="glyphicon glyphicon-ok"></span> Save</a>
+           class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
 
     <div class="row">
@@ -270,14 +270,14 @@
 </div>
 <div class="tab-pane {{active}}" id="workInfo">
     <div class="pull-right well-sm">
-        <a data-ng-click="sendWorkInfo()" data-ng-disabled="studentInfoForm.$invalid"
+        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
            class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
     <div class="row">
         <div class="col-md-6 col-md-offset-1">
             <!-- Select input-->
             <div class="form-group">
-                <label class="control-label" >Bill</label>
+                <label class="control-label" >Billable</label>
                 <select class="form-control" data-ng-model="studentInfo.isBillable"
                         data-ng-options="item.value as item.name for item in salaries">
                 </select>
@@ -291,17 +291,44 @@
             </div>
             <!-- Select input-->
             <div class="form-group">
-                <label class="control-label" >Project</label>
-                <select class="form-control" data-ng-model="filterItem.study_end_year"
-                        data-ng-options="item.name for item in filterParams.study_end_years">
-                </select>
-            </div>
-            <!-- Select input-->
-            <div class="form-group">
                 <label class="control-label" >State</label>
                 <select class="form-control" ng-model="studentInfo.state"
                         ng-options="item.value as item.name for item in states">
                 </select>
+            </div>
+            <!-- Select input-->
+            <div class="row">
+                <div class="col-md-8 col-md-offset-1 well-sm">
+                    <table class="table skills-table">
+                        <thead>
+                        <tr>
+                            <th>Project</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="project in studentInfo.currentProjects track by $index">
+                            <td>
+                            <select  ng-model="studentInfo.currentProjects[$index]"
+                                    class="form-control"
+                                    ng-options="projectName.title for projectName in projectNames track by projectName.id">
+                            </select>
+                            </td>
+                            <td class="text-center">
+                                <a data-ng-click="deleteProject($index)" class="btn btn-sm btn-danger"><span
+                                        class="glyphicon glyphicon-trash"></span></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Text input-->
+
+            <!--Table input-->
+            <div class="row">
+                <div class="col-md-2 col-md-offset-7"><a ng-click="addProject()" class="btn btn-sm btn-success"><span
+                        class="glyphicon glyphicon-plus"></span> Add project</a></div>
             </div>
 
         </div>

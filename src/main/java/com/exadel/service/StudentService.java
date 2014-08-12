@@ -11,8 +11,8 @@ public interface StudentService extends GenericLivingService<Student> {
 	public void saveNewFeedbackForStudentByStudId(FeedbackView feedback,long id, String creator);
 	public List<StudentView> getAll();
     void modify(StudentView entity,long id);
-	public CompositeStudentFeedbackView generateStudentViewForUser(long id,
-			String role);
+	/*public CompositeStudentFeedbackView generateStudentViewForUser(long id,
+			String role);*/
 	public List<Student> getAll(List<Long> ids);
     public void attachStudentToCurator(long id, long curator_id);
     public void attachStudentsToCurators(List<Long> students_id, List<Long> curators_id);

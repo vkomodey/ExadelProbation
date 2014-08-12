@@ -1,7 +1,6 @@
 package com.exadel.service.impl;
 
 import java.util.*;
-import java.util.Map.Entry;
 
 import com.exadel.model.entity.StudentLog;
 import com.exadel.model.view.*;
@@ -17,14 +16,12 @@ import com.exadel.dao.SkillTypeDao;
 import com.exadel.dao.StudCuratorJoinDao;
 import com.exadel.dao.StudentDao;
 import com.exadel.dao.UserDao;
-import com.exadel.model.constants.SpringSecurityRole;
 import com.exadel.model.entity.Feedback;
 import com.exadel.model.entity.government.Curator;
 import com.exadel.model.entity.government.Feedbackable;
 import com.exadel.model.entity.join.StudentCuratorJoin;
 import com.exadel.model.entity.student.Skill;
 import com.exadel.model.entity.student.Student;
-import com.exadel.model.entity.student.StudentExams;
 import com.exadel.service.StudentService;
 import com.exadel.util.LazyUtil;
 
@@ -137,7 +134,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 		studentDao.save(entity);
 	}
 
-	@Transactional
+	/*@Transactional
 	public CompositeStudentFeedbackView generateStudentViewForUser(
 			long stud_id, String role) {
 		Student stud = studentDao.find(stud_id);
@@ -160,7 +157,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 		}
 
 		return view;
-	}
+	}*/
 
 	@Transactional
 	public List<Student> getAll(List<Long> ids) {
@@ -201,10 +198,10 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
     @Transactional
     public boolean isStudentAttachedToThisCurator(long id, long curId){
         Student student = studentDao.find(id);
-        Curator curator = curatorDao.find(curId);
+        student.getCurator();
         Set<StudentCuratorJoin> list = student.getCurator();
         for(StudentCuratorJoin studentCuratorJoin: list){
-            if(studentCuratorJoin.getStudent().getId() == curId){
+            if(studentCuratorJoin.getCurator().getId() == curId){
                 return true;
             }
         }

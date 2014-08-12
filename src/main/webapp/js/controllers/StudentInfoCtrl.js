@@ -1,6 +1,4 @@
-/**
- * Created by Administrator on 04.08.2014.
- */
+
 var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope', '$routeParams', '$q', '$http', function ($scope, $routeParams, $q, $http) {
     if ($scope.studentInfo == null) { //make feedback-list-tab active
         $scope.active = 'active';
@@ -11,6 +9,7 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         $scope.currentHours = StudentInfoCtrl.currentHours;
         $scope.states = StudentInfoCtrl.states;
         StudentInfoCtrl.getSkillSet($scope, $http, $q);
+        StudentInfoCtrl.getProjectList($scope, $http, $q);
         $scope.addExam = function () {
             StudentInfoCtrl.addExam($scope);
 
@@ -27,6 +26,12 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         $scope.deleteExam = function () {
             StudentInfoCtrl.deleteExam($scope);
         };
+        $scope.addProject = function(){
+            StudentInfoCtrl.addProject($scope);
+        };
+        $scope.deleteProject = function(){
+            StudentInfoCtrl.deleteProject($scope);
+        }
     }
 }]);
 
@@ -59,6 +64,7 @@ StudentInfoCtrl.getSkillSet = function ($scope, $http, $q) {
     });
     deferred.resolve($scope.skillTypes);
 };
+
 StudentInfoCtrl.addExam = function ($scope) {
     $scope.studentInfo.study.exams.push({
         grade: null,
@@ -104,3 +110,23 @@ StudentInfoCtrl.states = [
     {name: 'Practise', value: 'practise'},
     {name: 'Probation', value: 'probation'}
 ];
+
+StudentInfoCtrl.getProjectList = function ($scope, $http, $q) {
+    var deferred = $q.defer();
+    $http.get('/rest/proj/all').success(function (data) {
+        $scope.projectNames = data;
+    });
+    deferred.resolve($scope.projectNames);
+
+};
+StudentInfoCtrl.addProject = function ($scope) {
+    $scope.studentInfo.currentProjects.push({
+        id: 0,
+        title: null
+    })
+};
+
+StudentInfoCtrl.deleteProject = function ($scope, index) {
+    $scope.studentInfo.currentProjects.splice(index, 1);
+};
+
