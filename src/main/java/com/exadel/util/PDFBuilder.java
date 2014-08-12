@@ -10,9 +10,9 @@ import org.springframework.web.servlet.view.document.AbstractPdfView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 @Service
 public class PDFBuilder extends AbstractPdfView {
@@ -81,7 +81,8 @@ public class PDFBuilder extends AbstractPdfView {
             }
 
             if(stud.getWork()!=null){
-                table.addCell(nullCheck(stud.getWork().getWorkStartDate()));
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                table.addCell(nullCheck(dateFormat.format(stud.getWork().getWorkStartDate().getTime())));
                 table.addCell(nullCheck(stud.getWork().getHours_current()));
                 table.addCell(nullCheck(stud.getWork().getIsBillable()));
                 table.addCell(nullCheck(stud.getWork().getBillableStartDate()));
