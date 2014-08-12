@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.exadel.dao.CuratorDao;
 import com.exadel.dao.FeedbackableDao;
-import com.exadel.dao.GenericDao;
 import com.exadel.dao.GenericNamedDao;
 import com.exadel.dao.ProjectDao;
 import com.exadel.dao.TechDao;
