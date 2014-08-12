@@ -814,6 +814,10 @@ studentsControllers.controller('MakeRoleCtrl', ['$scope','$http', function($scop
                 $scope.link_AddStudent = true;
                 $scope.disableStudentInfo = true;
                 break;
+            case "ROLE_CURATOR":
+            case "ROLE_FEEDBACKER":
+                $scope.disableStudentInfo = true;
+                break;
         }
     });
 }]);
