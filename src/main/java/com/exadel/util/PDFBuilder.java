@@ -20,17 +20,10 @@ public class PDFBuilder extends AbstractPdfView {
     static final int tableSize=13;
     static final int studyNumber=3;
     static final int workNumber=6;
-    private String emptyField="empty";
-
-    private String nullCheck(Object o){
-        if(o!=null)
-            return o.toString();
-        return emptyField;
-    }
 
     private void fillEmpty(Table table,int number) throws BadElementException {
         for(int i=0; i<number; i++)
-            table.addCell(emptyField);
+            table.addCell(BuilderUtil.emptyField);
     }
 
     private String convertTechnologySet(Set<Technology> tech){
@@ -42,7 +35,7 @@ public class PDFBuilder extends AbstractPdfView {
             }
             return result.toString();
         }
-        return emptyField;
+        return BuilderUtil.emptyField;
     }
 
     private void addHeader(Table table) throws BadElementException {
@@ -70,23 +63,23 @@ public class PDFBuilder extends AbstractPdfView {
             table.addCell(stud.getFirstName());
             table.addCell(stud.getSecondName());
             table.addCell(stud.getSurname());
-            table.addCell(nullCheck(stud.getEnglish()));
+            table.addCell(BuilderUtil.nullCheck(stud.getEnglish()));
 
             if(stud.getStudy()!=null){
-                table.addCell(stud.getStudy().getFaculty());
-                table.addCell(nullCheck(stud.getStudy().getCourse_group()));
-                table.addCell(nullCheck(stud.getStudy().getGraduate_year()));
+                table.addCell(BuilderUtil.nullCheck(stud.getStudy().getFaculty()));
+                table.addCell(BuilderUtil.nullCheck(stud.getStudy().getCourse_group()));
+                table.addCell(BuilderUtil.nullCheck(stud.getStudy().getGraduate_year()));
             }else{
                 fillEmpty(table,studyNumber);
             }
 
             if(stud.getWork()!=null){
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                table.addCell(nullCheck(dateFormat.format(stud.getWork().getWorkStartDate().getTime())));
-                table.addCell(nullCheck(stud.getWork().getHours_current()));
-                table.addCell(nullCheck(stud.getWork().getIsBillable()));
-                table.addCell(nullCheck(stud.getWork().getBillableStartDate()));
-                table.addCell(nullCheck(stud.getWork().getCurrentProjectRole()));
+                table.addCell(BuilderUtil.nullCheck(dateFormat.format(stud.getWork().getWorkStartDate().getTime())));
+                table.addCell(BuilderUtil.nullCheck(stud.getWork().getHours_current()));
+                table.addCell(BuilderUtil.nullCheck(stud.getWork().getIsBillable()));
+                table.addCell(BuilderUtil.nullCheck(stud.getWork().getBillableStartDate()));
+                table.addCell(BuilderUtil.nullCheck(stud.getWork().getCurrentProjectRole()));
                 table.addCell(convertTechnologySet(stud.getWork().getCurrentUsedTechnologies()));
             }else{
                 fillEmpty(table,workNumber);

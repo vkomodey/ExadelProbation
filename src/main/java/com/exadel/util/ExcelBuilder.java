@@ -24,14 +24,6 @@ import com.exadel.model.entity.student.Student;
 @Service
 public class ExcelBuilder extends AbstractExcelView {
 
-    private String emptyField="empty";
-
-    private String nullCheck(Object o){
-        if(o!=null)
-            return o.toString();
-        return emptyField;
-    }
-
     private String convertTechnologySet(Set<Technology> tech){
         StringBuilder result= new StringBuilder();
         if(tech!=null){
@@ -41,7 +33,7 @@ public class ExcelBuilder extends AbstractExcelView {
             }
             return result.toString();
         }
-        return emptyField;
+        return BuilderUtil.emptyField;
     }
 
     private void createHeaderRow(HSSFSheet sheet, CellStyle style){
@@ -94,21 +86,21 @@ public class ExcelBuilder extends AbstractExcelView {
                 aRow.createCell(0).setCellValue(stud.getFirstName());
                 aRow.createCell(1).setCellValue(stud.getSecondName());
                 aRow.createCell(2).setCellValue(stud.getSurname());
-                aRow.createCell(3).setCellValue(nullCheck(stud.getEnglish()));
+                aRow.createCell(3).setCellValue(BuilderUtil.nullCheck(stud.getEnglish()));
             }
 
             if(stud.getStudy()!=null){
-                aRow.createCell(4).setCellValue(stud.getStudy().getFaculty());
+                aRow.createCell(4).setCellValue(BuilderUtil.nullCheck(stud.getStudy().getFaculty()));
                 aRow.createCell(5).setCellValue(stud.getStudy().getCourse_group());
-                aRow.createCell(6).setCellValue(nullCheck(stud.getStudy().getGraduate_year()));
+                aRow.createCell(6).setCellValue(BuilderUtil.nullCheck(stud.getStudy().getGraduate_year()));
             }
 
             if(stud.getWork()!=null){
-                aRow.createCell(7).setCellValue(nullCheck(stud.getWork().getWorkStartDate()));
-                aRow.createCell(8).setCellValue(nullCheck(stud.getWork().getHours_current()));
-                aRow.createCell(9).setCellValue(nullCheck(stud.getWork().getIsBillable()));
-                aRow.createCell(10).setCellValue(nullCheck((stud.getWork().getBillableStartDate())));
-                aRow.createCell(11).setCellValue(nullCheck((stud.getWork().getCurrentProjectRole())));
+                aRow.createCell(7).setCellValue(BuilderUtil.nullCheck(stud.getWork().getWorkStartDate()));
+                aRow.createCell(8).setCellValue(BuilderUtil.nullCheck(stud.getWork().getHours_current()));
+                aRow.createCell(9).setCellValue(BuilderUtil.nullCheck(stud.getWork().getIsBillable()));
+                aRow.createCell(10).setCellValue(BuilderUtil.nullCheck((stud.getWork().getBillableStartDate())));
+                aRow.createCell(11).setCellValue(BuilderUtil.nullCheck((stud.getWork().getCurrentProjectRole())));
                 aRow.createCell(12).setCellValue(convertTechnologySet(stud.getWork().getCurrentUsedTechnologies()));
             }
         }
