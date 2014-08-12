@@ -17,6 +17,7 @@ import com.exadel.model.entity.User;
 import com.exadel.model.entity.student.Technology;
 import com.exadel.model.view.IdNameSurnamePersonView;
 import com.exadel.service.FilterService;
+import com.exadel.service.TypesService;
 import com.exadel.util.JsonUtil;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,6 +28,8 @@ public class FilterController {
 	FilterService service;
 
 	JsonGenerator jg;
+	@Autowired
+	TypesService typesService;
 	@RequestMapping(value = FilterURI.GET_ALL_UNIVERSITIES, method = RequestMethod.GET)
 	public List<String> getAllUniversities() {
 		return service.getAllUniversities();
@@ -77,6 +80,7 @@ public class FilterController {
 		jg =objectMapper.getFactory().createGenerator(sw);
 		jg.writeStartObject();
 		writeJSONStringObjectArray(new ArrayList<String>(getAllCurrentUsedTechnologies()), "technames");
+		writeJSONStringObjectArray(getAllUsedSkillNames(), "skillnames");
 		writeJSONStringObjectArray(getAllStudyEndYears(), "study_end_years");
 		writeJSONStringObjectArray(getAllUniversities(), "universities");
 		writeJSONStringObjectArray(getAllFaculties(), "faculties");
@@ -88,6 +92,10 @@ public class FilterController {
 		jg.writeEndObject();
 		jg.close();
 		return sw.toString();
+	}
+
+	private List<String> getAllUsedSkillNames() {
+		return typesService.getActiveSkillTypes();
 	}
 
 	private void writeJSONStringObjectArray(List<String> list, String name)
