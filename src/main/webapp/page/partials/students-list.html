@@ -79,18 +79,18 @@
                         </select></div>
                     <div class="col-md-2">
                         <label>Skill</label>
-                        <select class="form-control" data-ng-model="filterItem.techname"
-                                data-ng-options="item.name for item in filterParams.technames">
+                        <select class="form-control" data-ng-model="filterItem.skillname"
+                                data-ng-options="item.name for item in filterParams.skillnames">
                         </select></div>
                     <div class="col-md-2">
                         <label>Skill</label>
-                        <select class="form-control" data-ng-model="filterItem.techname"
-                                data-ng-options="item.name for item in filterParams.technames">
+                        <select class="form-control" data-ng-model="filterItem.skillname2"
+                                data-ng-options="item.name for item in filterParams.skillnames">
                         </select></div>
                     <div class="col-md-2">
                         <label>Skill</label>
-                        <select class="form-control" data-ng-model="filterItem.techname"
-                                data-ng-options="item.name for item in filterParams.technames">
+                        <select class="form-control" data-ng-model="filterItem.skillname3"
+                                data-ng-options="item.name for item in filterParams.skillnames">
                         </select></div>
 
 
@@ -126,7 +126,8 @@
             <tr data-ng-repeat="user in studentsList| filter:search | orderBy:params.orderBy() |
                  filter:customFilterCourse | filter:customFilterEnglish | filter:customFilterHours |
                  filter:customFilterSalary | filter:customFilterTech|filter:customFilterFaculty|
-                 filter:customFilterUniversity|filter:customFilterGraduate|filter:customFilterCurator">
+                 filter:customFilterUniversity|filter:customFilterGraduate|filter:customFilterCurator
+                 |filter:customFilterTech2|filter:customFilterTech3">
                 <td> <!--header="'headers/checkbox.html'"--><input data-ng-click="checkElement(user.id)" type="checkbox" class="checkthis"/></td>
                 <td data-title="'Login'" sortable="'login'">{{user.login}}</td>
                 <td data-title="'Name'" sortable="'surname'">{{user.firstName + " "+user.surname}}</td>

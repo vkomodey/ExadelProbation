@@ -107,7 +107,9 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                    englishlevel: $scope.filterOptions.englishlevels[0],
                    salary: $scope.filterOptions.salaries[0],
                    // from factory
-                   techname: $scope.filterParams.technames[$scope.filterParams.technames.length - 1],
+                   skillname: $scope.filterParams.skillnames[$scope.filterParams.skillnames.length - 1],
+                   skillname2: $scope.filterParams.skillnames[$scope.filterParams.skillnames.length - 1],
+                   skillname3: $scope.filterParams.skillnames[$scope.filterParams.skillnames.length - 1],
                    faculty: $scope.filterParams.faculties[$scope.filterParams.faculties.length - 1],
                    university: $scope.filterParams.universities[$scope.filterParams.universities.length - 1],
                    study_end_year: $scope.filterParams.study_end_years[$scope.filterParams.study_end_years.length - 1],
@@ -190,21 +192,85 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
 
                };
                $scope.customFilterTech = function (studentsList) {
-                   if (studentsList.skillSet.type === undefined && $scope.filterItem.techname.name !== 'Show All') {
-                       return false;
-                   } else {
-                       if (studentsList.skillSet.type === undefined && $scope.filterItem.techname.name === 'Show All') {
+                   var j;
+                   if(studentsList.skillSet.length ===0){
+                       if($scope.filterItem.skillname.name === 'Show All'){
                            return true;
-                       } else {
-                           if (studentsList.skillSet.type.name === $scope.filterItem.techname.name) {
-                               return true;
-                           } else if ($scope.filterItem.techname.name === 'Show All') {
-                               return true;
-                           } else {
-                               return false;
-                           }
+                       }else {
+                           return false;
                        }
-                   }
+                   }else{
+                       if($scope.filterItem.skillname.name === 'Show All'){
+                           return true;
+                       }else{
+                           if($scope.filterItem.skillname.name !== 'Show All'){
+                               for (j = 0; j < studentsList.skillSet.length;) {
+                                   if (studentsList.skillSet.length !== 0) {
+                                       if (studentsList.skillSet[j].type.name === $scope.filterItem.skillname.name) {
+                                           return true;
+                                       } else {
+                                           j++;
+                                       }
+                                   } else {
+                                       return false;
+                                   }
+                               }
+                           }
+                       }}
+               };
+               $scope.customFilterTech2 = function (studentsList) {
+                   var k;
+                   if(studentsList.skillSet.length ===0){
+                       if($scope.filterItem.skillname2.name === 'Show All'){
+                           return true;
+                       }else {
+                           return false;
+                       }
+                   }else{
+                       if($scope.filterItem.skillname2.name === 'Show All'){
+                           return true;
+                       }else{
+                           if($scope.filterItem.skillname2.name !== 'Show All'){
+                               for (k = 0; k < studentsList.skillSet.length;) {
+                                   if (studentsList.skillSet.length !== 0) {
+                                       if (studentsList.skillSet[k].type.name === $scope.filterItem.skillname2.name) {
+                                           return true;
+                                       } else {
+                                           k++;
+                                       }
+                                   } else {
+                                       return false;
+                                   }
+                               }
+                           }
+                       }}
+               };
+               $scope.customFilterTech3 = function (studentsList) {
+                   var m;
+                   if(studentsList.skillSet.length ===0){
+                       if($scope.filterItem.skillname3.name === 'Show All'){
+                           return true;
+                       }else {
+                           return false;
+                       }
+                   }else{
+                       if($scope.filterItem.skillname3.name === 'Show All'){
+                           return true;
+                       }else{
+                           if($scope.filterItem.skillname3.name !== 'Show All'){
+                               for (m = 0; m < studentsList.skillSet.length;) {
+                                   if (studentsList.skillSet.length !== 0) {
+                                       if (studentsList.skillSet[m].type.name === $scope.filterItem.skillname3.name) {
+                                           return true;
+                                       } else {
+                                           m++;
+                                       }
+                                   } else {
+                                       return false;
+                                   }
+                               }
+                           }
+                       }}
                };
                $scope.customFilterFaculty = function (studentsList) {
                    if (studentsList.study.faculty === null && $scope.filterItem.faculty.name === 'Show All') {
