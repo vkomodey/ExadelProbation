@@ -145,7 +145,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                     return true;
                 }else{
 
-                    if ( studentsList.hours_current[0]=== $scope.filterItem.workinghour.name[0]) {
+                    if ( studentsList.hours_current.toString().charAt(0)=== $scope.filterItem.workinghour.name.charAt(0)) {
                         return true;
                     } else if ($scope.filterItem.workinghour.name ==='Show All') {
                         return true;
