@@ -6,7 +6,8 @@ var FeedbacksCtrl = studentsControllers.controller('SendEmailCtrl', ['$scope', '
         $scope.sendEmail = function() {
             var email = {
                 id: $scope.checkedStudArray,
-                message: $scope.message
+                message: $scope.message,
+                password: $scope.password
 //                object: $scope.title
             };
             /*var myJSONString = JSON.stringify(email);
