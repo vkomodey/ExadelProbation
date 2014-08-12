@@ -13,10 +13,10 @@
 
     <li class="pull-right">
         <div class="btn-toolbar ">
-        <a data-ng-if="studentInfo" href="/rest/download/PDF?ids=[{{studentInfo.id}}]" class="btn btn-primary"><span
+        <a data-ng-if="link_Pdf_Excel" href="/rest/download/PDF?ids=[{{studentInfo.id}}]" class="btn btn-primary"><span
                 class="glyphicon glyphicon-file"></span> PDF
         </a>
-        <a data-ng-if="studentInfo" href="/rest/download/EXCEL?ids=[{{studentInfo.id}}]" class="btn btn-primary"><span
+        <a data-ng-if="link_Pdf_Excel" href="/rest/download/EXCEL?ids=[{{studentInfo.id}}]" class="btn btn-primary"><span
                 class="glyphicon glyphicon-file"></span> Excel
         </a>
         </div>
@@ -181,7 +181,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-2 col-md-offset-7"><a ng-click="addSkill()" class="btn btn-sm btn-success" data-ng-disabled="disableStudentInfo"><span
+        <div class="col-md-2 col-md-offset-7"><a ng-click="addSkill()" class="btn btn-sm btn-success" data-ng-hide="disableStudentInfo"><span
                 class="glyphicon glyphicon-plus" ></span> Add skill</a></div>
     </div>
 </div>
@@ -240,7 +240,7 @@
 </div>
 <div class="tab-pane {{active}}" id="feedbacks">
     <div class="pull-right well-sm">
-        <button data-target="#addFeedback" data-toggle="modal" class="btn btn-success" data-ng-disabled="disableStudentInfo"><span
+        <button data-target="#addFeedback" data-toggle="modal" class="btn btn-success" data-ng-hide="disableAddFeedback"><span
                 class="glyphicon glyphicon-plus"></span> Add feedback
         </button>
     </div>
@@ -494,9 +494,9 @@
                     <h4 class="modal-title custom_align" id="Heading">Project history</h4>
                 </div>
                 <div class="modal-body">
-                    <table class="table ng-table" data-ng-table="projectHistoryParams">
-                        <tr  data-ng-repeat="proj in projectHistoryList | reverse |orderBy: params.orderBy()">
-                            <td data-title="'Project name'" sortable="name">
+                    <table class="table" ng-table="projectHistoryParams">
+                        <tr  data-ng-repeat="proj in projectHistoryList | reverse | orderBy:params.orderBy()">
+                            <td data-title="'Project name'" sortable="'name'">
                                 {{proj.name}}
                             </td>
                         </tr>

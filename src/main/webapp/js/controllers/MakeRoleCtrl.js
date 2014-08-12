@@ -18,6 +18,7 @@ studentsControllers.controller('MakeRoleCtrl', ['$scope','$http', function($scop
                 $scope.link_Email_AppointCurator = true;
                 $scope.link_AddStudent = true;
                 $scope.disableStudentInfo = true;
+                $scope.disableAddFeedback = true;
                 break;
             case "ROLE_CURATOR":
             case "ROLE_FEEDBACKER":

@@ -32,9 +32,9 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         $scope.deleteProject = function(index){
             StudentInfoCtrl.deleteProject($scope,index);
         }
-        $scope.reloadProjectHistory = function(){
-            $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
-        }
+//        $scope.reloadProjectHistory = function(){
+//            $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
+//        };
     }
 }]);
 
@@ -62,7 +62,7 @@ StudentInfoCtrl.englishLevels = [
  }*/
 StudentInfoCtrl.getSkillSet = function ($scope, $http, $q) {
     var deferred = $q.defer();
-    $http.get('/rest/types/skill/get').success(function (data) {
+    $http.get('/rest/types/technology/get').success(function (data) {
         $scope.skillTypes = data;
     });
     deferred.resolve($scope.skillTypes);

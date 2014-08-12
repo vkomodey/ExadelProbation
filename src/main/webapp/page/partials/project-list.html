@@ -13,14 +13,14 @@
         <div class="scroll">
         <table class="table projectList-table" ng-table="projectTableParams">
             <tr ng-repeat="project in projectList | filter:search | orderBy:params.orderBy()">
-                <td data-title="'Delete'" class="text-center">
+                <td data-title="'Delete'">
                     <a data-ng-click="saveIdForDelete(project.id)" data-target="#delete" data-toggle="modal"
                        class="btn btn-primary btn-danger"><span class="glyphicon glyphicon-trash"></span> </a>
                 </td>
                 <td data-title="'Project name'" sortable="'title'">
                     {{project.title}}
                 </td>
-                <td data-title="'Students on project'" class="text-center">
+                <td data-title="'Students on project'">
                     <a data-ng-click="saveIdForShowStudentsList(project.id)" data-target="#studentsOnProject"
                        data-toggle="modal" class="btn btn-primary btn-primary"><span
                             class="glyphicon glyphicon-user"></span> </a>
