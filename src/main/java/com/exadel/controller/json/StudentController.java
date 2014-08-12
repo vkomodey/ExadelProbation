@@ -126,8 +126,11 @@ public class StudentController {
 	}
 
     @RequestMapping(value = StudURI.GET_PROJECT_HISTORY, method = RequestMethod.GET)
-    public @ResponseBody List<String> getProjectHistory(@PathVariable("id") long id){
-
-        return projectService.getProjectHistory(id);
+    public @ResponseBody String getProjectHistory(@PathVariable("id") long id,ObjectMapper om) throws IOException{
+    	StringWriter sw=new StringWriter();
+    	JsonGenerator jg=om.getFactory().createGenerator(sw);
+    	JsonUtil.writeJSONStringObjectArray(jg, projectService.getProjectHistory(id));
+    	jg.close();
+    	return sw.toString();
     }
 }
