@@ -20,8 +20,11 @@
         <property name="annotatedClasses">
             <list>
                 <value>com.exadel.model.entity.User</value>
-                <value>com.exadel.model.entity.student.ExadelPractice</value>
                 <value>com.exadel.model.entity.student.Student</value>
+                <value>com.exadel.model.entity.student.University</value>
+                <value>com.exadel.model.entity.student.Faculty</value>
+                <value>com.exadel.model.entity.student.ExadelPractice</value>
+                
                 <value>com.exadel.model.entity.student.ExadelWork</value>
                 <value>com.exadel.model.entity.student.Skill</value>
                 <value>com.exadel.model.entity.student.StudentExams</value>
