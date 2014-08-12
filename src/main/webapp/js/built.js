@@ -320,6 +320,62 @@ s[g];n&&r&&(l[n.name]=r)}p=l}else p=null;else p=null;p=a=p}p&&(b=h(f,{params:e.e
 function(){this.$get=function(){return{}}});h.directive("ngView",u);h.directive("ngView",z);u.$inject=["$route","$anchorScroll","$animate"];z.$inject=["$compile","$controller","$route"]})(window,window.angular);
 //# sourceMappingURL=angular-route.min.js.map
 
+!function($){"use strict";var Tooltip=function(element,options){this.init('tooltip',element,options)}
+Tooltip.prototype={constructor:Tooltip,init:function(type,element,options){var eventIn,eventOut
+this.type=type
+this.$element=$(element)
+this.options=this.getOptions(options)
+this.enabled=true
+if(this.options.trigger!='manual'){eventIn=this.options.trigger=='hover'?'mouseenter':'focus'
+eventOut=this.options.trigger=='hover'?'mouseleave':'blur'
+this.$element.on(eventIn,this.options.selector,$.proxy(this.enter,this))
+this.$element.on(eventOut,this.options.selector,$.proxy(this.leave,this))}
+this.options.selector?(this._options=$.extend({},this.options,{trigger:'manual',selector:''})):this.fixTitle()},getOptions:function(options){options=$.extend({},$.fn[this.type].defaults,options,this.$element.data())
+if(options.delay&&typeof options.delay=='number'){options.delay={show:options.delay,hide:options.delay}}
+return options},enter:function(e){var self=$(e.currentTarget)[this.type](this._options).data(this.type)
+if(!self.options.delay||!self.options.delay.show)return self.show()
+clearTimeout(this.timeout)
+self.hoverState='in'
+this.timeout=setTimeout(function(){if(self.hoverState=='in')self.show()},self.options.delay.show)},leave:function(e){var self=$(e.currentTarget)[this.type](this._options).data(this.type)
+if(!self.options.delay||!self.options.delay.hide)return self.hide()
+clearTimeout(this.timeout)
+self.hoverState='out'
+this.timeout=setTimeout(function(){if(self.hoverState=='out')self.hide()},self.options.delay.hide)},show:function(){var $tip,inside,pos,actualWidth,actualHeight,placement,tp
+if(this.hasContent()&&this.enabled){$tip=this.tip()
+this.setContent()
+if(this.options.animation){$tip.addClass('fade')}
+placement=typeof this.options.placement=='function'?this.options.placement.call(this,$tip[0],this.$element[0]):this.options.placement
+inside=/in/.test(placement)
+$tip.remove().css({top:0,left:0,display:'block'}).appendTo(inside?this.$element:document.body)
+pos=this.getPosition(inside)
+actualWidth=$tip[0].offsetWidth
+actualHeight=$tip[0].offsetHeight
+switch(inside?placement.split(' ')[1]:placement){case'bottom':tp={top:pos.top+ pos.height,left:pos.left+ pos.width/2- actualWidth/2}
+break
+case'top':tp={top:pos.top- actualHeight,left:pos.left+ pos.width/2- actualWidth/2}
+break
+case'left':tp={top:pos.top+ pos.height/2- actualHeight/2,left:pos.left- actualWidth}
+break
+case'right':tp={top:pos.top+ pos.height/2- actualHeight/2,left:pos.left+ pos.width}
+break}
+$tip.css(tp).addClass(placement).addClass('in')}},isHTML:function(text){return typeof text!='string'||(text.charAt(0)==="<"&&text.charAt(text.length- 1)===">"&&text.length>=3)||/^(?:[^<]*<[\w\W]+>[^>]*$)/.exec(text)},setContent:function(){var $tip=this.tip(),title=this.getTitle()
+$tip.find('.tooltip-inner')[this.isHTML(title)?'html':'text'](title)
+$tip.removeClass('fade in top bottom left right')},hide:function(){var that=this,$tip=this.tip()
+$tip.removeClass('in')
+function removeWithAnimation(){var timeout=setTimeout(function(){$tip.off($.support.transition.end).remove()},500)
+$tip.one($.support.transition.end,function(){clearTimeout(timeout)
+$tip.remove()})}
+$.support.transition&&this.$tip.hasClass('fade')?removeWithAnimation():$tip.remove()},fixTitle:function(){var $e=this.$element
+if($e.attr('title')||typeof($e.attr('data-original-title'))!='string'){$e.attr('data-original-title',$e.attr('title')||'').removeAttr('title')}},hasContent:function(){return this.getTitle()},getPosition:function(inside){return $.extend({},(inside?{top:0,left:0}:this.$element.offset()),{width:this.$element[0].offsetWidth,height:this.$element[0].offsetHeight})},getTitle:function(){var title,$e=this.$element,o=this.options
+title=$e.attr('data-original-title')||(typeof o.title=='function'?o.title.call($e[0]):o.title)
+return title},tip:function(){return this.$tip=this.$tip||$(this.options.template)},validate:function(){if(!this.$element[0].parentNode){this.hide()
+this.$element=null
+this.options=null}},enable:function(){this.enabled=true},disable:function(){this.enabled=false},toggleEnabled:function(){this.enabled=!this.enabled},toggle:function(){this[this.tip().hasClass('in')?'hide':'show']()}}
+$.fn.tooltip=function(option){return this.each(function(){var $this=$(this),data=$this.data('tooltip'),options=typeof option=='object'&&option
+if(!data)$this.data('tooltip',(data=new Tooltip(this,options)))
+if(typeof option=='string')data[option]()})}
+$.fn.tooltip.Constructor=Tooltip
+$.fn.tooltip.defaults={animation:true,placement:'top',selector:false,template:'<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',trigger:'hover',title:'',delay:0}}(window.jQuery);
 /*! ngTable v0.3.1 by Vitalii Savchuk(esvit666@gmail.com) - https://github.com/esvit/ng-table - New BSD License */
 !function (a, b) {
     return"function" == typeof define && define.amd ? (define(["angular"], function (a) {
@@ -641,7 +697,7 @@ studentsControllers.controller('CreateStudentCtrl', ['$scope', '$http', function
     };
 }]);
 
-studentsControllers.controller('CuratorsListForAppointCtrl', ['$scope', '$http', function($scope,$http) {
+studentsControllers.controller('CuratorsListForAppointCtrl', ['$scope', '$http','filterParamsFactory','$q', function($scope,$http,filterParamsFactory,$q) {
     $scope.checkedCuratorArray = [];
     $scope.checkedCurator = function(id) {
         StudentListCtrl.checkElement(id,$scope.checkedCuratorArray);
@@ -654,7 +710,14 @@ studentsControllers.controller('CuratorsListForAppointCtrl', ['$scope', '$http',
         $http.post('/rest/stud/attach/manytomany',checkedStudAndCurator)
             .error(function(status,data){
                 alert(data);
-        });
+        })
+                .success(function(){
+                var deferred = $q.defer();
+                  filterParamsFactory.getFilterParams(function(data) {
+                      $scope.filterParams = data;
+                  });
+                deferred.resolve($scope.filterParams);
+                });
     };
 }]);
 studentsControllers.controller('DeleteProjectCtrl', ['$scope', '$http', function($scope,$http) {
@@ -961,6 +1024,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
 
         $scope.reloadList = function() {
             var deferred = $q.defer();
+            $scope.checkedStudArray = [];
             studentsListFactory.getStudentsList(function (data) {
                     $scope.studentsList = data;
                 }
@@ -997,7 +1061,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                 $defer.resolve(data.slice());
             }, $scope: { studentsList: {} }
         });
-        $scope.toJsonStudentCheckedArray = function () {
+        /*$scope.toJsonStudentCheckedArray = function () {
             if ($scope.checkedStudArray.length != 0) {
                 var arrayForPdfOrExcel = [];
                 $scope.checkedStudArray.forEach(function (element, index, array) {
@@ -1007,9 +1071,10 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                 });
                 return angular.toJson(arrayForPdfOrExcel);
             }
-        };
+        };*/
         $scope.reloadCuratorsList = function () {
             var deferred = $q.defer();
+            $scope.checkedCuratorArray = [];
             CuratorsListFactory.getCuratorsList(function (data) {
                 $scope.curatorsList = data;
             });
@@ -1101,7 +1166,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                     return true;
                 }else{
 
-                    if ( studentsList.hours_current[0]=== $scope.filterItem.workinghour.name[0]) {
+                    if ( studentsList.hours_current.toString().charAt(0)=== $scope.filterItem.workinghour.name.charAt(0)) {
                         return true;
                     } else if ($scope.filterItem.workinghour.name ==='Show All') {
                         return true;
@@ -1214,14 +1279,14 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                 return true;
             }else
             {if ($scope.filterItem.curator.surname !=='Show All'){
-                for(i=0; i<$scope.filterParams.curators.length; i++){
+                for(i=0; i<$scope.filterParams.curators.length;){
                     if(studentsList.curator.length!==0)
                     {if(studentsList.curator[i].surname === $scope.filterItem.curator.surname)
                 {
                     return true;
                 }else
                 {
-                    return false;
+                    i++;
                 }}else{return false;}
             }}}
            };

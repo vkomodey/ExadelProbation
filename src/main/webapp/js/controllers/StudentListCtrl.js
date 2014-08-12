@@ -5,6 +5,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
 
         $scope.reloadList = function() {
             var deferred = $q.defer();
+            $scope.checkedStudArray = [];
             studentsListFactory.getStudentsList(function (data) {
                     $scope.studentsList = data;
                 }
@@ -41,7 +42,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                 $defer.resolve(data.slice());
             }, $scope: { studentsList: {} }
         });
-        $scope.toJsonStudentCheckedArray = function () {
+        /*$scope.toJsonStudentCheckedArray = function () {
             if ($scope.checkedStudArray.length != 0) {
                 var arrayForPdfOrExcel = [];
                 $scope.checkedStudArray.forEach(function (element, index, array) {
@@ -51,9 +52,10 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                 });
                 return angular.toJson(arrayForPdfOrExcel);
             }
-        };
+        };*/
         $scope.reloadCuratorsList = function () {
             var deferred = $q.defer();
+            $scope.checkedCuratorArray = [];
             CuratorsListFactory.getCuratorsList(function (data) {
                 $scope.curatorsList = data;
             });
