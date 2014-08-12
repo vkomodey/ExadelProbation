@@ -1,5 +1,5 @@
 
-var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope', '$routeParams', '$q', '$http', function ($scope, $routeParams, $q, $http) {
+var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope', '$routeParams','ProjectHistoryFactory', '$q', '$http', function ($scope, $routeParams,ProjectHistoryFactory, $q, $http) {
     if ($scope.studentInfo == null) { //make feedback-list-tab active
         $scope.active = 'active';
     }
@@ -31,6 +31,9 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         };
         $scope.deleteProject = function(index){
             StudentInfoCtrl.deleteProject($scope,index);
+        }
+        $scope.reloadProjectHistory = function(){
+            $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
         }
     }
 }]);

@@ -619,6 +619,12 @@ studentsServices.factory('LogListFactory',['$resource',function($resource) {
     })
 }]);
 
+studentsServices.factory('ProjectHistoryFactory',['$resource', function($resource) {
+    return $resource('/rest/stud/:studId/proj/history',{},{
+        getProjectHistory: {method: 'GET', isArray: true}
+    });
+}]);
+
 studentsServices.factory('projectListFactory',['$resource', function($resource) {
     return $resource('/rest/proj/all', {}, {
         getProjectList: {method: 'GET', isArray: true}
@@ -925,7 +931,7 @@ var FeedbacksCtrl = studentsControllers.controller('SendEmailCtrl', ['$scope', '
         }
     }]);
 
-var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope', '$routeParams', '$q', '$http', function ($scope, $routeParams, $q, $http) {
+var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope', '$routeParams','ProjectHistoryFactory', '$q', '$http', function ($scope, $routeParams,ProjectHistoryFactory, $q, $http) {
     if ($scope.studentInfo == null) { //make feedback-list-tab active
         $scope.active = 'active';
     }
@@ -957,6 +963,9 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         };
         $scope.deleteProject = function(index){
             StudentInfoCtrl.deleteProject($scope,index);
+        }
+        $scope.reloadProjectHistory = function(){
+            $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
         }
     }
 }]);

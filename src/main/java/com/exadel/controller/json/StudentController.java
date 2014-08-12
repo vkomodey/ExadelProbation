@@ -7,6 +7,7 @@ import com.exadel.model.entity.student.Student;
 import com.exadel.model.view.FeedbackView;
 import com.exadel.model.view.StudentView;
 import com.exadel.service.CuratorService;
+import com.exadel.service.ProjectService;
 import com.exadel.service.StudentService;
 import com.exadel.service.UserService;
 import com.exadel.util.JsonUtil;
@@ -38,6 +39,8 @@ public class StudentController {
     StudentService studentService;
 	@Autowired
 	UserService userService;
+    @Autowired
+    ProjectService projectService;
 	
 	@RequestMapping(value = StudURI.ATTACH_STUDENT, method = RequestMethod.POST)
     public @ResponseBody void attachStudentToCurator(@PathVariable String id,
@@ -121,4 +124,10 @@ public class StudentController {
 		logger.info("student info sending");
 		return sw.toString();
 	}
+
+    @RequestMapping(value = StudURI.GET_PROJECT_HISTORY, method = RequestMethod.GET)
+    public @ResponseBody List<String> getProjectHistory(@PathVariable("id") long id){
+
+        return projectService.getProjectHistory(id);
+    }
 }

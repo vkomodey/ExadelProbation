@@ -52,4 +52,9 @@ public class ProjectServiceImpl implements ProjectService{
         projectDao.find(projId).getStudents().remove(studentDao.find(studId));
     }
 
+    @Transactional
+    public List<String> getProjectHistory(long studId){
+        return projectDao.getProjectHistory(studId);
+    }
+
 }

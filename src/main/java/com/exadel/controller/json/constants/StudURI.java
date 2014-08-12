@@ -11,4 +11,5 @@ public class StudURI {
 	public static final String ATTACH_STUDENT = "stud/{id}/attach_to_curator/{curator_id}";
     public static final String ATTACH_STUDENTS_TO_CURATORS="stud/attach/manytomany";
     public static final String GET_STUDENTS_LOG="stud/{id}/get_log";
+    public static final String GET_PROJECT_HISTORY="stud/{id}/proj/history";
 }

@@ -17,7 +17,10 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">Exadel</a>
+       <!-- <a class="navbar-brand" href="#">Exadel</a>-->
+        <a href="" class="navbar-brand">
+        <img src="../img/exadel-logo.png" alt="Exadel"/>
+        </a>
     </div>
         <ul class="nav navbar-nav">
             <li><a href="#/studentList">Student List</a></li>

@@ -270,6 +270,8 @@
 </div>
 <div class="tab-pane {{active}}" id="workInfo">
     <div class="pull-right well-sm">
+
+        <a data-ng-click="reloadProjectHistory()" data-target="#projectHistoryModal" data-toggle="modal" class="btn btn-primary"><span class="glyphicon glyphicon-book"></span> Project history</a>
         <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
            class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
@@ -480,3 +482,28 @@
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
+</div>
+    <!------------------------------------MODAL PROJECT HISTORY-------------------------------------->
+    <div data-backdrop="static" class="modal fade" id="projectHistoryModal" tabindex="-1" role="dialog"
+         aria-labelledby="projectHistoryModal"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title custom_align" id="Heading">Project history</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table ng-table" data-ng-table="projectHistoryParams">
+                        <tr  data-ng-repeat="proj in projectHistoryList | reverse |orderBy: params.orderBy()">
+                            <td data-title="'Project name'" sortable="name">
+                                {{proj.name}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>

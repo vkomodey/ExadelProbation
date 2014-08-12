@@ -8,5 +8,6 @@ public interface ProjectDao extends GenericDao<Project> {
 
     public List<String> getAllStudentsFio(long projectId);
 
+    public List<String> getProjectHistory(long studId);
 
 }

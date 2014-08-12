@@ -16,4 +16,6 @@ public interface ProjectService {
     public List<Project> getAll();
 
     public List<String> getAllStudentsFio(long projectId);
+
+    public List<String> getProjectHistory(long studId);
 }
