@@ -43,3 +43,9 @@
     font-size: 20px;
     margin-left: -15px;
 }
+th.header {
+    text-align: left;
+}
+th.button {
+    text-align: center;
+}

@@ -62,7 +62,7 @@ StudentInfoCtrl.englishLevels = [
  }*/
 StudentInfoCtrl.getSkillSet = function ($scope, $http, $q) {
     var deferred = $q.defer();
-    $http.get('/rest/types/skill/get').success(function (data) {
+    $http.get('/rest/types/technology/get').success(function (data) {
         $scope.skillTypes = data;
     });
     deferred.resolve($scope.skillTypes);

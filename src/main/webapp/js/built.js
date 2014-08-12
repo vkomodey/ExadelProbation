@@ -879,6 +879,7 @@ studentsControllers.controller('MakeRoleCtrl', ['$scope','$http', function($scop
                 $scope.link_Email_AppointCurator = true;
                 $scope.link_AddStudent = true;
                 $scope.disableStudentInfo = true;
+                $scope.disableAddFeedback = true;
                 break;
             case "ROLE_CURATOR":
             case "ROLE_FEEDBACKER":
@@ -997,7 +998,7 @@ StudentInfoCtrl.englishLevels = [
  }*/
 StudentInfoCtrl.getSkillSet = function ($scope, $http, $q) {
     var deferred = $q.defer();
-    $http.get('/rest/types/skill/get').success(function (data) {
+    $http.get('/rest/types/technology/get').success(function (data) {
         $scope.skillTypes = data;
     });
     deferred.resolve($scope.skillTypes);
