@@ -2,6 +2,7 @@ package com.exadel.service.impl;
 
 import java.util.*;
 
+import com.exadel.model.entity.Project;
 import com.exadel.model.entity.StudentLog;
 import com.exadel.model.view.*;
 
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.exadel.dao.CuratorDao;
 import com.exadel.dao.FeedbackableDao;
+import com.exadel.dao.ProjectDao;
 import com.exadel.dao.SkillTypeDao;
 import com.exadel.dao.StudCuratorJoinDao;
 import com.exadel.dao.StudentDao;
@@ -36,7 +38,8 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	StudentDao studentDao;
 	@Autowired
 	FeedbackableDao feedbackableDao;
-
+	@Autowired
+	ProjectDao projectDao;
 	@Autowired
 	StudCuratorJoinDao studCuratorJoinDao;
 	@Autowired
@@ -123,7 +126,12 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 			}
 		}
         st.getStudy().getExams().clear();
+        st.getWork().getCurrentProjects().clear();
         studentDao.flush();
+        for(Project proj:view.getCurrentProjects()){
+        	Project actual_proj=projectDao.find(proj.getId());
+        	actual_proj.getStudents().add(st);
+        }
         st.getStudy().fromView(view.getStudy());
 		st.fromView(view);
 		studentDao.updateByMerge(st);
