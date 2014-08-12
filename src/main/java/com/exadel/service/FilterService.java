@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 
 import com.exadel.model.entity.User;
-import com.exadel.model.entity.student.Skill;
 import com.exadel.model.entity.student.Technology;
 
 public interface FilterService {

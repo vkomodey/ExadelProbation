@@ -6,7 +6,7 @@ import com.exadel.model.entity.student.Student;
 import com.exadel.model.view.*;
 
 public interface StudentService extends GenericLivingService<Student> {
-	public List<FeedbackView> getFeedbacksForStudentByStudId(long id);
+	public List<FeedbackView> getFeedbacksForStudent(long id);
     public List<StudentStateView> getStudentStateList(long id);
 	public void saveNewFeedbackForStudentByStudId(FeedbackView feedback,long id, String creator);
 	public List<StudentView> getAll();
@@ -17,4 +17,6 @@ public interface StudentService extends GenericLivingService<Student> {
     public void attachStudentToCurator(long id, long curator_id);
     public void attachStudentsToCurators(List<Long> students_id, List<Long> curators_id);
     public List<String> getAllEmailAddressesOfStudents(List<Long> students_id);
+	public List<FeedbackView> getFeedbacksForStudentByCurator(long studId,
+			String curatorName);
 }

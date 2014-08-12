@@ -25,7 +25,6 @@
                 <value>com.exadel.model.entity.student.ExadelWork</value>
                 <value>com.exadel.model.entity.student.Skill</value>
                 <value>com.exadel.model.entity.student.StudentExams</value>
-                <value>com.exadel.model.entity.student.SkillType</value>
                 <value>com.exadel.model.entity.student.Technology</value>
                 <value>com.exadel.model.entity.Feedback</value>
                 <value>com.exadel.model.entity.StudentLog</value>

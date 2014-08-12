@@ -1,12 +1,10 @@
 package com.exadel.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.exadel.model.entity.student.SkillType;
+import com.exadel.model.entity.student.Technology;
 
 public interface TypesService {
-	List<SkillType> getAllSkillTypes();
-    List<String> states = new ArrayList<>();
-    public List<String> getActiveSkillTypes();
+	List<Technology> getAllTechs();
+    public List<String> getActiveTechs();
 }

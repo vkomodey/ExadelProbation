@@ -79,8 +79,7 @@ public class FilterController {
 		//jsonFactory.setCodec(new ObjectMapper());
 		jg =objectMapper.getFactory().createGenerator(sw);
 		jg.writeStartObject();
-		writeJSONStringObjectArray(new ArrayList<String>(getAllCurrentUsedTechnologies()), "technames");
-		writeJSONStringObjectArray(getAllUsedSkillNames(), "skillnames");
+		writeJSONStringObjectArray(getAllUsedTechs(), "skillnames");
 		writeJSONStringObjectArray(getAllStudyEndYears(), "study_end_years");
 		writeJSONStringObjectArray(getAllUniversities(), "universities");
 		writeJSONStringObjectArray(getAllFaculties(), "faculties");
@@ -94,8 +93,8 @@ public class FilterController {
 		return sw.toString();
 	}
 
-	private List<String> getAllUsedSkillNames() {
-		return typesService.getActiveSkillTypes();
+	private List<String> getAllUsedTechs() {
+		return typesService.getActiveTechs();
 	}
 
 	private void writeJSONStringObjectArray(List<String> list, String name)

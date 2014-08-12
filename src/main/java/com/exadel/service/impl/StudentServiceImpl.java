@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.exadel.dao.CuratorDao;
 import com.exadel.dao.FeedbackableDao;
 import com.exadel.dao.ProjectDao;
-import com.exadel.dao.SkillTypeDao;
+import com.exadel.dao.TechDao;
 import com.exadel.dao.StudCuratorJoinDao;
 import com.exadel.dao.StudentDao;
 import com.exadel.dao.UserDao;
@@ -43,8 +43,8 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	@Autowired
 	StudCuratorJoinDao studCuratorJoinDao;
 	@Autowired
-	SkillTypeDao skillTypeDao;
-
+	TechDao techDao;
+	
 	@Transactional
 	public Student findById(long id) {
 		Student student = studentDao.find(id);
@@ -62,7 +62,7 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	}
 
 	@Transactional
-	public List<FeedbackView> getFeedbacksForStudentByStudId(long id) {
+	public List<FeedbackView> getFeedbacksForStudent(long id) {
 		Student stud = studentDao.find(id);
 		List<Feedback> fblist = studentDao.findAllForStud(stud);
 		ArrayList<FeedbackView> result = new ArrayList<FeedbackView>();
@@ -107,19 +107,19 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 	@Transactional
 	public void modify(StudentView view, long id) {
 		Student st = studentDao.find(id);
-		Set<String> skillnames = skillTypeDao.getSkillNames();
+		Set<String> names = techDao.getNames();
 		Iterator<Skill> it = view.getSkillSet().iterator();
 		while (it.hasNext()) {
 			Skill s = it.next();
 			s.setId(null);
 			try {
-				String skillname = s.getType().getName();
-				if (skillname == null
-						|| !skillnames.contains(s.getType().getName())) {
+				String techname = s.getType().getName();
+				if (techname == null
+						|| !names.contains(s.getType().getName())) {
 					it.remove();
 				} else {
-					s.setType(skillTypeDao.find(skillname)); //get rid of id problem
-					skillnames.remove(skillname); //allow no two skills with same name for student
+					s.setType(techDao.find(techname)); //get rid of id problem
+					names.remove(techname); //allow no two skills with same name for student
 				}
 			} catch (NullPointerException x) {
 				it.remove();
@@ -219,4 +219,14 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
         }
         return false;
     }
+    @Transactional
+	public List<FeedbackView> getFeedbacksForStudentByCurator(long studId,
+			String curatorName) {
+		List<Feedback> fblist = feedbackableDao.findForStudBy(curatorName,studId);
+		ArrayList<FeedbackView> result = new ArrayList<FeedbackView>();
+		for (Feedback fb : fblist) {
+			result.add(fb.toView());
+		}
+		return result;
+	}
 }

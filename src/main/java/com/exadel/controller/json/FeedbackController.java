@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.exadel.controller.json.constants.StudURI;
 import com.exadel.model.view.FeedbackView;
 import com.exadel.service.StudentService;
+import com.exadel.util.SecurityUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
@@ -29,15 +30,19 @@ public class FeedbackController {
 
 	@RequestMapping(value = StudURI.GET_FEEDBACK_ARRAY, method = RequestMethod.GET)
 	public @ResponseBody List<FeedbackView> returnFeedbackList(
-			@PathVariable("id") String id) {
+			@PathVariable("id") String id, Principal user) {
+
 		logger.info("Sending feedback list");
-		try {
-			long studId = Long.parseLong(id);
-			return service.getFeedbacksForStudentByStudId(studId);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+		@SuppressWarnings("unchecked")
+		String role = SecurityUtil.getRole();
+		long studId = Long.parseLong(id);
+		if (SecurityUtil.isFeedbackableNotAdmin(role)) {
+			return service.getFeedbacksForStudentByCurator(studId,
+					user.getName());
+		} else {
+			return service.getFeedbacksForStudent(studId);
 		}
+
 	}
 
 	@RequestMapping(value = StudURI.PUSH_FEEDBACK, method = RequestMethod.POST)
@@ -45,13 +50,13 @@ public class FeedbackController {
 			@PathVariable("id") long studId, Principal user) throws IOException {
 		logger.info("Start saving feedback.");
 		ObjectMapper mapper = new ObjectMapper();
-        try{
+		try {
 			FeedbackView feedback = mapper.readValue(str, FeedbackView.class);
 			service.saveNewFeedbackForStudentByStudId(feedback, studId,
 					user.getName());
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

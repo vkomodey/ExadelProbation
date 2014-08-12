@@ -12,11 +12,11 @@ public class Skill {
 	
 	private String level;
 	private Long id;
-	private SkillType type;
+	private Technology type;
 	
 	public Skill() {
 	}
-	public Skill(SkillType st) {
+	public Skill(Technology st) {
 		this.type=st;
 	}
 	@Id
@@ -31,8 +31,7 @@ public class Skill {
 		return level;
 	}
 	@OneToOne
-//	@JoinColumn(name="type_id")
-	public SkillType getType() {
+	public Technology getType() {
 		return type;
 	}
 	public void setId(Long id) {
@@ -41,7 +40,7 @@ public class Skill {
 	public void setLevel(String level) {
 		this.level = level;
 	}
-	public void setType(SkillType type) {
+	public void setType(Technology type) {
 		this.type = type;
 	}
 }

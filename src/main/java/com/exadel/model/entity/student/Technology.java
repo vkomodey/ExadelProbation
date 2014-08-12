@@ -3,7 +3,10 @@ package com.exadel.model.entity.student;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 public class Technology {
@@ -15,10 +18,11 @@ public class Technology {
 		this.setName(name);
 	}
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
+	@NaturalId
 	@Column(name="name")
 	public String getName() {
 		return name;
