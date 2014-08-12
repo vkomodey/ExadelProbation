@@ -91,11 +91,11 @@ public class StudentController {
 	}
     
 	@RequestMapping(value=MeURI.GET_ME,method=RequestMethod.GET)
-	public @ResponseBody Student getMe(Principal user){
+	public @ResponseBody StudentView getMe(Principal user){
 		logger.info("real student fetching");
 		Student student=service.findByLogin(user.getName());
 		logger.info("real student sending");
-		return student;
+		return student.toView();
 	}
 
     @RequestMapping(value=StudURI.GET_STUDENT,method=RequestMethod.GET)

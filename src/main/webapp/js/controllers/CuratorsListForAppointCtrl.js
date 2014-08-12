@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 09.08.2014.
  */
-studentsControllers.controller('CuratorsListForAppointCtrl', ['$scope', '$http', function($scope,$http) {
+studentsControllers.controller('CuratorsListForAppointCtrl', ['$scope', '$http','filterParamsFactory','$q', function($scope,$http,filterParamsFactory,$q) {
     $scope.checkedCuratorArray = [];
     $scope.checkedCurator = function(id) {
         StudentListCtrl.checkElement(id,$scope.checkedCuratorArray);
@@ -14,6 +14,9 @@ studentsControllers.controller('CuratorsListForAppointCtrl', ['$scope', '$http',
         $http.post('/rest/stud/attach/manytomany',checkedStudAndCurator)
             .error(function(status,data){
                 alert(data);
-        });
+        })
+                .success(function(){
+                $scope.reloadFilterParams();
+                });
     };
 }]);
