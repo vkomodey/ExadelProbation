@@ -96,8 +96,8 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                    ],
                    salaries: [
                        {name: 'Show All', state: 2},
-                       {name: 'billable', state: 1},
-                       {name: 'not billable', state: 0}
+                       {name: 'billable', state: true},
+                       {name: 'not billable', state: false}
                    ]
                };
                $scope.filterItem = {
@@ -174,7 +174,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                $scope.customFilterSalary = function (studentsList) {
 
                    if (studentsList.isBillable === null) {
-                       if ($scope.filterItem.salary.state === 1) {
+                       if ($scope.filterItem.salary.state === true) {
                            return false;
                        } else {
                            return true;
