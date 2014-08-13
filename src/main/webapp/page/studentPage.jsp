@@ -142,7 +142,7 @@
                 <div class="form-group">
                     <label class="control-label" for="course_group">Course/group</label>
                     <input id="course_group" name="course_group" type="text" ng-model="studentInfo.study.course_group"
-                           ng-pattern="/^[0-9]/([0-9a-zA-Z]+)$/"
+                           ng-pattern="/^[2-6]/([0-9a-zA-Z]+)$/"
                            class="form-control input-md">
                 </div>
             </div>
