@@ -14,4 +14,5 @@ public interface GenericDao<ENTITY> {
     public abstract void saveEntity(Object o);
     public abstract void flush();
     public abstract void delete(long id);
+    public abstract void delete(ENTITY obj);
 }

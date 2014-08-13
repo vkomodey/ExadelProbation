@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import com.exadel.model.entity.government.Curator;
 import com.exadel.model.entity.student.Student;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name="student_curator")
@@ -27,12 +28,14 @@ public class StudentCuratorJoin implements Serializable{
 	@Id
 	@ManyToOne
 	@PrimaryKeyJoinColumn(name="curator", referencedColumnName="id")
+    @NaturalId
 	public Curator getCurator() {
 		return curator;
 	}
 	@Id
 	@ManyToOne
 	@PrimaryKeyJoinColumn(name="student", referencedColumnName="id")
+    @NaturalId
 	public Student getStudent() {
 		return student;
 	}

@@ -2,11 +2,13 @@ package com.exadel.service.impl;
 
 import java.util.*;
 
+import com.exadel.dao.impl.StudCuratorJoinDaoImpl;
 import com.exadel.model.entity.Project;
 import com.exadel.model.entity.StudentLog;
 import com.exadel.model.view.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -144,9 +146,10 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
         }
         st.getStudy().fromView(view.getStudy());
 		st.fromView(view);
-		st.getStudy().setFaculty(facultyDao.find(view.getStudy().getFaculty()));
-		st.getStudy().setUniversity(universityDao.find(view.getStudy().getUniversity()));
-		studentDao.updateByMerge(st);
+        st.getStudy().setFaculty(facultyDao.find(view.getStudy().getFaculty()));
+        st.getStudy().setUniversity(universityDao.find(view.getStudy().getUniversity()));
+        updateStudentCurators(view, st);
+        studentDao.updateByMerge(st);
 	}
 
     @Transactional
@@ -154,19 +157,23 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
         List<IdNameSurnamePersonView> newCurators = view.getCurator();
         Set<StudentCuratorJoin> oldCurators = student.getCurator();
         for(IdNameSurnamePersonView personView: newCurators){
-            long curId = personView.getId();
-            Curator temp = curatorDao.find((personView.getId()));
-            if(!oldCurators.contains(temp)){
-                attachStudentToCurator(view.getId(), temp.getId());
+            if(!isStudentAttachedToThisCurator(student.getId(), personView.getId())){
+                attachStudentToCurator(student.getId(), personView.getId());
             }
         }
-
-
+        //work around
+        boolean flag = false;
         for(StudentCuratorJoin old:oldCurators){
             for(IdNameSurnamePersonView new_:newCurators){
-                if(new_.getId())
+                if(old.getCurator().getId() == new_.getId()){
+                    flag = true;
+                    continue;
+                }
             }
-
+            if(!flag){
+                detachStudentFromCurator(student.getId(), old.getCurator().getId());
+            }
+            else flag = false;
         }
     }
 
@@ -239,7 +246,9 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
         for(StudentCuratorJoin join:student.getCurator()){
             Curator temp = join.getCurator();
             if(temp.getId() == curator_id){
-                student.getCurator().remove(temp);
+//                student.getCurator().remove(join);
+                ((StudCuratorJoinDaoImpl)studCuratorJoinDao).delete(join);
+                System.out.println(student.getCurator());
                 break;
             }
         }
