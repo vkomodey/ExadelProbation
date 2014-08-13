@@ -10,6 +10,7 @@
         <a href="#exams" data-toggle="tab">Exams</a></li>
     <li><a href="#feedbacks" data-toggle="tab">Feedbacks table</a></li>
     <li><a href="#workInfo" data-toggle="tab">Work info</a></li>
+    <li><a href="#curators" data-toggle="tab">Curators</a></li>
 
     <li class="pull-right">
         <div class="btn-toolbar ">
@@ -268,7 +269,7 @@
     </div>
 
 </div>
-<div class="tab-pane {{active}}" id="workInfo">
+<div class="tab-pane" id="workInfo">
     <div class="pull-right well-sm">
 
         <a data-ng-click="reloadProjectHistory()" data-target="#projectHistoryModal" data-toggle="modal" class="btn btn-primary"><span class="glyphicon glyphicon-book"></span> Project history</a>
@@ -335,6 +336,19 @@
         </div>
     </div>
 </div>
+<div class="tab-pane" id="curators" data-ng-show="studentInfo">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-2">
+            <table ng-table="tableParams" class="table">
+                <tr ng-repeat="cur in studentInfo.curator |orderBy:params.orderBy()">
+
+                    <td data-title="'Name'" sortable="'surname'" >{{cur.surname}}</td>
+
+                </tr>
+            </table>
+        </div>
+</div>
+
 </div>
 </form>
 </div>
