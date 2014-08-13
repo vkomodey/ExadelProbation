@@ -27,7 +27,7 @@
 <div class="tab-content">
 
 <div class="tab-pane active" id="personInfo" data-ng-show="studentInfo">
-    <div class="pull-right well-sm">
+    <div class="pull-right btn-toolbar">
         <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
            class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
@@ -60,7 +60,7 @@
     </div>
 </div>
 <div class="tab-pane" id="contactInfo" data-ng-show="studentInfo">
-    <div class="pull-right well-sm">
+    <div class="pull-right btn-toolbar">
         <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
            class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
@@ -92,7 +92,7 @@
     </div>
 </div>
 <div class="tab-pane" id="studyInfo" data-ng-show="studentInfo">
-    <div class="pull-right well-sm">
+    <div class="pull-right btn-toolbar">
         <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
            class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
@@ -140,7 +140,7 @@
     </div>
 </div>
 <div class="tab-pane" id="skills" data-ng-show="studentInfo">
-    <div class="pull-right well-sm">
+    <div class="pull-right btn-toolbar">
         <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
            class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
@@ -189,7 +189,7 @@
     </div>
 </div>
 <div class="tab-pane" id="exams" data-ng-show="studentInfo">
-    <div class="pull-right well-sm">
+    <div class="pull-right btn-toolbar">
         <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
            class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
@@ -242,7 +242,7 @@
     </div>
 </div>
 <div class="tab-pane {{active}}" id="feedbacks">
-    <div class="pull-right well-sm">
+    <div class="pull-right btn-toolbar">
         <button data-target="#addFeedback" data-toggle="modal" class="btn btn-success" data-ng-hide="disableAddFeedback"><span
                 class="glyphicon glyphicon-plus"></span> Add feedback
         </button>
@@ -272,7 +272,7 @@
 
 </div>
 <div class="tab-pane" id="workInfo">
-    <div class="pull-right well-sm">
+    <div class="pull-right btn-toolbar">
 
         <a data-ng-click="reloadProjectHistory()" data-target="#projectHistoryModal" data-toggle="modal" class="btn btn-primary"><span class="glyphicon glyphicon-book"></span> Project history</a>
         <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
