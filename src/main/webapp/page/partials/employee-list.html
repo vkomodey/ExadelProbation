@@ -18,7 +18,7 @@
             <tr ng-repeat="employee in employees | filter:search |orderBy:params.orderBy()">
                 <td data-title="'FIO'" sortable="'fio'">{{employee.fio}}</td>
                 <td data-title="'Email'" sortable="'email'">{{employee.email}}</td>
-                <td data-title="'Role'" sortable="'role'">{{employee.role}}</td>
+                <td data-title="'Role'" sortable="'role'">{{parseRole(employee.role)}}</td>
             </tr>
         </table>
             </div>
