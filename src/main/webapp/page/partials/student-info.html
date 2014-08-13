@@ -116,10 +116,11 @@
             </div>
 
             <!-- Text input-->
-            <div class="form-group">
+            <div class="form-group" ng-hide="false">
                 <label class="control-label" for="faculty">Faculty</label>
-                <input id="faculty" name="faculty" type="text" ng-model="studentInfo.study.faculty"
-                       class="form-control input-md" data-ng-disabled="disableStudentInfo">
+                <select class="form-control" data-ng-model="studentInfo.study.faculty"
+                         data-ng-options="item.name for item in facultyNames">
+            </select>
             </div>
 
             <!-- Text input-->
@@ -287,6 +288,7 @@
                         data-ng-options="item.value as item.name for item in salaries">
                 </select>
             </div>
+
             <!-- Select input-->
             <div class="form-group">
                 <label class="control-label" for="hours_current">Current Hours</label>

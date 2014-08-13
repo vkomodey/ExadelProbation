@@ -654,7 +654,7 @@ studentsControllers.controller('CuratorsListForAppointCtrl', ['$scope', '$http',
     };
     $scope.appointCuratorsForStudents = function(){
         var checkedStudAndCurator = {
-            studsId: $scope.checkedStudArray,
+            studsId: $scope.makeIdsArray($scope.checkedStudHash),
             cursId: $scope.checkedCuratorArray
         };
         $http.post('/rest/stud/attach/manytomany',checkedStudAndCurator)
@@ -862,7 +862,7 @@ var FeedbacksCtrl = studentsControllers.controller('SendEmailCtrl', ['$scope', '
     function($scope, $http) {
         $scope.sendEmail = function() {
             var email = {
-                id: $scope.checkedStudArray,
+                id: $scope.makeIdsArray($scope.checkedStudHash),
                 message: $scope.message,
                 password: $scope.password,
                 title: $scope.title
@@ -1015,6 +1015,15 @@ StudentInfoCtrl.getUniversityList = function ($scope, $http, $q) {
     deferred.resolve($scope.universityNames);
 
 };
+StudentInfoCtrl.getFacultyList = function ($scope, $http, $q) {
+    var deferred = $q.defer();
+    $http.get('/rest/types/faculty/get').success(function (data) {
+        $scope.facultyNames = data;
+    });
+    deferred.resolve($scope.facultyNames);
+
+};
+
 
 
 var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
@@ -1081,6 +1090,33 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
             deferred.resolve($scope.curatorsList);
         };
         $scope.checkAllStudent = function(){
+
+        };
+        $scope.checkedStudHash = new Object();
+        $scope.checkBoxes = new Object();
+        $scope.check = new Object();
+        $scope.check.checkAll = false;
+        $scope.students = new Object();
+        $scope.students.filteredStudentsList = null;
+        var watchCheckBoxes = function() {
+            StudentListCtrl.watchCheckBoxes($scope,$scope.checkBoxes,'checkBoxes',$scope.checkedStudHash,$scope.studentsList);
+        };
+        watchCheckBoxes();
+        $scope.$watch('check.checkAll',function(newValue) {
+            angular.forEach($scope.students.filteredStudentsList, function(item) {
+                if (angular.isDefined(item.id)) {
+                    $scope.checkBoxes[item.id].value = newValue;
+                }
+            });
+        });
+        $scope.makeIdsArray = function(hash) {
+            return StudentListCtrl.makeIdsArray(hash);
+        };
+        $scope.notEmpty = function(obj) {
+            if(Object.keys($scope.checkedStudHash).length == 0) {
+                return false;
+            }
+            return true;
 
         };
         /////////////////////////////////////////////////////////////////////////////////////// LERA STYLE NEXT  ///////////////////////////////////////////////////
@@ -1167,7 +1203,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                    }
 
                };
-               $scope.customFilterHours = function (studentsList) {
+              /* $scope.customFilterHours = function (studentsList) {
                    if (studentsList.hours_current === null && $scope.filterParams.hour_current.name !== 'Show All') {
                        return false;
                    } else {
@@ -1185,7 +1221,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                        }
                    }
 
-               };
+               };*/
                $scope.customFilterSalary = function (studentsList) {
 
                    if (studentsList.isBillable === null) {
@@ -1415,7 +1451,38 @@ StudentListCtrl.export = function (url, exportData, $http) {
             alert('ERROR ' + status);
         });
 };
-
+StudentListCtrl.watchCheckBoxes = function($scope,checkBoxes,watchExpression,checkedIdHash,array) {
+    for(var i=0;i<array.length;i++) {
+        checkBoxes[array[i].id] = {
+            id: array[i].id,
+            value: false
+        };
+        $scope.$watchCollection(watchExpression+'.'+array[i].id,function(newCheckBox){
+            if(newCheckBox.value == true) {
+                checkedIdHash[newCheckBox.id]=newCheckBox.id;
+            }
+            else {
+                delete checkedIdHash[newCheckBox.id];
+            }
+        })
+    }
+};
+StudentListCtrl.watchCheckAllCheckbox = function($scope,checkAllCheckBox,watchExpression,currentArray,checkBoxes) {
+    $scope.$watch(watchExpression,function(newValue,oldValue) {
+        angular.forEach(currentArray, function(item) {
+            if (angular.isDefined(item.id)) {
+                checkBoxes[item.id].value = newValue;
+            }
+        });
+    });
+};
+StudentListCtrl.makeIdsArray = function(idsHash) {
+    var idsArray = [];
+  for(var element in idsHash) {
+      idsArray.push(idsHash[element]);
+  }
+    return idsArray;
+};
 
 var StudentPageCtrl = studentsControllers.controller('StudentPageCtrl',['$scope','$q','$http', function($scope,$q,$http) {
     var getStudentInfo = function() {
@@ -1443,6 +1510,8 @@ var StudentPageCtrl = studentsControllers.controller('StudentPageCtrl',['$scope'
     $scope.deleteExam = function () {
         StudentInfoCtrl.deleteExam($scope);
     };
+
+
 }]);
 studentsControllers.controller('StudentsListOnProjectCtrl', ['$scope', 'StudentsListOnProjectFactory','$q', function($scope,StudentsListOnProjectFactory,$q) {
     var reloadStudentsOnProject = function(){

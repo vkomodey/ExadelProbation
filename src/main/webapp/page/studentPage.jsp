@@ -120,8 +120,9 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="control-label" for="university">University</label>
-                    <input id="university" name="university" type="text" ng-model="studentInfo.study.university"
-                           class="form-control input-md">
+                    <select class="form-control" data-ng-model="studentInfo.study.university"
+                            data-ng-options="item.name for item in universityNames">
+                    </select>
                 </div>
 
                 <!-- Text input-->

@@ -9,18 +9,18 @@
             </h2>
 
             <div class="pull-right">
-                    <a  href="/rest/download/PDF?ids={{checkedStudArray}}" class="clickable" data-ng-if="checkedStudArray.length && link_Pdf_Excel"><span
+                    <a  href="/rest/download/PDF?ids={{makeIdsArray(checkedStudHash)}}" class="clickable" data-ng-if="notEmpty(checkStudHash) && link_Pdf_Excel"><span
                             class="glyphicon glyphicon-file"></span> PDF
                     </a>
-                    <a  href="/rest/download/EXCEL?ids={{checkedStudArray}}" class="clickable" data-ng-if="checkedStudArray.length && link_Pdf_Excel"><span
+                    <a  href="/rest/download/EXCEL?ids={{makeIdsArray(checkedStudHash)}}" class="clickable" data-ng-if="notEmpty(checkStudHash) && link_Pdf_Excel"><span
                             class="glyphicon glyphicon-file"></span> Excel
                     </a>
 
-                    <span  class="clickable" data-ng-if="checkedStudArray.length && link_Email_AppointCurator" data-ng-click="reloadCuratorsList()"
+                    <span  class="clickable" data-ng-if="notEmpty(checkStudHash) && link_Email_AppointCurator" data-ng-click="reloadCuratorsList()"
                           data-target="#curatorsListModal" data-toggle="modal"
                             ><span class="glyphicon glyphicon-user"></span> Appoint curator
                     </span>
-                    <span class="clickable" data-ng-if="checkedStudArray.length && link_Email_AppointCurator" data-target="#sendEmail"
+                    <span class="clickable" data-ng-if="notEmpty(checkStudHash) && link_Email_AppointCurator" data-target="#sendEmail"
                           title="Send email to checked students" data-toggle="modal"><span
                             class="glyphicon glyphicon-envelope"></span> Send email
                     </span>
@@ -64,11 +64,8 @@
                     </div>
                     <div class="col-md-2">
                         <label>Working hours</label>
-                        <span>
                 <input type="text" data-ng-model="search.hours_current" class="form-control search"
                        placeholder="Search by hours" ng-change="clear()">
-                </span>
-
                     </div>
                     <div class="col-md-2">
                         <label>Billable</label>
@@ -124,14 +121,15 @@
                      </a>
                  </div>
              </div>-->
+        <!--comment-->
         <div class="scroll">
         <table id="mytable" class="table" ng-table="tableParams">
-            <tr data-ng-repeat="user in studentsList| filter:search | orderBy:params.orderBy() |
+            <tr data-ng-repeat="user in students.filteredStudentsList = ( studentsList | filter:search | orderBy:params.orderBy() |
                  filter:customFilterCourse | filter:customFilterEnglish |
                  filter:customFilterSalary | filter:customFilterTech|filter:customFilterFaculty|
                  filter:customFilterUniversity|filter:customFilterGraduate|filter:customFilterCurator
-                 |filter:customFilterTech2|filter:customFilterTech3">
-                <td> <!--header="'headers/checkbox.html'"--><input data-ng-click="checkElement(user.id)" type="checkbox" class="checkthis"/></td>
+                 |filter:customFilterTech2|filter:customFilterTech3)">
+                <td header="'ng-table/headers/checkbox.html'" ><input data-ng-model="checkBoxes[user.id].value"   type="checkbox" class="checkthis"/></td> <!--data-ng-click="checkElement(user.id)"-->
                 <td data-title="'Login'" sortable="'login'">{{user.login}}</td>
                 <td data-title="'Name'" sortable="'surname'">{{user.firstName + " "+user.surname}}</td>
                 <td data-title="'Date'" sortable="'work.workStartDate'">{{user.work.workStartDate}}</td>
@@ -157,8 +155,8 @@
     </div>
 </div>
         <!--- checkbox -->
-<script type="text/ng-template" id="headers/checkboxStudent.html">
-    <input type="checkbox"  data-ng-model="checkAll" id="select_all"/>
+<script type="text/ng-template" id="ng-table/headers/checkbox.html">
+    <input type="checkbox" ng-model="check.checkAll" id="select_all" name="filter-checkbox" value="" />
 </script>
 
 <!------------------------------------MODAL FOR CREATE STUDENT--------------------------------------->

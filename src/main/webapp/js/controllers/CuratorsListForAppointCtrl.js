@@ -8,7 +8,7 @@ studentsControllers.controller('CuratorsListForAppointCtrl', ['$scope', '$http',
     };
     $scope.appointCuratorsForStudents = function(){
         var checkedStudAndCurator = {
-            studsId: $scope.checkedStudArray,
+            studsId: $scope.makeIdsArray($scope.checkedStudHash),
             cursId: $scope.checkedCuratorArray
         };
         $http.post('/rest/stud/attach/manytomany',checkedStudAndCurator)
