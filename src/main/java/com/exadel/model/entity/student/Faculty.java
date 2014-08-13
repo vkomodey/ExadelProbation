@@ -28,7 +28,6 @@ public class Faculty implements NamedEntity{
 		return name;
 	}
 	@ManyToOne
-	@NaturalId
 	public University getUniversity() {
 		return university;
 	}

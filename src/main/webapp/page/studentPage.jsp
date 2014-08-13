@@ -57,14 +57,14 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="control-label" for="firstName">Last name</label>
-                    <input id="lastName" name="firstName" type="text" ng-model="studentInfo.middleName" ng-pattern="/^[a-zA-Z]+$/"
+                    <label class="control-label" for="firstName">Middle Name</label>
+                    <input id="middleName" name="middleName" type="text" ng-model="studentInfo.middleName" ng-pattern="/^[a-zA-Z]+$/"
                            class="form-control input-md">
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="control-label" for="firstName">Surname</label>
+                    <label class="control-label" >Surname</label>
                     <input id="surname" name="firstName" type="text" ng-model="studentInfo.surname" ng-pattern="/^[a-zA-Z]+$/"
                            class="form-control input-md">
                 </div>

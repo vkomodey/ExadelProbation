@@ -24,7 +24,7 @@ public class StudentView {
     private Boolean isBillable;
     private String login;
     private String phone;
-    private String secondName;
+    private String middleName;
     private Set<Skill> skillSet;
     private String skype;
     private Set<Project> currentProjects;
@@ -64,8 +64,8 @@ public class StudentView {
         return phone;
     }
 
-    public String getSecondName() {
-        return secondName;
+    public String getMiddleName() {
+        return middleName;
     }
 
     public Set<Skill> getSkillSet() {
@@ -120,8 +120,8 @@ public class StudentView {
         this.phone = phone;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public void setSkillSet(Set<Skill> skillSet) {
