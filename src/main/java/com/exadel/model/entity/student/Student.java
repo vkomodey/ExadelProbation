@@ -146,7 +146,7 @@ public class Student extends User {
 
 	public void fromView(StudentView view) {
 		this.setFirstName(view.getFirstName());
-		this.setSecondName(view.getSecondName());
+		this.setMiddleName(view.getSecondName());
 		this.setSurname(view.getSurname());
 		if (this.getState() != StudentStateEnum.WORK
 				&& view.getState() == StudentStateEnum.WORK) {
@@ -183,7 +183,7 @@ public class Student extends User {
 		view.setId(this.getId());
 		view.setLogin(this.getName());
 		view.setFirstName(this.getFirstName());
-		view.setSecondName(this.getSecondName());
+		view.setSecondName(this.getMiddleName());
 		view.setSurname(this.getSurname());
 
 		view.setEmail(this.getEmail());

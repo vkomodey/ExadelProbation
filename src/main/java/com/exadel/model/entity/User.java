@@ -56,7 +56,7 @@ public class User implements IEntity,Serializable{
 
 	private Long id;
     private String firstName;
-    private String secondName;
+    private String middleName;
     private String surname;
     private String login;
     private String password;
@@ -70,7 +70,7 @@ public class User implements IEntity,Serializable{
     @Transient
     @JsonIgnore
     public String getFullName(){
-    	return getFirstName()+" "+getSurname()+" "+getSecondName();
+    	return getFirstName()+" "+getSurname()+" "+ getMiddleName();
     }
     @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -98,8 +98,8 @@ public class User implements IEntity,Serializable{
     }
 
 	@Column(name = "second_name")
-	public String getSecondName() {
-	    return secondName;
+	public String getMiddleName() {
+	    return middleName;
 	}
 
 
@@ -124,8 +124,8 @@ public class User implements IEntity,Serializable{
         this.password = password;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public void setSurname(String surname) {
@@ -137,7 +137,7 @@ public class User implements IEntity,Serializable{
         return "User{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
+                ", middleName='" + middleName + '\'' +
                 ", surname='" + surname + '\'' +
                 '}';
     }

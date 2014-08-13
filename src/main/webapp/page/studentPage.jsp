@@ -58,7 +58,7 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="control-label" for="firstName">Last name</label>
-                    <input id="lastName" name="firstName" type="text" ng-model="studentInfo.secondName" ng-pattern="/^[a-zA-Z]+$/"
+                    <input id="lastName" name="firstName" type="text" ng-model="studentInfo.middleName" ng-pattern="/^[a-zA-Z]+$/"
                            class="form-control input-md">
                 </div>
 
