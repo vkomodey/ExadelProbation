@@ -886,10 +886,11 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
     else {
         $scope.englishLevels = StudentInfoCtrl.englishLevels;
         $scope.salaries = StudentInfoCtrl.salaries;
-        //$scope.hours_current = StudentInfoCtrl.hours_current;
+
         $scope.states = StudentInfoCtrl.states;
         StudentInfoCtrl.getSkillSet($scope, $http, $q);
         StudentInfoCtrl.getProjectList($scope, $http, $q);
+        StudentInfoCtrl.getUniversityList($scope, $http, $q);
         $scope.addExam = function () {
             StudentInfoCtrl.addExam($scope);
 
@@ -982,7 +983,6 @@ StudentInfoCtrl.salaries = [
     {name: 'Billable', value: true},
     {name: 'Not billable', value: false}
 ];
-
 StudentInfoCtrl.states = [
     {name: 'Work', value: 'WORK'},
     {name: 'Practise', value: 'PRACTISE'},
@@ -1005,6 +1005,15 @@ StudentInfoCtrl.addProject = function ($scope) {
 };
 StudentInfoCtrl.deleteProject = function ($scope, index) {
     $scope.studentInfo.currentProjects.splice(index, 1);
+};
+
+StudentInfoCtrl.getUniversityList = function ($scope, $http, $q) {
+    var deferred = $q.defer();
+    $http.get('/rest/types/university/get').success(function (data) {
+        $scope.universityNames = data;
+    });
+    deferred.resolve($scope.universityNames);
+
 };
 
 
