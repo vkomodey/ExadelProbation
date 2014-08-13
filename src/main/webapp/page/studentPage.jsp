@@ -11,7 +11,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../js/built.js"></script>
 </head>
-<body ng-app="studentsApp">
+<body ng-app="studentsApp" data-ng-controller="MakeRoleCtrl">
 <div class="container">
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
@@ -21,14 +21,15 @@
                     <img src="../img/exadel-logo.png" alt="Exadel"/>
                 </a>
             </div>
-            <div class="collapse navbar-collapse">
-                <form action="/do_logout" method="post">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><button class="btn btn-default navbar-btn" type="submit">Logout</button></li>
-                    </ul>
-                </form>
-            </div>
+            <ul class=" nav navbar-nav pull-right">
+                <li><p class="navbar-brand">{{meName}}</p></li>
+                <li><form action="/do_logout" method="post">
+                    <button class="btn btn-default navbar-btn pull-right" type="submit">Logout</button>
+                </form></li>
+            </ul>
+
         </div>
+
     </nav>
 </div>
 <div class="container">

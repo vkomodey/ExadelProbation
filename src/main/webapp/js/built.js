@@ -887,6 +887,9 @@ studentsControllers.controller('MakeRoleCtrl', ['$scope','$http', function($scop
                 break;
         }
     });
+    $http.get('/rest/me/name').success(function(data) {
+        $scope.meName = data;
+    });
 }]);
 
 var ProjectListCtrl = studentsControllers.controller('ProjectListCtrl', [
