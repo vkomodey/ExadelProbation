@@ -1164,14 +1164,14 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
 
                };
                $scope.customFilterHours = function (studentsList) {
-                   if (studentsList.hours_current === null && $scope.filterItem.workinghour.name !== 'Show All') {
+                   if (studentsList.hours_current === null && $scope.filterParams.hour_current.name !== 'Show All') {
                        return false;
                    } else {
-                       if (studentsList.hours_current === null && $scope.filterItem.workinghour.name === 'Show All') {
+                       if (studentsList.hours_current === null && $scope.filterParams.hour_current.name === 'Show All') {
                            return true;
                        } else {
 
-                           if (studentsList.hours_current.toString().charAt(0) === $scope.filterItem.workinghour.name.charAt(0)) {
+                           if (studentsList.hours_current.toString().charAt(0) === $scope.filterParams.hour_current.name.charAt(0)) {
                                return true;
                            } else if ($scope.filterItem.workinghour.name === 'Show All') {
                                return true;
@@ -1366,6 +1366,12 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                        }
                    }
                };
+               $scope.clear = function(){
+                   if($scope.search.hours_current.length == 0){
+                       delete $scope.search.hours_current;
+                   }
+               }
+
            });
        })();
     }]);

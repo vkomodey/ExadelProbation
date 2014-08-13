@@ -64,9 +64,12 @@
                     </div>
                     <div class="col-md-2">
                         <label>Working hours</label>
-                        <select class="form-control" data-ng-model="filterItem.workinghour"
-                                data-ng-options="item.name for item in filterOptions.workinghours">
-                        </select></div>
+                        <span>
+                <input type="text" data-ng-model="search.hours_current" class="form-control search"
+                       placeholder="Search by hours" ng-change="clear()">
+                </span>
+
+                    </div>
                     <div class="col-md-2">
                         <label>Billable</label>
                         <select class="form-control" data-ng-model="filterItem.salary"
@@ -124,7 +127,7 @@
         <div class="scroll">
         <table id="mytable" class="table" ng-table="tableParams">
             <tr data-ng-repeat="user in studentsList| filter:search | orderBy:params.orderBy() |
-                 filter:customFilterCourse | filter:customFilterEnglish | filter:customFilterHours |
+                 filter:customFilterCourse | filter:customFilterEnglish |
                  filter:customFilterSalary | filter:customFilterTech|filter:customFilterFaculty|
                  filter:customFilterUniversity|filter:customFilterGraduate|filter:customFilterCurator
                  |filter:customFilterTech2|filter:customFilterTech3">
@@ -285,5 +288,3 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-
-        <p></p>
