@@ -149,6 +149,27 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
 		studentDao.updateByMerge(st);
 	}
 
+    @Transactional
+    public void updateStudentCurators(StudentView view, Student student){
+        List<IdNameSurnamePersonView> newCurators = view.getCurator();
+        Set<StudentCuratorJoin> oldCurators = student.getCurator();
+        for(IdNameSurnamePersonView personView: newCurators){
+            long curId = personView.getId();
+            Curator temp = curatorDao.find((personView.getId()));
+            if(!oldCurators.contains(temp)){
+                attachStudentToCurator(view.getId(), temp.getId());
+            }
+        }
+
+
+        for(StudentCuratorJoin old:oldCurators){
+            for(IdNameSurnamePersonView new_:newCurators){
+                if(new_.getId())
+            }
+
+        }
+    }
+
 	@Transactional
 	public void save(Student entity) {
 		studentDao.save(entity);
@@ -210,6 +231,20 @@ public class StudentServiceImpl extends GenericLivingServiceImpl<Student>
             }
         }
     }
+
+    @Transactional
+    public void detachStudentFromCurator(long id, long curator_id){
+        Student student = studentDao.find(id);
+        Curator curator = curatorDao.find(curator_id);
+        for(StudentCuratorJoin join:student.getCurator()){
+            Curator temp = join.getCurator();
+            if(temp.getId() == curator_id){
+                student.getCurator().remove(temp);
+                break;
+            }
+        }
+    }
+
     @Transactional
     public List<String> getAllEmailAddressesOfStudents(List<Long> students_id){
         return studentDao.getEmails(students_id);
