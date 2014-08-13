@@ -29,7 +29,7 @@ public class ProjectServiceImpl implements ProjectService{
     }
     @Transactional
     public void deleteProjectById(long id){
-        projectDao.deleteProjectById(id);
+        projectDao.delete(id);
     }
 
     @Transactional
