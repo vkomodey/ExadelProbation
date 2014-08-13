@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 import com.exadel.model.view.StudyView;
 import com.exadel.util.BuilderUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -23,6 +24,7 @@ public class Study {
     private List<StudentExams> exams;
     private University university;
     private Faculty faculty;
+    private final SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
     public Study() {
     }
 
@@ -80,18 +82,22 @@ public class Study {
 	    this.university = university;
 	}
 	public StudyView toView(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
 		StudyView view=new StudyView();
 		view.setCourse_group(this.getCourse_group());
         if(this.getFaculty()!=null)
 		    view.setFaculty(this.getFaculty().getName());
         else
-            view.setFaculty("empty");
-		view.setGraduate_year(this.getGraduate_year());
+            view.setFaculty("");
+        if(this.getGraduate_year()!=null)
+		    view.setGraduate_year(this.getGraduate_year());
+        else
+            view.setGraduate_year(Integer.parseInt(dateFormat.format(new java.util.Date())));
 		view.setSpecialty(this.getSpecialty());
         if(this.getUniversity()!=null)
 		    view.setUniversity(this.getUniversity().getName());
         else
-            view.setUniversity("empty");
+            view.setUniversity("");
 		view.setExams(new TreeMap<String,Double>());
 		for(Integer i=StudyView.EXAM_START_VALUE;i<=StudyView.EXAM_COUNT;i++){
 			view.getExams().put(StudyView.SEM_PREFIX+i.toString(),null);
