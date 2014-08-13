@@ -723,6 +723,9 @@ studentsControllers.controller('CuratorsListForAppointCtrl', ['$scope', '$http',
                 });
     };
 }]);
+studentsControllers.controller('DeattachCuratorCtrl',['$scope','$http', function($scope,$http){
+
+}])
 studentsControllers.controller('DeleteProjectCtrl', ['$scope', '$http', function($scope,$http) {
     $scope.deleteProject = function() {
         $http.post('/rest/proj/'+$scope.deleteProjectId+'/remove/').success(function(){
@@ -980,7 +983,14 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         };
         $scope.deleteProject = function(index){
             StudentInfoCtrl.deleteProject($scope,index);
-        }
+        };
+        $scope.deattachCurator = function(curId) {
+            for(var i=0;i<$scope.studentInfo.curator.length;i++) {
+                if($scope.studentInfo.curator[i].id == curId) {
+                    $scope.studentInfo.curator.splice(i,1)
+                }
+            }
+        };
 //        $scope.reloadProjectHistory = function(){
 //            $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
 //        };

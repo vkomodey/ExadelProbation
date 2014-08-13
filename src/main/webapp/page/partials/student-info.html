@@ -346,6 +346,10 @@
             <table ng-table="tableParams" class="table">
                 <tr ng-repeat="cur in studentInfo.curator |orderBy:params.orderBy()">
 
+                    <td data-title="'Deattach'">
+                        <a data-ng-click="deattachCurator(cur.id)"
+                           class="btn btn-primary btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                    </td>
                     <td data-title="'Name'" sortable="'surname'" >{{cur.surname}}</td>
 
                 </tr>
