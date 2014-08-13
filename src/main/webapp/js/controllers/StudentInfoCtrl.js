@@ -6,7 +6,7 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
     else {
         $scope.englishLevels = StudentInfoCtrl.englishLevels;
         $scope.salaries = StudentInfoCtrl.salaries;
-        $scope.currentHours = StudentInfoCtrl.currentHours;
+        //$scope.hours_current = StudentInfoCtrl.hours_current;
         $scope.states = StudentInfoCtrl.states;
         StudentInfoCtrl.getSkillSet($scope, $http, $q);
         StudentInfoCtrl.getProjectList($scope, $http, $q);
@@ -37,6 +37,7 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
 //        };
     }
 }]);
+
 
 /*StudentInfoCtrl.getStudentInfo = function ($scope,$http,$q,adress) {
  var deferred = $q.defer();
@@ -100,12 +101,6 @@ StudentInfoCtrl.deleteExam = function ($scope, index) {
 StudentInfoCtrl.salaries = [
     {name: 'Billable', value: true},
     {name: 'Not billable', value: false}
-];
-
-StudentInfoCtrl.currentHours = [
-    {name: '20 hours', value: 20},
-    {name: '30 hours', value: 30},
-    {name: '40 hours', value: 40}
 ];
 
 StudentInfoCtrl.states = [
