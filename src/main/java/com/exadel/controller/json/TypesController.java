@@ -2,6 +2,8 @@ package com.exadel.controller.json;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -71,8 +73,9 @@ public class TypesController {
     public void removeFaculty(@PathVariable("id") Long id){
     	typesService.removeFaculty(id);
     }
-    
-    
-    
-    
+    @RequestMapping(value=TypeURI.GET_UNIVER_FACULTIES,method=RequestMethod.GET)
+    public Map<String,Set<Faculty>> getUniverFaculties(){
+        return typesService.getMapFaculties();
+    }
+
 }

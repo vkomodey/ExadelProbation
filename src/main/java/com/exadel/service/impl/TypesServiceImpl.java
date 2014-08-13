@@ -1,13 +1,13 @@
 package com.exadel.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import com.exadel.model.NamedEntity;
 import com.exadel.model.entity.student.Faculty;
 import com.exadel.model.entity.student.Technology;
 import com.exadel.model.entity.student.University;
 
+import com.exadel.util.LazyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -91,8 +91,18 @@ public class TypesServiceImpl implements TypesService {
 		
 	}
     @Transactional
-	@Override
-	public void removeTechnology(Long id) {
-		techDao.delete(id);		
-	}
+     @Override
+     public void removeTechnology(Long id) {
+        techDao.delete(id);
+    }
+    @Transactional
+    public Map<String,Set<Faculty>> getMapFaculties() {
+        Map<String,Set<Faculty>> map= new HashMap<String,Set<Faculty>>();
+        List<University> univers=universityDao.getAll();
+        for(University item : univers){
+            LazyUtil.lazyTouchFaculties(item);
+            map.put(item.getName(),item.getFaculties());
+        }
+        return map;
+    }
 }
