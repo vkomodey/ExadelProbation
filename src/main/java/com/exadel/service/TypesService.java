@@ -18,4 +18,8 @@ public interface TypesService {
     public void push(University university);
     public void push(Faculty faculty);
     //public void push(University university);
+	public void removeUniversity(Long id);
+	public void removeFaculty(Long id);
+	public void push(Technology technology);
+	public void removeTechnology(Long id);
 }

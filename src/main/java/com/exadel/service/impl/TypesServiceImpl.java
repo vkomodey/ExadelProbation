@@ -70,7 +70,29 @@ public class TypesServiceImpl implements TypesService {
 	}
     @Transactional
 	public void push(Faculty faculty) {
+    	University university=universityDao.find(faculty.getUniversity().getName());
+    	faculty.setUniversity(university);
 		facultyDao.save(faculty);
+	}
+    @Transactional
+	@Override
+	public void removeUniversity(Long id) {
+		universityDao.delete(id);
+	}
+    @Transactional
+	@Override
+	public void removeFaculty(Long id) {
+		facultyDao.delete(id);		
+	}
+    @Transactional
+	@Override
+	public void push(Technology technology) {
+		techDao.save(technology);
 		
+	}
+    @Transactional
+	@Override
+	public void removeTechnology(Long id) {
+		techDao.delete(id);		
 	}
 }
