@@ -286,10 +286,9 @@
             </div>
             <!-- Select input-->
             <div class="form-group">
-                <label class="control-label" >Current hours</label>
-                <select class="form-control" data-ng-model="studentInfo.hours_current"
-                        data-ng-options="item.value as item.name for item in currentHours">
-                </select>
+                <label class="control-label" for="hours_current">Current Hours</label>
+                <input id="hours_current" name="hours_current" type="text" ng-model="studentInfo.hours_current"
+                       class="form-control input-md" data-ng-disabled="disableStudentInfo">
             </div>
             <!-- Select input-->
             <div class="form-group">
