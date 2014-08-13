@@ -2083,14 +2083,18 @@ th {
   vertical-align: bottom;
   border-bottom: 2px solid #ddd;
 }
+#studentList > thead:first-child > tr:first-child > th {
+    border-top-width: 1px;
+}
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
 .table > thead:first-child > tr:first-child > th,
 .table > caption + thead > tr:first-child > td,
 .table > colgroup + thead > tr:first-child > td,
 .table > thead:first-child > tr:first-child > td {
-  border-top: 0;
+  border-top-width: 0;
 }
+
 .table > tbody + tbody {
   border-top: 2px solid #ddd;
 }
