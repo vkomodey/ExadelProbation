@@ -89,5 +89,6 @@ public class PDFBuilder extends AbstractPdfView {
         fillTable(table,listStud);
         document.add(table);
 	System.out.println("2222");
+	System.out.println("3333");
     }
 }
