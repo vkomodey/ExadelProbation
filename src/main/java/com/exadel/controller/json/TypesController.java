@@ -2,9 +2,10 @@ package com.exadel.controller.json;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,14 @@ public class TypesController {
 	public List<Technology> getTechs(){
 		return typesService.getAllTechs();
 	}
+	@RequestMapping(value=TypeURI.PUSH_TECHNOLOGY,method=RequestMethod.POST)
+	public void addTech(@RequestBody Technology technology){
+		typesService.push(technology);
+	}
+	@RequestMapping(value=TypeURI.DELETE_TECHNOLOGY,method=RequestMethod.DELETE)
+	public void removeTech(@PathVariable("id") Long id){
+		typesService.removeTechnology(id);
+	}
 
     @RequestMapping(value = TypeURI.GET_ALL_STATES, method = RequestMethod.GET)
     public List<String> getAllStates(){
@@ -44,6 +53,25 @@ public class TypesController {
     public List<Faculty> getAllFaculties(){
     	return typesService.getAllFaculties();
     }
+    
+    @RequestMapping(value=TypeURI.PUSH_UNIVERSITY,method=RequestMethod.POST)
+    public void addUniversity(@RequestBody University university){
+    	typesService.push(university);
+    }
+    @RequestMapping(value=TypeURI.PUSH_FACULTY,method=RequestMethod.POST)
+    public void addFaculty(@RequestBody Faculty faculty){
+    	typesService.push(faculty);
+    }
+    
+    @RequestMapping(value=TypeURI.DELETE_UNIVERSITY,method=RequestMethod.DELETE)
+    public void removeUniversity(@PathVariable("id") Long id){
+    	typesService.removeUniversity(id);
+    }
+    @RequestMapping(value=TypeURI.DELETE_FACULTY,method=RequestMethod.DELETE)
+    public void removeFaculty(@PathVariable("id") Long id){
+    	typesService.removeFaculty(id);
+    }
+    
     
     
     

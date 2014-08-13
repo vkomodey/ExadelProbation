@@ -9,4 +9,8 @@ public class TypeURI {
     
     public static final String PUSH_FACULTY = "types/faculty/push";
     public static final String PUSH_UNIVERSITY = "types/university/push";
+	public static final String DELETE_UNIVERSITY = "types/university/{id}/delete";
+	public static final String DELETE_FACULTY = "types/faculty/{id}/delete";
+	public static final String PUSH_TECHNOLOGY = "types/technology/push";
+	public static final String DELETE_TECHNOLOGY = "types/technology/{id}/delete";
 }
