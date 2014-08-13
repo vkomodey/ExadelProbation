@@ -343,12 +343,12 @@
 <div class="tab-pane" id="curators" data-ng-show="studentInfo">
     <div class="row">
         <div class="col-md-6 col-md-offset-2">
-            <table ng-table="tableParams" class="table">
+            <table ng-table="tableParams" class="table curatorsListInStudentInfo">
                 <tr ng-repeat="cur in studentInfo.curator |orderBy:params.orderBy()">
 
                     <td data-title="'Deattach'">
                         <a data-ng-click="deattachCurator(cur.id)"
-                           class="btn btn-primary btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                           class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                     </td>
                     <td data-title="'Name'" sortable="'surname'" >{{cur.surname}}</td>
 
