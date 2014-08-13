@@ -12,11 +12,6 @@ import java.util.List;
 @Repository
 public class ProjectDaoImpl extends GenericDaoImpl<Project> implements ProjectDao {
 
-    public void deleteProjectById(long id){
-        Project project = (Project)getSessionFactory().getCurrentSession().load(Project.class, id);
-        getSessionFactory().getCurrentSession().delete(project);
-    }
-
     public List<String> getAllStudentsFio(long id){
         Project project = (Project)getSessionFactory().getCurrentSession().load(Project.class, id);
         List<String> fio = new ArrayList<String>();

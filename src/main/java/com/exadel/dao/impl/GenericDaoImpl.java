@@ -54,4 +54,8 @@ public abstract class GenericDaoImpl<ENTITY> extends HibernateDaoSupport
     public void flush(){
         getSessionFactory().getCurrentSession().flush();
     }
+    public void delete(long id){
+    	ENTITY ent=find(id);
+    	getSessionFactory().getCurrentSession().delete(ent);
+    }
 }
