@@ -69,15 +69,20 @@ public class StudentController {
 	public @ResponseBody void editStudentInfo(@RequestBody String str,
 			@PathVariable("id") Long id) throws IOException {
 		logger.info("Start editing student info.");
+        try{
 		ObjectMapper mapper = new ObjectMapper();
 		StudentView view = mapper.readValue(str, StudentView.class);
 		service.modify(view, id);
 		logger.info("edited" + id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 	}
 
 	@RequestMapping(value = StudURI.GET_ALL_STUDENT, method = RequestMethod.GET)
 	public @ResponseBody List<StudentView> getAllStudents(Principal user) {
 		logger.info("student list fetching");
+        try{
 		List<StudentView> studlist;
 		String role = SecurityUtil.getRole();
 		if (role.equals(SpringSecurityRole.CURATOR)) {
@@ -87,7 +92,11 @@ public class StudentController {
 			studlist = service.getAll();
 		}
 		logger.info("student list sending");
-		return studlist;
+            return studlist;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+		return null;
 	}
 
 	@RequestMapping(value = MeURI.GET_ME, method = RequestMethod.GET)

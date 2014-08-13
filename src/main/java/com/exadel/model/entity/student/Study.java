@@ -8,6 +8,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.exadel.model.view.StudyView;
+import com.exadel.util.BuilderUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -81,10 +82,16 @@ public class Study {
 	public StudyView toView(){
 		StudyView view=new StudyView();
 		view.setCourse_group(this.getCourse_group());
-		view.setFaculty(this.getFaculty().getName());
+        if(this.getFaculty()!=null)
+		    view.setFaculty(this.getFaculty().getName());
+        else
+            view.setFaculty("empty");
 		view.setGraduate_year(this.getGraduate_year());
 		view.setSpecialty(this.getSpecialty());
-		view.setUniversity(this.getUniversity().getName());
+        if(this.getUniversity()!=null)
+		    view.setUniversity(this.getUniversity().getName());
+        else
+            view.setUniversity("empty");
 		view.setExams(new TreeMap<String,Double>());
 		for(Integer i=StudyView.EXAM_START_VALUE;i<=StudyView.EXAM_COUNT;i++){
 			view.getExams().put(StudyView.SEM_PREFIX+i.toString(),null);
