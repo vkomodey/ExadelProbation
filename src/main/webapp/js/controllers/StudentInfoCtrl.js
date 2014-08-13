@@ -135,4 +135,13 @@ StudentInfoCtrl.getUniversityList = function ($scope, $http, $q) {
     deferred.resolve($scope.universityNames);
 
 };
+StudentInfoCtrl.getFacultyList = function ($scope, $http, $q) {
+    var deferred = $q.defer();
+    $http.get('/rest/types/faculty/get').success(function (data) {
+        $scope.facultyNames = data;
+    });
+    deferred.resolve($scope.facultyNames);
+
+};
+
 

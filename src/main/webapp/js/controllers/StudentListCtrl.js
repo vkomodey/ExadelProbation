@@ -175,7 +175,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                    }
 
                };
-               $scope.customFilterHours = function (studentsList) {
+              /* $scope.customFilterHours = function (studentsList) {
                    if (studentsList.hours_current === null && $scope.filterParams.hour_current.name !== 'Show All') {
                        return false;
                    } else {
@@ -193,7 +193,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                        }
                    }
 
-               };
+               };*/
                $scope.customFilterSalary = function (studentsList) {
 
                    if (studentsList.isBillable === null) {
