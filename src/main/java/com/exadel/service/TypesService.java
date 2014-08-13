@@ -1,6 +1,8 @@
 package com.exadel.service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.exadel.model.entity.student.Faculty;
 import com.exadel.model.entity.student.Technology;
@@ -22,4 +24,5 @@ public interface TypesService {
 	public void removeFaculty(Long id);
 	public void push(Technology technology);
 	public void removeTechnology(Long id);
+    public Map<String,Set<Faculty>> getMapFaculties();
 }

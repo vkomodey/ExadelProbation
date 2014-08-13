@@ -3,6 +3,7 @@ package com.exadel.util;
 import com.exadel.model.entity.Project;
 import com.exadel.model.entity.student.Student;
 import com.exadel.model.entity.student.Technology;
+import com.exadel.model.entity.student.University;
 
 public class LazyUtil {
 
@@ -31,5 +32,9 @@ public class LazyUtil {
 	        technology.getId();
 	    }
 	}
+
+    public static void lazyTouchFaculties(University university){
+        university.getFaculties().size();
+    }
 
 }
