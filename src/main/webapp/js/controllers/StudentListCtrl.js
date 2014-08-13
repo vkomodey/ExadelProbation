@@ -88,12 +88,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                        {   name: 'upperintermediate'},
                        {   name: 'advanced'}
                    ],
-                   workinghours: [
-                       {name: 'Show All'},
-                       {name: '20 hours'},
-                       {name: '30 hours'},
-                       {name: '40 hours'}
-                   ],
+
                    salaries: [
                        {name: 'Show All', state: 2},
                        {name: 'billable', state: true},
@@ -103,10 +98,11 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                $scope.filterItem = {
                    /////inner
                    course: $scope.filterOptions.courses[0],
-                   workinghour: $scope.filterOptions.workinghours[0],
+
                    englishlevel: $scope.filterOptions.englishlevels[0],
                    salary: $scope.filterOptions.salaries[0],
                    // from factory
+                   hour_current: $scope.filterParams.hours_current[$scope.filterParams.hours_current.length -1],
                    skillname: $scope.filterParams.skillnames[$scope.filterParams.skillnames.length - 1],
                    skillname2: $scope.filterParams.skillnames[$scope.filterParams.skillnames.length - 1],
                    skillname3: $scope.filterParams.skillnames[$scope.filterParams.skillnames.length - 1],

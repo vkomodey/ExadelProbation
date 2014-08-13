@@ -111,7 +111,7 @@ StudentInfoCtrl.currentHours = [
 StudentInfoCtrl.states = [
     {name: 'Work', value: 'WORK'},
     {name: 'Practise', value: 'PRACTISE'},
-    {name: 'Probation', value: 'PROBATION'}
+
 ];
 
 StudentInfoCtrl.getProjectList = function ($scope, $http, $q) {
@@ -128,7 +128,6 @@ StudentInfoCtrl.addProject = function ($scope) {
         title: null
     })
 };
-
 StudentInfoCtrl.deleteProject = function ($scope, index) {
     $scope.studentInfo.currentProjects.splice(index, 1);
 };
