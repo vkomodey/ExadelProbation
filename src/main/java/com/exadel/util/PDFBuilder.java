@@ -26,18 +26,6 @@ public class PDFBuilder extends AbstractPdfView {
             table.addCell(BuilderUtil.emptyField);
     }
 
-    private String convertTechnologySet(Set<Technology> tech){
-        StringBuilder result= new StringBuilder();
-        if(tech!=null){
-            for(Technology item : tech){
-                result.append(item.getName());
-                result.append(" ");
-            }
-            return result.toString();
-        }
-        return BuilderUtil.emptyField;
-    }
-
     private void addHeader(Table table) throws BadElementException {
         table.addCell("First Name");
         table.addCell("Second Name");
@@ -60,9 +48,9 @@ public class PDFBuilder extends AbstractPdfView {
     private void fillTable(Table table,List<Student> listStud) throws BadElementException {
         for (Student stud : listStud) {
 
-            table.addCell(stud.getFirstName());
-            table.addCell(stud.getSecondName());
-            table.addCell(stud.getSurname());
+            table.addCell(BuilderUtil.nullCheck(stud.getFirstName()));
+            table.addCell(BuilderUtil.nullCheck(stud.getSecondName()));
+            table.addCell(BuilderUtil.nullCheck(stud.getSurname()));
             table.addCell(BuilderUtil.nullCheck(stud.getEnglish()));
 
             if(stud.getStudy()!=null){
@@ -74,13 +62,12 @@ public class PDFBuilder extends AbstractPdfView {
             }
 
             if(stud.getWork()!=null){
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                table.addCell(BuilderUtil.nullCheck(dateFormat.format(stud.getWork().getWorkStartDate().getTime())));
+                table.addCell(BuilderUtil.dateConvert(stud));
                 table.addCell(BuilderUtil.nullCheck(stud.getWork().getHours_current()));
                 table.addCell(BuilderUtil.nullCheck(stud.getWork().getIsBillable()));
                 table.addCell(BuilderUtil.nullCheck(stud.getWork().getBillableStartDate()));
                 table.addCell(BuilderUtil.nullCheck(stud.getWork().getCurrentProjectRole()));
-                table.addCell(convertTechnologySet(stud.getWork().getCurrentUsedTechnologies()));
+                table.addCell(BuilderUtil.convertTechnologySet(stud.getWork().getCurrentUsedTechnologies()));
             }else{
                 fillEmpty(table,workNumber);
             }
