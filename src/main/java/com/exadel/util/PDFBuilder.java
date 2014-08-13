@@ -2,7 +2,6 @@ package com.exadel.util;
 
 
 import com.exadel.model.entity.student.Student;
-import com.exadel.model.entity.student.Technology;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,6 @@ import org.springframework.web.servlet.view.document.AbstractPdfView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
@@ -49,7 +47,7 @@ public class PDFBuilder extends AbstractPdfView {
         for (Student stud : listStud) {
 
             table.addCell(BuilderUtil.nullCheck(stud.getFirstName()));
-            table.addCell(BuilderUtil.nullCheck(stud.getSecondName()));
+            table.addCell(BuilderUtil.nullCheck(stud.getMiddleName()));
             table.addCell(BuilderUtil.nullCheck(stud.getSurname()));
             table.addCell(BuilderUtil.nullCheck(stud.getEnglish()));
 

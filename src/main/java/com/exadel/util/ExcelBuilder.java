@@ -1,10 +1,7 @@
 package com.exadel.util;
 
-import com.exadel.model.entity.student.Technology;
-
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -73,7 +70,7 @@ public class ExcelBuilder extends AbstractExcelView {
             HSSFRow aRow = sheet.createRow(rowCount++);
             if(stud!=null){
                 aRow.createCell(0).setCellValue(BuilderUtil.nullCheck(stud.getFirstName()));
-                aRow.createCell(1).setCellValue(BuilderUtil.nullCheck(stud.getSecondName()));
+                aRow.createCell(1).setCellValue(BuilderUtil.nullCheck(stud.getMiddleName()));
                 aRow.createCell(2).setCellValue(BuilderUtil.nullCheck(stud.getSurname()));
                 aRow.createCell(3).setCellValue(BuilderUtil.nullCheck(stud.getEnglish()));
             }
