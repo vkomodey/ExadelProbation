@@ -27,7 +27,6 @@ public class FilterController {
 	@Autowired
 	FilterService service;
 
-	JsonGenerator jg;
 	@Autowired
 	TypesService typesService;
 	@RequestMapping(value = FilterURI.GET_ALL_UNIVERSITIES, method = RequestMethod.GET)
@@ -77,12 +76,13 @@ public class FilterController {
 	public String getEverything(ObjectMapper objectMapper) throws IOException {
 		StringWriter sw = new StringWriter();
 		//jsonFactory.setCodec(new ObjectMapper());
-		jg =objectMapper.getFactory().createGenerator(sw);
+		JsonGenerator jg = objectMapper.getFactory().createGenerator(sw);
 		jg.writeStartObject();
-		writeJSONStringObjectArray(getAllUsedTechs(), "skillnames");
-		writeJSONStringObjectArray(getAllStudyEndYears(), "study_end_years");
-		writeJSONStringObjectArray(getAllUniversities(), "universities");
-		writeJSONStringObjectArray(getAllFaculties(), "faculties");
+		writeJSONStringObjectArray(getAllUsedTechs(), "skillnames", jg);
+		writeJSONStringObjectArray(getAllStudyEndYears(), "study_end_years", jg);
+		writeJSONStringObjectArray(getAllUniversities(), "universities", jg);
+		writeJSONStringObjectArray(getAllFaculties(), "faculties", jg);
+		writeJSONStringObjectArray(getAllDistinctWorkHours(), "hours_current", jg);
 		List<IdNameSurnamePersonView> curators=getAllUsedCurators();
 		IdNameSurnamePersonView v=new IdNameSurnamePersonView();
 		v.setSurname("Show All");
@@ -93,11 +93,24 @@ public class FilterController {
 		return sw.toString();
 	}
 
+	private List<String> getAllDistinctWorkHours() {
+		List<String> list=new ArrayList<String>();
+		for(Integer hour:service.getAllWorkHours()){
+			if(hour==null) {
+                list.add(null);
+            }
+            else{
+                list.add(hour.toString());
+            }
+		}
+		return list;
+	}
+
 	private List<String> getAllUsedTechs() {
 		return typesService.getActiveTechs();
 	}
 
-	private void writeJSONStringObjectArray(List<String> list, String name)
+	private static void writeJSONStringObjectArray(List<String> list, String name,JsonGenerator jg)
 	throws IOException {
 		
 		list.add("Show All");

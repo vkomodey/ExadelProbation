@@ -17,4 +17,5 @@ public interface StudentDao extends GenericLivingDao<Student> {
 	List<String> getEmails(List<Long> students_id);
     List<Feedback> findAllForStud(Student stud);
     List<StudentLog> findLogsForStud(Student stud);
+	List<Integer> getWorkhours();
 }

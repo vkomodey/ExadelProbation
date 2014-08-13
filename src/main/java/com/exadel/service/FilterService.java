@@ -17,4 +17,6 @@ public interface FilterService {
 
 	Set<User> getAllUsedCurators();
 
+	List<Integer> getAllWorkHours();
+
 }

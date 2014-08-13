@@ -53,5 +53,14 @@ public class FilterServiceImpl implements FilterService {
 	public Set<User> getAllUsedCurators() {
 		return new HashSet<User>(curatorDao.getActive());
 	}
+	@Override
+	@Transactional
+	public List<Integer> getAllWorkHours() {
+		List<Integer> list=studentDao.getWorkhours();
+/*		if(list==null){
+			list=new ArrayList<Integer>();
+		}*/
+		return list;
+	}
 
 }

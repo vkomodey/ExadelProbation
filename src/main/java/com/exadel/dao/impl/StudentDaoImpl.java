@@ -87,4 +87,14 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
         List<StudentLog> result= query.list();
         return result;
     }
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> getWorkhours() {
+		return getSessionFactory()
+				.getCurrentSession()
+				.createQuery(
+						"select distinct s.work.hours_current from Student s")
+				.list();
+	}
 }
