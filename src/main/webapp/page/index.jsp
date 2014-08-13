@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/skillsTable.css"/>
     <link rel="stylesheet" href="../css/projectListTable.css"/>
     <link rel="stylesheet" href="../css/table-style.css"/>
+    <link rel="stylesheet" href="../css/styleChanges.css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../js/built.js"></script>
 </head>
@@ -27,9 +28,13 @@
             <li data-ng-if="link_EmployeeList"><a href="#/employeeList">Employee List</a></li>
             <li data-ng-if="link_ProjectList"><a href="#/projectList">Project list</a></li>
         </ul>
-        <form action="/do_logout" method="post">
-              <button class="btn btn-default navbar-btn pull-right" type="submit">Logout</button>
-            </form>
+        <ul class=" nav navbar-nav pull-right">
+        <li><p class="navbar-brand">{{meName}}</p></li>
+        <li><form action="/do_logout" method="post">
+            <button class="btn btn-default navbar-btn pull-right" type="submit">Logout</button>
+        </form></li>
+        </ul>
+
     </div>
 
 </nav>
