@@ -1574,6 +1574,9 @@ var StudentPageCtrl = studentsControllers.controller('StudentPageCtrl',['$scope'
     $scope.englishLevels = StudentInfoCtrl.englishLevels;
     StudentInfoCtrl.getSkillSet($scope, $http, $q);
     getStudentInfo();
+    StudentInfoCtrl.getUniversityList($scope, $http, $q);
+    StudentInfoCtrl.getFacultyList($scope, $http, $q);
+
     $scope.addExam = function () {
         StudentInfoCtrl.addExam($scope);
     };
@@ -1589,7 +1592,6 @@ var StudentPageCtrl = studentsControllers.controller('StudentPageCtrl',['$scope'
     $scope.deleteExam = function () {
         StudentInfoCtrl.deleteExam($scope);
     };
-
 
 }]);
 studentsControllers.controller('StudentsListOnProjectCtrl', ['$scope', 'StudentsListOnProjectFactory','$q', function($scope,StudentsListOnProjectFactory,$q) {

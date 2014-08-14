@@ -118,19 +118,22 @@
                            ng-pattern ="/^(([2-9][0-9][1-9][4-9])|([2-9][1-9][0-9][0-9])|([2-9][0-9][2-9][0-9])){1}$/" class="form-control input-md" >
                 </div>
 
-                <!-- Text input-->
+                <!-- select input-->
                 <div class="form-group">
                     <label class="control-label" for="university">University</label>
                     <select class="form-control" data-ng-model="studentInfo.study.university"
-                            data-ng-options="item.name for item in universityNames">
+                            data-ng-options="item.name as item.name for item in universityNames"
+                            >
                     </select>
+
                 </div>
 
-                <!-- Text input-->
-                <div class="form-group">
+                <!-- select input-->
+                <div class="form-group" >
                     <label class="control-label" for="faculty">Faculty</label>
-                    <input id="faculty" name="faculty" type="text" ng-model="studentInfo.study.faculty"
-                           class="form-control input-md">
+                    <select class="form-control" data-ng-model="studentInfo.study.faculty"
+                            data-ng-options="item.name as item.name for item in facultyNames[studentInfo.study.university]">
+                    </select>
                 </div>
 
                 <!-- Text input-->
