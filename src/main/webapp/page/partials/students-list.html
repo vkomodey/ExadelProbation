@@ -114,16 +114,16 @@
                 <td header="'ng-table/headers/checkbox.html'" ><input data-ng-model="checkBoxes[user.id].value"   type="checkbox" class="checkthis"/></td>
                 <td data-title="'Login'" sortable="'login'">{{user.login}}</td>
                 <td data-title="'Name'" sortable="'surname'">{{user.firstName + " "+user.surname}}</td>
-                <td data-title="'Date'" sortable="'work.workStartDate'">{{user.work.workStartDate}}</td>
+                <!--<td data-title="'Date'" sortable="'work.workStartDate'">{{user.work.workStartDate}}</td>-->
                 <td data-title="'Faculty'" sortable="'study.faculty'">{{user.study.faculty}}</td>
                 <td data-title="'Graduate'" sortable="'study.graduate_year'">{{user.study.graduate_year}}</td>
                 <td data-title="'Course/Group'" sortable="'study.course_group'">{{user.study.course_group}}</td>
                 <td data-title="'Hours'" sortable="'hours_current'">{{user.hours_current}}</td>
                 <td data-title="'Billable'" sortable="'isBillable'">{{user.isBillable}}</td>
                 <td data-title="'Role'" sortable="'state'">{{user.state}}</td>
-                <td data-title="'Technologies'" sortable="'projectTechnologies'">
+                <!--<td data-title="'Technologies'" sortable="'projectTechnologies'">
                     <span ng-repeat="technology in user.skillSet.type"> {{type.name}}</span>
-                </td>
+                </td>-->
                 <td data-title="'English'" sortable="'english'">{{user.english}}</td>
                 <td data-title="'Edit'" class="text-center"><p><a href="#/studentList/{{user.id}}"
                                                                   class="btn btn-sm btn-primary"><span

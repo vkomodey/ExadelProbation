@@ -97,7 +97,7 @@ public class User implements IEntity,Serializable{
     	return SpringSecurityRole.USER;
     }
 
-	@Column(name = "second_name")
+	@Column(name = "middle_name")
 	public String getMiddleName() {
 	    return middleName;
 	}
