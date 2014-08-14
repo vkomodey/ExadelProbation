@@ -1,5 +1,6 @@
 package com.exadel.controller.json;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,10 @@ import com.exadel.model.entity.student.Faculty;
 import com.exadel.model.entity.student.Technology;
 import com.exadel.model.entity.student.University;
 import com.exadel.service.TypesService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 public class TypesController {
 	@Autowired
@@ -78,4 +83,19 @@ public class TypesController {
         return typesService.getMapFaculties();
     }
 
+    @RequestMapping(value=TypeURI.REPLACE_EVERYTHING,method=RequestMethod.POST)
+    public void replaceEverything(@RequestBody String json,ObjectMapper om) throws JsonProcessingException, IOException{
+    	JsonNode root=om.readTree(json);
+    	JsonNode technode=root.path("technology");
+    	JsonNode uninode=root.path("university");
+    	JsonNode facunode=root.path("faculty");
+    	
+    	Map<String,Set<Faculty>> facmap=om.readValue(facunode.traverse(),new TypeReference<Map<String,Set<Faculty>>>(){});
+    	Set<University> uniset=om.readValue(uninode.traverse(), new TypeReference<Set<University>>(){});
+    	Set<Technology> techset=om.readValue(technode.traverse(), new TypeReference<Set<Technology>>(){});
+    	typesService.replaceAllTech(techset);
+    	typesService.replaceAllUniversity(uniset);
+    	typesService.replaceAllFaculty(facmap);
+    }
+    
 }
