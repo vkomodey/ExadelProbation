@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.exadel.model.NamedEntity;
 import com.exadel.model.entity.student.Faculty;
+import com.exadel.model.entity.student.Skill;
 import com.exadel.model.entity.student.Technology;
 import com.exadel.model.entity.student.University;
 
@@ -34,7 +35,7 @@ public class TypesServiceImpl implements TypesService {
 		}
 		return res;
 	}
-	
+
     @Transactional
 	public List<Technology> getAllTechs() {
 		return techDao.getAll();
@@ -104,5 +105,15 @@ public class TypesServiceImpl implements TypesService {
             map.put(item.getName(),item.getFaculties());
         }
         return map;
+    }
+
+    @Transactional
+    public List<String> getDistinctSkills(){
+//        List<Skill> list = techDao.getAllDistinctSkills();
+        List<String> names = techDao.getAllDistinctSkills();
+//        for(Skill skill:list){
+//            names.add(skill.getType().getName());
+//        }
+        return names;
     }
 }

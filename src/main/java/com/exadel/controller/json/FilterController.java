@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.exadel.model.entity.student.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -78,7 +79,8 @@ public class FilterController {
 		//jsonFactory.setCodec(new ObjectMapper());
 		JsonGenerator jg = objectMapper.getFactory().createGenerator(sw);
 		jg.writeStartObject();
-		writeJSONStringObjectArray(getAllUsedTechs(), "skillnames", jg);
+//		writeJSONStringObjectArray(getAllUsedTechs(), "skillnames", jg);
+		writeJSONStringObjectArray(getAllDistinctSkills(), "skillnames", jg);
 		writeJSONStringObjectArray(getAllStudyEndYears(), "study_end_years", jg);
 		writeJSONStringObjectArray(getAllUniversities(), "universities", jg);
 		writeJSONStringObjectArray(getAllFaculties(), "faculties", jg);
@@ -109,6 +111,11 @@ public class FilterController {
 	private List<String> getAllUsedTechs() {
 		return typesService.getActiveTechs();
 	}
+
+    private List<String> getAllDistinctSkills(){
+        List<String> skills = typesService.getDistinctSkills();
+        return skills;
+    }
 
 	private static void writeJSONStringObjectArray(List<String> list, String name,JsonGenerator jg)
 	throws IOException {
