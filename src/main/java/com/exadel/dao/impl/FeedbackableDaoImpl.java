@@ -17,7 +17,7 @@ public class FeedbackableDaoImpl extends GenericLivingDaoImpl<Feedbackable>
 		return getSessionFactory()
 				.getCurrentSession()
 				.createQuery(
-						"from Feedback where author.login=:cur_name and student.id=:stud_id")
+						"from Feedback where author.name=:cur_name and student.id=:stud_id")
 				.setString("cur_name", cur_name).setLong("stud_id", studId)
 				.list();
 	}

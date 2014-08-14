@@ -79,11 +79,11 @@ public class User implements IEntity,Serializable{
 	    return id;
 	}
 
-	@Column(name = "login")
-	@NaturalId
-	public String getName() {
-	    return login;
-	}
+    @NaturalId
+    @Column(name = "login")
+    public String getName() {
+        return login;
+    }
 
 	@JsonIgnore
 	@Column(name="pass")
