@@ -52,21 +52,21 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="control-label" for="firstName">First name</label>
-                    <input id="firstName" name="firstName" type="text"  ng-model="studentInfo.firstName" ng-pattern="/^[a-zA-Z]+$/"
+                    <input maxlength="15" id="firstName" name="firstName" type="text"  ng-model="studentInfo.firstName" ng-pattern="/^[a-zA-Z]+$/"
                            class="form-control input-md">
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="control-label" for="firstName">Middle Name</label>
-                    <input id="middleName" name="middleName" type="text" ng-model="studentInfo.middleName" ng-pattern="/^[a-zA-Z]+$/"
+                    <input maxlength="15" id="middleName" name="middleName" type="text" ng-model="studentInfo.middleName" ng-pattern="/^[a-zA-Z]+$/"
                            class="form-control input-md">
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="control-label" >Surname</label>
-                    <input id="surname" name="firstName" type="text" ng-model="studentInfo.surname" ng-pattern="/^[a-zA-Z]+$/"
+                    <input maxlength="15" id="surname" name="firstName" type="text" ng-model="studentInfo.surname" ng-pattern="/^[a-zA-Z]+$/"
                            class="form-control input-md">
                 </div>
             </div>
@@ -82,7 +82,7 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="control-label" for="email">Email</label>
-                    <input id="email" name="email" type="email" ng-model="studentInfo.email"
+                    <input maxlength="25" id="email" name="email" type="email" ng-model="studentInfo.email"
                            ng-pattern="/^([^\@]+)\@([^\.]+)\.([a-zA-Z]+)$/"
                            class="form-control input-md">
                 </div>
@@ -90,13 +90,13 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="control-label" for="skype">Skype</label>
-                    <input id="skype" name="skype" type="text" ng-model="studentInfo.skype"
+                    <input maxlength="25" id="skype" name="skype" type="text" ng-model="studentInfo.skype"
                            class="form-control input-md">
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="control-label" for="firstName">Phone</label>
+                    <label maxlength="18" class="control-label" for="firstName">Phone</label>
                     <input id="phone" name="phone" type="text" ng-model="studentInfo.phone"
                            data-ng-pattern="/( +)?((\+?7|8) ?)?((\(\d{3}\))|(\d{3}))?( )?(\d{3}[\- ]?\d{2}[\- ]?\d{2})( +)?$/" class="form-control input-md">
                 </div>
@@ -139,7 +139,7 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="control-label" for="specialty">Specialty</label>
-                    <input id="specialty" name="specialty" type="text" ng-model="studentInfo.study.specialty"
+                    <input maxlength="25" id="specialty" name="specialty" type="text" ng-model="studentInfo.study.specialty"
                            class="form-control input-md">
                 </div>
 
@@ -194,7 +194,7 @@
                             </select>
                         </td>
                         <td>
-                            <input class="form-control" data-ng-model="studentInfo.skillSet[$index].level" required>
+                            <input maxlength="3" class="form-control" data-ng-model="studentInfo.skillSet[$index].level" required>
                         </td>
                         <td class="text-center">
                             <a data-ng-click="deleteSkill($index)" class="btn btn-sm btn-danger"><span
@@ -218,22 +218,22 @@
         <div class="row">
             <div class="col-md-2">
                 <label class="control-label" for="exam-3">Semester-3</label>
-                <input data-ng-model="studentInfo.study.exams.sem3" id="exam-3" name="exam-3" type="text" placeholder="Grade"
+                <input maxlength="4" data-ng-model="studentInfo.study.exams.sem3" id="exam-3" name="exam-3" type="text" placeholder="Grade"
                        class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
             <div class="col-md-2">
                 <label class="control-label" for="exam-4">Semester-4</label>
-                <input data-ng-model="studentInfo.study.exams.sem4" id="exam-4" name="exam-4" type="text" placeholder="Grade"
+                <input maxlength="4" data-ng-model="studentInfo.study.exams.sem4" id="exam-4" name="exam-4" type="text" placeholder="Grade"
                        class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
             <div class="col-md-2">
                 <label class="control-label" for="exam-5">Semester-5</label>
-                <input data-ng-model="studentInfo.study.exams.sem5" id="exam-5" name="exam-5" type="text" placeholder="Grade"
+                <input maxlength="4" data-ng-model="studentInfo.study.exams.sem5" id="exam-5" name="exam-5" type="text" placeholder="Grade"
                        class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
             <div class="col-md-2">
                 <label class="control-label" for="exam-6">Semester-6</label>
-                <input data-ng-model="studentInfo.study.exams.sem6" id="exam-6" name="exam-6" type="text" placeholder="Grade"
+                <input maxlength="4" data-ng-model="studentInfo.study.exams.sem6" id="exam-6" name="exam-6" type="text" placeholder="Grade"
                        class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
         </div>
@@ -242,22 +242,22 @@
             <div class="col-md-2">
 
                 <label class="control-label" for="exam-7">Semester-7</label>
-                <input data-ng-model="studentInfo.study.exams.sem7" id="exam-7" name="exam-7" type="text" placeholder="Grade"
+                <input maxlength="4" data-ng-model="studentInfo.study.exams.sem7" id="exam-7" name="exam-7" type="text" placeholder="Grade"
                        class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
             <div class="col-md-2">
                 <label class="control-label" for="exam-8">Semester-8</label>
-                <input data-ng-model="studentInfo.study.exams.sem8" id="exam-8" name="exam-8" type="text" placeholder="Grade"
+                <input maxlength="4" data-ng-model="studentInfo.study.exams.sem8" id="exam-8" name="exam-8" type="text" placeholder="Grade"
                        class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
             <div class="col-md-2">
                 <label class="control-label" for="exam-9">Semester-9</label>
-                <input data-ng-model="studentInfo.study.exams.sem9" id="exam-9" name="exam-9" type="text" placeholder="Grade"
+                <input maxlength="4" data-ng-model="studentInfo.study.exams.sem9" id="exam-9" name="exam-9" type="text" placeholder="Grade"
                        class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
             <div class="col-md-2">
                 <label class="control-label" for="exam-10">Semester-10</label>
-                <input data-ng-model="studentInfo.study.exams.sem10" id="exam-10" name="exam-10" type="text" placeholder="Grade"
+                <input maxlength="4" data-ng-model="studentInfo.study.exams.sem10" id="exam-10" name="exam-10" type="text" placeholder="Grade"
                        class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/">
             </div>
         </div>

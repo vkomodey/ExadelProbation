@@ -36,7 +36,7 @@
             <!-- Text input-->
             <div class="form-group">
                 <label class="control-label" for="firstName">First name</label>
-                <input id="firstName" name="firstName" type="text" ng-model="studentInfo.firstName"
+                <input maxlength="15" id="firstName" name="firstName" type="text" ng-model="studentInfo.firstName"
                        ng-pattern="/^[a-zA-Z]+$/"
                        class="form-control input-md" data-ng-disabled="disableStudentInfo">
             </div>
@@ -44,7 +44,7 @@
             <!-- Text input-->
             <div class="form-group">
                 <label class="control-label" for="firstName">Middle Name</label>
-                <input id="middleName" name="firstName" type="text" ng-model="studentInfo.middleName"
+                <input maxlength="15" id="middleName" name="firstName" type="text" ng-model="studentInfo.middleName"
                        ng-pattern="/^[a-zA-Z]+$/"
                        class="form-control input-md" data-ng-disabled="disableStudentInfo" >
             </div>
@@ -52,7 +52,7 @@
             <!-- Text input-->
             <div class="form-group">
                 <label class="control-label" for="firstName">Surname</label>
-                <input id="surname" name="surname" type="text" ng-model="studentInfo.surname"
+                <input maxlength="15" id="surname" name="surname" type="text" ng-model="studentInfo.surname"
                        ng-pattern="/^[a-zA-Z]+$/"
                        class="form-control input-md" data-ng-disabled="disableStudentInfo">
             </div>
@@ -69,7 +69,7 @@
             <!-- Text input-->
             <div class="form-group">
                 <label class="control-label" for="email">Email</label>
-                <input id="email" name="email" type="email" ng-model="studentInfo.email"
+                <input maxlength="25" id="email" name="email" type="email" ng-model="studentInfo.email"
                        ng-pattern="/^([^\@]+)\@([^\.]+)\.([a-zA-Z]+)$/"
                        class="form-control input-md" data-ng-disabled="disableStudentInfo">
             </div>
@@ -77,14 +77,14 @@
             <!-- Text input-->
             <div class="form-group">
                 <label class="control-label" for="skype">Skype</label>
-                <input id="skype" name="skype" type="text" ng-model="studentInfo.skype"
+                <input maxlength="25" id="skype" name="skype" type="text" ng-model="studentInfo.skype"
                        class="form-control input-md" data-ng-disabled="disableStudentInfo">
             </div>
 
             <!-- Text input-->
             <div class="form-group">
                 <label class="control-label" for="firstName">Phone</label>
-                <input id="phone" name="phone" type="text" ng-model="studentInfo.phone"
+                <input maxlength="18" id="phone" name="phone" type="text" ng-model="studentInfo.phone"
                        data-ng-pattern="/( +)?((\+?7|8) ?)?((\(\d{3}\))|(\d{3}))?( )?(\d{3}[\- ]?\d{2}[\- ]?\d{2})( +)?$/"
                        class="form-control input-md" data-ng-disabled="disableStudentInfo">
             </div>
@@ -127,7 +127,7 @@
             <!-- Text input-->
             <div class="form-group">
                 <label class="control-label" for="specialty">Specialty</label>
-                <input id="specialty" name="specialty" type="text" ng-model="studentInfo.study.specialty"
+                <input id="specialty" maxlength="25" name="specialty" type="text" ng-model="studentInfo.study.specialty"
                        class="form-control input-md" data-ng-disabled="disableStudentInfo">
             </div>
 
@@ -172,7 +172,7 @@
                         </select>
                     </td>
                     <td>
-                        <input id="skillLevel" name="skillLevel" type="text"
+                        <input maxlength="3" id="skillLevel" name="skillLevel" type="text"
                                ng-model="studentInfo.skillSet[$index].level"
                                class="form-control input-sm" data-ng-disabled="disableStudentInfo" required>
                     </td>
@@ -199,22 +199,22 @@
     <div class="row">
         <div class="col-md-2">
             <label class="control-label" for="exam-3">Semester-3</label>
-            <input data-ng-model="studentInfo.study.exams.sem3" id="exam-3" name="exam-3" type="text" placeholder="Grade"
+            <input maxlength="4" data-ng-model="studentInfo.study.exams.sem3" id="exam-3" name="exam-3" type="text" placeholder="Grade"
                    class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/" data-ng-disabled="disableStudentInfo">
         </div>
         <div class="col-md-2">
             <label class="control-label" for="exam-4">Semester-4</label>
-            <input data-ng-model="studentInfo.study.exams.sem4" id="exam-4" name="exam-4" type="text" placeholder="Grade"
+            <input maxlength="4" data-ng-model="studentInfo.study.exams.sem4" id="exam-4" name="exam-4" type="text" placeholder="Grade"
                    class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/" data-ng-disabled="disableStudentInfo">
         </div>
         <div class="col-md-2">
             <label class="control-label" for="exam-5">Semester-5</label>
-            <input data-ng-model="studentInfo.study.exams.sem5" id="exam-5" name="exam-5" type="text" placeholder="Grade"
+            <input  maxlength="4" data-ng-model="studentInfo.study.exams.sem5" id="exam-5" name="exam-5" type="text" placeholder="Grade"
                    class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/" data-ng-disabled="disableStudentInfo">
         </div>
         <div class="col-md-2">
             <label class="control-label" for="exam-6">Semester-6</label>
-            <input data-ng-model="studentInfo.study.exams.sem6" id="exam-6" name="exam-6" type="text" placeholder="Grade"
+            <input maxlength="4" data-ng-model="studentInfo.study.exams.sem6" id="exam-6" name="exam-6" type="text" placeholder="Grade"
                    class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/" data-ng-disabled="disableStudentInfo">
         </div>
     </div>
@@ -223,22 +223,22 @@
         <div class="col-md-2">
 
             <label class="control-label" for="exam-7">Semester-7</label>
-            <input data-ng-model="studentInfo.study.exams.sem7" id="exam-7" name="exam-7" type="text" placeholder="Grade"
+            <input maxlength="4" data-ng-model="studentInfo.study.exams.sem7" id="exam-7" name="exam-7" type="text" placeholder="Grade"
                    class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/" data-ng-disabled="disableStudentInfo">
         </div>
         <div class="col-md-2">
             <label class="control-label" for="exam-8">Semester-8</label>
-            <input data-ng-model="studentInfo.study.exams.sem8" id="exam-8" name="exam-8" type="text" placeholder="Grade"
+            <input maxlength="4" data-ng-model="studentInfo.study.exams.sem8" id="exam-8" name="exam-8" type="text" placeholder="Grade"
                    class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/" data-ng-disabled="disableStudentInfo">
         </div>
         <div class="col-md-2">
             <label class="control-label" for="exam-9">Semester-9</label>
-            <input data-ng-model="studentInfo.study.exams.sem9" id="exam-9" name="exam-9" type="text" placeholder="Grade"
+            <input maxlength="4" data-ng-model="studentInfo.study.exams.sem9" id="exam-9" name="exam-9" type="text" placeholder="Grade"
                    class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/" data-ng-disabled="disableStudentInfo">
         </div>
         <div class="col-md-2">
             <label class="control-label" for="exam-10">Semester-10</label>
-            <input data-ng-model="studentInfo.study.exams.sem10" id="exam-10" name="exam-10" type="text" placeholder="Grade"
+            <input maxlength="4" data-ng-model="studentInfo.study.exams.sem10" id="exam-10" name="exam-10" type="text" placeholder="Grade"
                    class="form-control input-sm" ng-pattern="/^((10)|([0-9])|([0-9][.]([0-9]+)))$/" data-ng-disabled="disableStudentInfo">
         </div>
     </div>
@@ -298,7 +298,7 @@
             <!-- Select input-->
             <div class="form-group">
                 <label class="control-label" for="hours_current">Current Hours</label>
-                <input id="hours_current" name="hours_current" type="text" ng-model="studentInfo.hours_current"
+                <input maxlength="2" id="hours_current" name="hours_current" type="text" ng-model="studentInfo.hours_current"
                        class="form-control input-md" data-ng-disabled="disableWorkInfo">
             </div>
             <!-- Select input-->
