@@ -831,7 +831,7 @@ studentsControllers.controller('DeleteProjectCtrl', ['$scope', '$http', function
 }]);
 studentsControllers.controller('EditFeedbackCtrl',['$scope','$http',function($scope,$http){
     $scope.editFeedback = function() {
-        $http.post('/rest/stud/'+$scope.studentInfo.id+'/feedback/'+$scope.feedbackEdit.id+'/edit',$scope.feedbackEdit)
+        $http.post('/rest/feedback/'+$scope.feedbackEdit.id+'/modify',$scope.feedbackEdit)
             .success(function(){
                 $scope.reloadList();
             })
