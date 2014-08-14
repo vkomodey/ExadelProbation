@@ -342,25 +342,38 @@
     </div>
 </div>
 <div class="tab-pane" id="curators" data-ng-show="studentInfo">
+    <div class="pull-right btn-toolbar">
+        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+           class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
+    </div>
     <div class="row">
-        <div class="col-md-6 col-md-offset-2">
+        <div class="col-md-6 col-md-offset-2 well-sm">
             <table ng-table="tableParams" class="table curatorsListInStudentInfo">
-                <tr ng-repeat="cur in studentInfo.curator |orderBy:params.orderBy()">
+                <tr ng-repeat="cur in studentInfo.curator track by $index">
 
                     <td data-title="'Deattach'">
-                        <a data-ng-click="deattachCurator(cur.id)"
+                        <a data-ng-click="deattachCurator($index)"
                            class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                     </td>
-                    <td data-title="'Name'" sortable="'surname'" >{{cur.surname}}</td>
+                    <td data-title="'Name'">
+                        <select class="form-control" data-ng-model="studentInfo.curator[$index]"
+                                data-ng-options="curator.surname for curator in allCuratorsList track by curator.id">
 
+                        </select>
+                    </td>
                 </tr>
             </table>
         </div>
-</div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-7"><a ng-click="attachNewCurator()" class="btn btn-sm btn-success"><span
+                class="glyphicon glyphicon-plus"></span> Attach new curator</a></div>
+    </div>
 
 </div>
-</form>
 </div>
+</form>
 <!--------------------------------------- MODAL FEEDBACK------------------------------------------>
 <div data-backdrop="static" class="modal fade" id="addFeedback" data-ng-controller="AddFeedbackCtrl" tabindex="-1"
      role="dialog"

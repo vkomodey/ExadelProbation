@@ -1,5 +1,5 @@
 
-var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope', '$routeParams','ProjectHistoryFactory', '$q', '$http', function ($scope, $routeParams,ProjectHistoryFactory, $q, $http) {
+var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope', '$routeParams','ProjectHistoryFactory', '$q', '$http','CuratorsListFactory', function ($scope, $routeParams,ProjectHistoryFactory, $q, $http,CuratorsListFactory) {
     if ($scope.studentInfo == null) { //make feedback-list-tab active
         $scope.active = 'active';
     }
@@ -28,23 +28,27 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         $scope.deleteExam = function () {
             StudentInfoCtrl.deleteExam($scope);
         };
-        $scope.addProject = function(){
-            StudentInfoCtrl.addProject($scope);
-        };
-        $scope.deleteProject = function(index){
-            StudentInfoCtrl.deleteProject($scope,index);
-        };
-        $scope.deattachCurator = function(curId) {
-            for(var i=0;i<$scope.studentInfo.curator.length;i++) {
-                if($scope.studentInfo.curator[i].id == curId) {
-                    $scope.studentInfo.curator.splice(i,1)
-                }
-            }
-        };
 //        $scope.reloadProjectHistory = function(){
 //            $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
 //        };
     }
+    $scope.addProject = function(){
+        StudentInfoCtrl.addProject($scope);
+    };
+    $scope.deleteProject = function(index){
+        StudentInfoCtrl.deleteProject($scope,index);
+    };
+    $scope.deattachCurator = function(index) {
+        $scope.studentInfo.curator.splice(index,1)
+    };
+    $scope.allCuratorsList = CuratorsListFactory.getCuratorsList();
+    $scope.attachNewCurator = function(){
+        $scope.studentInfo.curator.push({
+            id: null,
+            firstname: null,
+            surname: null
+        });
+    };
 }]);
 
 

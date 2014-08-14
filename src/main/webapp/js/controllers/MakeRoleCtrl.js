@@ -31,6 +31,9 @@ studentsControllers.controller('MakeRoleCtrl', ['$scope','$http', function($scop
         $scope.meName = data;
     });
     $scope.parseRole = function(role) {
+        if(role == null) {
+            return;
+        }
         var array = role.split('_');
         var result = '';
         for(var i=1;i<array.length;i++) {
