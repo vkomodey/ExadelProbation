@@ -110,7 +110,8 @@
             <div class="form-group">
                 <label class="control-label" for="university">University</label>
                 <select class="form-control" data-ng-model="studentInfo.study.university"
-                        data-ng-options="item.name as item.name for item in universityNames">
+                        data-ng-options="item.name as item.name for item in universityNames"
+                        >
                 </select>
 
             </div>
@@ -119,7 +120,7 @@
             <div class="form-group" ng-hide="false">
                 <label class="control-label" for="faculty">Faculty</label>
                 <select class="form-control" data-ng-model="studentInfo.study.faculty"
-                         data-ng-options="item.name for item in facultyNames">
+                         data-ng-options="item.name as item.name for item in facultyNames[studentInfo.study.university]">
             </select>
             </div>
 

@@ -1,4 +1,4 @@
-/*! FrontEnd-Project - v0.0.1 - 2014-08-13 */
+/*! FrontEnd-Project - v0.0.1 - 2014-08-14 */
 
 (function(Z,Q,r){'use strict';function F(b){return function(){var a=arguments[0],c,a="["+(b?b+":":"")+a+"] http://errors.angularjs.org/1.2.9/"+(b?b+"/":"")+a;for(c=1;c<arguments.length;c++)a=a+(1==c?"?":"&")+"p"+(c-1)+"="+encodeURIComponent("function"==typeof arguments[c]?arguments[c].toString().replace(/ \{[\s\S]*$/,""):"undefined"==typeof arguments[c]?"undefined":"string"!=typeof arguments[c]?JSON.stringify(arguments[c]):arguments[c]);return Error(a)}}function rb(b){if(null==b||Aa(b))return!1;var a=
 b.length;return 1===b.nodeType&&a?!0:D(b)||K(b)||0===a||"number"===typeof a&&0<a&&a-1 in b}function q(b,a,c){var d;if(b)if(L(b))for(d in b)"prototype"==d||("length"==d||"name"==d||b.hasOwnProperty&&!b.hasOwnProperty(d))||a.call(c,b[d],d);else if(b.forEach&&b.forEach!==q)b.forEach(a,c);else if(rb(b))for(d=0;d<b.length;d++)a.call(c,b[d],d);else for(d in b)b.hasOwnProperty(d)&&a.call(c,b[d],d);return b}function Pb(b){var a=[],c;for(c in b)b.hasOwnProperty(c)&&a.push(c);return a.sort()}function Pc(b,
@@ -962,6 +962,7 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         StudentInfoCtrl.getSkillSet($scope, $http, $q);
         StudentInfoCtrl.getProjectList($scope, $http, $q);
         StudentInfoCtrl.getUniversityList($scope, $http, $q);
+        StudentInfoCtrl.getFacultyList($scope, $http, $q);
         $scope.addExam = function () {
             StudentInfoCtrl.addExam($scope);
 
@@ -1095,7 +1096,7 @@ StudentInfoCtrl.getUniversityList = function ($scope, $http, $q) {
 };
 StudentInfoCtrl.getFacultyList = function ($scope, $http, $q) {
     var deferred = $q.defer();
-    $http.get('/rest/types/faculty/get').success(function (data) {
+    $http.get('/rest/types/university/faculties/get').success(function (data) {
         $scope.facultyNames = data;
     });
     deferred.resolve($scope.facultyNames);
@@ -1588,6 +1589,8 @@ var StudentPageCtrl = studentsControllers.controller('StudentPageCtrl',['$scope'
     $scope.deleteExam = function () {
         StudentInfoCtrl.deleteExam($scope);
     };
+
+
 }]);
 studentsControllers.controller('StudentsListOnProjectCtrl', ['$scope', 'StudentsListOnProjectFactory','$q', function($scope,StudentsListOnProjectFactory,$q) {
     var reloadStudentsOnProject = function(){

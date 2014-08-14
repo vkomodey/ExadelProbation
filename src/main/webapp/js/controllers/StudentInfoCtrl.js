@@ -11,6 +11,7 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         StudentInfoCtrl.getSkillSet($scope, $http, $q);
         StudentInfoCtrl.getProjectList($scope, $http, $q);
         StudentInfoCtrl.getUniversityList($scope, $http, $q);
+        StudentInfoCtrl.getFacultyList($scope, $http, $q);
         $scope.addExam = function () {
             StudentInfoCtrl.addExam($scope);
 
@@ -144,7 +145,7 @@ StudentInfoCtrl.getUniversityList = function ($scope, $http, $q) {
 };
 StudentInfoCtrl.getFacultyList = function ($scope, $http, $q) {
     var deferred = $q.defer();
-    $http.get('/rest/types/faculty/get').success(function (data) {
+    $http.get('/rest/types/university/faculties/get').success(function (data) {
         $scope.facultyNames = data;
     });
     deferred.resolve($scope.facultyNames);
