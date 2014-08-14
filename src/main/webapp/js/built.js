@@ -1027,13 +1027,16 @@ StudentInfoCtrl.getFacultyList = function ($scope, $http, $q) {
 var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
     '$scope', '$filter', '$routeParams', 'studentsListFactory', 'CuratorsListFactory','LogListFactory', 'filterParamsFactory', 'ngTableParams', '$q', 'studentsList', '$interval', '$http',
     function ($scope, $filter, $routeParams, studentsListFactory, CuratorsListFactory,LogListFactory, filterParamsFactory, ngTableParams, $q, studentsList, $interval, $http) {
-
-
+        var disableWatchArray;
+        var watchCheckBoxes = function() {
+            StudentListCtrl.watchCheckBoxes($scope,$scope.checkBoxes,'checkBoxes',$scope.checkedStudHash,$scope.studentsList,disableWatchArray);
+        };
         $scope.reloadList = function() {
             var deferred = $q.defer();
             $scope.checkedStudArray = [];
             studentsListFactory.getStudentsList(function (data) {
                     $scope.studentsList = data;
+                    watchCheckBoxes();
                 }
             );
             deferred.resolve($scope.studentsList);
@@ -1082,9 +1085,6 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
         $scope.check.checkAll = false;
         $scope.students = new Object();
         $scope.students.filteredStudentsList = null;
-        var watchCheckBoxes = function() {
-            StudentListCtrl.watchCheckBoxes($scope,$scope.checkBoxes,'checkBoxes',$scope.checkedStudHash,$scope.studentsList);
-        };
         watchCheckBoxes();
         $scope.$watch('check.checkAll',function(newValue) {
             angular.forEach($scope.students.filteredStudentsList, function(item) {
@@ -1416,24 +1416,31 @@ StudentListCtrl.export = function (url, exportData, $http) {
             alert('ERROR ' + status);
         });
 };
-StudentListCtrl.watchCheckBoxes = function($scope,checkBoxes,watchExpression,checkedIdHash,array) {
+StudentListCtrl.watchCheckBoxes = function($scope,checkBoxes,watchExpression,checkedIdHash,array,disactiveWatchArray) {
+    if(disactiveWatchArray!=null) {
+        disactiveWatchArray.forEach(function (item) {
+            item();
+        });
+    }
+    disactiveWatchArray = [];
     for(var i=0;i<array.length;i++) {
         checkBoxes[array[i].id] = {
             id: array[i].id,
             value: false
         };
-        $scope.$watchCollection(watchExpression+'.'+array[i].id,function(newCheckBox){
+        disactiveWatchArray.push($scope.$watchCollection(watchExpression+'.'+array[i].id,function(newCheckBox){
             if(newCheckBox.value == true) {
                 checkedIdHash[newCheckBox.id]=newCheckBox.id;
             }
             else {
                 delete checkedIdHash[newCheckBox.id];
             }
-        })
+        }));
     }
+    return disactiveWatchArray;
 };
 StudentListCtrl.watchCheckAllCheckbox = function($scope,checkAllCheckBox,watchExpression,currentArray,checkBoxes) {
-    $scope.$watch(watchExpression,function(newValue,oldValue) {
+    $scope.$watch(watchExpression,function(newValue) {
         angular.forEach(currentArray, function(item) {
             if (angular.isDefined(item.id)) {
                 checkBoxes[item.id].value = newValue;
