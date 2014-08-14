@@ -14,12 +14,15 @@
                        class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
                 </div>
                 <div class="row">
-                    <div class="col-md-2 col-md-offset-7">
-                        </div>
                     <div class="col-md-6 col-md-offset-1">
-                        <input type="text"  ng-model="name"  class="form-control input-md">
-                        <a ng-click="addSkillAdm(name)" class="btn btn-sm btn-success" ><span
-                                class="glyphicon glyphicon-plus" ></span> Add skill</a>
+                        <div class="form-group well-sm">
+                            <div class="input-group">
+                                <input type="text"  ng-model="name"  class="form-control input-md" placeholder="Skill name">
+
+                                <a ng-click="addSkillAdm(name)" class=" input-group-addon btn btn-sm btn-success" ><span
+                                        class="glyphicon glyphicon-plus" ></span> Add skill</a>
+                            </div>
+                        </div>
                         <table ng-table="tableParams" class="table SkillList">
                             <tr ng-repeat="skillName in skillNames track by $index">
                                 <td data-title="'Delete'">
@@ -41,12 +44,16 @@
                    class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
             </div>
             <div class="row">
-                <div class="col-md-2 col-md-offset-7">
-                </div>
+
                 <div class="col-md-6 col-md-offset-1">
-                    <input type="text"  ng-model="name"  class="form-control input-md">
-                    <a ng-click="addUniversity(name)" class="btn btn-sm btn-success" ><span
-                            class="glyphicon glyphicon-plus" ></span> Add University</a>
+                    <div class="form-group well-sm">
+                        <div class="input-group">
+                            <input type="text"  ng-model="name"  class="form-control input-md" placeholder="University name">
+
+                            <a ng-click="addUniversity(name)" class=" input-group-addon btn btn-sm btn-success" ><span
+                                    class="glyphicon glyphicon-plus" ></span> Add University</a>
+                        </div>
+                    </div>
                     <table ng-table="tableParams" class="table UniversityList">
                         <tr ng-repeat="university in universityNames track by $index">
                             <td data-title="'Delete'">
@@ -67,18 +74,20 @@
                        class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
                 </div>
                 <div class="row">
-                    <div class="col-md-2 col-md-offset-7">
-                    </div>
                     <div class="col-md-6 col-md-offset-1">
-
-                            <label class="control-label" for="university">University</label>
-                            <select class="form-control" data-ng-model="uname"
-                                    data-ng-options="university.name as university.name for university in universityNames">
-                            </select>
-
-                        <input type="text"  ng-model="name"  class="form-control input-md">
-                        <a ng-click="addFaculty(uname, name)" class="btn btn-sm btn-success" ><span
-                                class="glyphicon glyphicon-plus" ></span> Add Faculty</a>
+                        <div class="form-group well-sm">
+                        <label class="control-label" for="university">University</label>
+                        <select class="form-control" data-ng-model="uname"
+                                data-ng-options="university.name as university.name for university in universityNames">
+                        </select>
+                        </div>
+                        <div class="form-group well-sm">
+                            <div class="input-group">
+                                <input type="text"  ng-model="name"  class="form-control input-md" placeholder="Faculty name">
+                                <a ng-click="addFaculty(uname, name)" class=" input-group-addon btn btn-sm btn-success" ><span
+                                        class="glyphicon glyphicon-plus" ></span> Add Faculty</a>
+                            </div>
+                        </div>
                         <table ng-table="tableParams" class="table FacultyList">
                             <tr ng-repeat="(name, faculty) in facultyNames[uname]">
                                 <td data-title="'Delete'">
