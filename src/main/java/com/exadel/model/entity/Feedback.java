@@ -48,16 +48,7 @@ public class Feedback {
 		this.feedback = feedback;
 		this.feedbackDate = feedbackDate;
 	}
-	public Feedback(FeedbackView view,Feedbackable feedbackOwner, Student stud){
-		this.setAuthor(feedbackOwner);
-		this.setStudent(stud);
-        if(stud.getWork()!=null){
-		this.setBillableNow(stud.getWork().getIsBillable());
-        }
-        else{
-            this.setBillableNow(false);
-        }
-		
+	public void fromView(FeedbackView view){
 		this.setOnRealProject(view.getWorkInProject());
 		if(!this.getOnRealProject()){
 			this.setProjectProspect(view.getProspect());
@@ -70,6 +61,18 @@ public class Feedback {
 		this.setProfCompetence(view.isProfSuitability());
 		this.setProfMattersProgress(view.getProgress());
 		this.setWorkAttitude(view.getAttitudeToWork());
+	}
+	public Feedback(FeedbackView view,Feedbackable feedbackOwner, Student stud){
+		this.setAuthor(feedbackOwner);
+		this.setStudent(stud);
+        if(stud.getWork()!=null){
+		this.setBillableNow(stud.getWork().getIsBillable());
+        }
+        else{
+            this.setBillableNow(false);
+        }
+		
+		this.fromView(view);
 		}
 
 	@ManyToOne

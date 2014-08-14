@@ -19,4 +19,6 @@ public interface StudentService extends GenericLivingService<Student> {
     public List<String> getAllEmailAddressesOfStudents(List<Long> students_id);
 	public List<FeedbackView> getFeedbacksForStudentByCurator(long studId,
 			String curatorName);
+	public void modifyFeedbackByFbId(FeedbackView feedback, long feedbackId,
+			String name) throws Exception;
 }
