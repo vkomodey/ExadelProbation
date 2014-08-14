@@ -81,7 +81,7 @@ AdminPageCtrl.sendInfo = function ($scope, $http) {
         university: $scope.universityNames,
         faculty: $scope.facultyNames
     }
-    $http.post('rest/types/everything/replace' , infoToSend)
+    $http.post('/rest/types/everything/replace' , infoToSend)
         .error(function (data, status) {
             $(".alert").alert()
         });
