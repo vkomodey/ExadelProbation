@@ -17,9 +17,9 @@
                     <div class="col-md-6 col-md-offset-1">
                         <div class="form-group well-sm">
                             <div class="input-group">
-                                <input type="text"  ng-model="name" maxlength="15"  class="form-control input-md" placeholder="Skill name">
+                                <input type="text"  ng-model="nameSkill" maxlength="15"  class="form-control input-md" placeholder="Skill name">
 
-                                <a ng-click="addSkillAdm(name)" class=" input-group-addon btn btn-sm btn-success" ><span
+                                <a ng-click="addSkillAdm(nameSkill)" class=" input-group-addon btn btn-sm btn-success" ><span
                                         class="glyphicon glyphicon-plus" ></span> Add skill</a>
                             </div>
                         </div>
@@ -48,9 +48,9 @@
                 <div class="col-md-6 col-md-offset-1">
                     <div class="form-group well-sm">
                         <div class="input-group">
-                            <input type="text"  ng-model="name" maxlength="60" class="form-control input-md" placeholder="University name">
+                            <input type="text"  ng-model="nameUnivarsity1" maxlength="60" class="form-control input-md" placeholder="University name">
 
-                            <a ng-click="addUniversity(name)" class=" input-group-addon btn btn-sm btn-success" ><span
+                            <a ng-click="addUniversity(nameUnivarsity1)" class=" input-group-addon btn btn-sm btn-success" ><span
                                     class="glyphicon glyphicon-plus" ></span> Add University</a>
                         </div>
                     </div>
@@ -77,21 +77,21 @@
                     <div class="col-md-6 col-md-offset-1">
                         <div class="form-group well-sm">
                         <label class="control-label" for="university">University</label>
-                        <select class="form-control" data-ng-model="uname"
+                        <select class="form-control" data-ng-model="nameUniversity2"
                                 data-ng-options="university.name as university.name for university in universityNames">
                         </select>
                         </div>
                         <div class="form-group well-sm">
                             <div class="input-group">
-                                <input type="text"  ng-model="name" maxlength="30" class="form-control input-md" placeholder="Faculty name">
-                                <a ng-click="addFaculty(uname, name)" class=" input-group-addon btn btn-sm btn-success" ><span
+                                <input type="text"  ng-model="nameFaculty" maxlength="30" class="form-control input-md" placeholder="Faculty name">
+                                <a ng-click="addFaculty(nameUniversity2, nameFaculty)" class=" input-group-addon btn btn-sm btn-success" ><span
                                         class="glyphicon glyphicon-plus" ></span> Add Faculty</a>
                             </div>
                         </div>
                         <table ng-table="tableParams" class="table FacultyList">
-                            <tr ng-repeat="(name, faculty) in facultyNames[uname]">
+                            <tr ng-repeat="(name, faculty) in facultyNames[nameUniversity2]">
                                 <td data-title="'Delete'">
-                                    <a data-ng-click="deleteFaculty($index, uname)" class="btn btn-sm btn-danger">
+                                    <a data-ng-click="deleteFaculty($index, nameUniversity2)" class="btn btn-sm btn-danger">
                                         <span class="glyphicon glyphicon-remove"></span>
                                     </a>
                                 </td>

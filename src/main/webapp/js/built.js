@@ -731,6 +731,9 @@ AdminPageCtrl.getFacultyList = function ($scope, $http, $q) {
     deferred.resolve($scope.facultyNames);
 };
 AdminPageCtrl.addFaculty= function ($scope,uname, name) {
+    if($scope.facultyNames[uname] == null) {
+        $scope.facultyNames[uname] = [];
+    }
     $scope.facultyNames[uname].push({
         id: null,
         name: name
