@@ -15,9 +15,9 @@ var StudentPageCtrl = studentsControllers.controller('StudentPageCtrl',['$scope'
     StudentInfoCtrl.getUniversityList($scope, $http, $q);
     StudentInfoCtrl.getFacultyList($scope, $http, $q);
 
-    $scope.addExam = function () {
+    /*$scope.addExam = function () {
         StudentInfoCtrl.addExam($scope);
-    };
+    };*/
     $scope.sendStudentInfo = function () {
         StudentInfoCtrl.sendStudentInfo($scope, $http, $scope.studentInfo.id);
     };
@@ -27,8 +27,8 @@ var StudentPageCtrl = studentsControllers.controller('StudentPageCtrl',['$scope'
     $scope.deleteSkill = function () {
         StudentInfoCtrl.deleteSkill($scope);
     };
-    $scope.deleteExam = function () {
+    /*$scope.deleteExam = function () {
         StudentInfoCtrl.deleteExam($scope);
-    };
+    };*/
 
 }]);

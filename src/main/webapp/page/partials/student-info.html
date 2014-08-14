@@ -168,13 +168,13 @@
                     <td>
                         <select id="skillType{{$index}}" ng-model="studentInfo.skillSet[$index].type"
                                 class="form-control"
-                                ng-options="skillType.name for skillType in skillTypes track by skillType.id" data-ng-disabled="disableStudentInfo">
+                                ng-options="skillType.name for skillType in skillTypes track by skillType.id" data-ng-disabled="disableStudentInfo" required>
                         </select>
                     </td>
                     <td>
                         <input id="skillLevel" name="skillLevel" type="text"
                                ng-model="studentInfo.skillSet[$index].level"
-                               class="form-control input-sm" data-ng-disabled="disableStudentInfo">
+                               class="form-control input-sm" data-ng-disabled="disableStudentInfo" required>
                     </td>
                     <td class="text-center">
                         <a data-ng-click="deleteSkill($index)" class="btn btn-sm btn-danger" data-ng-disabled="disableStudentInfo"><span
@@ -318,7 +318,7 @@
                             <td>
                             <select  ng-model="studentInfo.currentProjects[$index]"
                                     class="form-control"
-                                    ng-options="projectName.title for projectName in projectNames track by projectName.id">
+                                    ng-options="projectName.title for projectName in projectNames track by projectName.id" required>
                             </select>
                             </td>
                             <td class="text-center">
@@ -357,7 +357,7 @@
                     </td>
                     <td data-title="'Name'">
                         <select class="form-control" data-ng-model="studentInfo.curator[$index]"
-                                data-ng-options="curator.surname for curator in allCuratorsList track by curator.id">
+                                data-ng-options="curator.surname for curator in allCuratorsList track by curator.id" required>
 
                         </select>
                     </td>

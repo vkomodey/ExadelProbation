@@ -12,10 +12,10 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         StudentInfoCtrl.getProjectList($scope, $http, $q);
         StudentInfoCtrl.getUniversityList($scope, $http, $q);
         StudentInfoCtrl.getFacultyList($scope, $http, $q);
-        $scope.addExam = function () {
+       /* $scope.addExam = function () {
             StudentInfoCtrl.addExam($scope);
 
-        };
+        };*/
         $scope.sendStudentInfo = function () {
             StudentInfoCtrl.sendStudentInfo($scope, $http, $routeParams.studId);
         };
@@ -25,9 +25,9 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         $scope.deleteSkill = function (index) {
             StudentInfoCtrl.deleteSkill($scope,index);
         };
-        $scope.deleteExam = function () {
+        /*$scope.deleteExam = function () {
             StudentInfoCtrl.deleteExam($scope);
-        };
+        };*/
 //        $scope.reloadProjectHistory = function(){
 //            $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
 //        };
@@ -43,11 +43,7 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
     };
     $scope.allCuratorsList = CuratorsListFactory.getCuratorsList();
     $scope.attachNewCurator = function(){
-        $scope.studentInfo.curator.push({
-            id: null,
-            firstname: null,
-            surname: null
-        });
+        $scope.studentInfo.curator.push(null);
     };
 }]);
 
@@ -82,13 +78,13 @@ StudentInfoCtrl.getSkillSet = function ($scope, $http, $q) {
     deferred.resolve($scope.skillTypes);
 };
 
-StudentInfoCtrl.addExam = function ($scope) {
+/*StudentInfoCtrl.addExam = function ($scope) {
     $scope.studentInfo.study.exams.push({
         grade: null,
         summer: true,
         course: null
     });
-}
+}*/
 StudentInfoCtrl.sendStudentInfo = function ($scope, $http, id) {
     $http.post('/rest/stud/' + id + '/edit', $scope.studentInfo)
         .success(function () {
@@ -99,18 +95,14 @@ StudentInfoCtrl.sendStudentInfo = function ($scope, $http, id) {
         });
 };
 StudentInfoCtrl.addSkill = function ($scope) {
-    $scope.studentInfo.skillSet.push({
-        level: null,
-        id: 0,
-        type: null
-    })
+    $scope.studentInfo.skillSet.push(null);
 };
 StudentInfoCtrl.deleteSkill = function ($scope, index) {
     $scope.studentInfo.skillSet.splice(index, 1);
 };
-StudentInfoCtrl.deleteExam = function ($scope, index) {
+/*StudentInfoCtrl.deleteExam = function ($scope, index) {
     $scope.studentInfo.study.exams.splice(index, 1);
-};
+};*/
 StudentInfoCtrl.salaries = [
     {name: 'Billable', value: true},
     {name: 'Not billable', value: false}
@@ -130,10 +122,7 @@ StudentInfoCtrl.getProjectList = function ($scope, $http, $q) {
 
 };
 StudentInfoCtrl.addProject = function ($scope) {
-    $scope.studentInfo.currentProjects.push({
-        id: 0,
-        title: null
-    })
+    $scope.studentInfo.currentProjects.push(null);
 };
 StudentInfoCtrl.deleteProject = function ($scope, index) {
     $scope.studentInfo.currentProjects.splice(index, 1);

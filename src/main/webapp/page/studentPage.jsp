@@ -190,12 +190,11 @@
                         <td>
                             <select id="skillType{{$index}}" ng-model="studentInfo.skillSet[$index].type"
                                     class="form-control"
-                                    ng-options="skillType.name for skillType in skillTypes track by skillType.id">
+                                    ng-options="skillType.name for skillType in skillTypes track by skillType.id" required>
                             </select>
                         </td>
                         <td>
-                            <input id="skillLevel" name="englishLevel" type="text"
-                                   class="form-control input-sm">
+                            <input class="form-control" data-ng-model="studentInfo.skillSet[$index].level" required>
                         </td>
                         <td class="text-center">
                             <a data-ng-click="deleteSkill($index)" class="btn btn-sm btn-danger"><span
