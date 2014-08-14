@@ -25,4 +25,9 @@ public interface TypesService {
 	public void push(Technology technology);
 	public void removeTechnology(Long id);
     public Map<String,Set<Faculty>> getMapFaculties();
+    public void addAllTech(Set<Technology> techs);
+    public void addAllUniversity(Set<University> uni, Map<String, Set<Faculty>> facset);
+	void replaceAllTech(Set<Technology> tech);
+	void replaceAllUniversity(Set<University> uni);
+	void replaceAllFaculty(Map<String, Set<Faculty>> fac);
 }

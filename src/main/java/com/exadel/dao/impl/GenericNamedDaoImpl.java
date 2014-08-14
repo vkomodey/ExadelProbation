@@ -1,5 +1,6 @@
 package com.exadel.dao.impl;
 
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import com.exadel.dao.GenericNamedDao;
@@ -12,4 +13,8 @@ public abstract class GenericNamedDaoImpl <ENTITY extends NamedEntity>
 		return (ENTITY) getSessionFactory().getCurrentSession()
 				.bySimpleNaturalId(typeString).load(login);
     }
+	public void deleteAll(){
+		Session session=getSessionFactory().getCurrentSession();
+		session.createQuery("delete from "+typeString).executeUpdate();
+	}
 }

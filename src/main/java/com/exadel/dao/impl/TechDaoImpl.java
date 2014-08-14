@@ -10,7 +10,7 @@ import com.exadel.dao.TechDao;
 import com.exadel.model.entity.student.Technology;
 
 @Repository
-public class TechDaoImpl extends GenericDaoImpl<Technology> implements
+public class TechDaoImpl extends GenericNamedDaoImpl<Technology> implements
 		TechDao {
 
 	@SuppressWarnings("unchecked")
