@@ -35,11 +35,10 @@ studentsApp.config(['$routeProvider', '$locationProvider', function($routeProvid
                 projectList: ProjectListCtrl.projectList
             }
         }).
-        when('/test', {
-            templateUrl: '/page/partials/test.html',
-            controller: "testSend",
+        when('/admin-page', {
+            templateUrl: '/page/partials/admin-page.html',
+            controller: "AdminPageCtrl",
             resolve: {
-
             }
         }).
         otherwise({

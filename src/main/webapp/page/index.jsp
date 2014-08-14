@@ -27,6 +27,7 @@
             <li><a href="#/studentList">Student List</a></li>
             <li data-ng-if="link_EmployeeList"><a href="#/employeeList">Employee List</a></li>
             <li data-ng-if="link_ProjectList"><a href="#/projectList">Project list</a></li>
+            <li data-ng-if="link_AdminPage"><a href="#/admin-page">Admin</a></li>
         </ul>
         <ul class=" nav navbar-nav pull-right">
         <li><p class="navbar-brand">{{meName}}, {{parseRole(meRole)}}</p></li>
