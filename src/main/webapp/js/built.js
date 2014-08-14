@@ -967,15 +967,15 @@ StudentInfoCtrl.getSkillSet = function ($scope, $http, $q) {
 
 StudentInfoCtrl.sendStudentInfo = function ($scope, $http, id) {
     $http.post('/rest/stud/' + id + '/edit', $scope.studentInfo)
-        .success(function () {
-            alert('the info is sent');
-        })
         .error(function (data, status) {
             alert('Error: ' + status);
         });
 };
 StudentInfoCtrl.addSkill = function ($scope) {
-    $scope.studentInfo.skillSet.push(null);
+    $scope.studentInfo.skillSet.push({
+        id: null,
+        level: null
+    });
 };
 StudentInfoCtrl.deleteSkill = function ($scope, index) {
     $scope.studentInfo.skillSet.splice(index, 1);
