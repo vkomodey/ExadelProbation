@@ -3,6 +3,7 @@ package com.exadel.controller.json;
 
 import java.io.IOException;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,28 +27,20 @@ public class RegistrationController {
 	private static Logger logger= LoggerFactory.getLogger(RegistrationController.class);
 
     @RequestMapping(value = StudURI.CREATE_STUDENT, method = RequestMethod.POST)
-    public @ResponseBody void registerStudent(@RequestBody String str) {
+    public @ResponseBody void registerStudent(@RequestBody String str) throws IOException {
         logger.info("Start registerStudent.");
         ObjectMapper mapper = new ObjectMapper();
-        try {
-            RegistrationView view =  mapper.readValue(str,RegistrationView.class);
-            logger.info("login:"+view.getLogin());
-            service.registerStudent(view);
-            logger.info("created");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        RegistrationView view =  mapper.readValue(str,RegistrationView.class);
+        logger.info("login:"+view.getLogin());
+        service.registerStudent(view);
+        logger.info("created");
     }
     @RequestMapping(value = GeneralURI.CREATE_ANYONE, method = RequestMethod.POST)
-    public void registerAnyone(@RequestBody String str){
+    public void registerAnyone(@RequestBody String str) throws IOException {
     	logger.info("Start registerAnyone.");
         ObjectMapper mapper = new ObjectMapper();
-        try {
-            RegistrationView view =  mapper.readValue(str,RegistrationView.class);
-            logger.info("login:"+view.getLogin());
-            service.registerAnyone(view);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        RegistrationView view =  mapper.readValue(str,RegistrationView.class);
+        logger.info("login:"+view.getLogin());
+        service.registerAnyone(view);
     }
 }
