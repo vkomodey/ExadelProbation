@@ -53,5 +53,14 @@ public class FeedbackController {
         service.saveNewFeedbackForStudentByStudId(feedback, studId,
                 user.getName());
 	}
+	
+	@RequestMapping(value = StudURI.MODIFY_FEEDBACK, method = RequestMethod.POST)
+	public @ResponseBody void modifyFeedback(@RequestBody String str,@PathVariable("fb_id") long feedbackId, Principal user) throws Exception {
+		logger.info("Start saving feedback.");
+		ObjectMapper mapper = new ObjectMapper();
+        FeedbackView feedback = mapper.readValue(str, FeedbackView.class);
+        service.modifyFeedbackByFbId(feedback, feedbackId,
+                user.getName());
+	}
 
 }

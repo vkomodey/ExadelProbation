@@ -12,4 +12,5 @@ public class StudURI {
     public static final String ATTACH_STUDENTS_TO_CURATORS="stud/attach/manytomany";
     public static final String GET_STUDENTS_LOG="stud/{id}/get_log";
     public static final String GET_PROJECT_HISTORY="stud/{id}/proj/history";
+	public static final String MODIFY_FEEDBACK = "feedback/{fb_id}/modify";
 }

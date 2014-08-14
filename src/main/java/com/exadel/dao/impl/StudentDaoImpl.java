@@ -71,7 +71,7 @@ public class StudentDaoImpl extends GenericLivingDaoImpl<Student> implements
 	}
 
     @SuppressWarnings("unchecked")
-    public List<Feedback> findAllForStud(Student stud) {
+    public List<Feedback> findAllFeedback(Student stud) {
         Session session=getSessionFactory().getCurrentSession();
         Query query=session.createQuery("from Feedback where student=:student")
                 .setEntity("student", stud);
