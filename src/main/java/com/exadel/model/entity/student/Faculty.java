@@ -1,7 +1,5 @@
 package com.exadel.model.entity.student;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +10,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.NaturalId;
 
 import com.exadel.model.NamedEntity;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Faculty implements NamedEntity{
 	private Long id;
@@ -27,7 +25,31 @@ public class Faculty implements NamedEntity{
 	public String getName() {
 		return name;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Faculty other = (Faculty) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
 	@ManyToOne
+	@JsonIgnore
 	public University getUniversity() {
 		return university;
 	}
@@ -46,13 +68,5 @@ public class Faculty implements NamedEntity{
 	@Override
 	public String toString() {
 		return getName();
-	}
-	@JsonValue
-	public Map<String,Object> toJSON(){
-		 Map<String,Object> map=new LinkedHashMap<String, Object>(3);
-		 map.put("name", getName());
-		 map.put("id", getId());
-		 map.put("university", getUniversity().getName());
-		 return map;
 	}
 }

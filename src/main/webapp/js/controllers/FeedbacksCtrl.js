@@ -22,6 +22,14 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
         $scope.reloadProjectHistory = function(){
             $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
         };
+        $scope.saveForEdit = function(id) {
+            $scope.feedbacks.forEach(function(feedback) {
+                if(feedback.id == id){
+                    $scope.feedbackEdit = feedback;
+                    return;
+                }
+            });
+        }
     }]);
 FeedbacksCtrl.feedbacks = function (feedbacksListFactory, $q, $route) {
     var deferred = $q.defer();
@@ -30,4 +38,4 @@ FeedbacksCtrl.feedbacks = function (feedbacksListFactory, $q, $route) {
         }
     );
     return deferred.promise;
-}
+};

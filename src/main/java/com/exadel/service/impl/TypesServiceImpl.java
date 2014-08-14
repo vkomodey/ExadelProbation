@@ -4,7 +4,6 @@ import java.util.*;
 
 import com.exadel.model.NamedEntity;
 import com.exadel.model.entity.student.Faculty;
-import com.exadel.model.entity.student.Skill;
 import com.exadel.model.entity.student.Technology;
 import com.exadel.model.entity.student.University;
 
@@ -116,4 +115,76 @@ public class TypesServiceImpl implements TypesService {
 //        }
         return names;
     }
+
+
+	@Override
+	@Transactional
+	public void addAllTech(Set<Technology> techs) {
+		for(Technology tech:techs){
+			techDao.save(tech);
+		}
+	}
+
+	@Override
+	@Transactional
+	public void addAllUniversity(Set<University> uni,Map<String,Set<Faculty>> facset) {
+		for(University u:uni){
+			u.setFaculties(facset.get(u.getName()));
+			universityDao.save(u);
+		}
+		
+	}
+	
+	@Override
+	@Transactional
+	public void replaceAllFaculty(Map<String,Set<Faculty>> facmap){
+		for(Map.Entry<String, Set<Faculty>> e:facmap.entrySet()){
+			University uni=universityDao.find(e.getKey());
+			Set<Faculty> orig_facset=uni.getFaculties();
+			for(Faculty fac:e.getValue()){
+				fac.setUniversity(uni);
+				if(!orig_facset.contains(fac)){
+					facultyDao.save(fac);
+				}else{
+					orig_facset.remove(fac);
+				}
+			}
+			for(Faculty todelfac:orig_facset){
+				facultyDao.delete(todelfac);
+			}
+		}
+	}
+	
+	@Override
+	@Transactional
+	public void replaceAllUniversity(Set<University> uni){
+		Set<University> orig_uniset=new LinkedHashSet<University>(universityDao.getAll());
+		for(University u:uni){
+			if(!orig_uniset.contains(u)){
+				universityDao.save(u);
+			}
+			else{
+				orig_uniset.remove(u);
+			}
+		}
+		for(University u:orig_uniset){
+			universityDao.delete(u);
+		}
+	}
+	
+	@Override
+	@Transactional
+	public void replaceAllTech(Set<Technology> techs){
+		Set<Technology> orig_techset=new LinkedHashSet<Technology>(techDao.getAll());
+		for(Technology tech:techs){
+			if(!orig_techset.contains(tech)){
+				techDao.save(tech);
+			}else{
+				orig_techset.remove(tech);
+			}
+		}
+		for(Technology tech:orig_techset){
+			techDao.delete(tech);
+		}
+	}
 }

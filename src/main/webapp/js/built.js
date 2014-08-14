@@ -580,11 +580,10 @@ studentsApp.config(['$routeProvider', '$locationProvider', function($routeProvid
                 projectList: ProjectListCtrl.projectList
             }
         }).
-        when('/test', {
-            templateUrl: '/page/partials/test.html',
-            controller: "testSend",
+        when('/admin-page', {
+            templateUrl: '/page/partials/admin-page.html',
+            controller: "AdminPageCtrl",
             resolve: {
-
             }
         }).
         otherwise({
@@ -644,13 +643,6 @@ studentsServices.factory('StudentsListOnProjectFactory',['$resource', function($
 }])
 studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routeParams', function($scope,$http,$routeParams){
     $scope.addFeedback = function() {
-        if($scope.profSuitability == undefined ||
-            $scope.attitudeToWork == undefined ||
-            $scope.relations == undefined ||
-            $scope.progress == undefined) {
-            alert("One or several fields are not filled.");
-            return;
-        }
         var feedback = {
             profSuitability: $scope.profSuitability,
             attitudeToWork: $scope.attitudeToWork,
@@ -660,10 +652,9 @@ studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routePar
             workInProject: $scope.workInProject,
             prospect: $scope.prospect,
             other: $scope.other
-        }
+        };
         $http.post('/rest/stud/'+$routeParams.studId +'/feedbacks/push',feedback)
             .success(function() {
-                $scope.PopupCssClass = 'popup-hide';
                 $scope.reloadList();
             })
             .error(function(data,status) {
@@ -672,6 +663,94 @@ studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routePar
     };
 }])
 
+var AdminPageCtrl = studentsControllers.controller('AdminPageCtrl', ['$scope', '$routeParams', '$q', '$http', function($scope, $routeParams, $q, $http) {
+    AdminPageCtrl.getSkillsList($scope, $http, $q);
+    AdminPageCtrl.getUniversityList($scope, $http, $q);
+    AdminPageCtrl.getFacultyList($scope, $http, $q);
+    $scope.deleteSkillAdm = function (index) {
+        AdminPageCtrl.deleteSkillAdm($scope,index);
+    };
+    $scope.addSkillAdm = function (name) {
+        AdminPageCtrl.addSkillAdm($scope, name);
+    };
+    $scope.sendInfo = function(){
+        AdminPageCtrl.sendInfo($scope, $http);
+    };
+    $scope.addUniversity = function(name){
+        AdminPageCtrl.addUniversity($scope, name);
+    };
+    $scope.deleteUniversity = function (index) {
+        AdminPageCtrl.deleteUniversity($scope,index);
+    };
+    $scope.addFaculty = function(uname, name){
+        AdminPageCtrl.addFaculty($scope, uname, name);
+    };
+    $scope.deleteFaculty = function (index, uname) {
+        AdminPageCtrl.deleteFaculty($scope,index, uname);
+    };
+        }]);
+AdminPageCtrl.getSkillsList = function ($scope, $http, $q) {
+    var deferred = $q.defer();
+    $http.get('/rest/types/technology/get').success(function (data) {
+        $scope.skillNames = data;
+    });
+    deferred.resolve($scope.skillNames);
+};
+AdminPageCtrl.deleteSkillAdm = function ($scope, index) {
+    $scope.skillNames.splice(index, 1);
+};
+AdminPageCtrl.addSkillAdm = function ($scope, name) {
+    $scope.skillNames.push({
+        id: null,
+        name: name
+    });
+};
+
+AdminPageCtrl.getUniversityList = function ($scope, $http, $q) {
+    var deferred = $q.defer();
+    $http.get('/rest/types/university/get').success(function (data) {
+        $scope.universityNames = data;
+    });
+    deferred.resolve($scope.universityNames);
+};
+AdminPageCtrl.addUniversity= function ($scope, name) {
+    $scope.universityNames.push({
+        id: null,
+        name: name
+    });
+};
+AdminPageCtrl.deleteUniversity = function ($scope, index) {
+    $scope.universityNames.splice(index, 1);
+};
+
+AdminPageCtrl.getFacultyList = function ($scope, $http, $q) {
+    var deferred = $q.defer();
+    $http.get('/rest/types/university/faculties/get').success(function (data) {
+        $scope.facultyNames = data;
+    });
+    deferred.resolve($scope.facultyNames);
+};
+AdminPageCtrl.addFaculty= function ($scope,uname, name) {
+    $scope.facultyNames[uname].push({
+        id: null,
+        name: name
+    });
+};
+AdminPageCtrl.deleteFaculty = function ($scope, index, uname) {
+    $scope.facultyNames[uname].splice(index, 1);
+};
+
+AdminPageCtrl.sendInfo = function ($scope, $http) {
+    var infoToSend ={
+        technology: $scope.skillNames,
+        university: $scope.universityNames,
+        faculty: $scope.facultyNames
+    }
+    $http.post('/rest/types/admin/changes/push' , infoToSend)
+        .error(function (data, status) {
+            alert('Error: ' + status);
+        });
+};
 studentsControllers.controller('CreateProjectCtrl', ['$scope', '$http', function($scope,$http,$q) {
     $scope.createProject = function() {
         $http.post('/rest/proj/add',$scope.title).success(function(){
@@ -733,6 +812,17 @@ studentsControllers.controller('DeleteProjectCtrl', ['$scope', '$http', function
         });
     }
 }]);
+studentsControllers.controller('EditFeedbackCtrl',['$scope','$http',function($scope,$http){
+    $scope.editFeedback = function() {
+        $http.post('/rest/stud/'+$scope.studentInfo.id+'/feedback/'+$scope.feedbackEdit.id+'/edit',$scope.feedbackEdit)
+            .success(function(){
+                $scope.reloadList();
+            })
+            .error(function(data,status){
+                alert('ERROR ' + status);
+            })
+    }
+}]);
 var EmployeeListCtrl = studentsControllers.controller('EmployeeListCtrl', ['$scope', '$routeParams','employeesList','employees','$q', function($scope,$routeParams,employeesList,employees,$q) {
 
     $scope.reloadList = function (){
@@ -774,6 +864,14 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
         $scope.reloadProjectHistory = function(){
             $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
         };
+        $scope.saveForEdit = function(id) {
+            $scope.feedbacks.forEach(function(feedback) {
+                if(feedback.id == id){
+                    $scope.feedbackEdit = feedback;
+                    return;
+                }
+            });
+        }
     }]);
 FeedbacksCtrl.feedbacks = function (feedbacksListFactory, $q, $route) {
     var deferred = $q.defer();
@@ -782,7 +880,7 @@ FeedbacksCtrl.feedbacks = function (feedbacksListFactory, $q, $route) {
         }
     );
     return deferred.promise;
-}
+};
 /*var filterParamsCtrl = studentsControllers.controller('filterParamsCtrl', ['$scope', '$routeParams','filterParamsFactory', '$q', function($scope,$routeParams,filterParamsFactory,  $q) {
 
     filterParamsFactory.getFilterParams(function(data) {
@@ -837,6 +935,8 @@ studentsControllers.controller('MakeRoleCtrl', ['$scope','$http', function($scop
                 $scope.link_Pdf_Excel = true;
                 $scope.link_Email_AppointCurator = true;
                 $scope.link_AddStudent = true;
+                $scope.link_AdminPage = true;
+
                 $scope.link_saveStudentInfo = true;
                 $scope.link_projectHistory = true;
                 break;

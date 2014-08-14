@@ -1,0 +1,108 @@
+<div class="container">
+    <ul  class="nav nav-tabs" id="tab">
+        <li class="active">
+            <a href="#AddSkill" data-toggle="tab" data-target="#AddSkill">Add Skill</a>
+        </li>
+        <li><a href="#AddUniversity" data-toggle="tab" data-target="#AddUniversity">Add University</a></li>
+        <li><a href="#AddFaculty" data-toggle="tab">Add Faculty</a></li>
+    </ul>
+    <form name="AdminForm" class="form-horizontal" ng-controller="AdminPageCtrl">
+        <div class="tab-content">
+            <div class="tab-pane active" id="AddSkill" >
+                <div class="pull-right btn-toolbar">
+                    <a data-ng-click="sendInfo()" data-ng-disabled="AdminForm.$invalid"
+                       class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-1">
+                        <div class="form-group well-sm">
+                            <div class="input-group">
+                                <input type="text"  ng-model="name"  class="form-control input-md" placeholder="Skill name">
+
+                                <a ng-click="addSkillAdm(name)" class=" input-group-addon btn btn-sm btn-success" ><span
+                                        class="glyphicon glyphicon-plus" ></span> Add skill</a>
+                            </div>
+                        </div>
+                        <table ng-table="tableParams" class="table SkillList">
+                            <tr ng-repeat="skillName in skillNames track by $index">
+                                <td data-title="'Delete'">
+                                    <a data-ng-click="deleteSkillAdm($index)" class="btn btn-sm btn-danger">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                </td>
+                                <td data-title="'Skill'" >{{skillName.name}}</td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-pane" id="AddUniversity" >
+            <div class="pull-right btn-toolbar">
+                <a data-ng-click="sendInfo()" data-ng-disabled="AdminForm.$invalid"
+                   class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
+            </div>
+            <div class="row">
+
+                <div class="col-md-6 col-md-offset-1">
+                    <div class="form-group well-sm">
+                        <div class="input-group">
+                            <input type="text"  ng-model="name"  class="form-control input-md" placeholder="University name">
+
+                            <a ng-click="addUniversity(name)" class=" input-group-addon btn btn-sm btn-success" ><span
+                                    class="glyphicon glyphicon-plus" ></span> Add University</a>
+                        </div>
+                    </div>
+                    <table ng-table="tableParams" class="table UniversityList">
+                        <tr ng-repeat="university in universityNames track by $index">
+                            <td data-title="'Delete'">
+                                <a data-ng-click="deleteUniversity($index)" class="btn btn-sm btn-danger">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </td>
+                            <td data-title="'University'" >{{university.name}}</td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+            <div class="tab-pane" id="AddFaculty" >
+                <div class="pull-right btn-toolbar">
+                    <a data-ng-click="sendInfo()" data-ng-disabled="AdminForm.$invalid"
+                       class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-1">
+                        <div class="form-group well-sm">
+                        <label class="control-label" for="university">University</label>
+                        <select class="form-control" data-ng-model="uname"
+                                data-ng-options="university.name as university.name for university in universityNames">
+                        </select>
+                        </div>
+                        <div class="form-group well-sm">
+                            <div class="input-group">
+                                <input type="text"  ng-model="name"  class="form-control input-md" placeholder="Faculty name">
+                                <a ng-click="addFaculty(uname, name)" class=" input-group-addon btn btn-sm btn-success" ><span
+                                        class="glyphicon glyphicon-plus" ></span> Add Faculty</a>
+                            </div>
+                        </div>
+                        <table ng-table="tableParams" class="table FacultyList">
+                            <tr ng-repeat="(name, faculty) in facultyNames[uname]">
+                                <td data-title="'Delete'">
+                                    <a data-ng-click="deleteFaculty($index, uname)" class="btn btn-sm btn-danger">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                </td>
+                                <td data-title="'Faculty'" >{{faculty.name}}</td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

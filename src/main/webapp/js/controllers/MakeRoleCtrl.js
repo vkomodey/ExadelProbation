@@ -11,6 +11,8 @@ studentsControllers.controller('MakeRoleCtrl', ['$scope','$http', function($scop
                 $scope.link_Pdf_Excel = true;
                 $scope.link_Email_AppointCurator = true;
                 $scope.link_AddStudent = true;
+                $scope.link_AdminPage = true;
+
                 $scope.link_saveStudentInfo = true;
                 $scope.link_projectHistory = true;
                 break;
