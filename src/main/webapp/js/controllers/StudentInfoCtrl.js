@@ -73,7 +73,7 @@ StudentInfoCtrl.salaries = [
 ];
 StudentInfoCtrl.states = [
     {name: 'Work', value: 'WORK'},
-    {name: 'Practise', value: 'PRACTISE'},
+    {name: 'Practise', value: 'PRACTICE'},
 
 ];
 

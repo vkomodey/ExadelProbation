@@ -320,23 +320,6 @@ s[g];n&&r&&(l[n.name]=r)}p=l}else p=null;else p=null;p=a=p}p&&(b=h(f,{params:e.e
 function(){this.$get=function(){return{}}});h.directive("ngView",u);h.directive("ngView",z);u.$inject=["$route","$anchorScroll","$animate"];z.$inject=["$compile","$controller","$route"]})(window,window.angular);
 //# sourceMappingURL=angular-route.min.js.map
 
-!function($){"use strict";var dismiss='[data-dismiss="alert"]',Alert=function(el){$(el).on('click',dismiss,this.close)}
-Alert.prototype.close=function(e){var $this=$(this),selector=$this.attr('data-target'),$parent
-if(!selector){selector=$this.attr('href')
-selector=selector&&selector.replace(/.*(?=#[^\s]*$)/,'')}
-$parent=$(selector)
-e&&e.preventDefault()
-$parent.length||($parent=$this.hasClass('alert')?$this:$this.parent())
-$parent.trigger(e=$.Event('close'))
-if(e.isDefaultPrevented())return
-$parent.removeClass('in')
-function removeElement(){$parent.trigger('closed').remove()}
-$.support.transition&&$parent.hasClass('fade')?$parent.on($.support.transition.end,removeElement):removeElement()}
-$.fn.alert=function(option){return this.each(function(){var $this=$(this),data=$this.data('alert')
-if(!data)$this.data('alert',(data=new Alert(this)))
-if(typeof option=='string')data[option].call($this)})}
-$.fn.alert.Constructor=Alert
-$(function(){$('body').on('click.alert.data-api',dismiss,Alert.prototype.close)})}(window.jQuery);
 !function($){"use strict";var Tooltip=function(element,options){this.init('tooltip',element,options)}
 Tooltip.prototype={constructor:Tooltip,init:function(type,element,options){var eventIn,eventOut
 this.type=type
@@ -1109,7 +1092,7 @@ StudentInfoCtrl.salaries = [
 ];
 StudentInfoCtrl.states = [
     {name: 'Work', value: 'WORK'},
-    {name: 'Practise', value: 'PRACTISE'},
+    {name: 'Practise', value: 'PRACTICE'},
 
 ];
 
