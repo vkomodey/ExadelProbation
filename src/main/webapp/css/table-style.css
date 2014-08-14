@@ -52,6 +52,6 @@ th.button {
 .filters {
     margin-bottom: 25px;
 }
-.curatorsListInStudentInfo td:first-child {
+.curatorsListInStudentInfo td:last-child {
     width: 7%;
 }

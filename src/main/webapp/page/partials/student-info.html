@@ -28,7 +28,7 @@
 
 <div class="tab-pane active" id="personInfo" data-ng-show="studentInfo">
     <div class="pull-right btn-toolbar">
-        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+        <a data-ng-if="link_saveStudentInfo" data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
            class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
     <div class="row">
@@ -61,7 +61,7 @@
 </div>
 <div class="tab-pane" id="contactInfo" data-ng-show="studentInfo">
     <div class="pull-right btn-toolbar">
-        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+        <a data-ng-if="link_saveStudentInfo" data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
            class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
     <div class="row">
@@ -93,7 +93,7 @@
 </div>
 <div class="tab-pane" id="studyInfo" data-ng-show="studentInfo">
     <div class="pull-right btn-toolbar">
-        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+        <a data-ng-if="link_saveStudentInfo" data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
            class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
     <div class="row">
@@ -110,7 +110,7 @@
             <div class="form-group">
                 <label class="control-label" for="university">University</label>
                 <select class="form-control" data-ng-model="studentInfo.study.university"
-                        data-ng-options="item.name as item.name for item in universityNames"
+                        data-ng-options="item.name as item.name for item in universityNames" data-ng-disabled="disableStudentInfo"
                         >
                 </select>
 
@@ -120,7 +120,7 @@
             <div class="form-group" >
                 <label class="control-label" for="faculty">Faculty</label>
                 <select class="form-control" data-ng-model="studentInfo.study.faculty"
-                         data-ng-options="item.name as item.name for item in facultyNames[studentInfo.study.university]">
+                         data-ng-options="item.name as item.name for item in facultyNames[studentInfo.study.university]" data-ng-disabled="disableStudentInfo">
             </select>
             </div>
 
@@ -143,7 +143,7 @@
 </div>
 <div class="tab-pane" id="skills" data-ng-show="studentInfo">
     <div class="pull-right btn-toolbar">
-        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+        <a data-ng-if="link_saveStudentInfo" data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
            class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
     <div class="row">
@@ -192,7 +192,7 @@
 </div>
 <div class="tab-pane" id="exams" data-ng-show="studentInfo">
     <div class="pull-right btn-toolbar">
-        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+        <a data-ng-if="link_saveStudentInfo" data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
            class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
 
@@ -276,8 +276,8 @@
 <div class="tab-pane" id="workInfo">
     <div class="pull-right btn-toolbar">
 
-        <a data-ng-click="reloadProjectHistory()" data-target="#projectHistoryModal" data-toggle="modal" class="btn btn-primary"><span class="glyphicon glyphicon-book"></span> Project history</a>
-        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+        <a data-ng-if="link_projectHistory" data-ng-click="reloadProjectHistory()" data-target="#projectHistoryModal" data-toggle="modal" class="btn btn-primary"><span class="glyphicon glyphicon-book"></span> Project history</a>
+        <a data-ng-if="link_saveStudentInfo" data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
            class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
     <div class="row">
@@ -286,7 +286,7 @@
             <div class="form-group">
                 <label class="control-label" >Billable</label>
                 <select class="form-control" data-ng-model="studentInfo.isBillable"
-                        data-ng-options="item.value as item.name for item in salaries">
+                        data-ng-options="item.value as item.name for item in salaries" data-ng-disabled="disableWorkInfo">
                 </select>
             </div>
 
@@ -294,13 +294,13 @@
             <div class="form-group">
                 <label class="control-label" for="hours_current">Current Hours</label>
                 <input id="hours_current" name="hours_current" type="text" ng-model="studentInfo.hours_current"
-                       class="form-control input-md" data-ng-disabled="disableStudentInfo">
+                       class="form-control input-md" data-ng-disabled="disableWorkInfo">
             </div>
             <!-- Select input-->
             <div class="form-group">
                 <label class="control-label" >State</label>
                 <select class="form-control" ng-model="studentInfo.state"
-                        ng-options="item.value as item.name for item in states">
+                        ng-options="item.value as item.name for item in states" data-ng-disabled="disableWorkInfo">
                 </select>
             </div>
             <!-- Select input-->
@@ -310,7 +310,7 @@
                         <thead>
                         <tr>
                             <th>Project</th>
-                            <th>Delete</th>
+                            <th data-ng-hide="disableWorkInfo">Delete</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -318,10 +318,10 @@
                             <td>
                             <select  ng-model="studentInfo.currentProjects[$index]"
                                     class="form-control"
-                                    ng-options="projectName.title for projectName in projectNames track by projectName.id" required>
+                                    ng-options="projectName.title for projectName in projectNames track by projectName.id" data-ng-disabled="disableWorkInfo" required>
                             </select>
                             </td>
-                            <td class="text-center">
+                            <td class="text-center" data-ng-hide="disableWorkInfo">
                                 <a data-ng-click="deleteProject($index)" class="btn btn-sm btn-danger"><span
                                         class="glyphicon glyphicon-trash"></span></a>
                             </td>
@@ -334,8 +334,8 @@
 
             <!--Table input-->
             <div class="row">
-                <div class="col-md-2 col-md-offset-7"><a ng-click="addProject()" class="btn btn-sm btn-success"><span
-                        class="glyphicon glyphicon-plus"></span> Add project</a></div>
+                <div class="col-md-2 col-md-offset-7"><a ng-click="addProject()" class="btn btn-sm btn-success" data-ng-hide="disableWorkInfo"><span
+                        class="glyphicon glyphicon-plus" ></span> Add project</a></div>
             </div>
 
         </div>
@@ -343,23 +343,30 @@
 </div>
 <div class="tab-pane" id="curators" data-ng-show="studentInfo">
     <div class="pull-right btn-toolbar">
-        <a data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
+        <a data-ng-if="link_saveStudentInfo" data-ng-click="sendStudentInfo()" data-ng-disabled="studentInfoForm.$invalid"
            class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Save</a>
     </div>
     <div class="row">
         <div class="col-md-6 col-md-offset-2 well-sm">
             <table ng-table="tableParams" class="table curatorsListInStudentInfo">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th data-ng-hide="disableCuratorInfo">Deattach</th>
+                </tr>
+                </thead>
                 <tr ng-repeat="cur in studentInfo.curator track by $index">
 
-                    <td data-title="'Deattach'">
-                        <a data-ng-click="deattachCurator($index)"
-                           class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
-                    </td>
-                    <td data-title="'Name'">
+                    <td >
                         <select class="form-control" data-ng-model="studentInfo.curator[$index]"
-                                data-ng-options="curator.surname for curator in allCuratorsList track by curator.id" required>
+                                data-ng-options="curator.surname for curator in allCuratorsList track by curator.id" data-ng-disabled="disableCuratorInfo" required>
 
                         </select>
+
+                    </td>
+                    <td data-ng-hide="disableCuratorInfo" >
+                        <a data-ng-click="deattachCurator($index)"
+                           class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                     </td>
                 </tr>
             </table>
@@ -367,7 +374,7 @@
 
     </div>
     <div class="row">
-        <div class="col-md-2 col-md-offset-7"><a ng-click="attachNewCurator()" class="btn btn-sm btn-success"><span
+        <div class="col-md-2 col-md-offset-7"><a ng-click="attachNewCurator()" class="btn btn-sm btn-success" data-ng-hide="disableCuratorInfo"><span
                 class="glyphicon glyphicon-plus"></span> Attach new curator</a></div>
     </div>
 
