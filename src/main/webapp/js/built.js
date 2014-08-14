@@ -723,9 +723,6 @@ studentsControllers.controller('CuratorsListForAppointCtrl', ['$scope', '$http',
                 });
     };
 }]);
-studentsControllers.controller('DeattachCuratorCtrl',['$scope','$http', function($scope,$http){
-
-}])
 studentsControllers.controller('DeleteProjectCtrl', ['$scope', '$http', function($scope,$http) {
     $scope.deleteProject = function() {
         $http.post('/rest/proj/'+$scope.deleteProjectId+'/remove/').success(function(){
@@ -745,7 +742,6 @@ var EmployeeListCtrl = studentsControllers.controller('EmployeeListCtrl', ['$sco
         });
         deferred.resolve($scope.employees);
     };
-    // $scope.reloadList();
     $scope.employees = employees;
 
 
@@ -770,11 +766,6 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
             deferred.resolve($scope.feedbacks);
 
         };
-        // $scope.reloadList();
-        /* $interval(function() {
-         $scope.reloadList();
-         },60000);*/
-
         $scope.feedbacks = student.feedbacks;
         $scope.studentInfo = student.info;
         if ($scope.feedbacks == null) {
@@ -783,35 +774,6 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
         $scope.reloadProjectHistory = function(){
             $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
         };
-        // $scope.studentInfo = studentInfo;
-        /*var emptyExam = {
-         grade: null,
-         summer: true,
-         course: null
-         };*/
-        // $scope.exams = $scope.studentInfo.study.exams,
-        /*  $scope.examsParams = new ngTableParams({
-         page: 1,            // show first page
-         count: $scope.studentInfo.study.exams.length,          // count per page
-         filter: {
-         fio: ''     // initial filter
-
-         },
-         sorting: {
-         fio: 'asc'     // initial sorting
-         }
-         }, {
-         total: $scope.studentInfo.study.exams.length, // length of data
-         getData: function ($defer, params) {
-         $scope.reloadList();
-         var data = $scope.studentsList;
-         $defer.resolve(data.slice());
-         }, $scope: { studentsList: {} }
-         });
-         $scope.addExam = function(){
-         $scope.studentInfo.study.exams.push(emptyExam);
-         }*/
-
     }]);
 FeedbacksCtrl.feedbacks = function (feedbacksListFactory, $q, $route) {
     var deferred = $q.defer();
@@ -941,9 +903,6 @@ var FeedbacksCtrl = studentsControllers.controller('SendEmailCtrl', ['$scope', '
                 password: $scope.password,
                 title: $scope.title
             };
-            /*var myJSONString = JSON.stringify(email);
-            var myEscapedJSONString = myJSONString.replace(/\\n/g, "\\n");
-            alert(myEscapedJSONString);*/
             $http.post('/rest/send/email', email).success(function () {
                 alert('Email is sent');
             })
@@ -966,10 +925,6 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         StudentInfoCtrl.getProjectList($scope, $http, $q);
         StudentInfoCtrl.getUniversityList($scope, $http, $q);
         StudentInfoCtrl.getFacultyList($scope, $http, $q);
-       /* $scope.addExam = function () {
-            StudentInfoCtrl.addExam($scope);
-
-        };*/
         $scope.sendStudentInfo = function () {
             StudentInfoCtrl.sendStudentInfo($scope, $http, $routeParams.studId);
         };
@@ -979,12 +934,6 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         $scope.deleteSkill = function (index) {
             StudentInfoCtrl.deleteSkill($scope,index);
         };
-        /*$scope.deleteExam = function () {
-            StudentInfoCtrl.deleteExam($scope);
-        };*/
-//        $scope.reloadProjectHistory = function(){
-//            $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
-//        };
     }
     $scope.addProject = function(){
         StudentInfoCtrl.addProject($scope);
@@ -1000,15 +949,6 @@ var StudentInfoCtrl = studentsControllers.controller('StudentInfoCtrl', ['$scope
         $scope.studentInfo.curator.push(null);
     };
 }]);
-
-
-/*StudentInfoCtrl.getStudentInfo = function ($scope,$http,$q,adress) {
- var deferred = $q.defer();
- $http.get(adress).success(function(data){
- $scope.studentInfo = data;
- });
- deferred.resolve($scope.studentInfo);
- };*/
 StudentInfoCtrl.englishLevels = [
     {value: "beginner", name: "Beginner"},
     {value: "elementary", name: "Elementary"},
@@ -1017,13 +957,6 @@ StudentInfoCtrl.englishLevels = [
     {value: "upperintermediate", name: "Upper-Intermediate"},
     {value: "advanced", name: "Advanced"}
 ];
-/*StudentInfoCtrl.studentInfo = function ($q,$http) {
- var deferred = $q.defer();
- $http.get('../json/studentInfo.json').success(function (data) {
- deferred.resolve(data);
- });
- return deferred.promise;
- }*/
 StudentInfoCtrl.getSkillSet = function ($scope, $http, $q) {
     var deferred = $q.defer();
     $http.get('/rest/types/technology/get').success(function (data) {
@@ -1032,13 +965,6 @@ StudentInfoCtrl.getSkillSet = function ($scope, $http, $q) {
     deferred.resolve($scope.skillTypes);
 };
 
-/*StudentInfoCtrl.addExam = function ($scope) {
-    $scope.studentInfo.study.exams.push({
-        grade: null,
-        summer: true,
-        course: null
-    });
-}*/
 StudentInfoCtrl.sendStudentInfo = function ($scope, $http, id) {
     $http.post('/rest/stud/' + id + '/edit', $scope.studentInfo)
         .success(function () {
@@ -1054,9 +980,6 @@ StudentInfoCtrl.addSkill = function ($scope) {
 StudentInfoCtrl.deleteSkill = function ($scope, index) {
     $scope.studentInfo.skillSet.splice(index, 1);
 };
-/*StudentInfoCtrl.deleteExam = function ($scope, index) {
-    $scope.studentInfo.study.exams.splice(index, 1);
-};*/
 StudentInfoCtrl.salaries = [
     {name: 'Billable', value: true},
     {name: 'Not billable', value: false}
@@ -1115,9 +1038,6 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
             );
             deferred.resolve($scope.studentsList);
         };
-        /*$interval(function() {
-         $scope.reloadList();
-         },60000);*/
         $scope.studIdForLog = null;
         $scope.saveIdForLog = function(id){
           $scope.studIdForLog = id;
@@ -1127,7 +1047,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
             StudentListCtrl.checkElement(id, $scope.checkedStudArray);
         };
         $scope.studentsList = studentsList;
-        $scope.tableParams = new ngTableParams({
+        /*$scope.tableParams = new ngTableParams({
             page: 1,            // show first page
             count: $scope.studentsList.length + 1,          // count per page
             filter: {
@@ -1144,18 +1064,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                 var data = $scope.studentsList;
                 $defer.resolve(data.slice());
             }, $scope: { studentsList: {} }
-        });
-        /*$scope.toJsonStudentCheckedArray = function () {
-            if ($scope.checkedStudArray.length != 0) {
-                var arrayForPdfOrExcel = [];
-                $scope.checkedStudArray.forEach(function (element, index, array) {
-                    arrayForPdfOrExcel.push({
-                        id: element
-                    });
-                });
-                return angular.toJson(arrayForPdfOrExcel);
-            }
-        };*/
+        });*/
         $scope.reloadCuratorsList = function () {
             var deferred = $q.defer();
             $scope.checkedCuratorArray = [];
@@ -1278,25 +1187,6 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                    }
 
                };
-              /* $scope.customFilterHours = function (studentsList) {
-                   if (studentsList.hours_current === null && $scope.filterParams.hour_current.name !== 'Show All') {
-                       return false;
-                   } else {
-                       if (studentsList.hours_current === null && $scope.filterParams.hour_current.name === 'Show All') {
-                           return true;
-                       } else {
-
-                           if (studentsList.hours_current.toString().charAt(0) === $scope.filterParams.hour_current.name.charAt(0)) {
-                               return true;
-                           } else if ($scope.filterItem.workinghour.name === 'Show All') {
-                               return true;
-                           } else {
-                               return false;
-                           }
-                       }
-                   }
-
-               };*/
                $scope.customFilterSalary = function (studentsList) {
 
                    if (studentsList.isBillable === null) {
@@ -1573,9 +1463,6 @@ var StudentPageCtrl = studentsControllers.controller('StudentPageCtrl',['$scope'
     StudentInfoCtrl.getUniversityList($scope, $http, $q);
     StudentInfoCtrl.getFacultyList($scope, $http, $q);
 
-    /*$scope.addExam = function () {
-        StudentInfoCtrl.addExam($scope);
-    };*/
     $scope.sendStudentInfo = function () {
         StudentInfoCtrl.sendStudentInfo($scope, $http, $scope.studentInfo.id);
     };
@@ -1585,9 +1472,6 @@ var StudentPageCtrl = studentsControllers.controller('StudentPageCtrl',['$scope'
     $scope.deleteSkill = function () {
         StudentInfoCtrl.deleteSkill($scope);
     };
-    /*$scope.deleteExam = function () {
-        StudentInfoCtrl.deleteExam($scope);
-    };*/
 
 }]);
 studentsControllers.controller('StudentsListOnProjectCtrl', ['$scope', 'StudentsListOnProjectFactory','$q', function($scope,StudentsListOnProjectFactory,$q) {

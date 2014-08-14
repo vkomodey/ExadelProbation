@@ -14,11 +14,6 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
             deferred.resolve($scope.feedbacks);
 
         };
-        // $scope.reloadList();
-        /* $interval(function() {
-         $scope.reloadList();
-         },60000);*/
-
         $scope.feedbacks = student.feedbacks;
         $scope.studentInfo = student.info;
         if ($scope.feedbacks == null) {
@@ -27,35 +22,6 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
         $scope.reloadProjectHistory = function(){
             $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
         };
-        // $scope.studentInfo = studentInfo;
-        /*var emptyExam = {
-         grade: null,
-         summer: true,
-         course: null
-         };*/
-        // $scope.exams = $scope.studentInfo.study.exams,
-        /*  $scope.examsParams = new ngTableParams({
-         page: 1,            // show first page
-         count: $scope.studentInfo.study.exams.length,          // count per page
-         filter: {
-         fio: ''     // initial filter
-
-         },
-         sorting: {
-         fio: 'asc'     // initial sorting
-         }
-         }, {
-         total: $scope.studentInfo.study.exams.length, // length of data
-         getData: function ($defer, params) {
-         $scope.reloadList();
-         var data = $scope.studentsList;
-         $defer.resolve(data.slice());
-         }, $scope: { studentsList: {} }
-         });
-         $scope.addExam = function(){
-         $scope.studentInfo.study.exams.push(emptyExam);
-         }*/
-
     }]);
 FeedbacksCtrl.feedbacks = function (feedbacksListFactory, $q, $route) {
     var deferred = $q.defer();

@@ -10,7 +10,6 @@ var EmployeeListCtrl = studentsControllers.controller('EmployeeListCtrl', ['$sco
         });
         deferred.resolve($scope.employees);
     };
-    // $scope.reloadList();
     $scope.employees = employees;
 
 

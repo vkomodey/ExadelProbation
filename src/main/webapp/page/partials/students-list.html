@@ -104,24 +104,6 @@
                 </div>
             </div>
         </div>
-        <!--     <div class="btn-toolbar">
-                 <div class="btn-group">
-                     <a href="/rest/downloadPDF?ids={{toJsonStudentCheckedArray()}}" data-ng-if="checkedStudArray.length"  class="btn btn-primary"><span
-                             class="glyphicon glyphicon-file"></span> PDF
-                     </a>
-                     <a href="/rest//downloadExcel?ids={{toJsonStudentCheckedArray()}}" data-ng-if="checkedStudArray.length" class="btn btn-primary"><span
-                             class="glyphicon glyphicon-file"></span> Excel
-                     </a>
-
-                     <a data-ng-if="checkedStudArray.length" data-ng-click="reloadCuratorsList()" data-target="#curatorsListModal" data-toggle="modal"
-                             class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> Appoint a curator
-                     </a>
-                     <a data-ng-if="checkedStudArray.length"  data-target="#sendEmail" data-toggle="modal" class="btn btn-primary btn-primary"><span
-                             class="glyphicon glyphicon-envelope"></span> Send email to checked students
-                     </a>
-                 </div>
-             </div>-->
-        <!--comment-->
         <div class="scroll">
         <table id="studentList" class="table" ng-table="tableParams">
             <tr data-ng-repeat="user in students.filteredStudentsList = ( studentsList | filter:search | orderBy:params.orderBy() |
@@ -129,7 +111,7 @@
                  filter:customFilterSalary | filter:customFilterTech|filter:customFilterFaculty|
                  filter:customFilterUniversity|filter:customFilterGraduate|filter:customFilterCurator
                  |filter:customFilterTech2|filter:customFilterTech3)">
-                <td header="'ng-table/headers/checkbox.html'" ><input data-ng-model="checkBoxes[user.id].value"   type="checkbox" class="checkthis"/></td> <!--data-ng-click="checkElement(user.id)"-->
+                <td header="'ng-table/headers/checkbox.html'" ><input data-ng-model="checkBoxes[user.id].value"   type="checkbox" class="checkthis"/></td>
                 <td data-title="'Login'" sortable="'login'">{{user.login}}</td>
                 <td data-title="'Name'" sortable="'surname'">{{user.firstName + " "+user.surname}}</td>
                 <td data-title="'Date'" sortable="'work.workStartDate'">{{user.work.workStartDate}}</td>

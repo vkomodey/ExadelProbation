@@ -10,9 +10,6 @@ var FeedbacksCtrl = studentsControllers.controller('SendEmailCtrl', ['$scope', '
                 password: $scope.password,
                 title: $scope.title
             };
-            /*var myJSONString = JSON.stringify(email);
-            var myEscapedJSONString = myJSONString.replace(/\\n/g, "\\n");
-            alert(myEscapedJSONString);*/
             $http.post('/rest/send/email', email).success(function () {
                 alert('Email is sent');
             })

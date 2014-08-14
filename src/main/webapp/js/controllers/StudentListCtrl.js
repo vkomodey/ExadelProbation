@@ -12,9 +12,6 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
             );
             deferred.resolve($scope.studentsList);
         };
-        /*$interval(function() {
-         $scope.reloadList();
-         },60000);*/
         $scope.studIdForLog = null;
         $scope.saveIdForLog = function(id){
           $scope.studIdForLog = id;
@@ -24,7 +21,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
             StudentListCtrl.checkElement(id, $scope.checkedStudArray);
         };
         $scope.studentsList = studentsList;
-        $scope.tableParams = new ngTableParams({
+        /*$scope.tableParams = new ngTableParams({
             page: 1,            // show first page
             count: $scope.studentsList.length + 1,          // count per page
             filter: {
@@ -41,18 +38,7 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                 var data = $scope.studentsList;
                 $defer.resolve(data.slice());
             }, $scope: { studentsList: {} }
-        });
-        /*$scope.toJsonStudentCheckedArray = function () {
-            if ($scope.checkedStudArray.length != 0) {
-                var arrayForPdfOrExcel = [];
-                $scope.checkedStudArray.forEach(function (element, index, array) {
-                    arrayForPdfOrExcel.push({
-                        id: element
-                    });
-                });
-                return angular.toJson(arrayForPdfOrExcel);
-            }
-        };*/
+        });*/
         $scope.reloadCuratorsList = function () {
             var deferred = $q.defer();
             $scope.checkedCuratorArray = [];
@@ -175,25 +161,6 @@ var StudentListCtrl = studentsControllers.controller('StudentListCtrl', [
                    }
 
                };
-              /* $scope.customFilterHours = function (studentsList) {
-                   if (studentsList.hours_current === null && $scope.filterParams.hour_current.name !== 'Show All') {
-                       return false;
-                   } else {
-                       if (studentsList.hours_current === null && $scope.filterParams.hour_current.name === 'Show All') {
-                           return true;
-                       } else {
-
-                           if (studentsList.hours_current.toString().charAt(0) === $scope.filterParams.hour_current.name.charAt(0)) {
-                               return true;
-                           } else if ($scope.filterItem.workinghour.name === 'Show All') {
-                               return true;
-                           } else {
-                               return false;
-                           }
-                       }
-                   }
-
-               };*/
                $scope.customFilterSalary = function (studentsList) {
 
                    if (studentsList.isBillable === null) {
