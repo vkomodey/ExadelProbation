@@ -26,12 +26,7 @@ public class StudentsLogController {
     @RequestMapping(value= StudURI.GET_STUDENTS_LOG,method= RequestMethod.GET)
     public @ResponseBody List<StudentStateView> getLog(@PathVariable("id") String id){
         logger.info("Start getting log");
-        try {
-            long studId = Long.parseLong(id);
-            return service.getStudentStateList(studId);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        long studId = Long.parseLong(id);
+        return service.getStudentStateList(studId);
     }
 }
