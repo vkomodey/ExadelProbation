@@ -643,13 +643,6 @@ studentsServices.factory('StudentsListOnProjectFactory',['$resource', function($
 }])
 studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routeParams', function($scope,$http,$routeParams){
     $scope.addFeedback = function() {
-        if($scope.profSuitability == undefined ||
-            $scope.attitudeToWork == undefined ||
-            $scope.relations == undefined ||
-            $scope.progress == undefined) {
-            alert("One or several fields are not filled.");
-            return;
-        }
         var feedback = {
             profSuitability: $scope.profSuitability,
             attitudeToWork: $scope.attitudeToWork,
@@ -659,10 +652,9 @@ studentsControllers.controller('AddFeedbackCtrl', ['$scope', '$http', '$routePar
             workInProject: $scope.workInProject,
             prospect: $scope.prospect,
             other: $scope.other
-        }
+        };
         $http.post('/rest/stud/'+$routeParams.studId +'/feedbacks/push',feedback)
             .success(function() {
-                $scope.PopupCssClass = 'popup-hide';
                 $scope.reloadList();
             })
             .error(function(data,status) {
@@ -820,6 +812,17 @@ studentsControllers.controller('DeleteProjectCtrl', ['$scope', '$http', function
         });
     }
 }]);
+studentsControllers.controller('EditFeedbackCtrl',['$scope','$http',function($scope,$http){
+    $scope.editFeedback = function() {
+        $http.post('/rest/stud/'+$scope.studentInfo.id+'/feedback/'+$scope.feedbackEdit.id+'/edit',$scope.feedbackEdit)
+            .success(function(){
+                $scope.reloadList();
+            })
+            .error(function(data,status){
+                alert('ERROR ' + status);
+            })
+    }
+}]);
 var EmployeeListCtrl = studentsControllers.controller('EmployeeListCtrl', ['$scope', '$routeParams','employeesList','employees','$q', function($scope,$routeParams,employeesList,employees,$q) {
 
     $scope.reloadList = function (){
@@ -861,6 +864,14 @@ var FeedbacksCtrl = studentsControllers.controller('FeedbacksCtrl', [
         $scope.reloadProjectHistory = function(){
             $scope.projectHistoryList = ProjectHistoryFactory.getProjectHistory({studId: $scope.studentInfo.id});
         };
+        $scope.saveForEdit = function(id) {
+            $scope.feedbacks.forEach(function(feedback) {
+                if(feedback.id == id){
+                    $scope.feedbackEdit = feedback;
+                    return;
+                }
+            });
+        }
     }]);
 FeedbacksCtrl.feedbacks = function (feedbacksListFactory, $q, $route) {
     var deferred = $q.defer();
@@ -869,7 +880,7 @@ FeedbacksCtrl.feedbacks = function (feedbacksListFactory, $q, $route) {
         }
     );
     return deferred.promise;
-}
+};
 /*var filterParamsCtrl = studentsControllers.controller('filterParamsCtrl', ['$scope', '$routeParams','filterParamsFactory', '$q', function($scope,$routeParams,filterParamsFactory,  $q) {
 
     filterParamsFactory.getFilterParams(function(data) {

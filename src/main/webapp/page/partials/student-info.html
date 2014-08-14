@@ -267,6 +267,11 @@
                     <td data-title="'Feedbacker'" sortable="'feedbacker'">{{feedback.feedbacker}}</td>
                     <td data-title="'Other'" sortable="'other'" class="td-other">{{feedback.other}}</td>
                     <td data-title="'Date'" sortable="'date'">{{feedback.date}}</td>
+                    <td data-title="'Edit'">
+                        <p><a data-ng-click="saveForEdit(feedback.id)"  data-target="#editFeedbackModal" data-toggle="modal"
+                              class="btn btn-sm btn-primary"><span
+                                class="glyphicon glyphicon-pencil"></span></a></p>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -381,7 +386,8 @@
 </div>
 </div>
 </form>
-<!--------------------------------------- MODAL FEEDBACK------------------------------------------>
+</div>
+<!--------------------------------------- MODAL ADD FEEDBACK------------------------------------------>
 <div data-backdrop="static" class="modal fade" id="addFeedback" data-ng-controller="AddFeedbackCtrl" tabindex="-1"
      role="dialog"
      aria-labelledby="create" aria-hidden="true">
@@ -549,3 +555,148 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+
+<!--------------------------------------- MODAL EDIT FEEDBACK------------------------------------------>
+<div data-backdrop="static" class="modal fade" id="editFeedbackModal" data-ng-controller="EditFeedbackCtrl" tabindex="-1"
+     role="dialog"
+     aria-labelledby="editFeedbackModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-ng-click="reloadList()" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title custom_align" id="Heading">Edit feedback</h4>
+            </div>
+            <div class="modal-body">
+                <form name="feedbackForm" class="form-horizontal">
+                    <!-- Multiple Radios (inline) -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="profSuitability">Professional suitability</label>
+                        <div class="col-md-4">
+                            <label class="radio-inline" for="profSuitability-0">
+                                <input type="radio" data-ng-model="feedbackEdit.profSuitability" name="profSuitability"
+                                       id="profSuitability-0" data-ng-value="true"
+                                       data-ng-init="profSuitability = true">
+                                Yes
+                            </label>
+                            <label class="radio-inline" for="profSuitability-1">
+                                <input type="radio" data-ng-model="feedbackEdit.profSuitability" name="profSuitability"
+                                       id="profSuitability-1" data-ng-value="false">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="attitudeToWork">Attitude to work</label>
+
+                        <div class="col-md-4">
+                            <input data-ng-model="feedbackEdit.attitudeToWork" id="attitudeToWork" name="attitudeToWork" type="text"
+                                   class="form-control input-md" required>
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="relations">Relations in the collective</label>
+
+                        <div class="col-md-4">
+                            <input id="relations" data-ng-model="feedbackEdit.relations" name="relations" type="text"
+                                   class="form-control input-md" required>
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="progress">Progress in professional matters</label>
+
+                        <div class="col-md-4">
+                            <input id="progress" data-ng-model="feedbackEdit.progress" name="progress" type="text"
+                                   class="form-control input-md" required>
+
+                        </div>
+                    </div>
+
+                    <!-- Multiple Radios (inline) -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="increaseHours">Is there a need to move the student to
+                            work more hours?</label>
+
+                        <div class="col-md-4">
+                            <label class="radio-inline" for="increaseHours-0">
+                                <input type="radio" data-ng-model="feedbackEdit.increaseHours" name="increaseHours"
+                                       id="increaseHours-0" data-ng-value="true"
+                                       checked="checked" data-ng-init="increaseHours = true">
+                                Yes
+                            </label>
+                            <label class="radio-inline" for="increaseHours-1">
+                                <input type="radio" data-ng-model="feedbackEdit.increaseHours" name="increaseHours"
+                                       id="increaseHours-1" data-ng-value="false">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Multiple Radios (inline) -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="workInProject">Does the student work on a real
+                            project?</label>
+
+                        <div class="col-md-4">
+                            <label class="radio-inline" for="workInProject-0">
+                                <input type="radio" name="workInProject" data-ng-model="feedbackEdit.workInProject"
+                                       id="workInProject-0" data-ng-value="true"
+                                       checked="checked" data-ng-init="workInProject = true">
+                                Yes
+                            </label>
+                            <label class="radio-inline" for="workInProject-1">
+                                <input type="radio" name="workInProject" data-ng-model="feedbackEdit.workInProject"
+                                       id="workInProject-1" data-ng-value="false">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Multiple Radios (inline) -->
+                    <div class="form-group" ng-hide="workInProject" class="false">
+                        <label class="col-md-4 control-label" for="prospect">If no, is there prospect of working on a
+                            real project?</label>
+
+                        <div class="col-md-4">
+                            <label class="radio-inline" for="prospect-0">
+                                <input type="radio" data-ng-model="feedbackEdit.prospect" name="prospect" id="prospect-0"
+                                       data-ng-value="true" checked="checked" data-ng-init="prospect = true">
+                                Yes
+                            </label>
+                            <label class="radio-inline" for="prospect-1">
+                                <input type="radio" data-ng-model="feedbackEdit.prospect" name="prospect" id="prospect-1"
+                                       data-ng-value="false">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Textarea -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="other">Something else at your discretion</label>
+
+                        <div class="col-md-4">
+                            <textarea class="form-control" data-ng-model="feedbackEdit.other" id="other" name="other"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer ">
+                <button type="button" data-dismiss="modal" data-ng-disabled="feedbackForm.$invalid" aria-hidden="true"
+                        data-ng-click="editFeedback()"
+                        class="btn btn-success btn-lg" style="width: 100%;"><span
+                        class="glyphicon glyphicon-ok-sign"></span> Edit
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
