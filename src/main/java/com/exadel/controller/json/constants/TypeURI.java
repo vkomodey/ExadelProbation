@@ -14,5 +14,6 @@ public class TypeURI {
 	public static final String DELETE_FACULTY = "types/faculty/{id}/delete";
 	public static final String PUSH_TECHNOLOGY = "types/technology/push";
 	public static final String DELETE_TECHNOLOGY = "types/technology/{id}/delete";
+	public static final String REPLACE_EVERYTHING = "types/everything/replace";
 
 }

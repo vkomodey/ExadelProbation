@@ -21,7 +21,8 @@ public class ProjectDaoImpl extends GenericDaoImpl<Project> implements ProjectDa
         return fio;
     }
 
-    public List<String> getProjectHistory(long studId){
+    @SuppressWarnings("unchecked")
+	public List<String> getProjectHistory(long studId){
         return getSessionFactory().getCurrentSession().createQuery("select title from ProjectHistory where student.id=:studId").setLong("studId",studId).list();
     }
 
