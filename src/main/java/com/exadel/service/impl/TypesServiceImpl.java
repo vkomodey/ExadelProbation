@@ -150,6 +150,7 @@ public class TypesServiceImpl implements TypesService {
 				}
 			}
 			for(Faculty todelfac:orig_facset){
+                uni.getFaculties().remove(todelfac);
 				facultyDao.delete(todelfac);
 			}
 		}
