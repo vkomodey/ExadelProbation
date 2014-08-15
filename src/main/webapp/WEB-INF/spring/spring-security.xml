@@ -20,6 +20,7 @@
         <security:intercept-url pattern="/rest/proj/all" access="ROLE_ADMIN, ROLE_USER, ROLE_PERSONNEL_DEPARTMENT"/>
         <security:intercept-url pattern="/rest/proj/add" access="ROLE_ADMIN, ROLE_PERSONNEL_DEPARTMENT"/>
         <security:intercept-url pattern="/rest/proj/remove" access="ROLE_ADMIN, ROLE_PERSONNEL_DEPARTMENT"/>
+        <security:intercept-url pattern="/rest/curator/all" access="ROLE_ADMIN, ROLE_PERSONNEL_DEPARTMENT"/>
         <security:form-login login-page="/page/login.jsp"
                              login-processing-url="/do_login"
                              authentication-failure-url="/page/error.jsp"
