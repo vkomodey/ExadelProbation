@@ -953,7 +953,6 @@ studentsControllers.controller('MakeRoleCtrl', ['$scope','$http', function($scop
                 $scope.disableAddFeedback = true;
                 $scope.link_saveStudentInfo = true;
                 $scope.link_projectHistory = true;
-                $scope.disableFeedbackEdit = true;
                 break;
             case "ROLE_CURATOR":
             case "ROLE_FEEDBACKER":
