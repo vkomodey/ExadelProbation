@@ -55,3 +55,6 @@ th.button {
 .curatorsListInStudentInfo td:last-child {
     width: 7%;
 }
+.FacultyList th:first-child, .UniversityList th:first-child, .SkillList th:first-child {
+    width: 10px;
+}
