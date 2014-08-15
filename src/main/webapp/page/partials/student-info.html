@@ -268,7 +268,7 @@
                     <td data-title="'Other'" sortable="'other'" class="td-other">{{feedback.other}}</td>
                     <td data-title="'Date'" sortable="'date'">{{feedback.date}}</td>
                     <td data-title="'Edit'">
-                        <p><a data-ng-click="saveForEdit(feedback.id)"  data-target="#editFeedbackModal" data-toggle="modal"
+                        <p><a data-ng-hide="disableFeedbackEdit" data-ng-click="saveForEdit(feedback.id)"  data-target="#editFeedbackModal" data-toggle="modal"
                               class="btn btn-sm btn-primary"><span
                                 class="glyphicon glyphicon-pencil"></span></a></p>
                     </td>
